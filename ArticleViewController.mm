@@ -129,6 +129,7 @@
     APPview.delegate = self;
     APPview.dataSource = self;
     APPview.hidden = YES;
+    APPview.scrollEnabled = NO;
     APPview.tag = 100;
     APPview.backgroundView = nil;
     APPview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
@@ -216,8 +217,7 @@
          AppDelegate *delega =[UIApplication sharedApplication].delegate;
         if (delega.language && idstring)
         {
-            NSLog(@"%@",delega.language);
-            NSLog(@"%@",idstring);
+ 
             NSString *string1 = @"{\"type\":\"";
             NSString *string2 = [NSString stringWithFormat:@"%@\",",delega.language];
             NSString *string3 =@"\"did\":\"";
@@ -250,24 +250,8 @@
 
 }
  
-
-//-(void)viewDidAppear:(BOOL)animated
-//{
-//    [assAiv stopAnimating];
-//}
-
  
-
-
--(void)rightfunction
-{
-    NSLog(@"ddddddddddd");
-}
-
--(void)leftfunction
-{
-    NSLog(@"333333333333");
-}
+ 
 
 - (void)onGetAddrResult:(BMKAddrInfo*)result errorCode:(int)error
 {
@@ -445,7 +429,7 @@
              NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
              UIImage *image = [[UIImage alloc]initWithData:data];
            
-             //缓存数组
+            
 //            if (data != nil)
 //            {
 //                 dispatch_async(dispatch_get_main_queue(), ^{   
@@ -531,6 +515,7 @@
       self.view.backgroundColor = [UIColor blackColor];
 }
 
+ 
 -(void)mapviewarea
 {
     firscrollView.hidden = YES;
@@ -545,9 +530,9 @@
     myAnnotation.title = namestring;
     [myMapView addAnnotation:myAnnotation];              
  
-    
-
 }
+
+
 
 
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
@@ -557,13 +542,14 @@
         BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: @"myAnnotation"];
          newAnnotationView.pinColor =BMKPinAnnotationColorRed;
          newAnnotationView.animatesDrop = YES;
-        return newAnnotationView;
+          return newAnnotationView;
     }
     return nil;
 }
 
+ 
 
-
+ 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (tableView.tag ==100) {
@@ -609,24 +595,25 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-      if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-     }
-    else
+     if (tableView.tag ==200)
     {
-        NSArray*subviews = [[NSArray alloc]initWithArray:cell.subviews];
-        for (UIView *subview in subviews){
-            [subview removeFromSuperview];
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         }
-        [subviews release];
-        
-    }
-    if (tableView.tag ==200)
-    {
+        else
+        {
+            NSArray*subviews = [[NSArray alloc]initWithArray:cell.subviews];
+            for (UIView *subview in subviews){
+                [subview removeFromSuperview];
+            }
+            [subviews release];
+        }
+
         UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 120, 40)];
         lable.backgroundColor = [UIColor clearColor];
         UILabel *labletwo = [[UILabel alloc] initWithFrame:CGRectMake(200, 0, 80, 40)];
         labletwo.backgroundColor = [UIColor clearColor];
+        labletwo.textColor =  [UIColor colorWithRed:0.0f green:0.5f blue:0.929f alpha:1.0f];
         [cell addSubview:lable];
         [cell addSubview:labletwo];
         [lable release];
@@ -650,6 +637,18 @@
    
  else if(tableView.tag ==100 )
     {
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        }
+        else
+        {
+//            NSArray*subviews = [[NSArray alloc]initWithArray:cell.subviews];
+//            for (UIView *subview in subviews){
+//                [subview removeFromSuperview];
+//            }
+//            [subviews release];
+        }
+
         UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(15, 5, 50, 50)];
         imageview.layer.cornerRadius = 4;
         imageview.layer.masksToBounds = YES;
@@ -669,59 +668,67 @@
          switch (indexPath.row)
         {
             case 0:
-              
-                  label.text = @"APP下载链接";
+                  
+                 
                   if (apparray.count != 0) {
-                      
+                       label.text = @"APP下载链接";
                      labeltwo.text = [[apparray objectAtIndex:0] objectForKey:@"link"];
                    }
-                else
-                {
-                     labeltwo.text = @"暂无数据";
-                }
+                  else
+                  {
+                     labeltwo.text = @"";
+                  }
                 
                   [imageview setImage:[UIImage imageNamed:@"appxia.png"]];
                   break;
             case 1:
-                 label.text = @"电话";
+               
                 if (apparray.count != 0) {
-                    labeltwo.text = [[apparray objectAtIndex:0] objectForKey:@"site"];
+                    labeltwo.text = [[apparray objectAtIndex:0] objectForKey:@"tel"];
+                      label.text = @"电话";
                 }
                 else
                 {
-                    labeltwo.text = @"暂无数据";
+                    labeltwo.text = @"";
                 }
 
                  [imageview setImage:[UIImage imageNamed:@"dianhua.png"]];
                 break;
             case 2:
-                 label.text = @"传真";
+                
                 if (apparray.count != 0) {
                     labeltwo.text = [[apparray objectAtIndex:0] objectForKey:@"fax"];
+                     label.text = @"传真";
                 }
                 else
                 {
-                    labeltwo.text = @"暂无数据";
+                    labeltwo.text = @" ";
                 }
-
-                 [imageview setImage:[UIImage imageNamed:@"chuanzhen.png"]];
+               [imageview setImage:[UIImage imageNamed:@"chuanzhen.png"]];
                 break;
             case 3:
-                 label.text = @"邮件";
+               
                 if (apparray.count != 0) {
-                    labeltwo.text = [[apparray objectAtIndex:0] objectForKey:@"tel"];
+                    labeltwo.text = [[apparray objectAtIndex:0] objectForKey:@"fax"];
+                      label.text = @"邮件";
                 }
                 else
                 {
-                    labeltwo.text = @"暂无数据";
+                    labeltwo.text = @" ";
                 }
-
-                 [imageview setImage:[UIImage imageNamed:@"youjian.png"]];
+                [imageview setImage:[UIImage imageNamed:@"youjian.png"]];
                 break;
             case 4:
-                 label.text = @"网址";
-                 labeltwo.text = @"XXXXXXXXXXXXXX";
-                 [imageview setImage:[UIImage imageNamed:@"wangzhi.png"]];
+                
+                if (apparray.count != 0) {
+                    labeltwo.text = [[apparray objectAtIndex:0] objectForKey:@"site"];
+                     label.text = @"网址";
+                }
+                else
+                {
+                    labeltwo.text = @" ";
+                }
+                  [imageview setImage:[UIImage imageNamed:@"wangzhi.png"]];
                 break;
                 
             default:

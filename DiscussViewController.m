@@ -118,10 +118,12 @@
     return 1;
 }
 
-//-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return 80;
-//}
+ 
+
+-(float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 5;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -148,15 +150,15 @@
 {
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
     if (indexPath.section == 0) {
-        CooperaViewController *coopview = [[CooperaViewController alloc] init];
+        CooperaViewController *coopview = [[CooperaViewController alloc] initwithname:@"合作单位"];
         [self.navigationController pushViewController:coopview animated:YES];
     }
     if (indexPath.section == 1) {
-        CooperaViewController *coopview = [[CooperaViewController alloc] init];
+        CooperaViewController *coopview = [[CooperaViewController alloc] initwithname:@"合作媒体"];
         [self.navigationController pushViewController:coopview animated:YES];
     }
     if (indexPath.section == 2) {
-        CooperaViewController *coopview = [[CooperaViewController alloc] init];
+        CooperaViewController *coopview = [[CooperaViewController alloc] initwithname:@"常见投资机构"];
         [self.navigationController pushViewController:coopview animated:YES];
     }
 }

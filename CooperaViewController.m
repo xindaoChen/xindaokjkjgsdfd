@@ -23,7 +23,15 @@
     return self;
 }
 
-
+-(id)initwithname:(NSString *)string
+{
+    self = [super init];
+ 
+        if (self) {
+            self.title = string;
+        }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -71,6 +79,13 @@
         cell = [[[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     return cell;
+}
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
 }
 
 -(void)backtosuper

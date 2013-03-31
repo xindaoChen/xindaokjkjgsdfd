@@ -114,7 +114,7 @@
 		7893889A16FC2128005A3A14 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7893889116FC2128005A3A14 /* ASINetworkQueue.m */; };
 		78945D781707CA090034230A /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 78945D771707CA090034230A /* background.png */; };
 		78945D7B1707D28E0034230A /* WepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78945D7A1707D28D0034230A /* WepViewController.m */; };
-		78945D7F1708062C0034230A /* yunju.png in Resources */ = {isa = PBXBuildFile; fileRef = 78945D7E1708062C0034230A /* yunju.png */; };
+		78945DA817081D080034230A /* yunju.png in Resources */ = {isa = PBXBuildFile; fileRef = 78945DA717081D080034230A /* yunju.png */; };
 		7895D6B416FE9FE700604F50 /* NetAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 7895D6B316FE9FE700604F50 /* NetAccess.m */; };
 		7895D6B616FEC32200604F50 /* Picture.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7895D6B516FEC32200604F50 /* Picture.plist */; };
 		789AEAF316F9AADD00610CE8 /* DevelopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 789AEAF216F9AADC00610CE8 /* DevelopViewController.m */; };
@@ -274,7 +274,7 @@
 		78945D771707CA090034230A /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		78945D791707D28D0034230A /* WepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WepViewController.h; path = ../WepViewController.h; sourceTree = "<group>"; };
 		78945D7A1707D28D0034230A /* WepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WepViewController.m; path = ../WepViewController.m; sourceTree = "<group>"; };
-		78945D7E1708062C0034230A /* yunju.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yunju.png; sourceTree = "<group>"; };
+		78945DA717081D080034230A /* yunju.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yunju.png; sourceTree = "<group>"; };
 		7895D6B216FE9FE700604F50 /* NetAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAccess.h; sourceTree = "<group>"; };
 		7895D6B316FE9FE700604F50 /* NetAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAccess.m; sourceTree = "<group>"; };
 		7895D6B516FEC32200604F50 /* Picture.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Picture.plist; path = ../Picture.plist; sourceTree = "<group>"; };
@@ -488,9 +488,9 @@
 		7893702C17044D9000F8159C /* Picture */ = {
 			isa = PBXGroup;
 			children = (
-				78945D7E1708062C0034230A /* yunju.png */,
 				788870E0170570A8005FB40A /* start.png */,
 				78937099170462A200F8159C /* jiantou.png */,
+				78945DA717081D080034230A /* yunju.png */,
 				789370971704625E00F8159C /* sousuo.png */,
 				788870F717058B2A005FB40A /* china.png */,
 				788870F817058B2A005FB40A /* english.png */,
@@ -761,7 +761,7 @@
 				789222AB17069D4D00D88302 /* whiteArrow.png in Resources */,
 				789222AC17069D4D00D88302 /* whiteArrow@2x.png in Resources */,
 				78945D781707CA090034230A /* background.png in Resources */,
-				78945D7F1708062C0034230A /* yunju.png in Resources */,
+				78945DA817081D080034230A /* yunju.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

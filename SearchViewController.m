@@ -31,9 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-     
-     
-  	  [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
+        
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
     assAiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     assAiv.center = CGPointMake(160, 240);
     assAiv.color = [UIColor blackColor];
@@ -45,33 +44,14 @@
     [self.view addSubview:firstview];
   
     imagearray = [[NSMutableArray alloc] init];
-    searchfield = [[UITextField alloc] initWithFrame:CGRectMake(10, 5, 240, 30)];
-    searchfield.borderStyle = UITextBorderStyleNone;
-    searchfield.layer.cornerRadius = 4;
-    searchfield.layer.masksToBounds = YES;
-    searchfield.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    searchfield.backgroundColor = [UIColor whiteColor];
-   
-    [firstview addSubview:searchfield];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame = CGRectMake(255, 5, 55, 30);
-    [button addTarget:self action:@selector(textvaluechange) forControlEvents:UIControlEventTouchUpInside];
-    button.titleLabel.textColor = [UIColor blackColor];
-    [firstview addSubview:button];        
-      [firstview release];
     
-    AppDelegate *mydelegata = [UIApplication sharedApplication].delegate;
-    if ( [mydelegata.language isEqualToString:@"english"]) {
-        self.title = @"Search";
-          [button setTitle:@"search" forState:UIControlStateNormal];
-        searchfield.placeholder = @"Please input search content···";
-    }
-    else
-    {
-        self.title = @"搜索";
-        [button setTitle:@"搜索" forState:UIControlStateNormal];
-        searchfield.placeholder = @"请输入搜索内容···";
-    }
+    UISearchBar *searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 6, 300, 30)];
+    searchbar.delegate = self;
+    UIView *searview = [searchbar.subviews objectAtIndex:0];
+    [searview removeFromSuperview];
+    searview.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:1 alpha:0.5];
+    [firstview addSubview:searchbar];
+ 
 
    searchtable = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, 320, 468) style:UITableViewStylePlain];
 //    searchtable.backgroundColor = [UIColor magentaColor];
@@ -92,22 +72,19 @@
 }
 
 
--(void)backtosuper
-{
-    [self.navigationController   popViewControllerAnimated:YES];
-}
--(void)textvaluechange
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     
     NSString *string1 = @"{\"search\":\"";
-    NSString *string2 = [NSString stringWithFormat:@"%@\",",searchfield.text];
+    NSString *string2 = [NSString stringWithFormat:@"%@\",",searchBar.text];
     NSString *string3 = @"\"type\":\"china\"}";
-     NSMutableString *allstring = [[NSMutableString alloc] init];
+    NSMutableString *allstring = [[NSMutableString alloc] init];
     allstring = [[NSMutableString alloc] init];
     [allstring appendString:string1];
     [allstring appendString:string2];
     [allstring appendString:string3];
-     
+    
     if([NetAccess reachable])
     {
         NetAccess *netAccess = [[NetAccess alloc]init];
@@ -124,9 +101,14 @@
         [alertV release];
     }
     
-    
+
 }
 
+-(void)backtosuper
+{
+    [self.navigationController   popViewControllerAnimated:YES];
+}
+ 
  
 
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet

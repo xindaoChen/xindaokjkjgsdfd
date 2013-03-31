@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NetAccess.h"
 #import "MyCell.h"
-@interface SearchViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,NetAccessDelegate>
+@interface SearchViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,NetAccessDelegate,UISearchBarDelegate>
 {
     UITextField *searchfield;
     NSMutableArray *listarray;

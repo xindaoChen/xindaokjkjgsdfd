@@ -11,14 +11,14 @@
 #import "MyCell.h"
 @interface SearchViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,NetAccessDelegate,UISearchBarDelegate>
 {
-    UITextField *searchfield;
+     
     NSMutableArray *listarray;
     UITableView *searchtable;
     UIActivityIndicatorView *assAiv;
     NSMutableArray *imagearray;
-   
+    UISearchBar *searchbar ;
 }
-@property(nonatomic,strong)UITextField *searchfield;
+ 
 @property(nonatomic,strong)NSMutableArray *listarray;
 @property(nonatomic,strong)UITableView *searchtable;
 @property(nonatomic,strong)UIActivityIndicatorView *assAiv;

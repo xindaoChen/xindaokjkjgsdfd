@@ -17,7 +17,7 @@
 @end
 
 @implementation SearchViewController
-@synthesize searchfield,listarray,searchtable,assAiv;
+@synthesize listarray,searchtable,assAiv;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,7 +45,7 @@
   
     imagearray = [[NSMutableArray alloc] init];
     
-    UISearchBar *searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 6, 300, 30)];
+     searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 6, 300, 30)];
     searchbar.delegate = self;
     UIView *searview = [searchbar.subviews objectAtIndex:0];
     [searview removeFromSuperview];
@@ -53,7 +53,7 @@
     [firstview addSubview:searchbar];
  
 
-   searchtable = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, 320, 468) style:UITableViewStylePlain];
+    searchtable = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, 320, 468) style:UITableViewStylePlain];
 //    searchtable.backgroundColor = [UIColor magentaColor];
     searchtable.delegate = self;
     searchtable.dataSource = self;
@@ -120,6 +120,7 @@
         listarray = resultSet;
         [listarray retain];
         [self setimage];
+        [ searchbar resignFirstResponder];
         [searchtable reloadData];
     }
 }
@@ -136,10 +137,6 @@
 }
 
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [searchfield resignFirstResponder];
-}
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -165,15 +162,7 @@
     if (cell == nil) {
         cell = [[[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
      }
-//    else
-//    {
-//        NSArray*subviews = [[NSArray alloc]initWithArray:cell.subviews];
-//        for (UIView *subview in subviews){
-//            [subview removeFromSuperview];
-//        }
-//        [subviews release];
-//       
-//     }
+ 
  
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -203,7 +192,7 @@
  
 -(void)dealloc
 {
-    [searchfield release];searchfield = nil;
+    
     [listarray release];listarray = nil;
     [searchtable release];searchtable = nil;
     [assAiv release];assAiv = nil;

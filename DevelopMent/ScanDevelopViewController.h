@@ -21,8 +21,7 @@
     NSMutableArray *listarray5;
     NSMutableArray *allListArray;
 
-    
-    //UITableView *searchtable;
+//    UITableView *searchtable;
     PullTableView *searchtable;
     UIView *showCityView;
     UIView *showLevelView;
@@ -64,9 +63,9 @@
 @property(nonatomic,strong)NSMutableArray *listarray3;
 @property(nonatomic,strong)NSMutableArray *listarray4;
 @property(nonatomic,strong)NSMutableArray *listarray5;
-@property(nonatomic,strong)UITableView *searchtable;
+//@property(nonatomic,strong)UITableView *searchtable;
 @property(nonatomic,strong)PullTableView *searchtable;
-//@property(nonatomic,strong)UIActivityIndicatorView *assAiv;
+@property(nonatomic,strong)UIActivityIndicatorView *assAiv;
 @property(nonatomic,strong)UIView *showCityView;
 @property(nonatomic,strong)UIView *showLevelView;
 @property(nonatomic,strong)UIView *showIndustryView;

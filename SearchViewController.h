@@ -15,8 +15,9 @@
     NSMutableArray *listarray;
     UITableView *searchtable;
     UIActivityIndicatorView *assAiv;
-    NSMutableArray *imagearray;
+     
     UISearchBar *searchbar ;
+    NSMutableDictionary *imageDic;
 }
  
 @property(nonatomic,strong)NSMutableArray *listarray;

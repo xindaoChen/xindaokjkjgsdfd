@@ -39,11 +39,12 @@
     [self.navigationController.navigationBar addSubview:assAiv];
 
     listarray = [[NSMutableArray alloc] init];
+    imageDic  = [[NSMutableDictionary alloc] init ];
     UIView *firstview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
     firstview.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:firstview];
   
-    imagearray = [[NSMutableArray alloc] init];
+     
     
      searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 6, 300, 30)];
     searchbar.delegate = self;
@@ -116,28 +117,15 @@
     [assAiv stopAnimating];
     if (na.tag ==100) {
         [listarray removeAllObjects];
-        
         listarray = resultSet;
         [listarray retain];
-        [self setimage];
         [ searchbar resignFirstResponder];
         [searchtable reloadData];
     }
 }
 
 
--(void)setimage
-{
-    for (int i = 0; i<listarray.count; i++) {
-        NSString *url = [NSString stringWithFormat:@"http://192.168.1.105:8010/assets/cityimage/%@",[[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
-        NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-        UIImage *image = [[UIImage alloc]initWithData:data];
-        [imagearray addObject:image];
-    }
-}
-
-
-
+ 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -168,7 +156,28 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.label.text = [[listarray objectAtIndex:indexPath.row] objectForKey:@"developname"];
     cell.labeltwo.text = [[listarray objectAtIndex:indexPath.row] objectForKey:@"content"];
-    [cell.imageview setImage:[imagearray objectAtIndex:indexPath.row]];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       UIImage *image1 = [imageDic objectForKey:[NSNumber numberWithInt:indexPath.row]];
+        if (image1 == nil) {
+            NSString *url = [NSString stringWithFormat:@"http://192.168.1.105:8010/assets/cityimage/%@",[[listarray objectAtIndex:indexPath.row] objectForKey:@"deveimage"]];
+           NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
+            UIImage *image = [[UIImage alloc]initWithData:data];
+            if (data != nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [cell.imageview setImage:image];
+                    [imageDic setObject:image forKey:[NSNumber numberWithInt:indexPath.row]];
+                   });
+            }
+
+        }else{
+            [cell.imageview setImage: image1];
+        }
+               
+       
+    });
+
+     
     return  cell;
 }
 

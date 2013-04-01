@@ -39,135 +39,68 @@
       [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
     CGRect fram = self.view.frame;
     if (fram.size.height>500) {
-          textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 15, 300, 230)];
+          textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 15, 300, 160)];
     }
     else
     {
-          textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 15, 300, 150)];
+          textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 15, 300, 80)];
     }
    
-    textview.backgroundColor = [UIColor underPageBackgroundColor];
+    textview.backgroundColor = [UIColor clearColor];
     textview.editable = NO;
     textview.layer.cornerRadius = 6;
     textview.layer.masksToBounds = YES;
-    textview.text =@"我多家分救分我多家分店搜救分分分店搜救分";
+    textview.text =@"       本产品致力于提供最详尽的全国开发区信息。采用LBS定位，默认显示所在城市的所有开发区，同时支持按省份浏览，按行业浏览，按名字关键字搜索等。针对每个开发区，都有单独的系列页面进行详尽的说明，对于有独立APP的开发区，提供其下载链接。";
     textview.textColor = [UIColor blackColor];
-    textview.font =[UIFont systemFontOfSize:18];
+    textview.font =[UIFont systemFontOfSize:16];
     [self.view addSubview:textview];
     
     
-//    UIButton *button1= [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//   
-//    [button1 addTarget:self action:@selector(coopview) forControlEvents:UIControlEventTouchUpInside];
-//    [button1 setTitle:@"合作单位" forState:UIControlStateNormal];
-////    button1.backgroundColor = [UIColor whiteColor];
-//    
-//    UIButton *button2= [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//   
-//     [button2 setTitle:@"合作媒体" forState:UIControlStateNormal];
-////    button2.backgroundColor = [UIColor magentaColor];
-//    
-//	UIButton *button3= [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//   
-//     [button3 setTitle:@"常见机构投资者" forState:UIControlStateNormal];
-////    button3.backgroundColor = [UIColor lightGrayColor];
-//       if (fram.size.height>500)
-//       {
-//            button1.frame = CGRectMake(10, 280, 300, 40);
-//            button2.frame = CGRectMake(10, 340, 300, 40);
-//            button3.frame = CGRectMake(10, 400, 300, 40);
-//       }
-//    else
-//    {
-//        button1.frame = CGRectMake(10, 180, 300, 40);
-//        button2.frame = CGRectMake(10, 240, 300, 40);
-//        button3.frame = CGRectMake(10, 300, 300, 40);
-//    }
-//    
-//    [self.view addSubview:button1];
-//    [self.view addSubview:button2];
-//    [self.view addSubview:button3];
-   
-    if (fram.size.height>500) {
-        tabeview = [[UITableView alloc] initWithFrame:CGRectMake(0, 250, 320, 200) style:UITableViewStyleGrouped];
-    }
+    UIButton *button1= [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button1 addTarget:self action:@selector(coopview) forControlEvents:UIControlEventTouchUpInside];
+    [button1 setBackgroundImage:[UIImage imageNamed:@"button.png"] forState:UIControlStateNormal];
+    [button1 setTitle:@"合作单位" forState:UIControlStateNormal];
+    
+    
+    
+    UIButton *button2= [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button2 setBackgroundImage:[UIImage imageNamed:@"button.png"] forState:UIControlStateHighlighted];
+    [button2 setTitle:@"合作媒体" forState:UIControlStateNormal];
+ 
+    
+	UIButton *button3= [UIButton buttonWithType:UIButtonTypeRoundedRect];
+     [button3 setBackgroundImage:[UIImage imageNamed:@"button.png"] forState:UIControlStateHighlighted];
+    [button3 setTitle:@"常见机构投资者" forState:UIControlStateNormal];
+ 
+       if (fram.size.height>500)
+       {
+            button1.frame = CGRectMake(10, 215, 300, 40);
+            button2.frame = CGRectMake(10, 275, 300, 40);
+            button3.frame = CGRectMake(10, 335, 300, 40);
+       }
     else
     {
-         tabeview = [[UITableView alloc] initWithFrame:CGRectMake(0, 170, 320, 200) style:UITableViewStyleGrouped];
+        button1.frame = CGRectMake(10, 105, 300, 40);
+        button2.frame = CGRectMake(10, 165, 300, 40);
+        button3.frame = CGRectMake(10, 225, 300, 40);
     }
-  
-    tabeview.backgroundView = nil;
-    tabeview.scrollEnabled = NO;
-    tabeview.dataSource = self;
-    tabeview.delegate = self;
-    [self.view addSubview:tabeview];
-    [tabeview release];
     
+    [self.view addSubview:button1];
+    [self.view addSubview:button2];
+    [self.view addSubview:button3];
+   
+       
 }
 
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 3;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    
-    return 1;
-}
 
  
+ 
 
--(float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+-(void)coopview
 {
-    return 5;
+    CooperaViewController *coopview = [[CooperaViewController alloc] init];
+    [self.navigationController pushViewController:coopview animated:YES];
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    }
-     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    if (indexPath.section ==0) {
-        cell.textLabel.text = @"合作单位";
-    }
-    if (indexPath.section ==1) {
-        cell.textLabel.text = @"合作媒体";
-    }
-    if (indexPath.section ==2) {
-        cell.textLabel.text = @"常见投资机构";
-    }
-    return cell;
-}
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-    if (indexPath.section == 0) {
-        CooperaViewController *coopview = [[CooperaViewController alloc] initwithname:@"合作单位"];
-        [self.navigationController pushViewController:coopview animated:YES];
-    }
-    if (indexPath.section == 1) {
-        CooperaViewController *coopview = [[CooperaViewController alloc] initwithname:@"合作媒体"];
-        [self.navigationController pushViewController:coopview animated:YES];
-    }
-    if (indexPath.section == 2) {
-        CooperaViewController *coopview = [[CooperaViewController alloc] initwithname:@"常见投资机构"];
-        [self.navigationController pushViewController:coopview animated:YES];
-    }
-}
-
-
-//-(void)coopview
-//{
-//    CooperaViewController *coopview = [[CooperaViewController alloc] init];
-//    [self.navigationController pushViewController:coopview animated:YES];
-//}
 
 
 - (void)didReceiveMemoryWarning

@@ -60,6 +60,10 @@
       [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
      NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
    sum = 0;
+    introd = NO;
+    app = YES;
+    maps = YES;
+    databool = YES;
     CGRect fram = self.view.frame;
     self.view.backgroundColor = [UIColor blackColor];
     dataarray = [[NSMutableArray alloc] init];
@@ -67,19 +71,19 @@
     introducearrytwo = [[NSMutableArray alloc] init];
     webview = [[UIWebView alloc] init];
     apparray = [[NSMutableArray alloc] init];
-    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+     button1 = [UIButton buttonWithType:UIButtonTypeCustom];
     [button1 addTarget:self action:@selector(introduce) forControlEvents:UIControlEventTouchUpInside];
      button1.backgroundColor = [UIColor grayColor];
     
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+     button2 = [UIButton buttonWithType:UIButtonTypeCustom];
     [button2 addTarget:self action:@selector(datamessage) forControlEvents:UIControlEventTouchUpInside];
      button2.backgroundColor = [UIColor grayColor];
     
-    UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
+     button3 = [UIButton buttonWithType:UIButtonTypeCustom];
    [button3 addTarget:self action:@selector(mapviewarea) forControlEvents:UIControlEventTouchUpInside];
     button3.backgroundColor = [UIColor grayColor];
     
-    UIButton *button4 = [UIButton buttonWithType:UIButtonTypeCustom];
+     button4 = [UIButton buttonWithType:UIButtonTypeCustom];
     [button4 setTitle:@"APP" forState:UIControlStateNormal];
     [button4 addTarget:self action:@selector(pushtospp) forControlEvents:UIControlEventTouchUpInside];
     button4.backgroundColor = [UIColor grayColor];
@@ -102,25 +106,30 @@
     
     if (fram.size.height>500) {
         firscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 455)];
-        dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-35, 320,540 ) style:UITableViewStylePlain];
+        dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-30, 320,540 ) style:UITableViewStylePlain];
          myMapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 505)];
          APPview = [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320,505 ) style:UITableViewStyleGrouped];
-        button1.frame = CGRectMake(4, 463, 76, 40);
-        button2.frame = CGRectMake(82, 463, 77, 40);
-        button4.frame = CGRectMake(240, 463, 76, 40);
-        button3.frame = CGRectMake(161, 463, 77, 40);
+        button1.frame = CGRectMake(0, 463, 80, 41);
+        button2.frame = CGRectMake(80, 463, 80, 41);
+        button3.frame = CGRectMake(160, 463, 80, 41);
+        button4.frame = CGRectMake(240, 463, 80, 41);
     }
     else
     {
         firscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 375)];
-         dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-35, 320,410 ) style:UITableViewStylePlain];
+         dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-30, 320,410 ) style:UITableViewStylePlain];
          myMapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 415)];
          APPview = [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320,375 ) style:UITableViewStyleGrouped];
-        button1.frame = CGRectMake(4, 375, 76, 40);
-        button2.frame = CGRectMake(82, 375, 77, 40);
-        button4.frame = CGRectMake(240, 375, 76, 40);
-        button3.frame = CGRectMake(161, 375, 77, 40);
+        button1.frame = CGRectMake(0, 375, 80, 41);
+        button2.frame = CGRectMake(80, 375, 80, 41);
+        button3.frame = CGRectMake(160, 375, 80, 41);
+        button4.frame = CGRectMake(240, 375, 80, 41);
     }
+    [button1  setImage:[UIImage imageNamed:@"introducex.png"] forState:UIControlStateNormal];
+    [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
+    [button3  setImage:[UIImage imageNamed:@"maps.png"] forState:UIControlStateNormal];
+    [button4  setImage:[UIImage imageNamed:@"app.png"] forState:UIControlStateNormal];
+    
     firscrollView.backgroundColor = [UIColor clearColor];
     firscrollView.pagingEnabled = YES;
     firscrollView.tag = 100;
@@ -281,6 +290,18 @@
     APPview.hidden = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     
+    if (app ==YES) {
+        [button1  setImage:[UIImage imageNamed:@"introduce.png"] forState:UIControlStateNormal];
+        [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
+        [button3  setImage:[UIImage imageNamed:@"maps.png"] forState:UIControlStateNormal];
+        [button4 setImage:[UIImage imageNamed:@"appx.png"] forState:UIControlStateNormal];
+        introd = YES;
+        databool = YES;
+        maps = YES;
+        app = !app;
+    }
+
+    
     if([NetAccess reachable])
     {
         [assAiv startAnimating];
@@ -320,6 +341,18 @@
     dataview.hidden = NO;
     assAiv.color = [UIColor blackColor];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    if (databool ==YES) {
+        [button1  setImage:[UIImage imageNamed:@"introduce.png"] forState:UIControlStateNormal];
+        [button2  setImage:[UIImage imageNamed:@"datax.png"] forState:UIControlStateNormal];
+        [button3  setImage:[UIImage imageNamed:@"maps.png"] forState:UIControlStateNormal];
+        [button4 setImage:[UIImage imageNamed:@"app.png"] forState:UIControlStateNormal];
+        introd = YES;
+        databool = !databool;
+        maps = YES;
+        app = YES;
+    }
+
     if (sum ==0)
     {
         if([NetAccess reachable])
@@ -374,7 +407,7 @@
     {
         [assAiv stopAnimating];
         introducearray = resultSet;
-        NSLog(@"%@",introducearray);
+        
         firscrollView.contentSize = CGSizeMake(320*(introducearray.count), 120);
 //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   [self  clearmessagetwo];});
         for (UIView *subView in firscrollView.subviews)
@@ -396,7 +429,9 @@
     }
     else if (na.tag ==111)
     {
+        [assAiv stopAnimating];
         apparray = resultSet;
+        NSLog(@"%@",apparray);
         [apparray retain];
         [ APPview reloadData];
     }
@@ -508,7 +543,18 @@
     dataview.hidden = YES;
     APPview.hidden = YES;
     myMapView.hidden = YES;
-      self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    if (introd ==YES) {
+        [button1  setImage:[UIImage imageNamed:@"introducex.png"] forState:UIControlStateNormal];
+        [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
+        [button3  setImage:[UIImage imageNamed:@"maps.png"] forState:UIControlStateNormal];
+        [button4 setImage:[UIImage imageNamed:@"app.png"] forState:UIControlStateNormal];
+        introd = !introd;
+        databool = YES;
+        maps = YES;
+        app = YES;
+    }
 }
 
  
@@ -525,6 +571,16 @@
     myAnnotation.coordinate = locationgs;
 //    myAnnotation.title = namestring;
     [myMapView addAnnotation:myAnnotation];
+    if (maps ==YES) {
+        [button1  setImage:[UIImage imageNamed:@"introduce.png"] forState:UIControlStateNormal];
+        [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
+        [button3  setImage:[UIImage imageNamed:@"mapsx.png"] forState:UIControlStateNormal];
+        [button4 setImage:[UIImage imageNamed:@"app.png"] forState:UIControlStateNormal];
+        databool = YES;
+        introd = YES;
+        maps = !maps;
+        app = YES;
+    }
  
 }
 
@@ -606,6 +662,7 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
      if (tableView.tag ==200)
     {
         if (cell == nil) {
@@ -621,10 +678,11 @@
         }
 
         UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 120, 40)];
+        lable.font = [UIFont systemFontOfSize:18];
         lable.backgroundColor = [UIColor clearColor];
-        UILabel *labletwo = [[UILabel alloc] initWithFrame:CGRectMake(200, 0, 80, 40)];
+        UILabel *labletwo = [[UILabel alloc] initWithFrame:CGRectMake(175, 0, 80, 40)];
         labletwo.backgroundColor = [UIColor clearColor];
-        labletwo.textColor =  [UIColor colorWithRed:0.0f green:0.5f blue:0.929f alpha:1.0f];
+        labletwo.textColor =  [UIColor colorWithRed:0.0f green:0.8f blue:0.929f alpha:1.0f];
         [cell addSubview:lable];
         [cell addSubview:labletwo];
         [lable release];
@@ -633,14 +691,7 @@
         {
             if ((indexPath.row-1) ==i )
             {      
-                if (i<9) {
-                     lable.text = [NSString stringWithFormat:@"0%d.%@:",(i+1),[[dataarray objectAtIndex:i]objectForKey:@"indexname" ]];
-                }
-                else
-                {
-                       lable.text = [NSString stringWithFormat:@"%d.%@:",(i+1),[[dataarray objectAtIndex:i]objectForKey:@"indexname" ]];
-                }
-             
+                lable.text = [NSString stringWithFormat:@"%@:",[[dataarray objectAtIndex:i]objectForKey:@"indexname" ]];
                 labletwo.text = [[dataarray objectAtIndex:i] objectForKey:@"num"];
             }
         }

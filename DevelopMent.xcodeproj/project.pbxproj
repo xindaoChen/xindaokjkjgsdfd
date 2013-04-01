@@ -10,6 +10,7 @@
 		4412566617097C7E007B7C9E /* GrayPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4412566517097C7E007B7C9E /* GrayPageControl.m */; };
 		4412566917097D1E007B7C9E /* active_page_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 4412566717097D1E007B7C9E /* active_page_image.png */; };
 		4412566A17097D1E007B7C9E /* inactive_page_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 4412566817097D1E007B7C9E /* inactive_page_image.png */; };
+		4412567017098E32007B7C9E /* UITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4412566F17098E32007B7C9E /* UITools.m */; };
 		780EF91A170135EC00811741 /* a.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 780EF915170135EC00811741 /* a.jpg */; };
 		780EF91B170135EC00811741 /* s.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 780EF916170135EC00811741 /* s.jpg */; };
 		780EF91D170135EC00811741 /* d.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 780EF918170135EC00811741 /* d.jpg */; };
@@ -137,6 +138,9 @@
 		4412566517097C7E007B7C9E /* GrayPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrayPageControl.m; sourceTree = "<group>"; };
 		4412566717097D1E007B7C9E /* active_page_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = active_page_image.png; sourceTree = "<group>"; };
 		4412566817097D1E007B7C9E /* inactive_page_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inactive_page_image.png; sourceTree = "<group>"; };
+		4412566B17098C09007B7C9E /* XDHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XDHeader.h; path = DevelopMent/XDHeader.h; sourceTree = "<group>"; };
+		4412566E17098E32007B7C9E /* UITools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITools.h; sourceTree = "<group>"; };
+		4412566F17098E32007B7C9E /* UITools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITools.m; sourceTree = "<group>"; };
 		780EF915170135EC00811741 /* a.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a.jpg; sourceTree = "<group>"; };
 		780EF916170135EC00811741 /* s.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = s.jpg; sourceTree = "<group>"; };
 		780EF918170135EC00811741 /* d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = d.jpg; sourceTree = "<group>"; };
@@ -351,9 +355,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4412566D17098C2A007B7C9E /* XCLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				4412566B17098C09007B7C9E /* XDHeader.h */,
+				4412566E17098E32007B7C9E /* UITools.h */,
+				4412566F17098E32007B7C9E /* UITools.m */,
+			);
+			name = XCLibrary;
+			sourceTree = "<group>";
+		};
 		7852576F16F94FA000726F8E = {
 			isa = PBXGroup;
 			children = (
+				4412566D17098C2A007B7C9E /* XCLibrary */,
 				7892228E17069D4D00D88302 /* EGOTableViewPullRefresh */,
 				7893702C17044D9000F8159C /* Picture */,
 				7852578116F94FA000726F8E /* DevelopMent */,
@@ -821,6 +836,7 @@
 				78945D7B1707D28E0034230A /* WepViewController.m in Sources */,
 				C80956821709318F00780FC3 /* ScanDevelopViewController.m in Sources */,
 				4412566617097C7E007B7C9E /* GrayPageControl.m in Sources */,
+				4412567017098E32007B7C9E /* UITools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

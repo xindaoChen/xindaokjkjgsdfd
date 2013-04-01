@@ -16,6 +16,8 @@
 #import "Introduce.h"
 #import "CooperaViewController.h"
 #import "WepViewController.h"
+#import "UITools.h"
+
 @interface ArticleViewController ()
 
 @end
@@ -177,15 +179,7 @@
     [self.navigationController.navigationBar addSubview:assAiv];
 //    dataarray = [self getthedata];
     
-    
-    
-    UIButton *button22 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button22.frame = CGRectMake(20, 8, 40, 40);
-    [button22 setImage:[UIImage imageNamed:@"jiantou.png"] forState:UIControlStateNormal];
-    [button22 addTarget:self action:@selector(backtosuper) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftBtnTopItem = [[UIBarButtonItem alloc] initWithCustomView:button22];
-    self.navigationItem.leftBarButtonItem = leftBtnTopItem;
-    [leftBtnTopItem release];
+    self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
     
     introducearrytwo = [self getthedatatwo];
     if (introducearrytwo.count != 0) {
@@ -196,7 +190,7 @@
 
 -(void)backtosuper
 {
-    [self.navigationController   popViewControllerAnimated:YES];
+    [self.navigationController  popViewControllerAnimated:YES];
 }
 
 

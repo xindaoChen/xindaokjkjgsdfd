@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface UITools : NSObject
-
++ (UIBarButtonItem* )getNavButtonItem: (UIViewController*) controller;
 @end

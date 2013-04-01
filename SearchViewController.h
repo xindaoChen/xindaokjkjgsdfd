@@ -19,7 +19,7 @@
     UISearchBar *searchbar ;
     NSMutableDictionary *imageDic;
 }
- 
+
 @property(nonatomic,strong)NSMutableArray *listarray;
 @property(nonatomic,strong)UITableView *searchtable;
 @property(nonatomic,strong)UIActivityIndicatorView *assAiv;

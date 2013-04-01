@@ -10,4 +10,15 @@
 
 @implementation UITools
 
+
++ (UIBarButtonItem* )getNavButtonItem :(UIViewController*)controller
+{
+    UIButton *leftButtonItem = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftButtonItem.frame = CGRectMake(0, 10, 60, 40);
+    [leftButtonItem setImage:[UIImage imageNamed:@"jiantou"] forState:UIControlStateNormal];
+    [leftButtonItem addTarget:controller action:@selector(backtosuper) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftBtnTopItem = [[[UIBarButtonItem alloc] initWithCustomView:leftButtonItem] autorelease];
+
+    return leftBtnTopItem;
+}
 @end

@@ -127,6 +127,7 @@
 		78CDCA0A16FEE4FA0087474D /* CDJournal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78CDCA0816FEE4FA0087474D /* CDJournal.xcdatamodeld */; };
 		78EAB75016FD86EC00534880 /* Class.List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78EAB74F16FD86EC00534880 /* Class.List.plist */; };
 		78EAB75316FD9B4B00534880 /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EAB75216FD9B4A00534880 /* MyCell.m */; };
+		C80956821709318F00780FC3 /* ScanDevelopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C80956811709318F00780FC3 /* ScanDevelopViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -320,6 +321,8 @@
 		78EAB74F16FD86EC00534880 /* Class.List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Class.List.plist; path = ../Class.List.plist; sourceTree = "<group>"; };
 		78EAB75116FD9B4A00534880 /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCell.h; path = ../MyCell.h; sourceTree = "<group>"; };
 		78EAB75216FD9B4A00534880 /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCell.m; path = ../MyCell.m; sourceTree = "<group>"; };
+		C80956801709318F00780FC3 /* ScanDevelopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScanDevelopViewController.h; path = ../ScanDevelopViewController.h; sourceTree = "<group>"; };
+		C80956811709318F00780FC3 /* ScanDevelopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScanDevelopViewController.m; path = ../ScanDevelopViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -392,8 +395,6 @@
 				7852579916F94FBA00726F8E /* FirstViewController.m */,
 				7852579B16F9901A00726F8E /* SearchViewController.h */,
 				7852579C16F9901A00726F8E /* SearchViewController.m */,
-				788830D11706DF8D00FF53ED /* ScanDevelopViewController.h */,
-				788830D21706DF8D00FF53ED /* ScanDevelopViewController.m */,
 				789AEAF116F9AADC00610CE8 /* DevelopViewController.h */,
 				789AEAF216F9AADC00610CE8 /* DevelopViewController.m */,
 				784FAA9716F9E469007E0247 /* ArticleViewController.h */,
@@ -404,6 +405,8 @@
 				78937C8616FC0E02005A3A14 /* DiscussViewController.m */,
 				78A951FF16FD4B6200DF2BFD /* CooperaViewController.h */,
 				78A9520016FD4B6200DF2BFD /* CooperaViewController.m */,
+				C80956801709318F00780FC3 /* ScanDevelopViewController.h */,
+				C80956811709318F00780FC3 /* ScanDevelopViewController.m */,
 				78945D791707D28D0034230A /* WepViewController.h */,
 				78945D7A1707D28D0034230A /* WepViewController.m */,
 				7895D6B216FE9FE700604F50 /* NetAccess.h */,
@@ -805,8 +808,8 @@
 				789222A217069D4D00D88302 /* LoadMoreTableFooterView.m in Sources */,
 				789222A317069D4D00D88302 /* MessageInterceptor.m in Sources */,
 				789222A417069D4D00D88302 /* PullTableView.m in Sources */,
-				788830D31706DF8D00FF53ED /* ScanDevelopViewController.m in Sources */,
 				78945D7B1707D28E0034230A /* WepViewController.m in Sources */,
+				C80956821709318F00780FC3 /* ScanDevelopViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -853,7 +856,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_LDFLAGS[arch=*]" = "-all_load";
-				PROVISIONING_PROFILE = "843627BC-2D92-4AAA-A0D1-09B3729568BB";
+				PROVISIONING_PROFILE = "E843D9FC-EEE4-4EA1-814A-C437120883CD";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "843627BC-2D92-4AAA-A0D1-09B3729568BB";
 				SDKROOT = iphoneos;
 			};
@@ -881,7 +884,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				"OTHER_LDFLAGS[arch=*]" = "-all_load";
-				PROVISIONING_PROFILE = "843627BC-2D92-4AAA-A0D1-09B3729568BB";
+				PROVISIONING_PROFILE = "E843D9FC-EEE4-4EA1-814A-C437120883CD";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "843627BC-2D92-4AAA-A0D1-09B3729568BB";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -892,6 +895,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: WANG XIN (NGE5QX674T)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WANG XIN (NGE5QX674T)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DevelopMent/DevelopMent-Prefix.pch";
 				INFOPLIST_FILE = "DevelopMent/DevelopMent-Info.plist";
@@ -903,6 +908,8 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "E843D9FC-EEE4-4EA1-814A-C437120883CD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E843D9FC-EEE4-4EA1-814A-C437120883CD";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -911,6 +918,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: WANG XIN (NGE5QX674T)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WANG XIN (NGE5QX674T)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DevelopMent/DevelopMent-Prefix.pch";
 				INFOPLIST_FILE = "DevelopMent/DevelopMent-Info.plist";
@@ -921,6 +930,8 @@
 					"\"$(SRCROOT)/DevelopMent\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "E843D9FC-EEE4-4EA1-814A-C437120883CD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E843D9FC-EEE4-4EA1-814A-C437120883CD";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

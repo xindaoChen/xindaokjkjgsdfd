@@ -10,6 +10,8 @@
 #import "BMapKit.h"
 #import "ClassViewController.h"
 #import "NetAccess.h"
+
+@class GrayPageControl;
  
 @interface FirstViewController : UIViewController<UIScrollViewDelegate,BMKMapViewDelegate,BMKSearchDelegate,NetAccessDelegate,UISearchBarDelegate>
 {
@@ -17,7 +19,7 @@
     UIScrollView *secscrollview;
     UIScrollView* scrollview;
     UIPageControl *pageController;
-    UIPageControl *pageControllertwo;
+    GrayPageControl *pageControllertwo;
     UIPageControl *pagecon;
     NSMutableArray *listarray;
     NSMutableArray *maplistarray;

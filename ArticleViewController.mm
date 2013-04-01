@@ -40,11 +40,11 @@
     self = [super init];
     if (self) {
         
-        NSLog(@"%@",array);
+        
         idstring = [ array  objectForKey:@"id"];
         locationgs.longitude = [[ array  objectForKey:@"longitude"] floatValue];
         locationgs.latitude =  [[ array  objectForKey:@"latitude"] floatValue];
-        namestring =[ array  objectForKey:@"developname"];
+//        namestring =[ array  objectForKey:@"developname"];
         
     }
     return self;
@@ -527,8 +527,8 @@
     BMKCoordinateRegion reg = BMKCoordinateRegionMake(locationgs, span);
     [myMapView setRegion:reg animated:YES];
     myAnnotation.coordinate = locationgs;
-    myAnnotation.title = namestring;
-    [myMapView addAnnotation:myAnnotation];              
+//    myAnnotation.title = namestring;
+    [myMapView addAnnotation:myAnnotation];
  
 }
 
@@ -539,10 +539,25 @@
 {
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
     {
+//        BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: @"myAnnotation"];
+//         newAnnotationView.pinColor =BMKPinAnnotationColorRed;
+//         newAnnotationView.animatesDrop = YES;
+//          return newAnnotationView;
         BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: @"myAnnotation"];
-         newAnnotationView.pinColor =BMKPinAnnotationColorRed;
-         newAnnotationView.animatesDrop = YES;
-          return newAnnotationView;
+        newAnnotationView.pinColor =BMKPinAnnotationColorPurple;
+        newAnnotationView.animatesDrop = YES;
+        namestring = @"lsdflsdj lsdjfsdjf sdjf    ;asldjfosajf sjflsajdlfjsd ; ;asldjkf ";
+        CGSize textSize = [namestring sizeWithFont:[UIFont systemFontOfSize:13]
+                                 constrainedToSize:CGSizeMake(200, 9999)
+                                     lineBreakMode:NSLineBreakByCharWrapping];
+         
+        UIView *view  = [[UIView alloc] initWithFrame:CGRectMake(-30, -40, textSize.width, 20)];
+        [view setBackgroundColor:[UIColor redColor]];
+        [newAnnotationView addSubview:view];
+        
+              
+        return newAnnotationView;
+
     }
     return nil;
 }

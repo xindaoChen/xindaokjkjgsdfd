@@ -216,12 +216,11 @@
     NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString*pat=[pathss objectAtIndex:0];
     NSString *filenames=[pat stringByAppendingPathComponent:@"Picture.plist"];
-    NSMutableArray *arraydd=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
-    listarray = arraydd;
-        if (listarray.count != 0) {
+    listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+    if (listarray.count != 0) {
         [self setfirstimagetwo];
     }
-   [arraydd release];
+   
     timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessage) userInfo:nil repeats:YES];
     timer2 = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessagetwo) userInfo:nil repeats:YES];
    [timer2 setFireDate:[NSDate distantFuture]];

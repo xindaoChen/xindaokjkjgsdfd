@@ -119,6 +119,7 @@
         [listarray removeAllObjects];
         listarray = resultSet;
         [listarray retain];
+        NSLog(@"%@",listarray);
         [ searchbar resignFirstResponder];
         [searchtable reloadData];
     }
@@ -170,14 +171,13 @@
                    });
             }
 
-        }else{
+         }
+        else{
             [cell.imageview setImage: image1];
         }
-               
-       
-    });
+  });
 
-     
+    NSLog(@"%@",imageDic);
     return  cell;
 }
 

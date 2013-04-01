@@ -67,9 +67,9 @@
     [super viewDidLoad];
     allListArray = [[NSMutableArray alloc]init];
     
-    levelName = @"全部";
+    levelName = @"级别";
     
-    industryName = @"全部";
+    industryName = @"行业";
     contectFlag = @"a";
     inid = @"";
     leid = @"";
@@ -78,7 +78,7 @@
     developnumhasget = 0;
    // cid = @"";
     //	self.title = @"搜索";
-    allProvinceArray = [[NSMutableArray alloc] initWithObjects:@"全国",@"北京",@"天津",@"上海",@"重庆",@"河北", @"山西",@"辽宁",@"吉林",@"黑龙江",@"江苏",@"浙江",@"安徽",@"山东",@"广东",@"江西",@"内蒙古",@"广西",@"西藏",@"宁夏",@"新疆",@"河南",@"海南",@"湖南",@"福建",@"贵州",@"云南",@"湖北",@"甘肃",@"四川",@"青海",@"陕西",@"台湾",@"香港",@"澳门",nil];
+    allProvinceArray = [[NSMutableArray alloc] initWithObjects:@"全国",@"北京市",@"天津市",@"上海市",@"重庆市",@"河北省", @"山西省",@"辽宁省",@"吉林省",@"黑龙江省",@"江苏省",@"浙江省",@"安徽省",@"山东省",@"广东省",@"江西省",@"内蒙古",@"广西自治区",@"西藏自治区",@"宁夏自治区",@"新疆自治区",@"河南省",@"海南省",@"湖南省",@"福建省",@"贵州省",@"云南省",@"湖北省",@"甘肃省",@"四川省",@"青海省",@"陕西省",@"台湾省",@"香港",@"澳门",nil];
 
     if (flagForInit != 10000) {   //判断上一个界面传的值是市名还是下标。若不是市名，从数组中提取市名。
         provinceName = [allProvinceArray objectAtIndex:num];
@@ -123,7 +123,7 @@
     
     provincebutton = [UIButton buttonWithType:UIButtonTypeCustom];
     provincebutton.frame = CGRectMake(0, 0,frame.size.width/3, 40);
-    provincebutton.backgroundColor = [UIColor grayColor];
+    provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"s.jpg"]];
     [provincebutton setTitle:[NSString stringWithFormat:@"%@",provinceName] forState:UIControlStateNormal];
   // provincebutton.titleLabel.text = provinceName;
     [provincebutton addTarget:self action:@selector(showCity) forControlEvents:UIControlEventTouchUpInside];
@@ -131,7 +131,7 @@
     
     levelbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     levelbutton.frame = CGRectMake(frame.size.width/3+1, 0,frame.size.width/3-1, 40);
-    levelbutton.backgroundColor = [UIColor grayColor];
+    levelbutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"s.jpg"]];
     [levelbutton setTitle:[NSString stringWithFormat:@"%@",levelName] forState:UIControlStateNormal];
     [levelbutton addTarget:self action:@selector(showLevel) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview:levelbutton];
@@ -140,7 +140,7 @@
     industrybutton = [UIButton buttonWithType:UIButtonTypeCustom];
     industrybutton.frame = CGRectMake(2*frame.size.width/3+1, 0,frame.size.width/3, 40);
 
-    industrybutton.backgroundColor = [UIColor grayColor];
+    industrybutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"s.jpg"]];
     [industrybutton setTitle:[NSString stringWithFormat:@"%@",industryName] forState:UIControlStateNormal];
     [industrybutton addTarget:self action:@selector(showIndustry) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview:industrybutton];
@@ -199,8 +199,10 @@
     [self.view addSubview:levelbutton];
     [self.view addSubview:provincebutton];
 
+    moveImageView = [[UIImageView alloc]initWithFrame:CGRectMake(-100, 40, 100, 4)];
+    moveImageView.image = [UIImage  imageNamed:@"f.jpg"];
 
-
+    [self.view addSubview:moveImageView];
     provinceButonStatue = 1;
     levelButonStatue = 1;
     industryButonStatue = 1;
@@ -315,6 +317,7 @@
     {
         [UIView animateWithDuration:0.3 animations:^{
             showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+            levelbutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"s.jpg"]];
         }];
         levelButonStatue = 1;
     }
@@ -322,6 +325,7 @@
     {
         [UIView animateWithDuration:0.3 animations:^{
             showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+            industrybutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"s.jpg"]];
         }];
         levelButonStatue = 1;
     }
@@ -333,6 +337,8 @@
     if (provinceButonStatue == 1) {
         [UIView animateWithDuration:0.3 animations:^{
             showCityView.frame =CGRectMake(0, 40, 320, UI_SCREEN_HEIGHT-84);
+                 provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"d.jpg"]];
+            moveImageView.frame = CGRectMake(0, 40, 100, 4);
         }];
         provinceButonStatue = -1;
         
@@ -341,14 +347,19 @@
     {
         [UIView animateWithDuration:0.3 animations:^{
             showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+             provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"s.jpg"]];
+            moveImageView.frame = CGRectMake(-100, 40, 100, 4);
         }];
         provinceButonStatue = 1;
     }
     int x=0 ;
     NSLog(@"111111%@",provinceName);
+     NSLog(@"##%@",tempprovinceName);
     for (int i = 0; i < allProvinceArray.count; i++) {
-        
+        NSLog(@"%@",tempprovinceName);
+
         if ([tempprovinceName isEqualToString:@""]) {
+            NSLog(@"%@",tempprovinceName);
             if ([provinceName isEqualToString:[allProvinceArray objectAtIndex:i]]) {
                 x = i;
                 break;
@@ -375,6 +386,7 @@
     {
         [UIView animateWithDuration:0.3 animations:^{
             showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+             industrybutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"s.jpg"]];
         }];
         industryButonStatue = 1;
     }
@@ -382,6 +394,7 @@
     {
         [UIView animateWithDuration:0.3 animations:^{
             showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+             provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"s.jpg"]];
         }];
         provinceButonStatue = 1;
     }
@@ -391,6 +404,9 @@
     if (levelButonStatue == 1) {
         [UIView animateWithDuration:0.3 animations:^{
             showLevelView.frame =CGRectMake(0, 40, 320, UI_SCREEN_HEIGHT-84);
+             levelbutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"d.jpg"]];
+            moveImageView.frame = CGRectMake(110, 40, 100, 4);
+
         }];
         levelButonStatue = -1;
         
@@ -399,6 +415,8 @@
     {
         [UIView animateWithDuration:0.3 animations:^{
             showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+             levelbutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"s.jpg"]];
+            moveImageView.frame = CGRectMake(-100, 40, 100, 4);
         }];
         levelButonStatue = 1;
     }
@@ -419,6 +437,7 @@
      {
          [UIView animateWithDuration:0.3 animations:^{
              showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+              levelbutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"s.jpg"]];
           }];
          levelButonStatue = 1;
      }
@@ -426,6 +445,7 @@
     {
         [UIView animateWithDuration:0.3 animations:^{
             showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+             provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"s.jpg"]];
         }];
         provinceButonStatue = 1;
     }
@@ -435,6 +455,9 @@
     if (industryButonStatue == 1) {
         [UIView animateWithDuration:0.3 animations:^{
             showIndustryView.frame =CGRectMake(0, 40, 320, UI_SCREEN_HEIGHT-84);
+            industrybutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"d.jpg"]];
+            moveImageView.frame = CGRectMake(210, 40, 100, 4);
+
         }];
         industryButonStatue = -1;
         
@@ -443,6 +466,9 @@
     {
         [UIView animateWithDuration:0.3 animations:^{
             showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+            industrybutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"s.jpg"]];
+            moveImageView.frame = CGRectMake(-100, 40, 100, 4);
+
         }];
         industryButonStatue = 1;
     }
@@ -577,10 +603,12 @@
                 
             
             for (int i = 0 ; i< allListArray.count; i++)
-            {
+            {NSLog(@"*********%@",allListArray);
                 if (indexPath.row == i )
                 { NSLog(@"1");
                     cell.label.text = [[allListArray objectAtIndex:i] objectForKey:@"developname"];
+                    
+                    NSLog(@"################%@,%d",allListArray,allListArray.count);
                     cell.labeltwo.text = [[allListArray objectAtIndex:i] objectForKey:@"content"];
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                         NSString *url = [NSString stringWithFormat:@"http://192.168.1.105:8010/assets/cityimage/%@",[[allListArray objectAtIndex:i] objectForKey:@"deveimage"]];
@@ -602,7 +630,7 @@
                 cell = [[[MyCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
             }
             cell.textLabel.text = [allProvinceArray objectAtIndex:indexPath.row];
-      
+        
         
             return cell;
             break;
@@ -664,7 +692,7 @@
         case 1:
             
             [searchtable deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-            ArticleViewController *artiview = [[ArticleViewController alloc] initWithurl:[[listarray objectAtIndex:indexPath.row] objectForKey:@"id"]];
+            ArticleViewController *artiview = [[ArticleViewController alloc] initWithurl:[allListArray objectAtIndex:indexPath.row]];
             [self.navigationController pushViewController:artiview animated:YES];
             break;
         case 2:
@@ -685,6 +713,8 @@
                 {
                     [UIView animateWithDuration:0.3 animations:^{
                         showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+                        moveImageView.frame = CGRectMake(-100, 40, 100, 4);
+
                     }];
                     provinceButonStatue = 1;
                 }
@@ -698,12 +728,18 @@
             }
             else{
             getCityName = [NSString stringWithFormat:getCityName = @"{\"type\":\"china\",\"prov\":\"%@\"}",[allProvinceArray objectAtIndex:indexPath.row]] ;
+                tempprovinceName = [allProvinceArray objectAtIndex:indexPath.row];
+               
+               
             [self showCityName];
             }
             break;
         case 3:
         [cityView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-            tempprovinceName = provinceName;
+            if ([tempprovinceName isEqualToString:@""]) {
+                tempprovinceName = provinceName;
+            }
+          //  tempprovinceName = provinceName;
             provinceName = [[listarray3 objectAtIndex:indexPath.row] objectForKey:@"cityname"];
             [provincebutton setTitle:provinceName forState:UIControlStateNormal];
         
@@ -718,6 +754,8 @@
             {
                 [UIView animateWithDuration:0.3 animations:^{
                     showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+                    moveImageView.frame = CGRectMake(-100, 40, 100, 4);
+
                 }];
                 provinceButonStatue = 1;
             }
@@ -753,6 +791,8 @@
             {
                 [UIView animateWithDuration:0.3 animations:^{
                     showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+                    moveImageView.frame = CGRectMake(-100, 40, 100, 4);
+
                 }];
                 levelButonStatue = 1;
             }
@@ -791,6 +831,8 @@
             {
                 [UIView animateWithDuration:0.3 animations:^{
                     showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+                    moveImageView.frame = CGRectMake(-100, 40, 100, 4);
+
                 }];
                 industryButonStatue = 1;
             }
@@ -814,10 +856,17 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView.tag == 2) {
+        [cell setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"s.jpg"]]];
+        cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+        cell.selectedBackgroundView.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"d.jpg"]];
+    }
+    
     if (allListArray.count != 0 && tableView.tag == 1) {
         
         
-        int count = [[[allListArray objectAtIndex:0] objectForKey:@"count"] intValue];
+       int count = [[[allListArray objectAtIndex:0] objectForKey:@"count"] intValue];
+          
         if (indexPath.row == [allListArray count] - 1 && indexPath.row < count -1)
         {  UIView *footview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
             NSLog(@"$%d,%d,%d",indexPath.row,[allListArray count]-1,count -1);
@@ -832,6 +881,7 @@
                        
             getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\",\"time\":\"%@\"}",provinceName,leid,inid,cid,[[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"] ];
             
+            NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);
             NSLog(@"%@",getDevelopZoneInfo);
             [provinceName retain];
             [self showdevelopZone];

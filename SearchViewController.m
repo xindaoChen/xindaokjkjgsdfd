@@ -17,7 +17,7 @@
 @end
 
 @implementation SearchViewController
-@synthesize searchfield,listarray,searchtable,assAiv;
+@synthesize listarray,searchtable,assAiv;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,13 +39,14 @@
     [self.navigationController.navigationBar addSubview:assAiv];
 
     listarray = [[NSMutableArray alloc] init];
+    imageDic  = [[NSMutableDictionary alloc] init ];
     UIView *firstview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
     firstview.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:firstview];
   
-    imagearray = [[NSMutableArray alloc] init];
+     
     
-    UISearchBar *searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 6, 300, 30)];
+     searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 6, 300, 30)];
     searchbar.delegate = self;
     UIView *searview = [searchbar.subviews objectAtIndex:0];
     [searview removeFromSuperview];
@@ -53,7 +54,7 @@
     [firstview addSubview:searchbar];
  
 
-   searchtable = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, 320, 468) style:UITableViewStylePlain];
+    searchtable = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, 320, 468) style:UITableViewStylePlain];
 //    searchtable.backgroundColor = [UIColor magentaColor];
     searchtable.delegate = self;
     searchtable.dataSource = self;
@@ -116,31 +117,15 @@
     [assAiv stopAnimating];
     if (na.tag ==100) {
         [listarray removeAllObjects];
-        
         listarray = resultSet;
         [listarray retain];
-        [self setimage];
+        [ searchbar resignFirstResponder];
         [searchtable reloadData];
     }
 }
 
 
--(void)setimage
-{
-    for (int i = 0; i<listarray.count; i++) {
-        NSString *url = [NSString stringWithFormat:@"http://192.168.1.105:8010/assets/cityimage/%@",[[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
-        NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-        UIImage *image = [[UIImage alloc]initWithData:data];
-        [imagearray addObject:image];
-    }
-}
-
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [searchfield resignFirstResponder];
-}
-
+ 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -165,21 +150,34 @@
     if (cell == nil) {
         cell = [[[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
      }
-//    else
-//    {
-//        NSArray*subviews = [[NSArray alloc]initWithArray:cell.subviews];
-//        for (UIView *subview in subviews){
-//            [subview removeFromSuperview];
-//        }
-//        [subviews release];
-//       
-//     }
+ 
  
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.label.text = [[listarray objectAtIndex:indexPath.row] objectForKey:@"developname"];
     cell.labeltwo.text = [[listarray objectAtIndex:indexPath.row] objectForKey:@"content"];
-    [cell.imageview setImage:[imagearray objectAtIndex:indexPath.row]];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       UIImage *image1 = [imageDic objectForKey:[NSNumber numberWithInt:indexPath.row]];
+        if (image1 == nil) {
+            NSString *url = [NSString stringWithFormat:@"http://192.168.1.105:8010/assets/cityimage/%@",[[listarray objectAtIndex:indexPath.row] objectForKey:@"deveimage"]];
+           NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
+            UIImage *image = [[UIImage alloc]initWithData:data];
+            if (data != nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [cell.imageview setImage:image];
+                    [imageDic setObject:image forKey:[NSNumber numberWithInt:indexPath.row]];
+                   });
+            }
+
+        }else{
+            [cell.imageview setImage: image1];
+        }
+               
+       
+    });
+
+     
     return  cell;
 }
 
@@ -203,7 +201,7 @@
  
 -(void)dealloc
 {
-    [searchfield release];searchfield = nil;
+    
     [listarray release];listarray = nil;
     [searchtable release];searchtable = nil;
     [assAiv release];assAiv = nil;

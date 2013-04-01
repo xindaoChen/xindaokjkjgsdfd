@@ -24,7 +24,7 @@
 @end
 
 @implementation FirstViewController
-@synthesize firscrollView,secscrollview,pageController,pageControllertwo,toolBar,textfield,maplistarray;
+@synthesize firscrollView,secscrollview,pageController,pageControllertwo,toolBar,maplistarray;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -197,11 +197,20 @@
     [myview setImage:[UIImage imageNamed:@"gray.png"]];
     [self.view addSubview:myview];
     [myview release];
-    textfield = [UIButton buttonWithType:UIButtonTypeCustom ];
-    textfield.frame = CGRectMake(40, 122, 240, 40);
-    [textfield setImage:[UIImage imageNamed:@"search.png"] forState:UIControlStateNormal];
-    [textfield addTarget:self action:@selector(seachview) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:textfield];
+    
+ 
+    
+    UISearchBar* searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(40, 122, 240, 40)];
+    searchbar.delegate = self;
+     UIView *searview = [searchbar.subviews objectAtIndex:0];
+    [searview removeFromSuperview];
+    [self.view addSubview:searchbar];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(40, 122, 240, 40);
+    [button addTarget:self action:@selector(pushtosearch) forControlEvents:UIControlEventTouchUpInside];
+   [self.view addSubview:button];
+
      
    
     NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
@@ -209,8 +218,6 @@
     NSString *filenames=[pat stringByAppendingPathComponent:@"Picture.plist"];
     NSMutableArray *arraydd=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
     listarray = arraydd;
-    NSLog(@"%d",listarray.count);
-    
         if (listarray.count != 0) {
         [self setfirstimagetwo];
     }
@@ -221,10 +228,15 @@
     [self makethebutton];
     [self maketitle];
     
-    
-//
-    
-}
+ }
+
+-(void)pushtosearch
+{
+    SearchViewController *seachview = [[SearchViewController alloc] init];
+    [self.navigationController pushViewController:seachview animated:YES];
+ }
+
+ 
 
 -(void)makethebutton
 {
@@ -315,7 +327,6 @@
 - (void)mapView:(BMKMapView *)mapView didUpdateUserLocation:(BMKUserLocation *)userLocation
 {
     [mysearch reverseGeocode:userLocation.location.coordinate];
-    NSLog(@"%@",userLocation.location);
     myMapView.showsUserLocation = NO;
 }
 
@@ -492,12 +503,6 @@
 }
 
 
-
--(void)seachview
-{
-    SearchViewController *seachview = [[SearchViewController alloc] init];
-    [self.navigationController pushViewController:seachview animated:YES];
-}
 
  
  

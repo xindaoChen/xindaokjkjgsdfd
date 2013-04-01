@@ -11,7 +11,7 @@
 #import "ClassViewController.h"
 #import "NetAccess.h"
  
-@interface FirstViewController : UIViewController<UIScrollViewDelegate,BMKMapViewDelegate,BMKSearchDelegate,NetAccessDelegate>
+@interface FirstViewController : UIViewController<UIScrollViewDelegate,BMKMapViewDelegate,BMKSearchDelegate,NetAccessDelegate,UISearchBarDelegate>
 {
     UIScrollView *firscrollView;
     UIScrollView *secscrollview;
@@ -27,7 +27,7 @@
     UIToolbar *toolBar;
     NSMutableArray *arrayone;
      NSMutableArray *arrayonetwo;
-    UIButton *textfield;
+    
     NSTimer *timer;
     NSTimer *timer2;
     NSMutableArray *imagearray;
@@ -43,6 +43,6 @@
 @property(nonatomic,strong)UIPageControl *pageController;
 @property(nonatomic,strong)UIPageControl *pageControllertwo;
 @property(nonatomic,strong) UIToolbar *toolBar;
-@property(nonatomic,strong) UIButton *textfield;
+ 
 @property(nonatomic,strong) NSMutableArray *maplistarray;
 @end

@@ -35,6 +35,7 @@
 		788870F917058B2A005FB40A /* china.png in Resources */ = {isa = PBXBuildFile; fileRef = 788870F717058B2A005FB40A /* china.png */; };
 		788870FA17058B2A005FB40A /* english.png in Resources */ = {isa = PBXBuildFile; fileRef = 788870F817058B2A005FB40A /* english.png */; };
 		788870FC17058C84005FB40A /* appxia.png in Resources */ = {isa = PBXBuildFile; fileRef = 788870FB17058C83005FB40A /* appxia.png */; };
+		788DB18B17093473007B37FC /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 788DB18A17093473007B37FC /* libbaidumapapi.a */; };
 		789222A117069D4D00D88302 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7892229117069D4D00D88302 /* EGORefreshTableHeaderView.m */; };
 		789222A217069D4D00D88302 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7892229317069D4D00D88302 /* LoadMoreTableFooterView.m */; };
 		789222A317069D4D00D88302 /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7892229517069D4D00D88302 /* MessageInterceptor.m */; };
@@ -117,7 +118,6 @@
 		7895D6B416FE9FE700604F50 /* NetAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 7895D6B316FE9FE700604F50 /* NetAccess.m */; };
 		7895D6B616FEC32200604F50 /* Picture.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7895D6B516FEC32200604F50 /* Picture.plist */; };
 		789AEAF316F9AADD00610CE8 /* DevelopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 789AEAF216F9AADC00610CE8 /* DevelopViewController.m */; };
-		78A30F4716FA90D2007FED16 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A30F4616FA90D2007FED16 /* libbaidumapapi.a */; };
 		78A30F4B16FA92A7007FED16 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A30F4A16FA92A7007FED16 /* CoreLocation.framework */; };
 		78A30F4D16FA92BC007FED16 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A30F4C16FA92BC007FED16 /* QuartzCore.framework */; };
 		78A30F5B16FAB830007FED16 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78A30F5A16FAB830007FED16 /* mapapi.bundle */; };
@@ -167,6 +167,7 @@
 		788870F717058B2A005FB40A /* china.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = china.png; sourceTree = "<group>"; };
 		788870F817058B2A005FB40A /* english.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = english.png; sourceTree = "<group>"; };
 		788870FB17058C83005FB40A /* appxia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appxia.png; sourceTree = "<group>"; };
+		788DB18A17093473007B37FC /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		7892229017069D4D00D88302 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		7892229117069D4D00D88302 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		7892229217069D4D00D88302 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -307,7 +308,6 @@
 		78A30F4316FA90BA007FED16 /* BMKTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKTypes.h; sourceTree = "<group>"; };
 		78A30F4416FA90BA007FED16 /* BMKUserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKUserLocation.h; sourceTree = "<group>"; };
 		78A30F4516FA90BA007FED16 /* BMKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKVersion.h; sourceTree = "<group>"; };
-		78A30F4616FA90D2007FED16 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbaidumapapi.a; path = ../libbaidumapapi.a; sourceTree = "<group>"; };
 		78A30F4A16FA92A7007FED16 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		78A30F4C16FA92BC007FED16 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		78A30F5A16FAB830007FED16 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
@@ -337,7 +337,7 @@
 				7852577C16F94FA000726F8E /* UIKit.framework in Frameworks */,
 				7852577E16F94FA000726F8E /* Foundation.framework in Frameworks */,
 				7852578016F94FA000726F8E /* CoreGraphics.framework in Frameworks */,
-				78A30F4716FA90D2007FED16 /* libbaidumapapi.a in Frameworks */,
+				788DB18B17093473007B37FC /* libbaidumapapi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,8 +417,8 @@
 				780EF9221701437500811741 /* g.jpg */,
 				788870DD17053764005FB40A /* ttt.jpg */,
 				780EF915170135EC00811741 /* a.jpg */,
+				788DB18A17093473007B37FC /* libbaidumapapi.a */,
 				78A30F5A16FAB830007FED16 /* mapapi.bundle */,
-				78A30F4616FA90D2007FED16 /* libbaidumapapi.a */,
 				78A30F2816FA90BA007FED16 /* inc */,
 				7852578216F94FA000726F8E /* Supporting Files */,
 			);
@@ -901,6 +901,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/DevelopMent\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E843D9FC-EEE4-4EA1-814A-C437120883CD";
@@ -922,6 +923,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/DevelopMent\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E843D9FC-EEE4-4EA1-814A-C437120883CD";

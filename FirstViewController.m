@@ -72,8 +72,8 @@
         }
        
         pagecon.currentPage=0;
-        [pagecon setCurrentPageIndicatorTintColor:[UIColor whiteColor]];
-        [pagecon setPageIndicatorTintColor:[UIColor blackColor]];
+//        [pagecon setCurrentPageIndicatorTintColor:[UIColor whiteColor]];
+//        [pagecon setPageIndicatorTintColor:[UIColor blackColor]];
         pagecon.userInteractionEnabled=NO;
         pagecon.alpha=1;
         pagecon.numberOfPages=5;
@@ -151,8 +151,8 @@
        
     pageController = [[UIPageControl alloc ] initWithFrame:CGRectMake(200, 100, 100, 20)];
     pageController.currentPage=0;
-    [pageController setCurrentPageIndicatorTintColor:[UIColor redColor]];
-    [pageController setPageIndicatorTintColor:[UIColor whiteColor]];
+//    [pageController setCurrentPageIndicatorTintColor:[UIColor redColor]];
+//    [pageController setPageIndicatorTintColor:[UIColor whiteColor]];
     pageController.userInteractionEnabled=NO;
     pageController.alpha=1;
     if (fram.size.height>500) {
@@ -169,8 +169,8 @@
     
     pageControllertwo.backgroundColor = [UIColor clearColor];
     pageControllertwo.currentPage=0;
-    [pageControllertwo setCurrentPageIndicatorTintColor:[UIColor redColor]];
-    [pageControllertwo setPageIndicatorTintColor:[UIColor grayColor]];
+//    [pageControllertwo setCurrentPageIndicatorTintColor:[UIColor redColor]];
+//    [pageControllertwo setPageIndicatorTintColor:[UIColor grayColor]];
     pageControllertwo.userInteractionEnabled=NO;
     pageControllertwo.alpha=1;
     [self.view addSubview:pageControllertwo];

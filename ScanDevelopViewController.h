@@ -22,12 +22,13 @@
     NSMutableArray *allListArray;
 
     
-    //UITableView *searchtable;
-    PullTableView *searchtable;
+    UITableView *searchtable;
+//    PullTableView *searchtable;
     UIView *showCityView;
     UIView *showLevelView;
     UIView *showIndustryView;
     UIActivityIndicatorView *assAiv;
+    UIImageView *moveImageView;
     
     NSString *provinceName;
     NSString *tempprovinceName;
@@ -57,6 +58,10 @@
     NSString *getDevelopZoneInfo;
    NSString *getCityName;
     
+    int provinceButonStatue;   //记录每个按钮的状态互斥  选中-1，
+    int levelButonStatue;
+    int industryButonStatue;
+    
 }
 @property(nonatomic,strong)UITextField *searchfield;
 @property(nonatomic,strong)NSMutableArray *listarray;
@@ -65,8 +70,8 @@
 @property(nonatomic,strong)NSMutableArray *listarray4;
 @property(nonatomic,strong)NSMutableArray *listarray5;
 @property(nonatomic,strong)UITableView *searchtable;
-@property(nonatomic,strong)PullTableView *searchtable;
-//@property(nonatomic,strong)UIActivityIndicatorView *assAiv;
+//@property(nonatomic,strong)PullTableView *searchtable;
+@property(nonatomic,strong)UIActivityIndicatorView *assAiv;
 @property(nonatomic,strong)UIView *showCityView;
 @property(nonatomic,strong)UIView *showLevelView;
 @property(nonatomic,strong)UIView *showIndustryView;

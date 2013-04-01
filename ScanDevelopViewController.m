@@ -9,9 +9,10 @@
 #import "ScanDevelopViewController.h"
 #import "MyCell.h"
 #import "SearchViewController.h"
-//#import "SearchViewController.h"
 #import "ArticleViewController.h"
-//#import "PopTableView.h"
+
+#define UI_SCREEN_WIDTH                 320
+#define UI_SCREEN_HEIGHT                ([[UIScreen mainScreen] bounds].size.height)
 @interface ScanDevelopViewController ()
 
 @end
@@ -64,7 +65,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"开发区";
     allListArray = [[NSMutableArray alloc]init];
     
     levelName = @"全部";
@@ -74,13 +74,12 @@
     inid = @"";
     leid = @"";
     tempprovinceName = @"";
- //   pagenum = 1;
+ 
     developnumhasget = 0;
    // cid = @"";
     //	self.title = @"搜索";
     allProvinceArray = [[NSMutableArray alloc] initWithObjects:@"全国",@"北京",@"天津",@"上海",@"重庆",@"河北", @"山西",@"辽宁",@"吉林",@"黑龙江",@"江苏",@"浙江",@"安徽",@"山东",@"广东",@"江西",@"内蒙古",@"广西",@"西藏",@"宁夏",@"新疆",@"河南",@"海南",@"湖南",@"福建",@"贵州",@"云南",@"湖北",@"甘肃",@"四川",@"青海",@"陕西",@"台湾",@"香港",@"澳门",nil];
-//    allLevelArray = [[NSArray alloc]initWithObjects:@"国家级",@"省级",@"市级",@"全部", nil];
-//    allIndustryArray =[[NSMutableArray alloc]initWithObjects:@"计算机",@"生物",@"航空",@"图形识别", nil];
+
     if (flagForInit != 10000) {   //判断上一个界面传的值是市名还是下标。若不是市名，从数组中提取市名。
         provinceName = [allProvinceArray objectAtIndex:num];
     }
@@ -99,15 +98,11 @@
     listarray3 = [[NSMutableArray alloc] init];
     listarray4 = [[NSMutableArray alloc] init];
     listarray5 = [[NSMutableArray alloc] init];
-    
-    searchtable = [[PullTableView alloc]initWithFrame:CGRectMake(0, 40, 320, self.view.frame.size.height-84)];
-    searchtable.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
-    searchtable.pullBackgroundColor = [UIColor redColor];
-    searchtable.pullTextColor = [UIColor whiteColor];
-    
- // searchtable.rowHeight = 100;
-    searchtable.pullDelegate = self;
-    searchtable.delegate = self;
+    if (self.view.frame.size.height == 568) {
+      //  searchtableheight =
+    }
+    searchtable = [[UITableView alloc]initWithFrame:CGRectMake(0, 40, 320, 5*80)];
+      searchtable.delegate = self;
     searchtable.dataSource = self;
     searchtable.tag = 1;
     [self.view addSubview:searchtable];    
@@ -117,29 +112,29 @@
         getCityName = [NSString stringWithFormat:getCityName = @"{\"type\":\"china\",\"prov\":\"%@\"}",provinceName] ;
         [self showCityName];
     }
-//    getCityName = [NSString stringWithFormat:getCityName = @"{\"type\":\"china\",\"prov\":\"%@\"}",provinceName] ;
-//    [self showCityName];
+
     [self showdevelopZone];
     [self showLevelList];
     [self showIndustryList];
 
     
- 
+    
+
     
     provincebutton = [UIButton buttonWithType:UIButtonTypeCustom];
     provincebutton.frame = CGRectMake(0, 0,frame.size.width/3, 40);
     provincebutton.backgroundColor = [UIColor grayColor];
     [provincebutton setTitle:[NSString stringWithFormat:@"%@",provinceName] forState:UIControlStateNormal];
-   
+  // provincebutton.titleLabel.text = provinceName;
     [provincebutton addTarget:self action:@selector(showCity) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:provincebutton];
+//    [self.view addSubview:provincebutton];
     
     levelbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     levelbutton.frame = CGRectMake(frame.size.width/3+1, 0,frame.size.width/3-1, 40);
     levelbutton.backgroundColor = [UIColor grayColor];
     [levelbutton setTitle:[NSString stringWithFormat:@"%@",levelName] forState:UIControlStateNormal];
     [levelbutton addTarget:self action:@selector(showLevel) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:levelbutton];
+//    [self.view addSubview:levelbutton];
     
     
     industrybutton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -148,27 +143,27 @@
     industrybutton.backgroundColor = [UIColor grayColor];
     [industrybutton setTitle:[NSString stringWithFormat:@"%@",industryName] forState:UIControlStateNormal];
     [industrybutton addTarget:self action:@selector(showIndustry) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:industrybutton];
+//    [self.view addSubview:industrybutton];
     
     showCityView = [[UIView alloc]init];
-    showCityView.frame = CGRectMake(0,40, 320, frame.size.height-84);
+    showCityView.frame = CGRectMake(0, -UI_SCREEN_HEIGHT, 320, frame.size.height-84);
     UIColor *bgColor = [UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:0.8];
     showCityView.backgroundColor = bgColor;
-    
-    showCityView.hidden = YES;
+ 
+   // showCityView.hidden = YES;
     [self.view addSubview:showCityView];
     
     showLevelView = [[UIView alloc]init];
-    showLevelView.frame = CGRectMake(0, 40, 320,frame.size.height-84 );
-    showLevelView.hidden = YES;
+    showLevelView.frame = CGRectMake(0, -UI_SCREEN_HEIGHT, 320,frame.size.height-84 );
+  //  showLevelView.hidden = YES;
     [self.view addSubview:showLevelView];
     
     showIndustryView = [[UIView alloc]init];
-    showIndustryView.frame = CGRectMake(0, 40, 320, frame.size.height-84);
-    showIndustryView.hidden = YES;
+    showIndustryView.frame = CGRectMake(0, -UI_SCREEN_HEIGHT, 320, frame.size.height-84);
+   // showIndustryView.hidden = YES;
     [self.view addSubview:showIndustryView];
     
-    
+     
     provinceView = [[UITableView alloc]initWithFrame:CGRectMake(10, 5, 100, frame.size.height-109)];
     cityView = [[UITableView alloc]initWithFrame:CGRectMake(112, 5, 198, frame.size.height-109)];
     
@@ -200,24 +195,19 @@
     [showIndustryView addSubview:IndustryView];
     
     
-    
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button2.frame = CGRectMake(10, 2, 40, 40);
-    [button2 setImage:[UIImage imageNamed:@"jiantou.png"] forState:UIControlStateNormal];
-    [button2 addTarget:self action:@selector(backtosuper) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftBtnTopItem = [[UIBarButtonItem alloc] initWithCustomView:button2];
-    self.navigationItem.leftBarButtonItem = leftBtnTopItem;
-    [leftBtnTopItem release];
-    
+    [self.view addSubview:industrybutton];
+    [self.view addSubview:levelbutton];
+    [self.view addSubview:provincebutton];
+
+
+
+    provinceButonStatue = 1;
+    levelButonStatue = 1;
+    industryButonStatue = 1;
 }
 
 
--(void)backtosuper
-{
-    [self.navigationController   popViewControllerAnimated:YES];
-}
 
- 
 -(void)showdevelopZone
 {
     
@@ -321,89 +311,99 @@
 
 -(void)showCity
 {
-
-    showLevelView.hidden = YES;
-    showIndustryView.hidden = YES;
-    if (showCityView.hidden == YES) {
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        [UIView beginAnimations:nil context:context];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [UIView setAnimationDuration:0.7];
-        [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.view cache:YES];
-        [UIView setAnimationDelegate:self];
-        // 动画完毕后调用某个方法
-        //[UIView setAnimationDidStopSelector:@selector(animationFinished:)];
-        [UIView commitAnimations];
-
-    }
-    else if(showCityView.hidden == NO)
+    if(levelButonStatue == -1)
     {
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        [UIView beginAnimations:nil context:context];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [UIView setAnimationDuration:0.7];
-        [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
-        [UIView setAnimationDelegate:self];
-        // 动画完毕后调用某个方法
-        //[UIView setAnimationDidStopSelector:@selector(animationFinished:)];
-        [UIView commitAnimations];
-
+        [UIView animateWithDuration:0.3 animations:^{
+            showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+        }];
+        levelButonStatue = 1;
     }
+    if(industryButonStatue == -1)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+        }];
+        levelButonStatue = 1;
+    }
+    
+    
    
-    [provinceView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-    showCityView.hidden = !showCityView.hidden;
-
+    
+    
+    if (provinceButonStatue == 1) {
+        [UIView animateWithDuration:0.3 animations:^{
+            showCityView.frame =CGRectMake(0, 40, 320, UI_SCREEN_HEIGHT-84);
+        }];
+        provinceButonStatue = -1;
+        
+    }
+    else if(provinceButonStatue == -1)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+        }];
+        provinceButonStatue = 1;
+    }
     int x=0 ;
     NSLog(@"111111%@",provinceName);
     for (int i = 0; i < allProvinceArray.count; i++) {
+        
         if ([tempprovinceName isEqualToString:@""]) {
             if ([provinceName isEqualToString:[allProvinceArray objectAtIndex:i]]) {
                 x = i;
                 break;
-            }
         }
-       else if ([tempprovinceName isEqualToString:[allProvinceArray objectAtIndex:i]]) {
+        }
+        
+        
+        else if([tempprovinceName isEqualToString:[allProvinceArray objectAtIndex:i]]) {
             x = i;
             break;
         }
     }
     [provinceView selectRowAtIndexPath:[NSIndexPath indexPathForRow:x inSection:0]animated:NO scrollPosition:UITableViewScrollPositionTop];
+    
+
     [cityView reloadData];
     
 }
 
 -(void)showLevel
-{showCityView.hidden = YES;
-    showIndustryView.hidden = YES;
+{
     
-    if (showLevelView.hidden == YES) {
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        [UIView beginAnimations:nil context:context];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [UIView setAnimationDuration:0.7];
-        [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.view cache:YES];
-        [UIView setAnimationDelegate:self];
-        // 动画完毕后调用某个方法
-        //[UIView setAnimationDidStopSelector:@selector(animationFinished:)];
-        [UIView commitAnimations];
+    if(industryButonStatue == -1)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+        }];
+        industryButonStatue = 1;
+    }
+    if(provinceButonStatue == -1)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+        }];
+        provinceButonStatue = 1;
+    }
+    
+    
+    
+    if (levelButonStatue == 1) {
+        [UIView animateWithDuration:0.3 animations:^{
+            showLevelView.frame =CGRectMake(0, 40, 320, UI_SCREEN_HEIGHT-84);
+        }];
+        levelButonStatue = -1;
         
     }
-    else if(showLevelView.hidden == NO)
+    else if(levelButonStatue == -1)
     {
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        [UIView beginAnimations:nil context:context];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [UIView setAnimationDuration:0.7];
-        [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
-        [UIView setAnimationDelegate:self];
-        // 动画完毕后调用某个方法
-        //[UIView setAnimationDidStopSelector:@selector(animationFinished:)];
-        [UIView commitAnimations];
-        
+        [UIView animateWithDuration:0.3 animations:^{
+            showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+        }];
+        levelButonStatue = 1;
     }
 
     
-    showLevelView.hidden = !showLevelView.hidden;
     [levelView reloadData];
 //    if(showLevelView.hidden == NO)
 //    {
@@ -413,40 +413,45 @@
     
 }
 -(void)showIndustry
-{ showCityView.hidden = YES;
-    showLevelView.hidden = YES;
-    if (showIndustryView.hidden == YES) {
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        [UIView beginAnimations:nil context:context];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [UIView setAnimationDuration:0.7];
-        [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.view cache:YES];
-        [UIView setAnimationDelegate:self];
-        // 动画完毕后调用某个方法
-        //[UIView setAnimationDidStopSelector:@selector(animationFinished:)];
-        [UIView commitAnimations];
-        
-    }
-    else if(showIndustryView.hidden == NO)
+{
+    
+    if(levelButonStatue == -1)
+     {
+         [UIView animateWithDuration:0.3 animations:^{
+             showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+          }];
+         levelButonStatue = 1;
+     }
+    if(provinceButonStatue == -1)
     {
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        [UIView beginAnimations:nil context:context];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [UIView setAnimationDuration:0.7];
-        [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
-        [UIView setAnimationDelegate:self];
-        // 动画完毕后调用某个方法
-        //[UIView setAnimationDidStopSelector:@selector(animationFinished:)];
-        [UIView commitAnimations];
+        [UIView animateWithDuration:0.3 animations:^{
+            showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+        }];
+        provinceButonStatue = 1;
+    }
+
+    
+    
+    if (industryButonStatue == 1) {
+        [UIView animateWithDuration:0.3 animations:^{
+            showIndustryView.frame =CGRectMake(0, 40, 320, UI_SCREEN_HEIGHT-84);
+        }];
+        industryButonStatue = -1;
         
     }
-     showIndustryView.hidden = !showIndustryView.hidden;
+    else if(industryButonStatue == -1)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+        }];
+        industryButonStatue = 1;
+    }
+
+    
+    
     [IndustryView reloadData];
     
-//    if (showIndustryView.hidden == NO) {
-//        [self showIndustryList];
-//    }
-    // [IndustryView release];
+
 }
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
@@ -460,7 +465,7 @@
                 [allListArray addObject:obj];
             }
         }
-       // developnumhasget = developnumhasget + listarray.count;
+      
         [searchtable reloadData];
         
     }
@@ -482,7 +487,7 @@
         listarray4 = resultSet;
         [listarray4 retain];
        
-       // [levelView reloadData];
+       
     }
     if (na.tag == 152) {
          
@@ -492,7 +497,7 @@
         listarray5 = resultSet;
         [listarray5 retain];
        
-       // [IndustryView reloadData];
+       
     }
     
     
@@ -511,18 +516,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    if (tableView.tag == 1) {
-//        return listarray.count;
-//    }
+
     
     switch (tableView.tag) {
         case 1:
-//            if (listarray.count ==2) {
-//                return developnumhasget + 1;
-//            }
-//            else{
-          //  return developnumhasget ;
-          //  }
             return allListArray.count;
                 break;
         case 2:
@@ -546,7 +543,10 @@
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {   if(tableView.tag == 1)
-         return 80;
+       {
+       
+            return 80;
+        }
     else if (tableView.tag == 2)
         return 40;
     else if(tableView.tag == 3)
@@ -573,7 +573,7 @@
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-           // if (developnumhasget-listarray.count < developnumhasget) {   //防止listarray.count == 0 的情况
+         
                 
             
             for (int i = 0 ; i< allListArray.count; i++)
@@ -596,12 +596,6 @@
                     });
                 }
             }
-         //   }
-       
-            //            if (indexPath.row == developnumhasget)
-//            {
-//                cell.label.text = @"点击继续加载";
-//            }
             return cell;
         case 2: //provinceVIew
             if (cell == nil) {
@@ -609,7 +603,7 @@
             }
             cell.textLabel.text = [allProvinceArray objectAtIndex:indexPath.row];
       
-                 
+        
             return cell;
             break;
         case 3: //  cityView
@@ -656,27 +650,7 @@
             return cell;
             break;
     }
-    //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    //    for (int i =0 ; i<listarray.count; i++)
-    //    {
-    //        if (indexPath.row == i )
-    //        {
-    //            cell.label.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
-    //            cell.labeltwo.text = [[listarray objectAtIndex:i] objectForKey:@"content"];
-    //              dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    //                 NSString *url = [NSString stringWithFormat:@"http://192.168.1.113:8010/assets/cityimage/%@",[[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
-    //                  NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-    //                 UIImage *image = [[UIImage alloc]initWithData:data];
-    //                 if (data != nil) {
-    //                     dispatch_async(dispatch_get_main_queue(), ^{
-    //                        [cell.imageview setImage:image];
-    //                     });
-    //                 }
-    //             });
-    //         }
-    //     }
-    //     return cell;
+ 
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -688,46 +662,42 @@
 {
     switch (tableView.tag) {
         case 1:
+            
             [searchtable deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-            ArticleViewController *artiview = [[ArticleViewController alloc] initWithurl:[allListArray objectAtIndex:indexPath.row]];
+            ArticleViewController *artiview = [[ArticleViewController alloc] initWithurl:[[listarray objectAtIndex:indexPath.row] objectForKey:@"id"]];
             [self.navigationController pushViewController:artiview animated:YES];
             break;
         case 2:
        [provinceView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
             if ([[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"全国"]) {
                 provinceName = [allProvinceArray objectAtIndex:indexPath.row];
-                [provincebutton setTitle:provinceName forState:UIControlStateNormal];
+               [provincebutton setTitle:@"全国" forState:UIControlStateNormal];
                 getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
                 levelbutton.titleLabel.text = @"全部";
                 industrybutton.titleLabel.text = @"全部";
+                [listarray3 removeAllObjects];
                 inid= @"";
                 leid = @"";
-                tempprovinceName =@"";
                 
                 [provinceName retain];
                 
-                    CGContextRef context2 = UIGraphicsGetCurrentContext();
-                    [UIView beginAnimations:nil context:context2];
-                    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-                    [UIView setAnimationDuration:0.7];
-                    [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
-                    [UIView setAnimationDelegate:self];
-                    // 动画完毕后调用某个方法
-                    //[UIView setAnimationDidStopSelector:@selector(animationFinished:)];
-                    [UIView commitAnimations];
-              
-                developnumhasget = 0;
+                if(provinceButonStatue == -1)
+                {
+                    [UIView animateWithDuration:0.3 animations:^{
+                        showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+                    }];
+                    provinceButonStatue = 1;
+                }
+                    developnumhasget = 0;
                 [allListArray release];
           allListArray  = [[NSMutableArray alloc]init];
-           //     pagenum = 1;
-                showCityView.hidden = !showCityView.hidden;
+                          
                 [self showdevelopZone];
 
 
             }
             else{
             getCityName = [NSString stringWithFormat:getCityName = @"{\"type\":\"china\",\"prov\":\"%@\"}",[allProvinceArray objectAtIndex:indexPath.row]] ;
-                provinceName = [allProvinceArray objectAtIndex:indexPath.row] ;
             [self showCityName];
             }
             break;
@@ -735,7 +705,7 @@
         [cityView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
             tempprovinceName = provinceName;
             provinceName = [[listarray3 objectAtIndex:indexPath.row] objectForKey:@"cityname"];
-           [provincebutton setTitle:provinceName forState:UIControlStateNormal];
+            [provincebutton setTitle:provinceName forState:UIControlStateNormal];
         
             getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
             levelbutton.titleLabel.text = @"全部";
@@ -744,24 +714,22 @@
             leid = @"";
             
             [provinceName retain];
-            CGContextRef context3 = UIGraphicsGetCurrentContext();
-            [UIView beginAnimations:nil context:context3];
-            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            [UIView setAnimationDuration:0.7];
-            [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
-            [UIView setAnimationDelegate:self];
-            // 动画完毕后调用某个方法
-            //[UIView setAnimationDidStopSelector:@selector(animationFinished:)];
-            [UIView commitAnimations];
+            if(provinceButonStatue == -1)
+            {
+                [UIView animateWithDuration:0.3 animations:^{
+                    showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+                }];
+                provinceButonStatue = 1;
+            }
+
             
            // [provinceView init];
             developnumhasget = 0;
             [allListArray release];
             allListArray  = [[NSMutableArray alloc]init];
 
-            showCityView.hidden = !showCityView.hidden;
-//            [provinceView init];
-//            developnumhasget = 0;
+            
+
             [self showdevelopZone];
             
             break;
@@ -779,17 +747,15 @@
             
             getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\"}",provinceName,leid,inid,cid];
 
-         //   leid = [[listarray4 objectAtIndex:indexPath.row] objectForKey:@"id"];
+        
             [leid retain];
-            CGContextRef context4 = UIGraphicsGetCurrentContext();
-            [UIView beginAnimations:nil context:context4];
-            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            [UIView setAnimationDuration:0.7];
-            [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
-            [UIView setAnimationDelegate:self];
-            // 动画完毕后调用某个方法
-            //[UIView setAnimationDidStopSelector:@selector(animationFinished:)];
-            [UIView commitAnimations];
+            if(levelButonStatue == -1)
+            {
+                [UIView animateWithDuration:0.3 animations:^{
+                    showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+                }];
+                levelButonStatue = 1;
+            }
             
            // [provinceView init];
             developnumhasget = 0;
@@ -797,7 +763,7 @@
             allListArray  = [[NSMutableArray alloc]init];
 
 
-            showLevelView.hidden = !showLevelView.hidden;
+           
             [self showdevelopZone];
             break;
             
@@ -815,29 +781,27 @@
 
             
             
-         //   [industrybutton setTitle:[[listarray5 objectAtIndex:indexPath.row] objectForKey:@"name"] forState:UIControlStateNormal];
+         
             getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\"}",provinceName,leid,inid,cid];
            
-           // inid = [[listarray5 objectAtIndex:indexPath.row] objectForKey:@"id"];
+        
             [inid retain];
             
-            CGContextRef context5 = UIGraphicsGetCurrentContext();
-            [UIView beginAnimations:nil context:context5];
-            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            [UIView setAnimationDuration:0.7];
-            [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
-            [UIView setAnimationDelegate:self];
-            // 动画完毕后调用某个方法
-            //[UIView setAnimationDidStopSelector:@selector(animationFinished:)];
-            [UIView commitAnimations];
+            if(industryButonStatue == -1)
+            {
+                [UIView animateWithDuration:0.3 animations:^{
+                    showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+                }];
+                industryButonStatue = 1;
+            }
             
-          //  [provinceView init];
-            developnumhasget = 0;
+
+            
+                    developnumhasget = 0;
             [allListArray release];
             allListArray  = [[NSMutableArray alloc]init];
 
-            showIndustryView.hidden = !showIndustryView.hidden;
-          
+                     
             [self showdevelopZone];
                     break;
         default:
@@ -847,84 +811,39 @@
     
 }
 
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    
-//    [super viewWillAppear:animated];
-//    if(searchtable.pullTableIsRefreshing) {
-//        searchtable.pullTableIsRefreshing = YES;
-//        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3.0f];
-//    }
-//}
 
-
--(void)viewDidUnload
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-}
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    
-//    [super viewWillAppear:animated];
-//    if(!searchtable.pullTableIsRefreshing) {
-//        searchtable.pullTableIsRefreshing = YES;
-//        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3.0f];
-//    }
-//}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
-//- (void) refreshTable
-//{
-//    /*
-//     
-//     Code to actually refresh goes here.
-//     
-//     */
-//    searchtable.pullLastRefreshDate = [NSDate date];
-//   searchtable.pullTableIsRefreshing = NO;
-//}
-
-
-- (void) loadMoreDataToTable
-{
-    /*
-     
-     Code to actually load more data goes here.
-    */
-    if (listarray.count == 0) {
-        //提醒没有数据了
-    }
-    else{
+    if (allListArray.count != 0 && tableView.tag == 1) {
+        
+        
+        int count = [[[allListArray objectAtIndex:0] objectForKey:@"count"] intValue];
+        if (indexPath.row == [allListArray count] - 1 && indexPath.row < count -1)
+        {  UIView *footview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
+            NSLog(@"$%d,%d,%d",indexPath.row,[allListArray count]-1,count -1);
+            UIActivityIndicatorView  *active = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            
+            active.center = CGPointMake(160, 30);
+            active.color = [UIColor blackColor];
+            [footview addSubview:active];
+            [active startAnimating];
+            tableView.tableFooterView = footview;
+            
+                       
             getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\",\"time\":\"%@\"}",provinceName,leid,inid,cid,[[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"] ];
-    
-    NSLog(@"%@",getDevelopZoneInfo);
+            
+            NSLog(@"%@",getDevelopZoneInfo);
+            [provinceName retain];
+            [self showdevelopZone];
+            
+            [footview release];
+            tableView.tableFooterView = nil;
+            
+        }
         
-    
-        //pagenum = allListArray.count/5 + 1;
-        
-        [provinceName retain];
-        [self showdevelopZone];
-    
     }
-  searchtable.pullTableIsLoadingMore = NO;
+    
 }
-
-
-//- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
-//{
-//    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3.0f];
-//}
-
-- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView
-{
-    [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:0.0f];
-}
-
 
 
 

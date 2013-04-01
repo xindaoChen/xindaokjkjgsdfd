@@ -39,6 +39,7 @@
 {
     [super viewDidLoad];
      [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
+    
     listarray = [[NSMutableArray alloc] init];
     self.tableView.backgroundView = nil;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];

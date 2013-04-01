@@ -39,7 +39,7 @@
 {
     [super viewDidLoad];
       [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
-      self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
 
     self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
 

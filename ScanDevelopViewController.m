@@ -66,6 +66,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
+
     allListArray = [[NSMutableArray alloc]init];
     
     levelName = @"级别";

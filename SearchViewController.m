@@ -58,10 +58,10 @@
  
 
     searchtable = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, 320, 468) style:UITableViewStylePlain];
-//    searchtable.backgroundColor = [UIColor magentaColor];
+    searchtable.backgroundColor = [UIColor clearColor];
     searchtable.delegate = self;
     searchtable.dataSource = self;
-     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
     [self.view addSubview:searchtable];
     
     

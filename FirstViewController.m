@@ -44,6 +44,12 @@
      NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
       AppDelegate *appdele = [UIApplication sharedApplication].delegate;
     
+    UIView *bgView = [[UIView alloc] init];
+    bgView.frame = self.view.bounds;
+    UIImageView *imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"all_view_bg"] ] autorelease];
+    [bgView addSubview:imageView];
+    [self.view addSubview:bgView];
+    
     if(![faflult objectForKey:@"key"])
     {
         
@@ -53,7 +59,7 @@
         [appdele.window addSubview:viewss];
         
         scrollview = [[UIScrollView alloc] initWithFrame:viewss.frame];
-        scrollview.backgroundColor = [UIColor whiteColor];
+        scrollview.backgroundColor = [UIColor clearColor];
         scrollview.pagingEnabled = YES;
         scrollview.tag = 200;
         scrollview.showsHorizontalScrollIndicator = NO;//不显示水平滑动线

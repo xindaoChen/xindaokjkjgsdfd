@@ -24,6 +24,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
+        self.title = @"搜索";
     }
     return self;
 }
@@ -48,6 +49,8 @@
     
      searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 6, 300, 30)];
     searchbar.delegate = self;
+    [searchbar becomeFirstResponder];
+    searchbar.placeholder = @"请输入您要搜索的关键字";
     UIView *searview = [searchbar.subviews objectAtIndex:0];
     [searview removeFromSuperview];
     searview.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:1 alpha:0.5];
@@ -119,6 +122,7 @@
         [listarray removeAllObjects];
         listarray = resultSet;
         [listarray retain];
+        NSLog(@"%@",listarray);
         [ searchbar resignFirstResponder];
         [searchtable reloadData];
     }
@@ -170,14 +174,13 @@
                    });
             }
 
-        }else{
+         }
+        else{
             [cell.imageview setImage: image1];
         }
-               
-       
-    });
+  });
 
-     
+    NSLog(@"%@",imageDic);
     return  cell;
 }
 

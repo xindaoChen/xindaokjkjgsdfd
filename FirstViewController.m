@@ -18,6 +18,7 @@
 #import "ArticleViewController.h"
 #import "DevelopViewController.h"
 #import "ClassViewController.h"
+#import "GrayPageControl.h"
 
 @interface FirstViewController ()
 
@@ -151,18 +152,16 @@
        
     pageController = [[UIPageControl alloc ] initWithFrame:CGRectMake(200, 100, 100, 20)];
     pageController.currentPage=0;
-//    [pageController setCurrentPageIndicatorTintColor:[UIColor redColor]];
-//    [pageController setPageIndicatorTintColor:[UIColor whiteColor]];
     pageController.userInteractionEnabled=NO;
     pageController.alpha=1;
     if (fram.size.height>500) {
-         pageControllertwo = [[UIPageControl alloc ] initWithFrame:CGRectMake(100, 425, 100, 20)];
+         pageControllertwo = [[GrayPageControl alloc ] initWithFrame:CGRectMake(100, 425, 100, 20)];
          pageControllertwo.numberOfPages=3;
          secscrollview.contentSize = CGSizeMake(960, 120);
     }
     else
     {
-         pageControllertwo = [[UIPageControl alloc ] initWithFrame:CGRectMake(100, 345, 100, 20)];
+         pageControllertwo = [[GrayPageControl alloc ] initWithFrame:CGRectMake(100, 345, 100, 20)];
          pageControllertwo.numberOfPages=5;
          secscrollview.contentSize = CGSizeMake(1600, 120);
     }
@@ -193,7 +192,7 @@
     myMapView.delegate =self;
     myMapView.showsUserLocation = YES;
  
-    UIImageView *myview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 120, 320, 46)];
+    UIImageView *myview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 120, 320, 42)];
     [myview setImage:[UIImage imageNamed:@"gray.png"]];
     [self.view addSubview:myview];
     [myview release];
@@ -216,12 +215,11 @@
     NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString*pat=[pathss objectAtIndex:0];
     NSString *filenames=[pat stringByAppendingPathComponent:@"Picture.plist"];
-    NSMutableArray *arraydd=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
-    listarray = arraydd;
-        if (listarray.count != 0) {
+    listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+    if (listarray.count != 0) {
         [self setfirstimagetwo];
     }
-   [arraydd release];
+   
     timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessage) userInfo:nil repeats:YES];
     timer2 = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessagetwo) userInfo:nil repeats:YES];
    [timer2 setFireDate:[NSDate distantFuture]];

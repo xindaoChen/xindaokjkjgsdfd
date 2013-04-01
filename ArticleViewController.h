@@ -32,6 +32,16 @@
     NSString *namestring;
     UIWebView *webview ;
     NSMutableArray *apparray;
+    
+    BOOL  introd;
+    BOOL  databool;
+    BOOL app;
+    BOOL maps;
+    UIButton *button1;
+    UIButton *button2;
+    UIButton *button3;
+    UIButton *button4;
+    
 }
  
 @property(nonatomic,strong) NSURL *myurl;

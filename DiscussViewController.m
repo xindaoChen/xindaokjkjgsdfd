@@ -88,14 +88,8 @@
     [self.view addSubview:button1];
     [self.view addSubview:button2];
     [self.view addSubview:button3];
-   
-       
 }
-
-
  
- 
-
 -(void)coopview
 {
     CooperaViewController *coopview = [[CooperaViewController alloc] init];

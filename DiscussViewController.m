@@ -44,11 +44,12 @@
     }
     else
     {
-          textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 15, 300, 80)];
+          textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 15, 300, 150)];
     }
    
     textview.backgroundColor = [UIColor clearColor];
     textview.editable = NO;
+    textview.scrollEnabled = NO;
     textview.layer.cornerRadius = 6;
     textview.layer.masksToBounds = YES;
     textview.text =@"       本产品致力于提供最详尽的全国开发区信息。采用LBS定位，默认显示所在城市的所有开发区，同时支持按省份浏览，按行业浏览，按名字关键字搜索等。针对每个开发区，都有单独的系列页面进行详尽的说明，对于有独立APP的开发区，提供其下载链接。";
@@ -59,18 +60,18 @@
     
     UIButton *button1= [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button1 addTarget:self action:@selector(coopview) forControlEvents:UIControlEventTouchUpInside];
-    [button1 setBackgroundImage:[UIImage imageNamed:@"button.png"] forState:UIControlStateNormal];
+    [button1 setBackgroundImage:[UIImage imageNamed:@"kuang1.png"] forState:UIControlStateNormal];
     [button1 setTitle:@"合作单位" forState:UIControlStateNormal];
-    
+
     
     
     UIButton *button2= [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button2 setBackgroundImage:[UIImage imageNamed:@"button.png"] forState:UIControlStateHighlighted];
+    [button2 setBackgroundImage:[UIImage imageNamed:@"kuang2.png"] forState:UIControlStateNormal];
     [button2 setTitle:@"合作媒体" forState:UIControlStateNormal];
  
     
 	UIButton *button3= [UIButton buttonWithType:UIButtonTypeRoundedRect];
-     [button3 setBackgroundImage:[UIImage imageNamed:@"button.png"] forState:UIControlStateHighlighted];
+     [button3 setBackgroundImage:[UIImage imageNamed:@"kuang3.png"] forState:UIControlStateNormal];
     [button3 setTitle:@"常见机构投资者" forState:UIControlStateNormal];
  
        if (fram.size.height>500)
@@ -81,9 +82,9 @@
        }
     else
     {
-        button1.frame = CGRectMake(10, 105, 300, 40);
-        button2.frame = CGRectMake(10, 165, 300, 40);
-        button3.frame = CGRectMake(10, 225, 300, 40);
+        button1.frame = CGRectMake(10, 180, 300, 40);
+        button2.frame = CGRectMake(10, 240, 300, 40);
+        button3.frame = CGRectMake(10, 300, 300, 40);
     }
     
     [self.view addSubview:button1];

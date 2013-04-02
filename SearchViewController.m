@@ -47,7 +47,7 @@
   
      
     
-     searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 6, 300, 30)];
+   searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 6, 300, 30)];
     searchbar.delegate = self;
     [searchbar becomeFirstResponder];
     searchbar.placeholder = @"请输入您要搜索的关键字";
@@ -79,16 +79,10 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    
-    NSString *string1 = @"{\"search\":\"";
-    NSString *string2 = [NSString stringWithFormat:@"%@\",",searchBar.text];
-    NSString *string3 = @"\"type\":\"china\"}";
-    NSMutableString *allstring = [[NSMutableString alloc] init];
-    allstring = [[NSMutableString alloc] init];
-    [allstring appendString:string1];
-    [allstring appendString:string2];
-    [allstring appendString:string3];
-    
+ 
+    AppDelegate *appdele = [UIApplication sharedApplication].delegate;
+    NSString *allstring = [NSString stringWithFormat:@"{\"type\":\"%@\",\"search\":\"%@\"}",appdele.language,searchbar.text];
+    NSLog(@"%@",allstring);
     if([NetAccess reachable])
     {
         NetAccess *netAccess = [[NetAccess alloc]init];
@@ -96,7 +90,7 @@
         netAccess.tag = 100;
         [netAccess searchthemessage:allstring];
         [assAiv startAnimating];
-        [allstring release];
+        
     }
     else
     {
@@ -119,12 +113,23 @@
 {
     [assAiv stopAnimating];
     if (na.tag ==100) {
-        [listarray removeAllObjects];
+//        [listarray removeAllObjects];
         listarray = resultSet;
         [listarray retain];
         NSLog(@"%@",listarray);
         [ searchbar resignFirstResponder];
-        [searchtable reloadData];
+        if (listarray.count != 0) {
+            [searchtable reloadData];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"暂无数据" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+            [alert release];
+
+        }
+        
+    
     }
 }
 
@@ -138,7 +143,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
+    NSLog(@"%d",listarray.count);
     return listarray.count;
  }
 
@@ -155,32 +160,34 @@
         cell = [[[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
      }
  
- 
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.label.text = [[listarray objectAtIndex:indexPath.row] objectForKey:@"developname"];
-    cell.labeltwo.text = [[listarray objectAtIndex:indexPath.row] objectForKey:@"content"];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-       UIImage *image1 = [imageDic objectForKey:[NSNumber numberWithInt:indexPath.row]];
-        if (image1 == nil) {
-            NSString *url = [NSString stringWithFormat:@"http://192.168.1.105:8010/assets/cityimage/%@",[[listarray objectAtIndex:indexPath.row] objectForKey:@"deveimage"]];
-           NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-            UIImage *image = [[UIImage alloc]initWithData:data];
-            if (data != nil) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [cell.imageview setImage:image];
-                    [imageDic setObject:image forKey:[NSNumber numberWithInt:indexPath.row]];
-                   });
+    if (listarray.count != 0) {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.label.text = [[listarray objectAtIndex:indexPath.row] objectForKey:@"developname"];
+        cell.labeltwo.text = [[listarray objectAtIndex:indexPath.row] objectForKey:@"content"];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIImage *image1 = [imageDic objectForKey:[NSNumber numberWithInt:indexPath.row]];
+            if (image1 == nil) {
+                NSString *url = [NSString stringWithFormat:@"http://192.168.1.105:8010/assets/developimage/%@",[[listarray objectAtIndex:indexPath.row] objectForKey:@"deveimage"]];
+                NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
+                UIImage *image = [[UIImage alloc]initWithData:data];
+                if (data != nil) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [cell.imageview setImage:image];
+                        [imageDic setObject:image forKey:[NSNumber numberWithInt:indexPath.row]];
+                    });
+                }
+                
             }
+            else{
+                [cell.imageview setImage: image1];
+            }
+        });
 
-         }
-        else{
-            [cell.imageview setImage: image1];
-        }
-  });
-
-    NSLog(@"%@",imageDic);
+    }
+   
+   
     return  cell;
 }
 

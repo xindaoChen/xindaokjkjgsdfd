@@ -5,9 +5,13 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>云聚</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>icon@2x.png</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.mysoft.communication</string>
 	<key>CFBundleInfoDictionaryVersion</key>

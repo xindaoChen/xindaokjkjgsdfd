@@ -43,9 +43,10 @@
 {
     [super viewDidLoad];
 	self.title = @"开发区";
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
     number = 1;
     number2 = 1;
-         
+
     array1 = [[NSArray alloc] initWithObjects:@"a",@"s",@"d",@"f",@"g",@"h",@"k",@"l", nil];
     array2 = [[NSArray alloc] initWithObjects:@"aaa",@"ssss",@"111",@"2222",@"333",@"33344",@"5555",@"666",@"666777",@"8888",@"9999", nil];
     cityarrray = [[NSMutableArray alloc] init];

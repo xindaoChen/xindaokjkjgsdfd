@@ -37,7 +37,6 @@
 {
     [super viewDidLoad];
       [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     CGRect fram = self.view.frame;
     if (fram.size.height>500) {
           textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 15, 300, 160)];

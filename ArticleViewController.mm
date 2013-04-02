@@ -16,6 +16,8 @@
 #import "Introduce.h"
 #import "CooperaViewController.h"
 #import "WepViewController.h"
+#import "UITools.h"
+
 @interface ArticleViewController ()
 
 @end
@@ -53,6 +55,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
+
       [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
      NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
     sum = 0;
@@ -244,15 +248,7 @@
     [self.navigationController.navigationBar addSubview:assAiv];
 //    dataarray = [self getthedata];
     
-    
-    
-    UIButton *button22 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button22.frame = CGRectMake(20, 8, 40, 40);
-    [button22 setImage:[UIImage imageNamed:@"jiantou.png"] forState:UIControlStateNormal];
-    [button22 addTarget:self action:@selector(backtosuper) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftBtnTopItem = [[UIBarButtonItem alloc] initWithCustomView:button22];
-    self.navigationItem.leftBarButtonItem = leftBtnTopItem;
-    [leftBtnTopItem release];
+    self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
     
     introducearrytwo = [self getthedatatwo];
     NSLog(@"%d",introducearrytwo.count);
@@ -264,7 +260,7 @@
 
 -(void)backtosuper
 {
-    [self.navigationController   popViewControllerAnimated:YES];
+    [self.navigationController  popViewControllerAnimated:YES];
 }
 
 

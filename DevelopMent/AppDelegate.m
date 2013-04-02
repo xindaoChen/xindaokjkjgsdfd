@@ -39,11 +39,6 @@
     language = [faflult objectForKey:@"lange"];
     NSLog(@"%@",language);
     [self.window addSubview:views];
-    
-  /*
-   test 修改
-   */
-
 
     [firstview release];
     [classview release];

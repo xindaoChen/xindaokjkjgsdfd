@@ -10,6 +10,7 @@
 #import "MyCell.h"
 #import "SearchViewController.h"
 #import "ArticleViewController.h"
+#import "UITools.h"
 
 #define UI_SCREEN_WIDTH                 320
 #define UI_SCREEN_HEIGHT                ([[UIScreen mainScreen] bounds].size.height)
@@ -65,6 +66,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
+
     allListArray = [[NSMutableArray alloc]init];
     
     levelName = @"级别";
@@ -116,10 +119,8 @@
     [self showdevelopZone];
     [self showLevelList];
     [self showIndustryList];
-
     
-    
-
+    self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
     
     provincebutton = [UIButton buttonWithType:UIButtonTypeCustom];
     provincebutton.frame = CGRectMake(0, 0,frame.size.width/3, 40);
@@ -208,7 +209,10 @@
     industryButonStatue = 1;
 }
 
-
+-(void)backtosuper
+{
+    [self.navigationController  popViewControllerAnimated:YES];
+}
 
 -(void)showdevelopZone
 {

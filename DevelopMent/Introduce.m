@@ -2,7 +2,7 @@
 //  Introduce.m
 //  DevelopMent
 //
-//  Created by xin wang on 3/25/13.
+//  Created by xin wang on 4/2/13.
 //  Copyright (c) 2013 xin wang. All rights reserved.
 //
 
@@ -15,5 +15,6 @@
 @dynamic data;
 @dynamic did;
 @dynamic fid;
+@dynamic title;
 
 @end

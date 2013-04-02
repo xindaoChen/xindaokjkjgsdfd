@@ -2,7 +2,7 @@
 //  Introduce.h
 //  DevelopMent
 //
-//  Created by xin wang on 3/25/13.
+//  Created by xin wang on 4/2/13.
 //  Copyright (c) 2013 xin wang. All rights reserved.
 //
 
@@ -16,5 +16,6 @@
 @property (nonatomic, retain) NSData * data;
 @property (nonatomic, retain) NSString * did;
 @property (nonatomic, retain) NSString * fid;
+@property (nonatomic, retain) NSString * title;
 
 @end

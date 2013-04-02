@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="11G63b" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Appdata" syncable="YES">
+        <attribute name="attribute" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="attribute1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="attribute2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="attribute3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="attribute4" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Data" representedClassName="Data" syncable="YES">
         <attribute name="developname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="did" optional="YES" attributeType="String" syncable="YES"/>
@@ -12,9 +19,11 @@
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="did" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Data" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Introduce" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Introduce" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Appdata" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>

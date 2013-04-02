@@ -85,7 +85,7 @@
 -(void)searcharea
 {
     SearchViewController *search  = [[SearchViewController alloc] init];
-    [self.navigationController pushViewController:search animated:NO];
+    [self.navigationController pushViewController:search animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

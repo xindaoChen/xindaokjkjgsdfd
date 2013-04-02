@@ -66,38 +66,22 @@
         scrollview.showsVerticalScrollIndicator = NO;//不显示垂直滑动线
         scrollview.delegate = self;
         [scrollview setContentOffset:CGPointMake(0, 0)];
-        scrollview.contentSize = CGSizeMake(1600, 120);
+        scrollview.contentSize = CGSizeMake(640, 120);
         [viewss addSubview:scrollview];
         
         CGRect fram = self.view.frame;
-        if (fram.size.height>500) {
-              pagecon = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 550, 320, 20)];
-        }
-        else
-        {
-             pagecon = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 460, 320, 20)];
-        }
-       
-        pagecon.currentPage=0;
-//        [pagecon setCurrentPageIndicatorTintColor:[UIColor whiteColor]];
-//        [pagecon setPageIndicatorTintColor:[UIColor blackColor]];
-        pagecon.userInteractionEnabled=NO;
-        pagecon.alpha=1;
-        pagecon.numberOfPages=5;
-        [viewss addSubview:pagecon];
-        NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:@"a.jpg",@"s.jpg",@"d.jpg",@"f.jpg",@"g.jpg",  nil];
-        for (int i = 0; i<5; i++)
+        NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:@"yindao1.png",@"yindao2.png",nil];
+        for (int i = 0; i<2; i++)
         {
             CGRect frame = scrollview.frame;
             UIImageView *firstview = [[UIImageView alloc] initWithFrame:CGRectMake(frame.size.width*i , 0, 320, frame.size.height)];
             [firstview setImage:[UIImage imageNamed:[array objectAtIndex:i]]];
             [scrollview addSubview:firstview];
             [firstview release];
-            if (i==4)
+            if (i==1)
             {
-                UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-               
-                [button setImage:[UIImage imageNamed:@"start.png"] forState:UIControlStateNormal];
+                UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//                [button setImage:[UIImage imageNamed:@"start.png"] forState:UIControlStateNormal];
                 [button addTarget:self action:@selector(push) forControlEvents:UIControlEventTouchUpInside];
  
                 if (fram.size.height>500) {
@@ -106,7 +90,7 @@
                 else
                 {
  
-                    button.frame = CGRectMake( frame.size.width*i+215 , 410, 100, 40);
+                    button.frame = CGRectMake( frame.size.width*i+100 , 410, 100, 40);
  
                 }
  
@@ -147,7 +131,7 @@
     mysearch.delegate = self;
       
     secscrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 120, 320, 408)];
-    secscrollview.backgroundColor = [UIColor whiteColor];
+    secscrollview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     secscrollview.pagingEnabled = YES;
     secscrollview.tag =111;
     secscrollview.showsHorizontalScrollIndicator = NO;
@@ -268,6 +252,7 @@
                         [button addTarget:self action:@selector(PushtoDevelopview:) forControlEvents:UIControlEventTouchUpInside];
                        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake( 8+76*s+frame.size.width*i, 85*j+113, 76, 20)];
                         lable.font = [UIFont systemFontOfSize:12];
+                        lable.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
                         lable.textAlignment = NSTextAlignmentCenter;
                         if ([mydelegate.language isEqualToString:@"english"]) {
                             lable.text = [arrayonetwo objectAtIndex:num];
@@ -305,6 +290,7 @@
                         [button addTarget:self action:@selector(PushtoDevelopview:) forControlEvents:UIControlEventTouchUpInside];
                         UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake( 8+76*s+frame.size.width*i, 85*j+113, 76, 20)];
                         lable.font = [UIFont systemFontOfSize:12];
+                        lable.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
                         lable.textAlignment = NSTextAlignmentCenter;
                         if ([mydelegate.language isEqualToString:@"english"]) {
                             lable.text = [arrayonetwo objectAtIndex:num];
@@ -430,13 +416,11 @@
 
 -(void)englishorching
 {
-    
     AppDelegate *appdele = [UIApplication sharedApplication].delegate;
     CGRect fram = appdele.window.frame;
     selectview = [[UIView alloc] initWithFrame:appdele.window.frame];
-//     selectview.backgroundColor = [UIColor magentaColor];
     UIImageView *images = [[UIImageView alloc] initWithFrame:selectview.frame];
-    [images setImage:[UIImage imageNamed:@"ttt.jpg"]];
+    [images setImage:[UIImage imageNamed:@"yindao3.png"]];
     [selectview addSubview:images];
     [images release];
     [appdele.window addSubview:selectview];
@@ -552,7 +536,7 @@
         [firscrollView addSubview:buttongs];
         
         
-        NSString *url = [NSString stringWithFormat:@"http://192.168.1.105:8010/assets/developimage/%@",[[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
+        NSString *url = [NSString stringWithFormat:@"http://192.168.1.105:8010/assets/developimage/%@",[[listarray objectAtIndex:i] objectForKey:@"deveimage"]];                     
         NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
         UIImage *image = [UIImage imageWithData:data];
         [buttongs setImage:image forState:UIControlStateNormal];

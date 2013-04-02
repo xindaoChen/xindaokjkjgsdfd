@@ -12,7 +12,8 @@
 @interface ArticleViewController : UIViewController<UIWebViewDelegate,BMKMapViewDelegate,BMKSearchDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,NetAccessDelegate>
 {
      
-    UITableView *APPview;
+//    UITableView *APPview;
+    UIView *viewapp;
     NSURL *myurl;
     UITableView *dataview;
     UIButton *rightbutton;
@@ -42,6 +43,12 @@
     UIButton *button3;
     UIButton *button4;
     
+    UILabel *mylable1;
+    UILabel *mylable2;
+    UILabel *mylable3;
+    UILabel *mylable4;
+    UILabel *mylable5;
+    
 }
  
 @property(nonatomic,strong) NSURL *myurl;
@@ -49,9 +56,9 @@
 @property(nonatomic,strong) BMKSearch *mysearch;
 @property(nonatomic,strong) BMKPointAnnotation* myAnnotation;
 @property(nonatomic,strong) UITableView *dataview;
-@property(nonatomic,strong) UITableView *APPview;
+//@property(nonatomic,strong) UITableView *APPview;
 @property(nonatomic,strong)  NSString*idstring;
-
+@property(nonatomic,strong)   UIView *viewapp;
 
 - (id)initWithurl:(NSDictionary *)array;
 @end

@@ -20,7 +20,7 @@
 @end
 
 @implementation SearchViewController
-@synthesize listarray,searchtable,assAiv;
+@synthesize listarray,searchtable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -108,12 +108,14 @@
 
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
-    [assAiv stopAnimating];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+
     if (na.tag ==100) {
 //        [listarray removeAllObjects];
         listarray = resultSet;
         [listarray retain];
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        
         NSLog(@"%@",listarray);
         [ searchbar resignFirstResponder];
         if (listarray.count != 0) {
@@ -121,11 +123,7 @@
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"暂无数据" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-            [alert show];
-            [alert release];
-
-        }
+           [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];        }
         
     
     }
@@ -197,7 +195,8 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-    [assAiv stopAnimating];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -218,7 +217,7 @@
     
     [listarray release];listarray = nil;
     [searchtable release];searchtable = nil;
-    [assAiv release];assAiv = nil;
+  //  [assAiv release];assAiv = nil;
     [super dealloc];
 }
 

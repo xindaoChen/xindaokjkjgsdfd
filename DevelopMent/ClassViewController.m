@@ -12,6 +12,8 @@
 #import "SearchViewController.h"
  #import "ScanDevelopViewController.h"
 #import "AppDelegate.h"
+#import "MBProgressHUD.h"
+#import "UITools.h"
 @interface ClassViewController ()
 
 @end
@@ -63,6 +65,7 @@
     AppDelegate *mydelegate = [UIApplication sharedApplication].delegate;
     if([NetAccess reachable])
     {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         NSString*string1 = @"{\"type\":\"";
         NSString*string2 = [NSString stringWithFormat:@"%@\"}",mydelegate.language];
         NSMutableString*alltring = [[NSMutableString alloc] init];
@@ -75,9 +78,7 @@
     }
     else
     {
-        UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"无网络可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertV show];
-        [alertV release];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
     }
 
 }
@@ -163,6 +164,8 @@
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
     if (na.tag ==100) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
         [listarray removeAllObjects];
         listarray = resultSet;
         [listarray retain];

@@ -27,7 +27,7 @@
     UIView *showCityView;
     UIView *showLevelView;
     UIView *showIndustryView;
-    UIActivityIndicatorView *assAiv;
+ //   UIActivityIndicatorView *assAiv;
     UIActivityIndicatorView  *footactive;
     UIImageView *moveImageView;
     UIImageView *moveImageView2;
@@ -79,7 +79,7 @@
 
 
 @property(nonatomic,strong)UITableView *searchtable;
-@property(nonatomic,strong)UIActivityIndicatorView *assAiv;
+//@property(nonatomic,strong)UIActivityIndicatorView *assAiv;
 @property(nonatomic,strong)UIView *showCityView;
 @property(nonatomic,strong)UIView *showLevelView;
 @property(nonatomic,strong)UIView *showIndustryView;

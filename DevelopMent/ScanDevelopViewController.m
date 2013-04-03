@@ -18,7 +18,7 @@
 #define UI_SCREEN_WIDTH                 320
 #define UI_SCREEN_HEIGHT                ([[UIScreen mainScreen] bounds].size.height)
 #define UI_BLUE                    colorWithRed:24/255.0 green:134/255.0 blue:236/255.0 alpha:1.0
-#define UI_Image_URL          http://192.168.1.105:8010/assets/developimage/
+
 @interface ScanDevelopViewController ()
 
 @end
@@ -786,7 +786,7 @@ else if([languageFlag isEqualToString:@"english"])
                     NSLog(@"################%@,%d",allListArray,allListArray.count);
                     cell.labeltwo.text = [[allListArray objectAtIndex:i] objectForKey:@"content"];
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        NSString *url = [NSString stringWithFormat:@"http://192.168.1.101:8010/assets/developimage/%@",[[allListArray objectAtIndex:i] objectForKey:@"deveimage"]];
+                        NSString *url = [NSString stringWithFormat:getImageUrl,[[allListArray objectAtIndex:i] objectForKey:@"deveimage"]];
                         NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
                         UIImage *image = [[UIImage alloc]initWithData:data];
                         if (data != nil) {

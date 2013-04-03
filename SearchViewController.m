@@ -66,13 +66,14 @@
     
     
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button2.frame = CGRectMake(10, 2, 40, 40);
+    button2.frame = CGRectMake(0, 2, 40, 40);
     [button2 setImage:[UIImage imageNamed:@"jiantou.png"] forState:UIControlStateNormal];
     [button2 addTarget:self action:@selector(backtosuper) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftBtnTopItem = [[UIBarButtonItem alloc] initWithCustomView:button2];
     self.navigationItem.leftBarButtonItem = leftBtnTopItem;
     [leftBtnTopItem release];
     
+       
 }
 
 
@@ -121,15 +122,6 @@
         if (listarray.count != 0) {
             [searchtable reloadData];
         }
-        else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"暂无数据" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-            [alert show];
-            [alert release];
-
-        }
-        
-    
     }
 }
 
@@ -143,7 +135,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%d",listarray.count);
+  
     return listarray.count;
  }
 

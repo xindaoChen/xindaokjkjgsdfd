@@ -47,7 +47,7 @@
     UILabel *mylable2;
     UILabel *mylable3;
     UILabel *mylable4;
-    UILabel *mylable5;
+     
     
 }
  

@@ -38,23 +38,34 @@
     [super viewDidLoad];
       [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
     CGRect fram = self.view.frame;
-    if (fram.size.height>500) {
-          textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 15, 300, 160)];
-    }
-    else
-    {
-          textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 15, 300, 150)];
-    }
-   
-    textview.backgroundColor = [UIColor clearColor];
-    textview.editable = NO;
-    textview.scrollEnabled = NO;
-    textview.layer.cornerRadius = 6;
-    textview.layer.masksToBounds = YES;
-    textview.text =@"       本产品致力于提供最详尽的全国开发区信息。采用LBS定位，默认显示所在城市的所有开发区，同时支持按省份浏览，按行业浏览，按名字关键字搜索等。针对每个开发区，都有单独的系列页面进行详尽的说明，对于有独立APP的开发区，提供其下载链接。";
-    textview.textColor = [UIColor blackColor];
-    textview.font =[UIFont systemFontOfSize:15];
-    [self.view addSubview:textview];
+//    if (fram.size.height>500) {
+//          textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 15, 300, 160)];
+//    }
+//    else
+//    {
+//          textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 15, 300, 150)];
+//    }
+//   
+//    textview.backgroundColor = [UIColor redColor];
+//    textview.editable = NO;
+//    textview.scrollEnabled = NO;
+//    textview.layer.cornerRadius = 6;
+//    textview.layer.masksToBounds = YES;
+//    textview.text =@"       本产品致力于提供最详尽的全国开发区信息。采用LBS定位，默认显示所在城市的所有开发区，同时支持按省份浏览，按行业浏览，按名字关键字搜索等。针对每个开发区，都有单独的系列页面进行详尽的说明，对于有独立APP的开发区，提供其下载链接。";
+//    textview.textColor = [UIColor blackColor];
+//    textview.font =[UIFont systemFontOfSize:15];
+//    [self.view addSubview:textview];
+    
+    webview = [[UIWebView alloc] init];
+     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
+    UIImageView *myimageview = [[UIImageView alloc] initWithFrame:CGRectMake(90,  10, 140, 140)];
+    [myimageview setImage:[UIImage imageNamed:@"applogo.png"]];
+    myimageview.userInteractionEnabled=YES;
+    UITapGestureRecognizer *tapImgView=[[UITapGestureRecognizer alloc]initWithTarget:self
+                                                                              action:@selector(pushtoapp)];
+    [myimageview addGestureRecognizer:tapImgView];
+
+    [self.view addSubview:myimageview];
     
     
     UIButton *button1= [UIButton buttonWithType:UIButtonTypeCustom];
@@ -75,31 +86,40 @@
     [button2 setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
 
     
-	UIButton *button3= [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	UIButton *button3= [UIButton buttonWithType:UIButtonTypeCustom];
     [button3 setBackgroundImage:[UIImage imageNamed:@"cell_bg_2.png"] forState:UIControlStateNormal];
     [button3 setTitle:@"常见机构投资者" forState:UIControlStateNormal];
       button3.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     [button3 setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
 
 
+    UIButton *button4= [UIButton buttonWithType:UIButtonTypeCustom];
+    [button4 setBackgroundImage:[UIImage imageNamed:@"cell_bg_3.png"] forState:UIControlStateNormal];
+    [button4 setTitle:@"去点评一下" forState:UIControlStateNormal];
+    button4.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    [button4 addTarget:self action:@selector(pushtoreview) forControlEvents:UIControlEventTouchUpInside];
+    [button4 setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
     
        if (fram.size.height>500)
        {
-            button1.frame = CGRectMake(10, 215, 300, 40);
-            button2.frame = CGRectMake(10, 275, 300, 40);
-            button3.frame = CGRectMake(10, 335, 300, 40);
+            button1.frame = CGRectMake(10, 215, 300, 37);
+            button2.frame = CGRectMake(10, 258, 300, 37);
+            button3.frame = CGRectMake(10, 301, 300, 37);
+           button4.frame = CGRectMake(10,345, 300, 37);
        }
     else
     {
-        button1.frame = CGRectMake(10, 210, 300, 40);
-        button2.frame = CGRectMake(10, 260, 300, 40);
-        button3.frame = CGRectMake(10,310, 300, 40);
+        button1.frame = CGRectMake(10, 180, 300, 37);
+        button2.frame = CGRectMake(10, 223, 300, 37);
+        button3.frame = CGRectMake(10,266, 300, 37);
+        button4.frame = CGRectMake(10,309, 300, 37);
 
     }
     
     [self.view addSubview:button1];
     [self.view addSubview:button2];
     [self.view addSubview:button3];
+    [self.view addSubview:button4];
 }
  
 -(void)coopview
@@ -108,6 +128,20 @@
     [self.navigationController pushViewController:coopview animated:YES];
 }
 
+
+-(void)pushtoapp
+{
+    NSURL *URL = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"];
+    [webview loadRequest:[NSURLRequest requestWithURL:URL]];
+
+}
+
+-(void)pushtoreview
+{
+    NSURL *URL = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/sheng-xiang-mei-shu-guan-fan/id514893190?mt=8"];
+    [webview loadRequest:[NSURLRequest requestWithURL:URL]];
+
+}
 
 - (void)didReceiveMemoryWarning
 {

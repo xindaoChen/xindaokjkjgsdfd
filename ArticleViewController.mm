@@ -88,23 +88,7 @@
     [button4 addTarget:self action:@selector(pushtospp) forControlEvents:UIControlEventTouchUpInside];
     button4.backgroundColor = [UIColor grayColor];
 
-//    if ([[faflult objectForKey:@"lange"] isEqualToString:@"english"]) {
-//         
-//        [button1 setTitle:@"Introduces" forState:UIControlStateNormal];
-//        [button2 setTitle:@"Index" forState:UIControlStateNormal];
-//        [button3 setTitle:@"Map" forState:UIControlStateNormal];
-//
-//    }
-//    else
-//    {
-//         
-//        [button1 setTitle:@"简介" forState:UIControlStateNormal];
-//          [button2 setTitle:@"指数" forState:UIControlStateNormal];
-//         [button3 setTitle:@"地图" forState:UIControlStateNormal];
-//    }
-//
-    
-    if (fram.size.height>500) {
+     if (fram.size.height>500) {
         firscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 455)];
         dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-30, 320,540 ) style:UITableViewStylePlain];
          myMapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 505)];
@@ -139,71 +123,76 @@
     [firscrollView setContentOffset:CGPointMake(0, 0)];
     [self.view addSubview:firscrollView];
     
-//    APPview.delegate = self;
-//    APPview.dataSource = self;
-//    APPview.hidden = YES;
-//    APPview.scrollEnabled = NO;
-//    APPview.tag = 100;
-//    APPview.backgroundView = nil;
-//    APPview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
-    [self.view addSubview:viewapp];
-     viewapp.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+ 
+  
+    viewapp.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     viewapp.hidden = YES;
-    UIImageView *myview = [[UIImageView alloc] initWithFrame:CGRectMake(20, 40, 280, 225)];
-    [myview setImage:[UIImage imageNamed:@"myview.png"]];
+     [self.view addSubview:viewapp];
+     UIImageView *myimageview = [[UIImageView alloc] initWithFrame:CGRectMake(90,  -10, 140, 140)];
+    [myimageview setImage:[UIImage imageNamed:@"applogo.png"]];
+    [viewapp addSubview:myimageview];
     
+    UIButton *loadbutton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [loadbutton addTarget:self action:@selector(pushtoapp) forControlEvents:UIControlEventTouchUpInside];
+    loadbutton.frame = CGRectMake(90, 130, 140, 40);
+    [viewapp addSubview:loadbutton];
     
-    UILabel *lable1 = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 60, 35)];
-    lable1.text = @"APP：";
-    lable1.backgroundColor = [UIColor clearColor];
-    [myview addSubview:lable1];
-    mylable1 = [[UILabel alloc] initWithFrame:CGRectMake(100, 5, 180, 35)];
+    UIImageView *imageview1 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 180, 40, 40)];
+    imageview1.backgroundColor = [UIColor clearColor];
+    [imageview1 setImage:[UIImage imageNamed:@"phone.png"]];
+    [viewapp addSubview:imageview1];
+    [imageview1 release];
+    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(70, 180, 60, 40)];
+    label1.backgroundColor = [UIColor clearColor];
+    label1.text = @"电话 :";
+    [viewapp addSubview:label1];
+    [label1 release];
+    mylable1 = [[UILabel alloc] initWithFrame:CGRectMake(125, 180, 160, 40)];
     mylable1.backgroundColor = [UIColor clearColor];
-    [myview addSubview:mylable1];
+    [viewapp addSubview:mylable1];
     
-    UILabel *lable2 = [[UILabel alloc] initWithFrame:CGRectMake(50, 50, 60, 35)];
-    lable2.text = @"电话：";
-    lable2.backgroundColor = [UIColor clearColor];
-    [myview addSubview:lable2];
-    mylable2 = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 180, 35)];
+    UIImageView *imageview2 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 225, 40, 40)];
+    imageview2.backgroundColor = [UIColor clearColor];
+     [imageview2 setImage:[UIImage imageNamed:@"fax.png"]];
+    [viewapp addSubview:imageview2];
+    [imageview2 release];
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(70, 225, 60, 40)];
+    label2.backgroundColor = [UIColor clearColor];
+    label2.text = @"传真 :";
+    [viewapp addSubview:label2];
+    [label2 release];
+    mylable2 = [[UILabel alloc] initWithFrame:CGRectMake(125, 225, 160, 40)];
     mylable2.backgroundColor = [UIColor clearColor];
-    [myview addSubview:mylable2];
-
-
+    [viewapp addSubview:mylable2];
     
-    UILabel *lable3 = [[UILabel alloc] initWithFrame:CGRectMake(50, 95, 60, 35)];
-    lable3.text = @"传真：";
-    lable3.backgroundColor = [UIColor clearColor];
-    [myview addSubview:lable3];
-    mylable3 = [[UILabel alloc] initWithFrame:CGRectMake(100, 95, 180, 35)];
+    UIImageView *imageview3 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 270, 40, 40)];
+    imageview3.backgroundColor = [UIColor clearColor];
+     [imageview3 setImage:[UIImage imageNamed:@"email.png"]];
+    [viewapp addSubview:imageview3];
+    [imageview3 release];
+    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(70, 270, 60, 40)];
+    label3.backgroundColor = [UIColor clearColor];
+    label3.text = @"邮件 :";
+    [viewapp addSubview:label3];
+    [label3 release];
+    mylable3 = [[UILabel alloc] initWithFrame:CGRectMake(125, 270, 160, 40)];
     mylable3.backgroundColor = [UIColor clearColor];
-    [myview addSubview:mylable3];
-
-
+    [viewapp addSubview:mylable3];
     
-    UILabel *lable4 = [[UILabel alloc] initWithFrame:CGRectMake(50, 140, 60, 35)];
-    lable4.text = @"邮件：";
-    lable4.backgroundColor = [UIColor clearColor];
-    [myview addSubview:lable4];
-    mylable4 = [[UILabel alloc] initWithFrame:CGRectMake(100, 140, 180, 35)];
+    UIImageView *imageview4 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 315, 40, 40)];
+    imageview4.backgroundColor = [UIColor clearColor];
+     [imageview4 setImage:[UIImage imageNamed:@"site.png"]];
+    [viewapp addSubview:imageview4];
+    [imageview4 release];
+    UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(70, 315, 60, 40)];
+    label4.backgroundColor = [UIColor clearColor];
+    label4.text = @"网址 :";
+    [viewapp addSubview:label4];
+    [label4 release];
+    mylable4 = [[UILabel alloc] initWithFrame:CGRectMake(125, 315, 160, 40)];
     mylable4.backgroundColor = [UIColor clearColor];
-    [myview addSubview:mylable4];
-
-
-    UILabel *lable5 = [[UILabel alloc] initWithFrame:CGRectMake(50, 185, 60, 35)];
-    lable5.text = @"网址：";
-    lable5.backgroundColor = [UIColor clearColor];
-    [myview addSubview:lable5];
-   [viewapp addSubview:myview];
-    mylable5= [[UILabel alloc] initWithFrame:CGRectMake(100, 185, 180, 35)];
-    mylable5.backgroundColor = [UIColor clearColor];
-    [myview addSubview:mylable5];
-
-    [lable1 release];
-    [lable2 release];
-    [lable3 release];
-    [lable4 release];
-    [lable5 release];
+    [viewapp addSubview:mylable4];
+    
     
 
     UIImageView *imageview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
@@ -258,6 +247,15 @@
         [self  introduceviewtwo];
     }
 }
+
+
+-(void)pushtoapp
+{
+    NSURL *URL = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"];
+     [webview loadRequest:[NSURLRequest requestWithURL:URL]];
+
+}
+
 
 -(void)backtosuper
 {
@@ -348,6 +346,7 @@
     myMapView.hidden = YES;
     dataview.hidden = YES;
     viewapp.hidden = NO;
+    [assAiv stopAnimating];
     self.view.backgroundColor = [UIColor whiteColor];
     
     if (app ==YES) {
@@ -385,7 +384,6 @@
     }
     else
     {
-        dataarray =   [self getthedata];
         UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"无网络可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alertV show];
         [alertV release];
@@ -401,7 +399,7 @@
     dataview.hidden = NO;
     assAiv.color = [UIColor blackColor];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    [assAiv stopAnimating];
     if (databool ==YES) {
         [button1  setImage:[UIImage imageNamed:@"introduce.png"] forState:UIControlStateNormal];
         [button2  setImage:[UIImage imageNamed:@"datax.png"] forState:UIControlStateNormal];
@@ -469,7 +467,6 @@
     {
         [assAiv stopAnimating];
         introducearray = resultSet;
-        NSLog(@"%@",introducearray);
         firscrollView.contentSize = CGSizeMake(320*(introducearray.count), 120);
 //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   [self  clearmessagetwo];});
         for (UIView *subView in firscrollView.subviews)
@@ -482,9 +479,9 @@
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"暂无数据" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-            [alert show];
-            [alert release];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"暂无数据" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//            [alert show];
+//            [alert release];
         }
     
         
@@ -494,52 +491,45 @@
         [assAiv stopAnimating];
         apparray = resultSet;
         [apparray retain];
-        NSLog(@"%@",[[apparray objectAtIndex:0] objectForKey:@"link"]);
-        if ([[[apparray objectAtIndex:0] objectForKey:@"link"]  isEqualToString:@""]) {
+       
+        if ([[[apparray objectAtIndex:0] objectForKey:@"tel"]  isEqualToString:@""]) {
            
             mylable1.text = @"暂无数据";
         }
        else
        {
-             mylable1.text = [[apparray objectAtIndex:0] objectForKey:@"link"];
+             mylable1.text = [[apparray objectAtIndex:0] objectForKey:@"tel"];
        }
         
-        if ([[[apparray objectAtIndex:0] objectForKey:@"tel"] isEqualToString:@""]) {
+        if ([[[apparray objectAtIndex:0] objectForKey:@"fax"] isEqualToString:@""]) {
             
              mylable2.text = @"暂无数据";
         }
         else
         {
-           mylable2.text = [[apparray objectAtIndex:0] objectForKey:@"tel"];
+           mylable2.text = [[apparray objectAtIndex:0] objectForKey:@"fax"];
         }
 
-        if ([[[apparray objectAtIndex:0] objectForKey:@"fax"] isEqualToString:@""]) {
+        if ([[[apparray objectAtIndex:0] objectForKey:@"email"] isEqualToString:@""]) {
             
              mylable3.text = @"暂无数据";
         }
         else
         {
-           mylable3.text = [[apparray objectAtIndex:0] objectForKey:@"fax"];
+           mylable3.text = [[apparray objectAtIndex:0] objectForKey:@"email"];
         }
 
-        if ( [[[apparray objectAtIndex:0] objectForKey:@"email"] isEqualToString:@""]) {
+        if ( [[[apparray objectAtIndex:0] objectForKey:@"site"] isEqualToString:@""]) {
            
              mylable4.text = @"暂无数据";
         }
         else
         {
-            mylable4.text = [[apparray objectAtIndex:0] objectForKey:@"email"];
+            mylable4.text = [[apparray objectAtIndex:0] objectForKey:@"site"];
         }
 
-        if ([[[apparray objectAtIndex:0] objectForKey:@"site"] isEqualToString:@""]) {
-            
-             mylable5.text = @"暂无数据";
-        }
-        else
-        {
-           mylable5.text = [[apparray objectAtIndex:0] objectForKey:@"site"];
-        }
-         
+ 
+        
     }
 }
 
@@ -566,7 +556,7 @@
            textview.frame = CGRectMake(frame.size.width*i +10, 185, 300, 190);
             label.frame = CGRectMake( frame.size.width*i +10, 155, 300, 30);
        }
-         imageview.backgroundColor = [UIColor blueColor];
+         imageview.backgroundColor = [UIColor clearColor];
          label.text = [[introducearray objectAtIndex:i] objectForKey:@"title"];
 //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   
              NSString *url = [NSString stringWithFormat:getImageUrl,[[introducearray objectAtIndex:i] objectForKey:@"img"]];
@@ -590,7 +580,7 @@
      
       textview.backgroundColor = [UIColor clearColor];
       textview.editable = NO;
-      textview.textColor = [UIColor lightGrayColor];
+      textview.textColor = [UIColor blackColor];
        textview.text = [NSString stringWithFormat:@"       %@",[[introducearrytwo objectAtIndex:i] objectForKey:@"content"]];   
       textview.font =[UIFont systemFontOfSize:16];
       [firscrollView addSubview:imageview];
@@ -623,7 +613,7 @@
          UILabel *label = [[UILabel alloc] init];
          label.backgroundColor = [UIColor clearColor];
          label.font = [UIFont boldSystemFontOfSize:18];
-         label.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0]; 
+         label.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
          if (fram.size.height>500) {
              imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
              textview.frame = CGRectMake(frame.size.width*i +10, 190, 300, 265);
@@ -635,16 +625,16 @@
              textview.frame = CGRectMake(frame.size.width*i +10, 185, 300, 190);
              label.frame = CGRectMake( frame.size.width*i +10, 155, 300, 30);
          }
-         imageview.backgroundColor = [UIColor blueColor];
+         imageview.backgroundColor = [UIColor clearColor];
          label.text = [[introducearrytwo objectAtIndex:i] objectForKey:@"title"];
          NSData *aData = [[introducearrytwo objectAtIndex:i] objectForKey:@"data"];
          UIImage *image = [[UIImage alloc]initWithData:aData];
          [imageview setImage:image];
  
-                
+         
          textview.backgroundColor = [UIColor clearColor];
          textview.editable = NO;
-         textview.textColor = [UIColor lightGrayColor];
+         textview.textColor = [UIColor blackColor];
          textview.text = [NSString stringWithFormat:@"       %@",[[introducearrytwo objectAtIndex:i] objectForKey:@"content"]];
          textview.font =[UIFont systemFontOfSize:16];
          [firscrollView addSubview:imageview];
@@ -670,6 +660,7 @@
     dataview.hidden = YES;
     viewapp.hidden = YES;
     myMapView.hidden = YES;
+    [assAiv stopAnimating];
 //    self.view.backgroundColor = [UIColor blackColor];
     
     if (introd ==YES) {
@@ -691,6 +682,7 @@
     dataview.hidden = YES;
     viewapp.hidden = YES;
     myMapView.hidden = NO;
+    [assAiv stopAnimating];
      assAiv.color = [UIColor whiteColor];
     BMKCoordinateSpan span = BMKCoordinateSpanMake(0.1,0.1);
     BMKCoordinateRegion reg = BMKCoordinateRegionMake(locationgs, span);
@@ -823,6 +815,7 @@
         [cell addSubview:labletwo];
         [lable release];
         [labletwo release];
+        NSLog(@"%@",dataarray);
         for (int i = 0; i<dataarray.count; i++)
         {
             if ((indexPath.row-1) ==i )
@@ -1124,8 +1117,7 @@
     {
         if (indexPath.row == 0) {
             NSURL *URL = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"];
-            
-            [webview loadRequest:[NSURLRequest requestWithURL:URL]];
+             [webview loadRequest:[NSURLRequest requestWithURL:URL]];
  
         }
         else if(indexPath.row ==4)
@@ -1134,8 +1126,6 @@
             NSURL *URL = [NSURL URLWithString:@"http://www.sina.com.cn/"];
             WepViewController *views = [[WepViewController alloc] initWithurl:URL];
             [self.navigationController pushViewController:views animated:YES];
-
-
         }
     }
 }
@@ -1166,8 +1156,7 @@
      [mylable2 release];mylable2 = nil;
      [mylable3 release];mylable3 = nil;
      [mylable4 release];mylable4 = nil;
-     [mylable5 release];mylable5 = nil;
-    
+         
     [super dealloc];
 }
 

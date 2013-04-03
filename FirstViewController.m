@@ -119,8 +119,8 @@
 
     
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button2.frame = CGRectMake(20, 8, 40, 40);
-    [button2 setImage:[UIImage imageNamed:@"map.png"] forState:UIControlStateNormal];
+    button2.frame = CGRectMake( 0, 8, 40, 40);
+    [button2 setImage:[UIImage imageNamed:@"right.png"] forState:UIControlStateNormal];
     [button2 addTarget:self action:@selector(mylocation) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftBtnTopItem = [[UIBarButtonItem alloc] initWithCustomView:button2];
     self.navigationItem.rightBarButtonItem = leftBtnTopItem;
@@ -377,7 +377,7 @@
     }
     
 
-    [UIView animateWithDuration:2
+    [UIView animateWithDuration:1
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut animations:^(void){
                             selectview.alpha = 0.0;
@@ -419,18 +419,25 @@
     CGRect fram = appdele.window.frame;
     selectview = [[UIView alloc] initWithFrame:appdele.window.frame];
     UIImageView *images = [[UIImageView alloc] initWithFrame:selectview.frame];
-    [images setImage:[UIImage imageNamed:@"yindao3.png"]];
+    if (fram.size.height>520) {
+        [images setImage:[UIImage imageNamed:@"yindao3.png"]];
+    }
+    else
+    {
+         [images setImage:[UIImage imageNamed:@"yindao31.png"]];
+    }
+   
     [selectview addSubview:images];
     [images release];
     [appdele.window addSubview:selectview];
     
     UIButton *buttonnext = [UIButton buttonWithType:UIButtonTypeCustom];
-    [buttonnext setImage:[UIImage imageNamed:@"english.png"] forState:UIControlStateNormal];
+//    [buttonnext setImage:[UIImage imageNamed:@"english.png"] forState:UIControlStateNormal];
     buttonnext.tag =100;
     [buttonnext addTarget:self action:@selector(EngorChaing:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *buttonnext2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [buttonnext2 setImage:[UIImage imageNamed:@"china.png"] forState:UIControlStateNormal];
+//    [buttonnext2 setImage:[UIImage imageNamed:@"china.png"] forState:UIControlStateNormal];
     buttonnext2.tag =200;
     [buttonnext2 addTarget:self action:@selector(EngorChaing:) forControlEvents:UIControlEventTouchUpInside];
    
@@ -442,8 +449,8 @@
     }
     else
     {
-        buttonnext.frame = CGRectMake(  160.5 , 410, 100, 40);
-        buttonnext2.frame = CGRectMake(  60 , 410, 99.5, 40);
+        buttonnext.frame = CGRectMake(  150 , 420, 150, 40);
+        buttonnext2.frame = CGRectMake(  20 , 420, 150, 40);
     }
     [selectview addSubview:buttonnext];
     [selectview addSubview:buttonnext2];
@@ -628,16 +635,18 @@
 -(void)mylocation
 {
      
-    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"市"];
-    NSString *trimmedString = [buttonbars.text stringByTrimmingCharactersInSet:set];
-    if (!trimmedString) {
+//    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"市"];
+//    NSString *trimmedString = [buttonbars.text stringByTrimmingCharactersInSet:set];
+//    NSLog(@"%@", trimmedString);
+    NSLog(@"%@",buttonbars.text);
+    if (!buttonbars.text ) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无法定位您当前位置" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
         [alert release];
     }
     else
     {
-        ScanDevelopViewController *searchview = [[ScanDevelopViewController alloc] initwithcityname:trimmedString];
+        ScanDevelopViewController *searchview = [[ScanDevelopViewController alloc] initwithcityname:buttonbars.text];
         [self.navigationController pushViewController:searchview animated:YES];
     }
   

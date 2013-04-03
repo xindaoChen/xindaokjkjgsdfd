@@ -317,6 +317,7 @@
         
     }
     
+    NSLog(@"^^^^^^^^^^^^^^^^%@",allListArray);
     
 }
 
@@ -914,9 +915,10 @@ else if([languageFlag isEqualToString:@"english"])
             break;
         case 2:
      //  [provinceView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-            if ([[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"全国"]) {
+            if ([[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"全国"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"北京市"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"天津市"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"上海市" ]||[[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"重庆市"]) {
                 provinceName = [allProvinceArray objectAtIndex:indexPath.row];
-               [provincebutton setTitle:@"全国" forState:UIControlStateNormal];
+               [provincebutton setTitle:provinceName forState:UIControlStateNormal];
+                tempprovinceName = provinceName;
                 getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
                 levelbutton.titleLabel.text = @"全部";
                 industrybutton.titleLabel.text = @"全部";
@@ -972,7 +974,10 @@ else if([languageFlag isEqualToString:@"english"])
             {
                 [UIView animateWithDuration:0.3 animations:^{
                     showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-              //      moveImageView.frame = CGRectMake(-100, 40, 100, 4);
+                    provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
+                    //      moveImageView.frame = CGRectMake(-100, 35, 100, 8);
+                    [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+
 
                 }];
                 provinceButonStatue = 1;

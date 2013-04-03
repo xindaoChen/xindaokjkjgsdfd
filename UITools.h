@@ -10,4 +10,6 @@
 
 @interface UITools : NSObject
 + (UIBarButtonItem* )getNavButtonItem: (UIViewController*) controller;
++ (void)showPopMessage:(UIViewController*)viewController titleInfo:(NSString*)title messageInfo:(NSString*)msg;
+
 @end

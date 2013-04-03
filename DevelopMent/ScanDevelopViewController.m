@@ -170,10 +170,11 @@
     
     [provincebutton addTarget:self action:@selector(showCity) forControlEvents:UIControlEventTouchUpInside];
 
-    provinceLabel = [[UILabel alloc]initWithFrame:CGRectMake(2,5, 93, 30)];
+    provinceLabel = [[UILabel alloc]initWithFrame:CGRectMake(2,5, 87, 30)];
     provinceLabel.backgroundColor = [UIColor clearColor];
     provinceLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
     provinceLabel.text = provinceName;
+    provinceLabel.textAlignment = UITextAlignmentCenter;
     provinceLabel.textColor = [UIColor grayColor];
     [provincebutton addSubview:provinceLabel];
     
@@ -193,10 +194,11 @@
       [levelbutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
     [levelbutton addTarget:self action:@selector(showLevel) forControlEvents:UIControlEventTouchUpInside];
  
-    levelLabel = [[UILabel alloc]initWithFrame:CGRectMake(2,5, 93, 30)];
+    levelLabel = [[UILabel alloc]initWithFrame:CGRectMake(4,5, 93, 30)];
     levelLabel.backgroundColor = [UIColor clearColor];
     levelLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
     levelLabel.text = levelName;
+    levelLabel.textAlignment = UITextAlignmentCenter;
     levelLabel.textColor = [UIColor grayColor];
     [levelbutton addSubview:levelLabel];
     
@@ -209,11 +211,12 @@
     [industrybutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
     [industrybutton addTarget:self action:@selector(showIndustry) forControlEvents:UIControlEventTouchUpInside];
     
-    industryLabel = [[UILabel alloc]initWithFrame:CGRectMake(2,5, 93, 30)];
+    industryLabel = [[UILabel alloc]initWithFrame:CGRectMake(2,5, 85, 30)];
     industryLabel.backgroundColor = [UIColor clearColor];
     industryLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
     industryLabel.textColor = [UIColor grayColor];
     industryLabel.text = industryName;
+    industryLabel.textAlignment = UITextAlignmentCenter;
     [industrybutton addSubview:industryLabel];
     
     showCityView = [[UIView alloc]init];

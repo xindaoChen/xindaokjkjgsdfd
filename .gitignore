@@ -4,3 +4,5 @@ DevelopMent.xcodeproj/xcuserdata
 xcuserdata
 config.plist
 *.swp
+.DS_Store
+DevelopMent.xcodeproj/project.xcworkspace/xcuserdata/agent4me.xcuserdatad/*

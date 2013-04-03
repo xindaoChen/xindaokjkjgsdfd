@@ -59,7 +59,7 @@
         [appdele.window addSubview:viewss];
         
         scrollview = [[UIScrollView alloc] initWithFrame:viewss.frame];
-        scrollview.backgroundColor = [UIColor clearColor];
+        scrollview.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
         scrollview.pagingEnabled = YES;
         scrollview.tag = 200;
         scrollview.showsHorizontalScrollIndicator = NO;//不显示水平滑动线
@@ -346,7 +346,6 @@
         NSMutableString*alltring = [[NSMutableString alloc] init];
         [alltring appendString:string1];
         [alltring appendString:string2];
-        NSLog(@"%@",alltring);
         NetAccess *netAccess = [[NetAccess alloc]init];
         netAccess.delegate = self;
         netAccess.tag = 100;
@@ -536,7 +535,7 @@
         [firscrollView addSubview:buttongs];
         
         
-        NSString *url = [NSString stringWithFormat:@"http://192.168.1.105:8010/assets/developimage/%@",[[listarray objectAtIndex:i] objectForKey:@"deveimage"]];                     
+        NSString *url = [NSString stringWithFormat:@"http://192.168.1.101:8010/assets/developimage/%@",[[listarray objectAtIndex:i] objectForKey:@"deveimage"]];                     
         NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
         UIImage *image = [UIImage imageWithData:data];
         [buttongs setImage:image forState:UIControlStateNormal];

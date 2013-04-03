@@ -562,7 +562,7 @@
          imageview.backgroundColor = [UIColor blueColor];
          label.text = [[introducearray objectAtIndex:i] objectForKey:@"title"];
 //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   
-             NSString *url = [NSString stringWithFormat:@"http://192.168.1.105:8010/assets/developimage/%@",[[introducearray objectAtIndex:i] objectForKey:@"img"]];
+             NSString *url = [NSString stringWithFormat:@"http://192.168.1.101:8010/assets/developimage/%@",[[introducearray objectAtIndex:i] objectForKey:@"img"]];
              NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
              UIImage *image = [[UIImage alloc]initWithData:data];
            
@@ -805,11 +805,11 @@
             }
             [subviews release];
         }
-
-        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 120, 40)];
+   
+        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, 120, 40)];
         lable.font = [UIFont systemFontOfSize:18];
         lable.backgroundColor = [UIColor clearColor];
-        UILabel *labletwo = [[UILabel alloc] initWithFrame:CGRectMake(175, 0, 80, 40)];
+        UILabel *labletwo = [[UILabel alloc] initWithFrame:CGRectMake(185, 0, 80, 40)];
         labletwo.backgroundColor = [UIColor clearColor];
         labletwo.textColor =  [UIColor colorWithRed:0.370f green:0.920f blue:0.956f alpha:1.0f];
         [cell addSubview:lable];
@@ -821,7 +821,8 @@
             if ((indexPath.row-1) ==i )
             {      
                 lable.text = [NSString stringWithFormat:@"%@:",[[dataarray objectAtIndex:i]objectForKey:@"indexname" ]];
-                labletwo.text = [[dataarray objectAtIndex:i] objectForKey:@"num"];
+                
+                labletwo.text = [NSString stringWithFormat:@"%@ 分",[[dataarray objectAtIndex:i] objectForKey:@"num"]];
             }
         }
     }

@@ -169,7 +169,7 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             UIImage *image1 = [imageDic objectForKey:[NSNumber numberWithInt:indexPath.row]];
             if (image1 == nil) {
-                NSString *url = [NSString stringWithFormat:@"http://192.168.1.105:8010/assets/developimage/%@",[[listarray objectAtIndex:indexPath.row] objectForKey:@"deveimage"]];
+                NSString *url = [NSString stringWithFormat:@"http://192.168.1.101:8010/assets/developimage/%@",[[listarray objectAtIndex:indexPath.row] objectForKey:@"deveimage"]];
                 NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
                 UIImage *image = [[UIImage alloc]initWithData:data];
                 if (data != nil) {

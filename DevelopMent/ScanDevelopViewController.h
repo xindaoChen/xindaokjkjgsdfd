@@ -28,7 +28,10 @@
     UIView *showLevelView;
     UIView *showIndustryView;
     UIActivityIndicatorView *assAiv;
+    UIActivityIndicatorView  *footactive;
     UIImageView *moveImageView;
+    UIImageView *moveImageView2;
+    UIImageView *moveImageView3;
     
     NSString *provinceName;
     NSString *tempprovinceName;
@@ -40,11 +43,13 @@
     NSString *cid;
     
     NSMutableArray *allProvinceArray;
+    NSMutableArray *allProvinceArrayEnglish;
+    NSMutableArray *allProvinceArrayChina;
     int num;
     int flagForInit;
     int  developnumhasget;
     int pagenum;
- 
+    int  catchflag;
     
     UIButton *industrybutton;
     UIButton *levelbutton;
@@ -57,6 +62,8 @@
     
     NSString *getDevelopZoneInfo;
    NSString *getCityName;
+    NSString *languageFlag;
+    
     
     int provinceButonStatue;   //记录每个按钮的状态互斥  选中-1，
     int levelButonStatue;

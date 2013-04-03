@@ -10,7 +10,7 @@
 
 @interface DiscussViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
-    UITextView*   textview;
-    UITableView *tabeview;
+//    UITextView*   textview;
+    UIWebView *webview;
 }
 @end

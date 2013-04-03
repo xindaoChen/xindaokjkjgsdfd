@@ -14,9 +14,10 @@
 //#define cityname @"http://www.vpinche.com/index.php/index/getCity"  // 获取市名
 //#define levelList @"http://www.vpinche.com/index.php/index/level"   // 获取级别列表
 //#define industryList @"http://www.vpinche.com/index.php/index/tradeclass" //获取行业列表
+//#define Appintroduce @"http://www.vpinche.com/index.php/index/app"   //APP
+//#define getImageUrl  @"http://www.vpinche.com/assets/developimage/%@"   //根据图片名获取图片
 //#define getImageUrl  @"http://www.vpinche.com/assets/developimage/%@"   //根据图片名获取图片
 //#define Appintroduce @"http://www.vpinche.com/index.php/index/app"   //APP
-
 
 
 #define Firstviewimage @"http://192.168.1.101:8010/index.php/index/indexImg"  //首页图片

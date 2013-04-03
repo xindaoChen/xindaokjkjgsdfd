@@ -792,8 +792,6 @@ else if([languageFlag isEqualToString:@"english"])
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          
-        
-         
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
             NSLog(@"*********%@",allListArray);
         

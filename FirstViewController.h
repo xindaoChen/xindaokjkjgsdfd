@@ -10,7 +10,9 @@
 #import "BMapKit.h"
 #import "ClassViewController.h"
 #import "NetAccess.h"
-
+#import "ClassViewController.h"
+#import "DiscussViewController.h"
+ 
 @class GrayPageControl;
  
 @interface FirstViewController : UIViewController<UIScrollViewDelegate,BMKMapViewDelegate,BMKSearchDelegate,NetAccessDelegate,UISearchBarDelegate>
@@ -39,6 +41,8 @@
     UIView *selectview;
     NSMutableArray *idaray;
     NSMutableArray *picturearray;
+    ClassViewController *classeview;
+    DiscussViewController *disview;
 }
 @property(nonatomic,strong)UIScrollView *firscrollView;
 @property(nonatomic,strong)UIScrollView *secscrollview;

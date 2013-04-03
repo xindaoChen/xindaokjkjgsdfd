@@ -30,7 +30,7 @@
     MBProgressHUD *HUD  = [[MBProgressHUD alloc] initWithView:viewController.navigationController.view];
     [viewController.navigationController.view addSubview:HUD];
     HUD.delegate = nil;
-    HUD.labelText = title;
+//    HUD.labelText = title;
     HUD.detailsLabelText = msg;
     HUD.square = YES;
     

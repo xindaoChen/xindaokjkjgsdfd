@@ -193,6 +193,7 @@
     
     UISearchBar* searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(40, 122, 240, 40)];
     searchbar.delegate = self;
+    searchbar.placeholder = @"搜索";
      UIView *searview = [searchbar.subviews objectAtIndex:0];
     [searview removeFromSuperview];
     [self.view addSubview:searchbar];

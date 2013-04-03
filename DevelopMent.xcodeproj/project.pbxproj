@@ -13,6 +13,13 @@
 		4412566917097D1E007B7C9E /* active_page_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 4412566717097D1E007B7C9E /* active_page_image.png */; };
 		4412566A17097D1E007B7C9E /* inactive_page_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 4412566817097D1E007B7C9E /* inactive_page_image.png */; };
 		4412567017098E32007B7C9E /* UITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4412566F17098E32007B7C9E /* UITools.m */; };
+		445B7471170C3E5900557D86 /* XDTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 445B7470170C3E5900557D86 /* XDTabBarViewController.m */; };
+		445B7478170C405C00557D86 /* about_normal_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 445B7472170C405C00557D86 /* about_normal_tab@2x.png */; };
+		445B7479170C405C00557D86 /* about_select_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 445B7473170C405C00557D86 /* about_select_tab@2x.png */; };
+		445B747A170C405C00557D86 /* class_normal_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 445B7474170C405C00557D86 /* class_normal_tab@2x.png */; };
+		445B747B170C405C00557D86 /* class_select_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 445B7475170C405C00557D86 /* class_select_tab@2x.png */; };
+		445B747C170C405C00557D86 /* homepage_normal_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 445B7476170C405C00557D86 /* homepage_normal_tab@2x.png */; };
+		445B747D170C405C00557D86 /* homepage_select_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 445B7477170C405C00557D86 /* homepage_select_tab@2x.png */; };
 		780F5A54170A8739002CA947 /* Introduce.m in Sources */ = {isa = PBXBuildFile; fileRef = 780F5A53170A8739002CA947 /* Introduce.m */; };
 		780F5A58170A8D3A002CA947 /* tubiao.png in Resources */ = {isa = PBXBuildFile; fileRef = 780F5A57170A8D3A002CA947 /* tubiao.png */; };
 		784877E017042B16008EBCB1 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 784877DF17042B16008EBCB1 /* Data.m */; };
@@ -171,6 +178,14 @@
 		4412566B17098C09007B7C9E /* XDHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XDHeader.h; path = DevelopMent/XDHeader.h; sourceTree = "<group>"; };
 		4412566E17098E32007B7C9E /* UITools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITools.h; sourceTree = "<group>"; };
 		4412566F17098E32007B7C9E /* UITools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITools.m; sourceTree = "<group>"; };
+		445B746F170C3E5900557D86 /* XDTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDTabBarViewController.h; sourceTree = "<group>"; };
+		445B7470170C3E5900557D86 /* XDTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDTabBarViewController.m; sourceTree = "<group>"; };
+		445B7472170C405C00557D86 /* about_normal_tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_normal_tab@2x.png"; sourceTree = "<group>"; };
+		445B7473170C405C00557D86 /* about_select_tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_select_tab@2x.png"; sourceTree = "<group>"; };
+		445B7474170C405C00557D86 /* class_normal_tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "class_normal_tab@2x.png"; sourceTree = "<group>"; };
+		445B7475170C405C00557D86 /* class_select_tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "class_select_tab@2x.png"; sourceTree = "<group>"; };
+		445B7476170C405C00557D86 /* homepage_normal_tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homepage_normal_tab@2x.png"; sourceTree = "<group>"; };
+		445B7477170C405C00557D86 /* homepage_select_tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homepage_select_tab@2x.png"; sourceTree = "<group>"; };
 		780F5A52170A8739002CA947 /* Introduce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Introduce.h; sourceTree = "<group>"; };
 		780F5A53170A8739002CA947 /* Introduce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Introduce.m; sourceTree = "<group>"; };
 		780F5A57170A8D3A002CA947 /* tubiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tubiao.png; sourceTree = "<group>"; };
@@ -491,6 +506,8 @@
 				78945D7A1707D28D0034230A /* WepViewController.m */,
 				7895D6B216FE9FE700604F50 /* NetAccess.h */,
 				7895D6B316FE9FE700604F50 /* NetAccess.m */,
+				445B746F170C3E5900557D86 /* XDTabBarViewController.h */,
+				445B7470170C3E5900557D86 /* XDTabBarViewController.m */,
 				78EAB75116FD9B4A00534880 /* MyCell.h */,
 				78EAB75216FD9B4A00534880 /* MyCell.m */,
 				78FF51A2170BF86E00F01DCB /* libbaidumapapi.a */,
@@ -566,6 +583,12 @@
 		7893702C17044D9000F8159C /* Picture */ = {
 			isa = PBXGroup;
 			children = (
+				445B7472170C405C00557D86 /* about_normal_tab@2x.png */,
+				445B7473170C405C00557D86 /* about_select_tab@2x.png */,
+				445B7474170C405C00557D86 /* class_normal_tab@2x.png */,
+				445B7475170C405C00557D86 /* class_select_tab@2x.png */,
+				445B7476170C405C00557D86 /* homepage_normal_tab@2x.png */,
+				445B7477170C405C00557D86 /* homepage_select_tab@2x.png */,
 				C80956EF170C1FF000780FC3 /* cell_bg_0.png */,
 				C80956F0170C1FF000780FC3 /* cell_bg_1.png */,
 				C80956F1170C1FF000780FC3 /* cell_bg_2.png */,
@@ -903,6 +926,12 @@
 				C80956F8170C1FF000780FC3 /* cell_bg_3.png in Resources */,
 				C80956F9170C1FF000780FC3 /* cell_bg_4.png in Resources */,
 				C80956FA170C1FF000780FC3 /* cell_bg_5.png in Resources */,
+				445B7478170C405C00557D86 /* about_normal_tab@2x.png in Resources */,
+				445B7479170C405C00557D86 /* about_select_tab@2x.png in Resources */,
+				445B747A170C405C00557D86 /* class_normal_tab@2x.png in Resources */,
+				445B747B170C405C00557D86 /* class_select_tab@2x.png in Resources */,
+				445B747C170C405C00557D86 /* homepage_normal_tab@2x.png in Resources */,
+				445B747D170C405C00557D86 /* homepage_select_tab@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -951,6 +980,7 @@
 				787AA24C170B175600B746BB /* ClassViewController.m in Sources */,
 				C80956EA170BCD9C00780FC3 /* ScanDevelopViewController.m in Sources */,
 				4401869E170BFF8D002EF4C6 /* MBProgressHUD.m in Sources */,
+				445B7471170C3E5900557D86 /* XDTabBarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

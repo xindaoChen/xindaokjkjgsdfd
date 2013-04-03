@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
- 
+#import "XDTabBarViewController.h"
 
 #import "FirstViewController.h"
 @implementation AppDelegate
@@ -29,16 +29,15 @@
     naviga3 = [[UINavigationController alloc] initWithRootViewController:disview];
     naviga3.tabBarItem.image = [UIImage imageNamed:@"yunju.png"];
     NSArray *array = [NSArray arrayWithObjects:naviga1,naviga2,naviga3, nil];
-    UITabBarController *tabbar=[[[UITabBarController alloc] init] autorelease];
+    XDTabBarViewController *tabbar=[[[XDTabBarViewController alloc] init] autorelease];
     tabbar.viewControllers=array;
     tabbar.delegate=(id)self;
     self.window.rootViewController = tabbar;
-    UIView *views = [[UIView alloc] initWithFrame:self.window.frame];
     
     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
     language = [faflult objectForKey:@"lange"];
     NSLog(@"%@",language);
-    [self.window addSubview:views];
+
 
     [firstview release];
     [classview release];

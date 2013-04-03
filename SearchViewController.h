@@ -18,6 +18,7 @@
      
     UISearchBar *searchbar ;
     NSMutableDictionary *imageDic;
+    NSMutableDictionary *imagesDictionary;
    
 }
 

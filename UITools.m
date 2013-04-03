@@ -7,6 +7,7 @@
 //
 
 #import "UITools.h"
+#import "MBProgressHUD.h"
 
 @implementation UITools
 
@@ -20,5 +21,35 @@
     UIBarButtonItem *leftBtnTopItem = [[[UIBarButtonItem alloc] initWithCustomView:leftButtonItem] autorelease];
 
     return leftBtnTopItem;
+}
+
++ (void)showPopMessage:(UIViewController*)viewController titleInfo:(NSString*)title messageInfo:(NSString*)msg {
+    if (viewController.navigationController.view == nil) {
+        return;
+    }
+    MBProgressHUD *HUD  = [[MBProgressHUD alloc] initWithView:viewController.navigationController.view];
+    [viewController.navigationController.view addSubview:HUD];
+    HUD.delegate = nil;
+//    HUD.labelText = title;
+    HUD.detailsLabelText = msg;
+    HUD.square = YES;
+    
+    HUD.customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    
+    HUD.mode = MBProgressHUDModeCustomView;
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
+}
+
++ (UIImage *)reSizeImage:(UIImage *)image toSize:(CGSize)reSize
+
+{
+    UIGraphicsBeginImageContext(CGSizeMake(reSize.width, reSize.height));
+    [image drawInRect:CGRectMake(0, 0, reSize.width, reSize.height)];
+    UIImage *reSizeImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return reSizeImage;
+    
 }
 @end

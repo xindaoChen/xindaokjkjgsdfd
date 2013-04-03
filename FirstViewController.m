@@ -19,6 +19,8 @@
 #import "DevelopViewController.h"
 #import "ClassViewController.h"
 #import "GrayPageControl.h"
+#import "MBProgressHUD.h"
+#import "UITools.h"
 
 @interface FirstViewController ()
 
@@ -189,8 +191,9 @@
     
  
     
-    UISearchBar* searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(40, 122, 240, 40)];
+    UISearchBar* searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(40, 120, 240, 40)];
     searchbar.delegate = self;
+    searchbar.placeholder = @"搜索";
      UIView *searview = [searchbar.subviews objectAtIndex:0];
     [searview removeFromSuperview];
     [self.view addSubview:searchbar];
@@ -341,6 +344,7 @@
        
     if([NetAccess reachable])
     {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         NSString*string1 = @"{\"type\":\"";
         NSString*string2 = [NSString stringWithFormat:@"%@\"}",mydelegate.language];
         NSMutableString*alltring = [[NSMutableString alloc] init];
@@ -354,9 +358,7 @@
     }
     else
     {
-        UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"无可用网络，请检查您的网络连接" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertV show];
-        [alertV release];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
     }
     
     [self makethebutton];
@@ -503,6 +505,8 @@
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
     if (na.tag == 100){
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
         if (resultSet.count !=0) {
 //            [listarray removeAllObjects];
             listarray = resultSet;
@@ -520,9 +524,8 @@
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败，请检查您的网络连接" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-            [alert show];
-            [alert release];
+        [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"暂无数据"];
+
         }
    
       }
@@ -545,7 +548,8 @@
         NSString *url = [NSString stringWithFormat:getImageUrl,[[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
         NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
         UIImage *image = [UIImage imageWithData:data];
-        [buttongs setImage:image forState:UIControlStateNormal];
+        UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
+        [buttongs setImage:resImage forState:UIControlStateNormal];
         
         
         UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];
@@ -635,14 +639,10 @@
 -(void)mylocation
 {
      
-//    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"市"];
-//    NSString *trimmedString = [buttonbars.text stringByTrimmingCharactersInSet:set];
-//    NSLog(@"%@", trimmedString);
-    NSLog(@"%@",buttonbars.text);
-    if (!buttonbars.text ) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无法定位您当前位置" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alert show];
-        [alert release];
+    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"市"];
+    NSString *trimmedString = [buttonbars.text stringByTrimmingCharactersInSet:set];
+    if (!trimmedString) {
+       [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"对不起,无法定位您当前的位置"];
     }
     else
     {

@@ -16,6 +16,7 @@
 #import "Introduce.h"
 #import "CooperaViewController.h"
 #import "WepViewController.h"
+#import "MBProgressHUD.h"
 #import "UITools.h"
 
 @interface ArticleViewController ()
@@ -232,10 +233,10 @@
     rightbutton.backgroundColor = [UIColor redColor];
     [rightbutton addTarget:self action:@selector(rightfunction) forControlEvents:UIControlEventTouchUpInside];
     
-    assAiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    assAiv.center = CGPointMake(160, 240);
-    assAiv.color = [UIColor whiteColor];
-    [self.navigationController.navigationBar addSubview:assAiv];
+ //   assAiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+  //  assAiv.center = CGPointMake(160, 240);
+  //  assAiv.color = [UIColor whiteColor];
+  //  [self.navigationController.navigationBar addSubview:assAiv];
 //    dataarray = [self getthedata];
     
     self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
@@ -265,7 +266,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-    [assAiv stopAnimating];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
 
 
@@ -276,7 +277,7 @@
    
     if([NetAccess reachable])
     {
-        [assAiv startAnimating];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
          AppDelegate *delega =[UIApplication sharedApplication].delegate;
         if (delega.language && idstring)
         {
@@ -306,9 +307,8 @@
 //            [self  introduceviewtwo];
 //        }
 
-        UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"无网络可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertV show];
-        [alertV release];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+
     }
 
 }
@@ -346,7 +346,6 @@
     myMapView.hidden = YES;
     dataview.hidden = YES;
     viewapp.hidden = NO;
-    [assAiv stopAnimating];
     self.view.backgroundColor = [UIColor whiteColor];
     
     if (app ==YES) {
@@ -363,7 +362,7 @@
     
     if([NetAccess reachable])
     {
-        [assAiv startAnimating];
+       [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         AppDelegate *delega =[UIApplication sharedApplication].delegate;
         if (delega.language && idstring) {
             NSString *string1 = @"{\"type\":\"";
@@ -384,9 +383,9 @@
     }
     else
     {
-        UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"无网络可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertV show];
-        [alertV release];
+        dataarray =   [self getthedata];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+    
     }
 
 }
@@ -397,9 +396,8 @@
     myMapView.hidden = YES;
     viewapp.hidden = YES;
     dataview.hidden = NO;
-    assAiv.color = [UIColor blackColor];
+   // assAiv.color = [UIColor blackColor];
     self.view.backgroundColor = [UIColor whiteColor];
-    [assAiv stopAnimating];
     if (databool ==YES) {
         [button1  setImage:[UIImage imageNamed:@"introduce.png"] forState:UIControlStateNormal];
         [button2  setImage:[UIImage imageNamed:@"datax.png"] forState:UIControlStateNormal];
@@ -415,7 +413,7 @@
     {
         if([NetAccess reachable])
         {
-            [assAiv startAnimating];
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             AppDelegate *delega =[UIApplication sharedApplication].delegate;
             if (delega.language && idstring) {
                 NSString *string1 = @"{\"type\":\"";
@@ -437,9 +435,8 @@
         else
         {
             dataarray =   [self getthedata];
-            UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"无网络可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-            [alertV show];
-            [alertV release];
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+
         }
 
     }
@@ -452,7 +449,8 @@
    
     if (na.tag ==100)
     {
-        [assAiv stopAnimating];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
         dataarray = resultSet;
         [dataarray retain];
        
@@ -465,7 +463,8 @@
     }
     else if (na.tag ==110)
     {
-        [assAiv stopAnimating];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
         introducearray = resultSet;
         firscrollView.contentSize = CGSizeMake(320*(introducearray.count), 120);
 //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   [self  clearmessagetwo];});
@@ -479,16 +478,15 @@
         }
         else
         {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"暂无数据" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-//            [alert show];
-//            [alert release];
+             [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"对不起，暂无数据"];
         }
     
         
     }
     else if (na.tag ==111)
     {
-        [assAiv stopAnimating];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
         apparray = resultSet;
         [apparray retain];
        
@@ -659,8 +657,6 @@
     firscrollView.hidden = NO;
     dataview.hidden = YES;
     viewapp.hidden = YES;
-    myMapView.hidden = YES;
-    [assAiv stopAnimating];
 //    self.view.backgroundColor = [UIColor blackColor];
     
     if (introd ==YES) {
@@ -682,8 +678,7 @@
     dataview.hidden = YES;
     viewapp.hidden = YES;
     myMapView.hidden = NO;
-    [assAiv stopAnimating];
-     assAiv.color = [UIColor whiteColor];
+ //    assAiv.color = [UIColor whiteColor];
     BMKCoordinateSpan span = BMKCoordinateSpanMake(0.1,0.1);
     BMKCoordinateRegion reg = BMKCoordinateRegionMake(locationgs, span);
     [myMapView setRegion:reg animated:YES];
@@ -1147,7 +1142,7 @@
     [dataarray release];dataarray = nil;
     [myAnnotation release];myAnnotation = nil;
     [myMapView release];myMapView = nil;
-    [assAiv release];assAiv = nil;
+  //  [assAiv release];assAiv = nil;
     [firscrollView release];firscrollView = nil;
     [dataview release];dataview = nil;
     [viewapp release];viewapp = nil;

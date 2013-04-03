@@ -10,4 +10,7 @@
 
 @interface UITools : NSObject
 + (UIBarButtonItem* )getNavButtonItem: (UIViewController*) controller;
++ (void)showPopMessage:(UIViewController*)viewController titleInfo:(NSString*)title messageInfo:(NSString*)msg;
++ (UIImage *)reSizeImage:(UIImage *)image toSize:(CGSize)reSize;
+
 @end

@@ -12,12 +12,15 @@
 #import "ArticleViewController.h" 
 #import "MyCell.h"
 #import "AppDelegate.h"
+#import "MBProgressHUD.h"
+#import "UITools.h"
+
 @interface SearchViewController ()
 
 @end
 
 @implementation SearchViewController
-@synthesize listarray,searchtable,assAiv;
+@synthesize listarray,searchtable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,10 +37,6 @@
     [super viewDidLoad];
         
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
-    assAiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    assAiv.center = CGPointMake(160, 240);
-    assAiv.color = [UIColor blackColor];
-    [self.navigationController.navigationBar addSubview:assAiv];
 
     listarray = [[NSMutableArray alloc] init];
     imageDic  = [[NSMutableDictionary alloc] init ];
@@ -45,9 +44,7 @@
     firstview.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:firstview];
   
-     
-    
-   searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 6, 300, 30)];
+    searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 6, 300, 30)];
     searchbar.delegate = self;
     [searchbar becomeFirstResponder];
     searchbar.placeholder = @"请输入您要搜索的关键字";
@@ -81,23 +78,23 @@
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
  
+    [searchBar resignFirstResponder];
     AppDelegate *appdele = [UIApplication sharedApplication].delegate;
     NSString *allstring = [NSString stringWithFormat:@"{\"type\":\"%@\",\"search\":\"%@\"}",appdele.language,searchbar.text];
     NSLog(@"%@",allstring);
     if([NetAccess reachable])
     {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
         NetAccess *netAccess = [[NetAccess alloc]init];
         netAccess.delegate = self;
         netAccess.tag = 100;
         [netAccess searchthemessage:allstring];
-        [assAiv startAnimating];
         
     }
     else
     {
-        UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"无网络可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertV show];
-        [alertV release];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
     }
     
 
@@ -112,16 +109,23 @@
 
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
-    [assAiv stopAnimating];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+
     if (na.tag ==100) {
 //        [listarray removeAllObjects];
         listarray = resultSet;
         [listarray retain];
+        
         NSLog(@"%@",listarray);
         [ searchbar resignFirstResponder];
         if (listarray.count != 0) {
             [searchtable reloadData];
         }
+        else
+        {
+           [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"没有搜索结果"];        }
+        
     }
 }
 
@@ -191,7 +195,8 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-    [assAiv stopAnimating];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -212,7 +217,7 @@
     
     [listarray release];listarray = nil;
     [searchtable release];searchtable = nil;
-    [assAiv release];assAiv = nil;
+  //  [assAiv release];assAiv = nil;
     [super dealloc];
 }
 

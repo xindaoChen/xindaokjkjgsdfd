@@ -19,7 +19,7 @@
     UIButton *rightbutton;
     UIButton*leftbutton;
     UIScrollView *firscrollView;
-    UIActivityIndicatorView *assAiv;
+   // UIActivityIndicatorView *assAiv;
     BMKMapView *myMapView;
     BMKSearch *mysearch;
     BMKPointAnnotation* myAnnotation;

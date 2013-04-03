@@ -24,7 +24,7 @@
         
         label.font = [UIFont fontWithName:@"Helvetica" size:15.0];
         label.backgroundColor = [UIColor clearColor];
-        label.font = [UIFont boldSystemFontOfSize:17];
+     //   label.font = [UIFont boldSystemFontOfSize:17];
 
        
         labeltwo = [[UILabel alloc] initWithFrame:CGRectMake(113, 24, 180, 30)];

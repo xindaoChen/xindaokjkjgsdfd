@@ -11,7 +11,7 @@
 @interface ClassViewController : UITableViewController<NetAccessDelegate>
 {
     NSMutableArray *listarray;
-    UILabel *label;
+   // UILabel *label;
 }
 @property(nonatomic,strong)NSMutableArray *listarray;
 

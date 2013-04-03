@@ -72,7 +72,8 @@
 {
     [super viewDidLoad];
     
-
+   
+    
     
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
     button2.frame = CGRectMake(10, 2, 40, 40);
@@ -162,12 +163,20 @@
     
     provincebutton = [UIButton buttonWithType:UIButtonTypeCustom];
     provincebutton.frame = CGRectMake(0, 0,frame.size.width/3, 40);
-  [provincebutton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
-    provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
-    [provincebutton setTitle:[NSString stringWithFormat:@"%@",provinceName] forState:UIControlStateNormal];
-  // provincebutton.titleLabel.text = provinceName;
+    //[provincebutton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+  //  provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
+   // [provincebutton setTitle:[NSString stringWithFormat:@"%@",provinceName] forState:UIControlStateNormal];
+     [provincebutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
+    
     [provincebutton addTarget:self action:@selector(showCity) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:provincebutton];
+
+    provinceLabel = [[UILabel alloc]initWithFrame:CGRectMake(2,5, 93, 30)];
+    provinceLabel.backgroundColor = [UIColor clearColor];
+    provinceLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
+    provinceLabel.text = provinceName;
+    provinceLabel.textColor = [UIColor grayColor];
+    [provincebutton addSubview:provinceLabel];
+    
     
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(frame.size.width/3, 0, 1, 40)];
     image.image = [UIImage imageNamed:@"sx"];
@@ -178,20 +187,34 @@
 
     levelbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     levelbutton.frame = CGRectMake(frame.size.width/3 + 1, 0,frame.size.width/3, 40);
-    [levelbutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
-    levelbutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
-    [levelbutton setTitle:[NSString stringWithFormat:@"%@",levelName] forState:UIControlStateNormal];
+   // [levelbutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+    //levelbutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
+   // [levelbutton setTitle:[NSString stringWithFormat:@"%@",levelName] forState:UIControlStateNormal];
+      [levelbutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
     [levelbutton addTarget:self action:@selector(showLevel) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:levelbutton];
-    
+ 
+    levelLabel = [[UILabel alloc]initWithFrame:CGRectMake(2,5, 93, 30)];
+    levelLabel.backgroundColor = [UIColor clearColor];
+    levelLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
+    levelLabel.text = levelName;
+    levelLabel.textColor = [UIColor grayColor];
+    [levelbutton addSubview:levelLabel];
     
     industrybutton = [UIButton buttonWithType:UIButtonTypeCustom];
     industrybutton.frame = CGRectMake(2*frame.size.width/3 + 2, 0,frame.size.width/3, 40);
-    [industrybutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
-    industrybutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
-    [industrybutton setTitle:[NSString stringWithFormat:@"%@",industryName] forState:UIControlStateNormal];
+    //[industrybutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+   // industrybutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
+   // [industrybutton setTitle:[NSString stringWithFormat:@"%@",industryName] forState:UIControlStateNormal];
+    
+    [industrybutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
     [industrybutton addTarget:self action:@selector(showIndustry) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:industrybutton];
+    
+    industryLabel = [[UILabel alloc]initWithFrame:CGRectMake(2,5, 93, 30)];
+    industryLabel.backgroundColor = [UIColor clearColor];
+    industryLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
+    industryLabel.textColor = [UIColor grayColor];
+    industryLabel.text = industryName;
+    [industrybutton addSubview:industryLabel];
     
     showCityView = [[UIView alloc]init];
     showCityView.frame = CGRectMake(0, -UI_SCREEN_HEIGHT, 320, frame.size.height-84);
@@ -442,8 +465,8 @@ else if([languageFlag isEqualToString:@"english"])
     {
         [UIView animateWithDuration:0.3 animations:^{
             showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-            levelbutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
-             [levelbutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+            [levelbutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
+            levelLabel.textColor = [UIColor grayColor];
         }];
         levelButonStatue = 1;
     }
@@ -451,8 +474,9 @@ else if([languageFlag isEqualToString:@"english"])
     {
         [UIView animateWithDuration:0.3 animations:^{
             showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-            industrybutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
-            [   industrybutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+            [industrybutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
+            industryLabel.textColor = [UIColor grayColor];
+           
 
         }];
         levelButonStatue = 1;
@@ -465,9 +489,9 @@ else if([languageFlag isEqualToString:@"english"])
     if (provinceButonStatue == 1) {
         [UIView animateWithDuration:0.3 animations:^{
             showCityView.frame =CGRectMake(0, 40, 320, UI_SCREEN_HEIGHT-84);
-                 provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground2.png"]];
+                [provincebutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground2.png"] forState:UIControlStateNormal];
           //  moveImageView.frame = CGRectMake(0, 38, self.view.frame.size.width/3 + 1, 7);
-              [provincebutton  setTitleColor:[UIColor colorWithRed:24/255.0 green:134/255.0 blue:236/255.0 alpha:1]forState:UIControlStateNormal];
+        provinceLabel.textColor =  [UIColor colorWithRed:24/255.0 green:134/255.0 blue:236/255.0 alpha:1];
         }];
         provinceButonStatue = -1;
         
@@ -476,9 +500,9 @@ else if([languageFlag isEqualToString:@"english"])
     {
         [UIView animateWithDuration:0.3 animations:^{
             showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-             provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
-      //      moveImageView.frame = CGRectMake(-100, 35, 100, 8);
-            [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+            [provincebutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
+            
+            provinceLabel.textColor = [UIColor grayColor];
         }];
         provinceButonStatue = 1;
     }
@@ -516,8 +540,8 @@ else if([languageFlag isEqualToString:@"english"])
     {
         [UIView animateWithDuration:0.3 animations:^{
             showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-             industrybutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
-            [   industrybutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+         [industrybutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
+            industryLabel.textColor = [UIColor grayColor];
 
         }];
         industryButonStatue = 1;
@@ -526,8 +550,8 @@ else if([languageFlag isEqualToString:@"english"])
     {
         [UIView animateWithDuration:0.3 animations:^{
             showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-             provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
-             [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+             [provincebutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
+            provinceLabel.textColor = [UIColor grayColor];
         }];
         provinceButonStatue = 1;
     }
@@ -537,9 +561,9 @@ else if([languageFlag isEqualToString:@"english"])
     if (levelButonStatue == 1) {
         [UIView animateWithDuration:0.3 animations:^{
             showLevelView.frame =CGRectMake(0, 40, 320, UI_SCREEN_HEIGHT-84);
-             levelbutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground2.png"]];
+             [levelbutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground2.png"] forState:UIControlStateNormal];
         //    moveImageView.frame = CGRectMake(self.view.frame.size.width/3, 38, self.view.frame.size.width/3+1, 7);
-            [levelbutton  setTitleColor:[UIColor colorWithRed:24/255.0 green:134/255.0 blue:236/255.0 alpha:1]forState:UIControlStateNormal];
+            levelLabel.textColor = [UIColor colorWithRed:24/255.0 green:134/255.0 blue:236/255.0 alpha:1];
 
         }];
         levelButonStatue = -1;
@@ -549,21 +573,21 @@ else if([languageFlag isEqualToString:@"english"])
     {
         [UIView animateWithDuration:0.3 animations:^{
             showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-             levelbutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
+         [levelbutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
           //  moveImageView.frame = CGRectMake(-100, 35, 100, 10);
-            [levelbutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+            levelLabel.textColor = [UIColor grayColor];
         }];
         levelButonStatue = 1;
     }
 
-    
+
     [levelView reloadData];
 //    if(showLevelView.hidden == NO)
 //    {
 //        [self showLevelList];
 //    }
     // [levelView release];
-    
+
 }
 -(void)showIndustry
 {
@@ -572,8 +596,8 @@ else if([languageFlag isEqualToString:@"english"])
      {
          [UIView animateWithDuration:0.3 animations:^{
              showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-              levelbutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
-              [levelbutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+             [levelbutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
+             levelLabel.textColor = [UIColor grayColor];
           }];
          levelButonStatue = 1;
      }
@@ -581,8 +605,8 @@ else if([languageFlag isEqualToString:@"english"])
     {
         [UIView animateWithDuration:0.3 animations:^{
             showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-             provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
-             [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+        [provincebutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
+            provinceLabel.textColor = [UIColor grayColor];
         }];
         provinceButonStatue = 1;
     }
@@ -592,9 +616,9 @@ else if([languageFlag isEqualToString:@"english"])
     if (industryButonStatue == 1) {
         [UIView animateWithDuration:0.3 animations:^{
             showIndustryView.frame =CGRectMake(0, 40, 320, UI_SCREEN_HEIGHT-84);
-            industrybutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground2.png"]];
+    [industrybutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground2.png"] forState:UIControlStateNormal];
      //       moveImageView.frame = CGRectMake(self.view.frame.size.width*2/3, 38, self.view.frame.size.width/3 + 1, 7);
-      [ industrybutton  setTitleColor:[UIColor colorWithRed:24/255.0 green:134/255.0 blue:236/255.0 alpha:1]forState:UIControlStateNormal];
+       industryLabel.textColor = [UIColor colorWithRed:24/255.0 green:134/255.0 blue:236/255.0 alpha:1];
         }];
         industryButonStatue = -1;
         
@@ -603,9 +627,9 @@ else if([languageFlag isEqualToString:@"english"])
     {
         [UIView animateWithDuration:0.3 animations:^{
             showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-            industrybutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
+           [industrybutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
        //     moveImageView.frame = CGRectMake(-100, 35, 100, 10);
-         [   industrybutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+            industryLabel.textColor = [UIColor grayColor];
 
         }];
         industryButonStatue = 1;
@@ -917,7 +941,8 @@ else if([languageFlag isEqualToString:@"english"])
      //  [provinceView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
             if ([[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"全国"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"北京市"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"天津市"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"上海市" ]||[[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"重庆市"]) {
                 provinceName = [allProvinceArray objectAtIndex:indexPath.row];
-               [provincebutton setTitle:provinceName forState:UIControlStateNormal];
+             //  [provincebutton setTitle:provinceName forState:UIControlStateNormal];
+                provinceLabel.text = provinceName;
                 tempprovinceName = provinceName;
                 getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
                 levelbutton.titleLabel.text = @"全部";
@@ -932,8 +957,9 @@ else if([languageFlag isEqualToString:@"english"])
                 {
                     [UIView animateWithDuration:0.3 animations:^{
                         showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-                        provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
-                        [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+                       [provincebutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
+                        provinceLabel.textColor = [UIColor grayColor];
+                        // [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
                     }];
                     provinceButonStatue = 1;
                 }
@@ -960,8 +986,9 @@ else if([languageFlag isEqualToString:@"english"])
             }
           //  tempprovinceName = provinceName;
             provinceName = [[listarray3 objectAtIndex:indexPath.row] objectForKey:@"cityname"];
-            [provincebutton setTitle:provinceName forState:UIControlStateNormal];
-        
+          //  [provincebutton setTitle:provinceName forState:UIControlStateNormal];
+            provinceLabel.text = provinceName;
+            
             getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
             levelbutton.titleLabel.text = @"全部";
             industrybutton.titleLabel.text = @"全部";
@@ -973,10 +1000,10 @@ else if([languageFlag isEqualToString:@"english"])
             {
                 [UIView animateWithDuration:0.3 animations:^{
                     showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-                    provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
+                   [provincebutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
                     //      moveImageView.frame = CGRectMake(-100, 35, 100, 8);
-                    [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
-
+               //     [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+                    provinceLabel.textColor = [UIColor grayColor];
 
                 }];
                 provinceButonStatue = 1;
@@ -996,12 +1023,13 @@ else if([languageFlag isEqualToString:@"english"])
         case 4:
          [levelView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
             if (indexPath.row >0 && indexPath.row <= listarray4.count) {
-                [levelbutton setTitle:[[listarray4 objectAtIndex:indexPath.row - 1] objectForKey:@"levelname"] forState:UIControlStateNormal];
+                levelLabel.text = [[listarray4 objectAtIndex:indexPath.row - 1] objectForKey:@"levelname"] ;
                 leid = [[listarray4 objectAtIndex:indexPath.row-1] objectForKey:@"id"];
             }
             else
             {
-               [levelbutton setTitle:@"全部" forState:UIControlStateNormal];
+                levelLabel.text = @"全部";
+              // [levelbutton setTitle:@"全部" forState:UIControlStateNormal];
                 leid = @"";
             }
             
@@ -1012,9 +1040,11 @@ else if([languageFlag isEqualToString:@"english"])
             if(levelButonStatue == -1)
             { [UIView animateWithDuration:0.3 animations:^{
                 showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-                levelbutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
+             [levelbutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
                 //  moveImageView.frame = CGRectMake(-100, 35, 100, 10);
-                [levelbutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+               
+                levelLabel.textColor = [UIColor grayColor];
+                //[levelbutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
             }];
                 levelButonStatue = 1;
             }
@@ -1032,12 +1062,14 @@ else if([languageFlag isEqualToString:@"english"])
         case 5:
         [IndustryView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
             if (indexPath.row >0 && indexPath.row <= listarray5.count) {
-               [industrybutton setTitle:[[listarray5 objectAtIndex:indexPath.row-1] objectForKey:@"name"] forState:UIControlStateNormal];
+               industryLabel.text = [[listarray5 objectAtIndex:indexPath.row-1] objectForKey:@"name"];
+               
                 inid = [[listarray5 objectAtIndex:indexPath.row-1] objectForKey:@"id"];
             }
             else
             {
-                [industrybutton setTitle:@"全部" forState:UIControlStateNormal];
+             industryLabel.text = @"全部";
+                //[industrybutton setTitle:@"全部" forState:UIControlStateNormal];
                 inid = @"";
             }
 
@@ -1052,9 +1084,9 @@ else if([languageFlag isEqualToString:@"english"])
             if(industryButonStatue == -1)
             {[UIView animateWithDuration:0.3 animations:^{
                 showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-                industrybutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
+               [industrybutton setBackgroundImage:[UIImage imageNamed:@"buttonbackground1.png"] forState:UIControlStateNormal];
                 //     moveImageView.frame = CGRectMake(-100, 35, 100, 10);
-                [   industrybutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+                industryLabel.textColor = [UIColor grayColor];
                 
             }];
                 industryButonStatue = 1;

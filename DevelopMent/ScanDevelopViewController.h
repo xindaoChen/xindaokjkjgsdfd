@@ -69,6 +69,10 @@
     int levelButonStatue;
     int industryButonStatue;
     
+    UILabel *provinceLabel;
+    UILabel *levelLabel;
+    UILabel *industryLabel;
+    
 }
 @property(nonatomic,strong)UITextField *searchfield;
 @property(nonatomic,strong)NSMutableArray *listarray;

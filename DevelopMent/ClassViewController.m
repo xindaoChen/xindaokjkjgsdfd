@@ -128,6 +128,7 @@
 {
     return  37;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -136,20 +137,26 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
     }
-       cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+     //  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     UIImageView *imageview = [[UIImageView alloc]initWithFrame:cell.frame];
     imageview.image = [UIImage imageNamed:[NSString stringWithFormat:@"cell_bg_%d",indexPath.section%6]];
     cell.selectedBackgroundView = [[[UIView alloc] initWithFrame:cell.frame] autorelease];
     cell.selectedBackgroundView.backgroundColor = [UIColor grayColor];
     cell.backgroundView = imageview;
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
-    cell.textLabel.textColor = [UIColor grayColor];
-   // cell.textLabel.frame = CGRectMake(50, 10, 200, 20);
+    
+    label = [[UILabel alloc] initWithFrame:CGRectMake(50, 9, 230, 22)];
+    label.text =[NSString stringWithFormat:@"%@",[[listarray  objectAtIndex:  indexPath.section] objectForKey:@"classname"]];
+    label.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+    label.backgroundColor = [UIColor clearColor];
+    
+    
+    [cell addSubview:label];
     [imageview release];
+    [label release];
 
     
-           cell.textLabel.text =[NSString stringWithFormat:@"    %@",[[listarray  objectAtIndex:  indexPath.section] objectForKey:@"classname"]];
+       
     
 
     

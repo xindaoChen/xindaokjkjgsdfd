@@ -775,20 +775,12 @@ else if([languageFlag isEqualToString:@"english"])
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          
-            
-<<<<<<< HEAD
-            for (int i = 0 ; i< allListArray.count; i++)
-            {NSLog(@"*********%@",allListArray);
-                if (indexPath.row == i )
-                { NSLog(@"1");
-                      cell.label.font = [UIFont fontWithName:@"Helvetica" size:15.0];
-                    cell.label.text = [[allListArray objectAtIndex:i] objectForKey:@"developname"];
-=======
+        
          
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
             NSLog(@"*********%@",allListArray);
         
-            cell.label.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+            cell.label.font = [UIFont fontWithName:@"Helvetica" size:15.0];
             cell.label.text = [[allListArray objectAtIndex:indexPath.row] objectForKey:@"developname"];
             
             NSLog(@"################%@,%d",allListArray,allListArray.count);
@@ -811,9 +803,7 @@ else if([languageFlag isEqualToString:@"english"])
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [cell.imageview setImage:image];
                         });
-                    }
->>>>>>> 944227f4aacdd2a56f7af3b32e34a5a177884116
-                    
+                    }                    
                     [data release];
                     [image release];
                 });

@@ -535,7 +535,7 @@
         [firscrollView addSubview:buttongs];
         
         
-        NSString *url = [NSString stringWithFormat:@"http://192.168.1.101:8010/assets/developimage/%@",[[listarray objectAtIndex:i] objectForKey:@"deveimage"]];                     
+        NSString *url = [NSString stringWithFormat:getImageUrl,[[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
         NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
         UIImage *image = [UIImage imageWithData:data];
         [buttongs setImage:image forState:UIControlStateNormal];

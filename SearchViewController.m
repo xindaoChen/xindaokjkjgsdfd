@@ -173,8 +173,8 @@
             [cell.imageview setImage: image1];
         }else{
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSString *url = [NSString stringWithFormat:@"http://192.168.1.101:8010/assets/developimage/%@",[[listarray objectAtIndex:indexPath.row] objectForKey:@"deveimage"]];
-                NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
+                NSString *url = [NSString stringWithFormat:getImageUrl,[[listarray objectAtIndex:indexPath.row] objectForKey:@"deveimage"]];
+                 NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
                 UIImage *image = [[UIImage alloc]initWithData:data];
                 if (data != nil) {
                     dispatch_async(dispatch_get_main_queue(), ^{

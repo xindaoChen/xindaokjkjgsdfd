@@ -88,31 +88,31 @@
     [button4 addTarget:self action:@selector(pushtospp) forControlEvents:UIControlEventTouchUpInside];
     button4.backgroundColor = [UIColor grayColor];
 
-    if ([[faflult objectForKey:@"lange"] isEqualToString:@"english"]) {
-         
-        [button1 setTitle:@"Introduces" forState:UIControlStateNormal];
-        [button2 setTitle:@"Index" forState:UIControlStateNormal];
-        [button3 setTitle:@"Map" forState:UIControlStateNormal];
-
-    }
-    else
-    {
-         
-        [button1 setTitle:@"简介" forState:UIControlStateNormal];
-          [button2 setTitle:@"指数" forState:UIControlStateNormal];
-         [button3 setTitle:@"地图" forState:UIControlStateNormal];
-    }
-
+//    if ([[faflult objectForKey:@"lange"] isEqualToString:@"english"]) {
+//         
+//        [button1 setTitle:@"Introduces" forState:UIControlStateNormal];
+//        [button2 setTitle:@"Index" forState:UIControlStateNormal];
+//        [button3 setTitle:@"Map" forState:UIControlStateNormal];
+//
+//    }
+//    else
+//    {
+//         
+//        [button1 setTitle:@"简介" forState:UIControlStateNormal];
+//          [button2 setTitle:@"指数" forState:UIControlStateNormal];
+//         [button3 setTitle:@"地图" forState:UIControlStateNormal];
+//    }
+//
     
     if (fram.size.height>500) {
         firscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 455)];
         dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-30, 320,540 ) style:UITableViewStylePlain];
          myMapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 505)];
          viewapp = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320,505 )];
-        button1.frame = CGRectMake(0, 458, 80, 46);
-        button2.frame = CGRectMake(80, 458, 80, 46);
-        button3.frame = CGRectMake(160, 458, 80, 46);
-        button4.frame = CGRectMake(240, 458, 80, 46);
+        button1.frame = CGRectMake(0, 456, 80, 48);
+        button2.frame = CGRectMake(80, 456, 80, 48);
+        button3.frame = CGRectMake(160, 456, 80, 48);
+        button4.frame = CGRectMake(240, 456, 80, 48);
     }
     else
     {
@@ -206,7 +206,8 @@
     [lable5 release];
     
 
-    dataview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+    UIImageView *imageview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
+    [dataview setBackgroundView:imageview];
     dataview.delegate = self;
     dataview.dataSource = self;
     dataview.hidden = YES;
@@ -547,22 +548,22 @@
          UILabel *label = [[UILabel alloc] init];
          label.backgroundColor = [UIColor clearColor];
          label.font = [UIFont boldSystemFontOfSize:18];
-         label.textColor =  [UIColor colorWithRed:0.370f green:0.920f blue:0.956f alpha:1.0f];
+         label.textColor =  [UIColor colorWithRed:0.0f green:0.812f blue:0.882f alpha:1.0f];
          if (fram.size.height>500) {
-                imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 250);
-                textview.frame = CGRectMake(frame.size.width*i +10, 290, 300, 160);
-               label.frame = CGRectMake( frame.size.width*i +10, 260, 300, 30);
+                imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 200);
+                textview.frame = CGRectMake(frame.size.width*i +10, 240, 300, 210);
+               label.frame = CGRectMake( frame.size.width*i +10, 210, 300, 30);
          }
        else
        {
            imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 200);
-           textview.frame = CGRectMake(frame.size.width*i +10, 235, 300, 130);
-            label.frame = CGRectMake( frame.size.width*i +10, 210, 300, 30);
+           textview.frame = CGRectMake(frame.size.width*i +10, 235, 300, 140);
+            label.frame = CGRectMake( frame.size.width*i +10, 205, 300, 30);
        }
          imageview.backgroundColor = [UIColor blueColor];
          label.text = [[introducearray objectAtIndex:i] objectForKey:@"title"];
 //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   
-             NSString *url = [NSString stringWithFormat:@"http://192.168.1.101:8010/assets/developimage/%@",[[introducearray objectAtIndex:i] objectForKey:@"img"]];
+             NSString *url = [NSString stringWithFormat:getImageUrl,[[introducearray objectAtIndex:i] objectForKey:@"img"]];
              NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
              UIImage *image = [[UIImage alloc]initWithData:data];
            
@@ -616,17 +617,16 @@
          UILabel *label = [[UILabel alloc] init];
          label.backgroundColor = [UIColor clearColor];
          label.font = [UIFont boldSystemFontOfSize:18];
-         label.textColor =  [UIColor colorWithRed:0.370f green:0.920f blue:0.956f alpha:1.0f];
+         label.textColor =  [UIColor colorWithRed:0.0f green:0.812f blue:0.882f alpha:1.0f];
          if (fram.size.height>500) {
-             imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 250);
-             textview.frame = CGRectMake(frame.size.width*i +10, 290, 300, 160);
-             label.frame = CGRectMake( frame.size.width*i +10, 260, 300, 30);
-         }
+             imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 200);
+             textview.frame = CGRectMake(frame.size.width*i +10, 240, 300, 210);
+             label.frame = CGRectMake( frame.size.width*i +10, 210, 300, 30);         }
          else
          {
              imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 200);
-             textview.frame = CGRectMake(frame.size.width*i +10, 235, 300, 130);
-             label.frame = CGRectMake( frame.size.width*i +10, 210, 300, 30);
+             textview.frame = CGRectMake(frame.size.width*i +10, 235, 300, 140);
+             label.frame = CGRectMake( frame.size.width*i +10, 205, 300, 30);
          }
          imageview.backgroundColor = [UIColor blueColor];
          label.text = [[introducearrytwo objectAtIndex:i] objectForKey:@"title"];
@@ -807,11 +807,11 @@
         }
    
         UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, 120, 40)];
-        lable.font = [UIFont systemFontOfSize:18];
+        lable.font = [UIFont systemFontOfSize:19];
         lable.backgroundColor = [UIColor clearColor];
         UILabel *labletwo = [[UILabel alloc] initWithFrame:CGRectMake(185, 0, 80, 40)];
         labletwo.backgroundColor = [UIColor clearColor];
-        labletwo.textColor =  [UIColor colorWithRed:0.370f green:0.920f blue:0.956f alpha:1.0f];
+        labletwo.textColor =  [UIColor colorWithRed:0.0f green:0.812f blue:0.882f alpha:1.0f];
         [cell addSubview:lable];
         [cell addSubview:labletwo];
         [lable release];

@@ -972,7 +972,10 @@ else if([languageFlag isEqualToString:@"english"])
             {
                 [UIView animateWithDuration:0.3 animations:^{
                     showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-              //      moveImageView.frame = CGRectMake(-100, 40, 100, 4);
+                    provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
+                    //      moveImageView.frame = CGRectMake(-100, 35, 100, 8);
+                    [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+
 
                 }];
                 provinceButonStatue = 1;

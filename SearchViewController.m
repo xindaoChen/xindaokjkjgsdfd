@@ -123,7 +123,7 @@
         }
         else
         {
-           [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];        }
+           [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"没有搜索结果"];        }
         
     
     }

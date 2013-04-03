@@ -8,10 +8,9 @@
 
 
 #import <UIKit/UIKit.h>
-#import "PullTableView.h"
 #import "NetAccess.h"
 
-@interface ScanDevelopViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,NetAccessDelegate,PullTableViewDelegate>
+@interface ScanDevelopViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,NetAccessDelegate>
 {
     UITextField *searchfield;
     NSMutableArray *listarray;
@@ -20,6 +19,7 @@
     NSMutableArray *listarray4;
     NSMutableArray *listarray5;
     NSMutableArray *allListArray;
+    NSMutableDictionary *imagesDictionary;
 
     
     UITableView *searchtable;

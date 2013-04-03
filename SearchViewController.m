@@ -166,11 +166,15 @@
         cell.label.text = [[listarray objectAtIndex:indexPath.row] objectForKey:@"developname"];
         cell.labeltwo.text = [[listarray objectAtIndex:indexPath.row] objectForKey:@"content"];
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *index_row = [NSString stringWithFormat:@"%d", indexPath.row];
+        
+        if ([imageDic objectForKey:index_row] != nil) {
             UIImage *image1 = [imageDic objectForKey:[NSNumber numberWithInt:indexPath.row]];
-            if (image1 == nil) {
+            [cell.imageview setImage: image1];
+        }else{
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSString *url = [NSString stringWithFormat:getImageUrl,[[listarray objectAtIndex:indexPath.row] objectForKey:@"deveimage"]];
-                NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
+                 NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
                 UIImage *image = [[UIImage alloc]initWithData:data];
                 if (data != nil) {
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -178,12 +182,14 @@
                         [imageDic setObject:image forKey:[NSNumber numberWithInt:indexPath.row]];
                     });
                 }
-                
-            }
-            else{
-                [cell.imageview setImage: image1];
-            }
-        });
+                [data release];
+                [image release];
+            });
+    
+
+        }
+
+        
 
     }
    

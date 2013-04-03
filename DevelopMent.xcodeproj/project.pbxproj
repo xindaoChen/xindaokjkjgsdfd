@@ -158,6 +158,7 @@
 		78FF5191170BDD3400F01DCB /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78FF5190170BDD3400F01DCB /* libbaidumapapi.a */; };
 		C80956EA170BCD9C00780FC3 /* ScanDevelopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C80956E9170BCD9C00780FC3 /* ScanDevelopViewController.m */; };
 		C80956EC170BCE8900780FC3 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C80956EB170BCE8900780FC3 /* libbaidumapapi.a */; };
+		C80956EE170BDA8100780FC3 /* sx.png in Resources */ = {isa = PBXBuildFile; fileRef = C80956ED170BDA8100780FC3 /* sx.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -385,6 +386,7 @@
 		C80956E8170BCD9C00780FC3 /* ScanDevelopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanDevelopViewController.h; sourceTree = "<group>"; };
 		C80956E9170BCD9C00780FC3 /* ScanDevelopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanDevelopViewController.m; sourceTree = "<group>"; };
 		C80956EB170BCE8900780FC3 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
+		C80956ED170BDA8100780FC3 /* sx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sx.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -580,6 +582,7 @@
 				787AA252170B180B00B746BB /* cell_bg_4.png */,
 				787AA253170B180B00B746BB /* cell_bg_5.png */,
 				787AA254170B180B00B746BB /* hx.png */,
+				C80956ED170BDA8100780FC3 /* sx.png */,
 				787AA255170B180B00B746BB /* moveimage_pic.png */,
 				787AA256170B180B00B746BB /* provinceCell1.png */,
 				787AA257170B180B00B746BB /* provinceCell2.png */,
@@ -898,6 +901,7 @@
 				78939BE1170BB2DA008FDF27 /* introducex.png in Resources */,
 				78939BE2170BB2DA008FDF27 /* maps.png in Resources */,
 				78939BE3170BB2DA008FDF27 /* mapsx.png in Resources */,
+				C80956EE170BDA8100780FC3 /* sx.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

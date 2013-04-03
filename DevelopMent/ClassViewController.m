@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import "MBProgressHUD.h"
 #import "UITools.h"
+#import "calssCell.h"
 @interface ClassViewController ()
 
 @end
@@ -132,9 +133,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    calssCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[calssCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
     }
      //  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -145,15 +146,15 @@
     cell.selectedBackgroundView.backgroundColor = [UIColor grayColor];
     cell.backgroundView = imageview;
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(50, 9, 230, 22)];
-    label.text =[NSString stringWithFormat:@"%@",[[listarray  objectAtIndex:  indexPath.section] objectForKey:@"classname"]];
-    label.font = [UIFont fontWithName:@"Helvetica" size:15.0];
-    label.backgroundColor = [UIColor clearColor];
+        cell.label.text =[NSString stringWithFormat:@"%@",[[listarray  objectAtIndex:  indexPath.section] objectForKey:@"classname"]];
+    NSLog(@"##################################%@",cell.label.text);
+    //label.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+   // label.backgroundColor = [UIColor clearColor];
     
     
-    [cell addSubview:label];
+  //  [cell addSubview:label];
     [imageview release];
-    [label release];
+   // [label release];
 
     
        

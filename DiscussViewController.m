@@ -59,20 +59,28 @@
     
     UIButton *button1= [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button1 addTarget:self action:@selector(coopview) forControlEvents:UIControlEventTouchUpInside];
-    [button1 setBackgroundImage:[UIImage imageNamed:@"kuang1.png"] forState:UIControlStateNormal];
+    [button1 setBackgroundImage:[UIImage imageNamed:@"cell_bg_0.png"] forState:UIControlStateNormal];
     [button1 setTitle:@"合作单位" forState:UIControlStateNormal];
-
+    button1.titleLabel.font = [UIFont systemFontOfSize:17];
+    [button1 setTitleColor:[UIColor colorWithRed:0.0 green:0.616 blue:0.957 alpha:1.0] forState:UIControlStateNormal];
+   
+   
     
     
     UIButton *button2= [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button2 setBackgroundImage:[UIImage imageNamed:@"kuang2.png"] forState:UIControlStateNormal];
+    [button2 setBackgroundImage:[UIImage imageNamed:@"cell_bg_1.png"] forState:UIControlStateNormal];
     [button2 setTitle:@"合作媒体" forState:UIControlStateNormal];
- 
+    button2.titleLabel.font = [UIFont systemFontOfSize:17];
+    [button2 setTitleColor:[UIColor colorWithRed:0.0 green:0.616 blue:0.957 alpha:1.0] forState:UIControlStateNormal];
+
     
 	UIButton *button3= [UIButton buttonWithType:UIButtonTypeRoundedRect];
-     [button3 setBackgroundImage:[UIImage imageNamed:@"kuang3.png"] forState:UIControlStateNormal];
+    [button3 setBackgroundImage:[UIImage imageNamed:@"cell_bg_2.png"] forState:UIControlStateNormal];
     [button3 setTitle:@"常见机构投资者" forState:UIControlStateNormal];
- 
+    button3.titleLabel.font = [UIFont systemFontOfSize:17];
+    [button3 setTitleColor:[UIColor colorWithRed:0.0 green:0.616 blue:0.957 alpha:1.0] forState:UIControlStateNormal];
+
+    
        if (fram.size.height>500)
        {
             button1.frame = CGRectMake(10, 215, 300, 40);

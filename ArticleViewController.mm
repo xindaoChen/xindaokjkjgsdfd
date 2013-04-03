@@ -58,7 +58,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
 
       [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
-     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
+ 
     sum = 0;
     introd = NO;
     app = YES;
@@ -494,44 +494,50 @@
         [assAiv stopAnimating];
         apparray = resultSet;
         [apparray retain];
-        if ([[apparray objectAtIndex:0] objectForKey:@"link"]) {
-             mylable1.text = [[apparray objectAtIndex:0] objectForKey:@"link"];
+        NSLog(@"%@",[[apparray objectAtIndex:0] objectForKey:@"link"]);
+        if ([[[apparray objectAtIndex:0] objectForKey:@"link"]  isEqualToString:@""]) {
+           
+            mylable1.text = @"暂无数据";
         }
        else
        {
-           mylable1.text = @"暂无数据";
+             mylable1.text = [[apparray objectAtIndex:0] objectForKey:@"link"];
        }
         
-        if ([[apparray objectAtIndex:0] objectForKey:@"tel"]) {
-            mylable2.text = [[apparray objectAtIndex:0] objectForKey:@"tel"];
+        if ([[[apparray objectAtIndex:0] objectForKey:@"tel"] isEqualToString:@""]) {
+            
+             mylable2.text = @"暂无数据";
         }
         else
         {
-            mylable2.text = @"暂无数据";
+           mylable2.text = [[apparray objectAtIndex:0] objectForKey:@"tel"];
         }
 
-        if ([[apparray objectAtIndex:0] objectForKey:@"fax"]) {
-            mylable3.text = [[apparray objectAtIndex:0] objectForKey:@"fax"];
+        if ([[[apparray objectAtIndex:0] objectForKey:@"fax"] isEqualToString:@""]) {
+            
+             mylable3.text = @"暂无数据";
         }
         else
         {
-            mylable3.text = @"暂无数据";
+           mylable3.text = [[apparray objectAtIndex:0] objectForKey:@"fax"];
         }
 
-        if ( [[apparray objectAtIndex:0] objectForKey:@"email"]) {
+        if ( [[[apparray objectAtIndex:0] objectForKey:@"email"] isEqualToString:@""]) {
+           
+             mylable4.text = @"暂无数据";
+        }
+        else
+        {
             mylable4.text = [[apparray objectAtIndex:0] objectForKey:@"email"];
         }
-        else
-        {
-            mylable4.text = @"暂无数据";
-        }
 
-        if ([[apparray objectAtIndex:0] objectForKey:@"site"]) {
-            mylable5.text = [[apparray objectAtIndex:0] objectForKey:@"site"];
+        if ([[[apparray objectAtIndex:0] objectForKey:@"site"] isEqualToString:@""]) {
+            
+             mylable5.text = @"暂无数据";
         }
         else
         {
-            mylable5.text = @"暂无数据";
+           mylable5.text = [[apparray objectAtIndex:0] objectForKey:@"site"];
         }
          
     }
@@ -548,17 +554,17 @@
          UILabel *label = [[UILabel alloc] init];
          label.backgroundColor = [UIColor clearColor];
          label.font = [UIFont boldSystemFontOfSize:18];
-         label.textColor =  [UIColor colorWithRed:0.0f green:0.812f blue:0.882f alpha:1.0f];
+         label.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
          if (fram.size.height>500) {
-                imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 200);
-                textview.frame = CGRectMake(frame.size.width*i +10, 240, 300, 210);
-               label.frame = CGRectMake( frame.size.width*i +10, 210, 300, 30);
+                imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
+                textview.frame = CGRectMake(frame.size.width*i +10, 190, 300, 265);
+               label.frame = CGRectMake( frame.size.width*i +10, 160, 300, 30);
          }
        else
        {
-           imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 200);
-           textview.frame = CGRectMake(frame.size.width*i +10, 235, 300, 140);
-            label.frame = CGRectMake( frame.size.width*i +10, 205, 300, 30);
+           imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
+           textview.frame = CGRectMake(frame.size.width*i +10, 185, 300, 190);
+            label.frame = CGRectMake( frame.size.width*i +10, 155, 300, 30);
        }
          imageview.backgroundColor = [UIColor blueColor];
          label.text = [[introducearray objectAtIndex:i] objectForKey:@"title"];
@@ -617,16 +623,17 @@
          UILabel *label = [[UILabel alloc] init];
          label.backgroundColor = [UIColor clearColor];
          label.font = [UIFont boldSystemFontOfSize:18];
-         label.textColor =  [UIColor colorWithRed:0.0f green:0.812f blue:0.882f alpha:1.0f];
+         label.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0]; 
          if (fram.size.height>500) {
-             imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 200);
-             textview.frame = CGRectMake(frame.size.width*i +10, 240, 300, 210);
-             label.frame = CGRectMake( frame.size.width*i +10, 210, 300, 30);         }
+             imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
+             textview.frame = CGRectMake(frame.size.width*i +10, 190, 300, 265);
+             label.frame = CGRectMake( frame.size.width*i +10, 160, 300, 30);
+         }
          else
          {
-             imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 200);
-             textview.frame = CGRectMake(frame.size.width*i +10, 235, 300, 140);
-             label.frame = CGRectMake( frame.size.width*i +10, 205, 300, 30);
+             imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
+             textview.frame = CGRectMake(frame.size.width*i +10, 185, 300, 190);
+             label.frame = CGRectMake( frame.size.width*i +10, 155, 300, 30);
          }
          imageview.backgroundColor = [UIColor blueColor];
          label.text = [[introducearrytwo objectAtIndex:i] objectForKey:@"title"];
@@ -811,7 +818,7 @@
         lable.backgroundColor = [UIColor clearColor];
         UILabel *labletwo = [[UILabel alloc] initWithFrame:CGRectMake(185, 0, 80, 40)];
         labletwo.backgroundColor = [UIColor clearColor];
-        labletwo.textColor =  [UIColor colorWithRed:0.0f green:0.812f blue:0.882f alpha:1.0f];
+        labletwo.textColor =  [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0]; 
         [cell addSubview:lable];
         [cell addSubview:labletwo];
         [lable release];

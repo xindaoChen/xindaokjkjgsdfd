@@ -155,9 +155,8 @@
 		78CDCA0A16FEE4FA0087474D /* CDJournal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78CDCA0816FEE4FA0087474D /* CDJournal.xcdatamodeld */; };
 		78EAB75016FD86EC00534880 /* Class.List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78EAB74F16FD86EC00534880 /* Class.List.plist */; };
 		78EAB75316FD9B4B00534880 /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EAB75216FD9B4A00534880 /* MyCell.m */; };
-		78FF5191170BDD3400F01DCB /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78FF5190170BDD3400F01DCB /* libbaidumapapi.a */; };
+		78FF51A3170BF86E00F01DCB /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78FF51A2170BF86E00F01DCB /* libbaidumapapi.a */; };
 		C80956EA170BCD9C00780FC3 /* ScanDevelopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C80956E9170BCD9C00780FC3 /* ScanDevelopViewController.m */; };
-		C80956EC170BCE8900780FC3 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C80956EB170BCE8900780FC3 /* libbaidumapapi.a */; };
 		C80956EE170BDA8100780FC3 /* sx.png in Resources */ = {isa = PBXBuildFile; fileRef = C80956ED170BDA8100780FC3 /* sx.png */; };
 /* End PBXBuildFile section */
 
@@ -382,10 +381,9 @@
 		78EAB74F16FD86EC00534880 /* Class.List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Class.List.plist; path = ../Class.List.plist; sourceTree = "<group>"; };
 		78EAB75116FD9B4A00534880 /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCell.h; path = ../MyCell.h; sourceTree = "<group>"; };
 		78EAB75216FD9B4A00534880 /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCell.m; path = ../MyCell.m; sourceTree = "<group>"; };
-		78FF5190170BDD3400F01DCB /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
+		78FF51A2170BF86E00F01DCB /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		C80956E8170BCD9C00780FC3 /* ScanDevelopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanDevelopViewController.h; sourceTree = "<group>"; };
 		C80956E9170BCD9C00780FC3 /* ScanDevelopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanDevelopViewController.m; sourceTree = "<group>"; };
-		C80956EB170BCE8900780FC3 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		C80956ED170BDA8100780FC3 /* sx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sx.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -404,8 +402,7 @@
 				7852577C16F94FA000726F8E /* UIKit.framework in Frameworks */,
 				7852577E16F94FA000726F8E /* Foundation.framework in Frameworks */,
 				7852578016F94FA000726F8E /* CoreGraphics.framework in Frameworks */,
-				78FF5191170BDD3400F01DCB /* libbaidumapapi.a in Frameworks */,
-				C80956EC170BCE8900780FC3 /* libbaidumapapi.a in Frameworks */,
+				78FF51A3170BF86E00F01DCB /* libbaidumapapi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,9 +487,8 @@
 				7895D6B216FE9FE700604F50 /* NetAccess.h */,
 				7895D6B316FE9FE700604F50 /* NetAccess.m */,
 				78EAB75116FD9B4A00534880 /* MyCell.h */,
-				C80956EB170BCE8900780FC3 /* libbaidumapapi.a */,
 				78EAB75216FD9B4A00534880 /* MyCell.m */,
-				78FF5190170BDD3400F01DCB /* libbaidumapapi.a */,
+				78FF51A2170BF86E00F01DCB /* libbaidumapapi.a */,
 				786F9C9717097BB9004B9CC1 /* button.png */,
 				78945D771707CA090034230A /* background.png */,
 				78A30F5A16FAB830007FED16 /* mapapi.bundle */,

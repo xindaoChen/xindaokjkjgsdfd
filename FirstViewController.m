@@ -540,7 +540,8 @@
         NSString *url = [NSString stringWithFormat:getImageUrl,[[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
         NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
         UIImage *image = [UIImage imageWithData:data];
-        [buttongs setImage:image forState:UIControlStateNormal];
+        UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
+        [buttongs setImage:resImage forState:UIControlStateNormal];
         
         
         UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];

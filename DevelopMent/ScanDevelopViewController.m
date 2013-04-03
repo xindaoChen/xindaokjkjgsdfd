@@ -742,7 +742,7 @@ else if([languageFlag isEqualToString:@"english"])
 {   if(tableView.tag == 1)
        {
        
-            return 80;
+            return 60;
         }
     else if (tableView.tag == 2)
         return 40;
@@ -780,7 +780,7 @@ else if([languageFlag isEqualToString:@"english"])
             {NSLog(@"*********%@",allListArray);
                 if (indexPath.row == i )
                 { NSLog(@"1");
-                      cell.label.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+                      cell.label.font = [UIFont fontWithName:@"Helvetica" size:15.0];
                     cell.label.text = [[allListArray objectAtIndex:i] objectForKey:@"developname"];
                     
                     NSLog(@"################%@,%d",allListArray,allListArray.count);

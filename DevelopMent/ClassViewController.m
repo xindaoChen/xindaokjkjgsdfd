@@ -119,7 +119,13 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 10;
+    return 3;
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return  37;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -136,12 +142,13 @@
     cell.selectedBackgroundView = [[[UIView alloc] initWithFrame:cell.frame] autorelease];
     cell.selectedBackgroundView.backgroundColor = [UIColor grayColor];
     cell.backgroundView = imageview;
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+    cell.textLabel.textColor = [UIColor grayColor];
    // cell.textLabel.frame = CGRectMake(50, 10, 200, 20);
     [imageview release];
 
     
-           cell.textLabel.text =[NSString stringWithFormat:@"  %@",[[listarray  objectAtIndex:  indexPath.section] objectForKey:@"classname"]];
+           cell.textLabel.text =[NSString stringWithFormat:@"    %@",[[listarray  objectAtIndex:  indexPath.section] objectForKey:@"classname"]];
     
 
     

@@ -569,7 +569,7 @@
          imageview.backgroundColor = [UIColor blueColor];
          label.text = [[introducearray objectAtIndex:i] objectForKey:@"title"];
 //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   
-             NSString *url = [NSString stringWithFormat:@"http://192.168.1.101:8010/assets/developimage/%@",[[introducearray objectAtIndex:i] objectForKey:@"img"]];
+             NSString *url = [NSString stringWithFormat:getImageUrl,[[introducearray objectAtIndex:i] objectForKey:@"img"]];
              NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
              UIImage *image = [[UIImage alloc]initWithData:data];
            

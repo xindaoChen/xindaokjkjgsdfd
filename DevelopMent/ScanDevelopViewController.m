@@ -18,7 +18,7 @@
 #define UI_SCREEN_WIDTH                 320
 #define UI_SCREEN_HEIGHT                ([[UIScreen mainScreen] bounds].size.height)
 #define UI_BLUE                    colorWithRed:24/255.0 green:134/255.0 blue:236/255.0 alpha:1.0
-#define UI_Image_URL          http://192.168.1.105:8010/assets/developimage/
+
 @interface ScanDevelopViewController ()
 
 @end
@@ -84,7 +84,8 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
 
-    allListArray = [[NSMutableArray alloc]init];
+    allListArray = [[NSMutableArray alloc] init];
+    imagesDictionary = [[NSMutableDictionary alloc] init];
     
     
 
@@ -742,7 +743,7 @@ else if([languageFlag isEqualToString:@"english"])
 {   if(tableView.tag == 1)
        {
        
-            return 80;
+            return 60;
         }
     else if (tableView.tag == 2)
         return 40;
@@ -774,31 +775,50 @@ else if([languageFlag isEqualToString:@"english"])
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          
-                
             
+<<<<<<< HEAD
             for (int i = 0 ; i< allListArray.count; i++)
             {NSLog(@"*********%@",allListArray);
                 if (indexPath.row == i )
                 { NSLog(@"1");
-                      cell.label.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+                      cell.label.font = [UIFont fontWithName:@"Helvetica" size:15.0];
                     cell.label.text = [[allListArray objectAtIndex:i] objectForKey:@"developname"];
+=======
+         
+            cell.selectionStyle = UITableViewCellSelectionStyleGray;
+            NSLog(@"*********%@",allListArray);
+        
+            cell.label.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+            cell.label.text = [[allListArray objectAtIndex:indexPath.row] objectForKey:@"developname"];
+            
+            NSLog(@"################%@,%d",allListArray,allListArray.count);
+            cell.labeltwo.text = [[allListArray objectAtIndex:indexPath.row] objectForKey:@"content"];
+            
+            
+            NSString *index_row = [NSString stringWithFormat:@"%d", indexPath.row];
+            
+            if ([imagesDictionary valueForKey:index_row] != nil) {
+                [cell.imageview setImage:[imagesDictionary valueForKey:index_row]];
+            }else{
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSString *url = [NSString stringWithFormat:getImageUrl,[[allListArray objectAtIndex:indexPath.row] objectForKey:@"deveimage"]];
+                    NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
+                    UIImage *image = [[UIImage alloc] initWithData:data];
+                    if (image != nil) {
+                        [imagesDictionary setObject:image forKey:index_row];
+                    }
+                    if (image != nil) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [cell.imageview setImage:image];
+                        });
+                    }
+>>>>>>> 944227f4aacdd2a56f7af3b32e34a5a177884116
                     
-                    NSLog(@"################%@,%d",allListArray,allListArray.count);
-                    cell.labeltwo.text = [[allListArray objectAtIndex:i] objectForKey:@"content"];
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        NSString *url = [NSString stringWithFormat:@"http://192.168.1.101:8010/assets/developimage/%@",[[allListArray objectAtIndex:i] objectForKey:@"deveimage"]];
-                        NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-                        UIImage *image = [[UIImage alloc]initWithData:data];
-                        if (data != nil) {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [cell.imageview setImage:image];
-                            });
-                        }
-                        [data release];
-                        [image release];
-                    });
-                }
+                    [data release];
+                    [image release];
+                });
             }
+            
             return cell;
         case 2: //provinceVIew
             if (cell == nil) {
@@ -933,14 +953,13 @@ else if([languageFlag isEqualToString:@"english"])
                     [UIView animateWithDuration:0.3 animations:^{
                         showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
                         provincebutton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonbackground1.png"]];
-                        //      moveImageView.frame = CGRectMake(-100, 35, 100, 8);
                         [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
                     }];
                     provinceButonStatue = 1;
                 }
                     developnumhasget = 0;
                 [allListArray release];
-          allListArray  = [[NSMutableArray alloc]init];
+                allListArray  = [[NSMutableArray alloc]init];
                           
                 [self showdevelopZone];
 

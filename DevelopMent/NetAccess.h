@@ -27,7 +27,7 @@
 #define levelList @"http://192.168.1.101:8010/index.php/index/level"   // 获取级别列表
 #define industryList @"http://192.168.1.101:8010/index.php/index/tradeclass" //获取行业列表
 #define Appintroduce @"http://192.168.1.101:8010/index.php/index/app"   //APP
-
+#define getImageUrl  @"http://192.168.1.101:8010/assets/developimage/%@"   //根据图片名获取图片     
 
 #import <Foundation/Foundation.h>
 #import "ASIHTTPRequest.h"

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4401869A170BF2FD002EF4C6 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7893887416FC1E69005A3A14 /* libz.1.2.5.dylib */; };
 		4412566617097C7E007B7C9E /* GrayPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4412566517097C7E007B7C9E /* GrayPageControl.m */; };
 		4412566917097D1E007B7C9E /* active_page_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 4412566717097D1E007B7C9E /* active_page_image.png */; };
 		4412566A17097D1E007B7C9E /* inactive_page_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 4412566817097D1E007B7C9E /* inactive_page_image.png */; };
@@ -119,7 +120,6 @@
 		789383C416FC1D50005A3A14 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 78937CA816FC1D4E005A3A14 /* SBJsonParser.m */; };
 		789383C516FC1D50005A3A14 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 78937CAA16FC1D4E005A3A14 /* SBJsonWriter.m */; };
 		7893887316FC1E63005A3A14 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7893887216FC1E63005A3A14 /* CFNetwork.framework */; };
-		7893887516FC1E69005A3A14 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7893887416FC1E69005A3A14 /* libz.1.2.5.dylib */; };
 		7893887716FC1E6F005A3A14 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7893887616FC1E6F005A3A14 /* MobileCoreServices.framework */; };
 		7893887916FC1E75005A3A14 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7893887816FC1E75005A3A14 /* SystemConfiguration.framework */; };
 		7893887D16FC1F5E005A3A14 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 7893887C16FC1F5E005A3A14 /* Reachability.m */; };
@@ -392,10 +392,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4401869A170BF2FD002EF4C6 /* libz.1.2.5.dylib in Frameworks */,
 				78CDCA0716FEE47A0087474D /* CoreData.framework in Frameworks */,
 				7893887916FC1E75005A3A14 /* SystemConfiguration.framework in Frameworks */,
 				7893887716FC1E6F005A3A14 /* MobileCoreServices.framework in Frameworks */,
-				7893887516FC1E69005A3A14 /* libz.1.2.5.dylib in Frameworks */,
 				7893887316FC1E63005A3A14 /* CFNetwork.framework in Frameworks */,
 				78A30F4D16FA92BC007FED16 /* QuartzCore.framework in Frameworks */,
 				78A30F4B16FA92A7007FED16 /* CoreLocation.framework in Frameworks */,

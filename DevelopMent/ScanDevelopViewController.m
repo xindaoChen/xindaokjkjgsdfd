@@ -11,7 +11,7 @@
 #import "SearchViewController.h"
 #import "ArticleViewController.h"
 #import "AppDelegate.h"
-
+#import "MBProgressHUD.h"
 #import "UITools.h"
 
 
@@ -25,7 +25,7 @@
 
 @implementation ScanDevelopViewController
 
-@synthesize searchfield,listarray,listarray2,listarray3,listarray4,listarray5, searchtable,assAiv,showCityView,showIndustryView,showLevelView,allProvinceArray,allLevelArray,allIndustryArray,provinceView,levelView,IndustryView,cityView,getDevelopZoneInfo,inid,leid,cid,getCityName;
+@synthesize searchfield,listarray,listarray2,listarray3,listarray4,listarray5, searchtable,showCityView,showIndustryView,showLevelView,allProvinceArray,allLevelArray,allIndustryArray,provinceView,levelView,IndustryView,cityView,getDevelopZoneInfo,inid,leid,cid,getCityName;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -125,10 +125,10 @@
         provinceName = [allProvinceArray objectAtIndex:num];
     }
    // provinceName = [allProvinceArray objectAtIndex:num];
-    assAiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    assAiv.center = CGPointMake(160, 240);
-    assAiv.color = [UIColor blackColor];
-    [self.navigationController.navigationBar addSubview:assAiv];
+  //  assAiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+  //  assAiv.center = CGPointMake(160, 240);
+  //  assAiv.color = [UIColor blackColor];
+ //   [self.navigationController.navigationBar addSubview:assAiv];
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     
@@ -285,16 +285,12 @@
         netAccess.delegate = self;
         netAccess.tag = 100;
         [netAccess thedevelopZone:getDevelopZoneInfo];
-        [assAiv startAnimating];
-        
+       [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         //  [getDevelopZoneInfo release];
     }
     else
     {
-        UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"无网络可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertV show];
-        [alertV release];
-        
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
         
         NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
         NSString*pat=[pathss objectAtIndex:0];
@@ -334,16 +330,14 @@
         netAccess2.delegate = self;
         netAccess2.tag = 150;
         [netAccess2 thecityName:getCityName];
-        NSLog(@"!!!!!!!!!!!!!!");
-        [assAiv startAnimating];
+        
+       [MBProgressHUD showHUDAddedTo:self.view animated:YES];
        
        // [getCityName release];
     }
     else
     {
-        UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"!!!!!!!!!!无网络可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertV show];
-        [alertV release];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
     }
     
    
@@ -363,14 +357,12 @@
         netAccess3.tag = 151;    //tag = 151 ,levellist
         [netAccess3 thelevelList:getLevelList];
         
-        [assAiv startAnimating];
+       [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [getLevelList release];
     }
     else
     {
-        UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"无网络可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertV show];
-        [alertV release];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
     }
     
     }
@@ -386,14 +378,12 @@ else if([languageFlag isEqualToString:@"english"])
         netAccess3.tag = 151;    //tag = 151 ,levellist
         [netAccess3 thelevelList:getLevelList];
         
-        [assAiv startAnimating];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [getLevelList release];
     }
     else
     {
-        UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"无网络可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertV show];
-        [alertV release];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
     }
 
 }
@@ -409,16 +399,14 @@ else if([languageFlag isEqualToString:@"english"])
         netAccess4.delegate = self;
         netAccess4.tag = 152;    //tag = 151 ,levellist
         [netAccess4 theindustryList:getIndustryList];
-        [assAiv startAnimating];
+       [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
         [getIndustryList release];
        
     }
     else
     {
-        UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"无网络可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertV show];
-        [alertV release];
+       [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
     }
 }
     
@@ -432,16 +420,14 @@ else if([languageFlag isEqualToString:@"english"])
         netAccess4.delegate = self;
         netAccess4.tag = 152;    //tag = 151 ,levellist
         [netAccess4 theindustryList:getIndustryList];
-        [assAiv startAnimating];
+      [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
         [getIndustryList release];
         
     }
     else
     {
-        UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"无网络可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertV show];
-        [alertV release];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
     }
 }
     
@@ -636,9 +622,6 @@ else if([languageFlag isEqualToString:@"english"])
 //    [assAiv stopAnimating];
     if (na.tag ==100) {
         
-//        if (searchtable.tableFooterView) {
-//             searchtable.tableFooterView = nil;
-//        }
         [listarray removeAllObjects];
         listarray = resultSet;
         [listarray retain];
@@ -661,14 +644,18 @@ else if([languageFlag isEqualToString:@"english"])
             
         }
         if (allListArray.count == 0) {
-            [assAiv stopAnimating];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+             [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"对不起,暂无数据"];
+            
         }
         
         [searchtable reloadData];
         
     }
     if (na.tag == 150) {
-        
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
      
         [listarray3 removeAllObjects];
         
@@ -678,7 +665,8 @@ else if([languageFlag isEqualToString:@"english"])
         [cityView reloadData];
     }
     if (na.tag == 151) {
-        
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
        
         [listarray4 removeAllObjects];
         
@@ -689,7 +677,8 @@ else if([languageFlag isEqualToString:@"english"])
     }
     if (na.tag == 152) {
          
-       
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
         [listarray5 removeAllObjects];
        
         listarray5 = resultSet;
@@ -764,7 +753,8 @@ else if([languageFlag isEqualToString:@"english"])
     
     switch (tableView.tag) {
         case 1:   //主界面tableview
-            [assAiv stopAnimating];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
 
             if (cell == nil) {
                 cell = [[[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
@@ -833,7 +823,7 @@ else if([languageFlag isEqualToString:@"english"])
             return cell;
             break;
         case 3: //  cityView
-            [assAiv stopAnimating];
+        //    [assAiv stopAnimating];
 
             if (cell == nil) {
                 cell = [[[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
@@ -911,7 +901,7 @@ else if([languageFlag isEqualToString:@"english"])
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-    [assAiv stopAnimating];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -1137,7 +1127,7 @@ else if([languageFlag isEqualToString:@"english"])
     [listarray3 release];listarray3 = nil;
     [listarray4 release];listarray4 = nil;
     [listarray5 release];listarray5 = nil;
-    [assAiv release]; assAiv = nil;
+ //   [assAiv release]; assAiv = nil;
     [showCityView release];showCityView = nil;
     [showIndustryView release];showIndustryView = nil;
     [showLevelView release];showLevelView = nil;

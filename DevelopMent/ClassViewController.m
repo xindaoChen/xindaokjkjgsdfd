@@ -12,6 +12,8 @@
 #import "SearchViewController.h"
  #import "ScanDevelopViewController.h"
 #import "AppDelegate.h"
+#import "MBProgressHUD.h"
+#import "UITools.h"
 @interface ClassViewController ()
 
 @end
@@ -63,6 +65,7 @@
     AppDelegate *mydelegate = [UIApplication sharedApplication].delegate;
     if([NetAccess reachable])
     {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         NSString*string1 = @"{\"type\":\"";
         NSString*string2 = [NSString stringWithFormat:@"%@\"}",mydelegate.language];
         NSMutableString*alltring = [[NSMutableString alloc] init];
@@ -75,9 +78,7 @@
     }
     else
     {
-        UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"无网络可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertV show];
-        [alertV release];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
     }
 
 }
@@ -127,6 +128,7 @@
 {
     return  37;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -135,20 +137,26 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
     }
-       cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+     //  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     UIImageView *imageview = [[UIImageView alloc]initWithFrame:cell.frame];
     imageview.image = [UIImage imageNamed:[NSString stringWithFormat:@"cell_bg_%d",indexPath.section%6]];
     cell.selectedBackgroundView = [[[UIView alloc] initWithFrame:cell.frame] autorelease];
     cell.selectedBackgroundView.backgroundColor = [UIColor grayColor];
     cell.backgroundView = imageview;
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
-    cell.textLabel.textColor = [UIColor grayColor];
-   // cell.textLabel.frame = CGRectMake(50, 10, 200, 20);
+    
+    label = [[UILabel alloc] initWithFrame:CGRectMake(50, 9, 230, 22)];
+    label.text =[NSString stringWithFormat:@"%@",[[listarray  objectAtIndex:  indexPath.section] objectForKey:@"classname"]];
+    label.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+    label.backgroundColor = [UIColor clearColor];
+    
+    
+    [cell addSubview:label];
     [imageview release];
+    [label release];
 
     
-           cell.textLabel.text =[NSString stringWithFormat:@"    %@",[[listarray  objectAtIndex:  indexPath.section] objectForKey:@"classname"]];
+       
     
 
     
@@ -163,6 +171,8 @@
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
     if (na.tag ==100) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
         [listarray removeAllObjects];
         listarray = resultSet;
         [listarray retain];

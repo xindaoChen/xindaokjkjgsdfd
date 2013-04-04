@@ -568,7 +568,12 @@
             [firscrollView addSubview:buttongs];
 
             dispatch_group_async(group, queue, ^{
-                NSString *url = [NSString stringWithFormat:getImageUrl,[[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
+ 
+                NSString *url = [NSString stringWithFormat:
+                                 @"%@%@%@",
+                                 HOST_URL, API_DEVELOPIAMGE,
+                                 [[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
+                
                 NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
                 UIImage *image = [UIImage imageWithData:data];
                 UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];

@@ -814,7 +814,11 @@ else if([languageFlag isEqualToString:@"english"])
                 [cell.imageview setImage:[imagesDictionary valueForKey:index_row]];
             }else{
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSString *url = [NSString stringWithFormat:getImageUrl,[[allListArray objectAtIndex:indexPath.row] objectForKey:@"deveimage"]];
+ 
+                    NSString *url = [NSString stringWithFormat:
+                                     @"%@%@%@",
+                                     HOST_URL, API_DEVELOPIAMGE,
+                                     [[allListArray objectAtIndex:indexPath.row] objectForKey:@"deveimage"]];
                     NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
                     UIImage *image = [[UIImage alloc] initWithData:data];
                     if (image != nil) {

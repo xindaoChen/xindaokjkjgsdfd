@@ -137,11 +137,17 @@
     [myimageview setImage:[UIImage imageNamed:@"applogo.png"]];
     [viewapp addSubview:myimageview];
     
-    UIButton *loadbutton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [loadbutton setImage:[UIImage imageNamed:@"load.png"] forState:UIControlStateNormal];
+    UIButton*loadbutton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [loadbutton setImage:[UIImage imageNamed:@"load.png"] forState:UIControlStateNormal];
+    [loadbutton setBackgroundImage:[UIImage imageNamed:@"load.png"] forState:UIControlStateNormal];
     [loadbutton addTarget:self action:@selector(pushtoapp) forControlEvents:UIControlEventTouchUpInside];
     loadbutton.frame = CGRectMake(100, 130, 120, 40);
     [viewapp addSubview:loadbutton];
+    loadlabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 80, 40)];
+    loadlabel.backgroundColor = [UIColor clearColor];
+    loadlabel.font = [UIFont systemFontOfSize:16];
+    loadlabel.textColor = [UIColor whiteColor];
+    [loadbutton addSubview:loadlabel];
     
     UIImageView *imageview1 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 180, 40, 40)];
     imageview1.backgroundColor = [UIColor clearColor];
@@ -254,9 +260,8 @@
 
 -(void)pushtoapp
 {
-    NSURL *URL = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"];
-     [webview loadRequest:[NSURLRequest requestWithURL:URL]];
-
+    
+   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"]];
 }
 
 
@@ -483,6 +488,17 @@
 
         apparray = resultSet;
         [apparray retain];
+        if ([[[apparray objectAtIndex:0] objectForKey:@"link"] isEqualToString:@""] ||  resultSet ==nil) {
+ 
+             loadlabel.text = @"点击下载";
+            
+            
+        }
+        else
+        {
+            loadlabel.text = @"暂无APP";
+         }
+        
        
         if ([[[apparray objectAtIndex:0] objectForKey:@"tel"]  isEqualToString:@""]  ||  resultSet ==nil) {
            
@@ -559,7 +575,11 @@
          imageview.backgroundColor = [UIColor clearColor];
          label.text = [[introducearray objectAtIndex:i] objectForKey:@"title"];
 //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   
-             NSString *url = [NSString stringWithFormat:getImageUrl,[[introducearray objectAtIndex:i] objectForKey:@"img"]];
+           NSString *url = [NSString stringWithFormat:
+                            @"%@%@%@",
+                            HOST_URL, API_DEVELOPIAMGE,
+                            [[introducearray objectAtIndex:i] objectForKey:@"img"]];
+         
              NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
              UIImage *image = [[UIImage alloc]initWithData:data];
            

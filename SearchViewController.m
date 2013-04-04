@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import "MBProgressHUD.h"
 #import "UITools.h"
+#import "XDTabBarViewController.h"
 
 @interface SearchViewController ()
 
@@ -102,6 +103,7 @@
 
 -(void)backtosuper
 {
+    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
     [self.navigationController   popViewControllerAnimated:YES];
 }
  

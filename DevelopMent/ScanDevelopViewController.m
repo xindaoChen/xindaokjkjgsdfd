@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "MBProgressHUD.h"
 #import "UITools.h"
+#import "XDTabBarViewController.h"
 
 
 #define UI_SCREEN_WIDTH                 320
@@ -296,10 +297,8 @@
 
 -(void)backtosuper
 {
-
+    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
     [self.navigationController popViewControllerAnimated:YES];
-    [self.navigationController  popViewControllerAnimated:YES];
-
 }
 
 -(void)showdevelopZone

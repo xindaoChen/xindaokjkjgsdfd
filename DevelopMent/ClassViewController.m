@@ -15,6 +15,8 @@
 #import "MBProgressHUD.h"
 #import "UITools.h"
 #import "calssCell.h"
+#import "XDTabBarViewController.h"
+
 @interface ClassViewController ()
 
 @end
@@ -36,6 +38,12 @@
   
     }
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
+    [super viewDidAppear:YES];
 }
 
 - (void)viewDidLoad
@@ -88,6 +96,8 @@
 {
     SearchViewController *search  = [[SearchViewController alloc] init];
     [self.navigationController pushViewController:search animated:YES];
+    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -247,6 +257,8 @@
     ScanDevelopViewController *developview = [[ScanDevelopViewController alloc] initwithclassId:[[listarray objectAtIndex:indexPath.section] objectForKey:@"id"] stringnum:0];
      
     [self.navigationController pushViewController:developview animated:YES];
+    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+
 }
 
 @end

@@ -10,6 +10,8 @@
 #import "QuartzCore/QuartzCore.h" 
 #import "CooperaViewController.h"
 #import "AppDelegate.h"
+#import "XDTabBarViewController.h"
+
 @interface DiscussViewController ()
 
 @end
@@ -31,6 +33,12 @@
          
     }
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
+    [super viewDidAppear:YES];
 }
 
 - (void)viewDidLoad
@@ -126,6 +134,8 @@
 {
     CooperaViewController *coopview = [[CooperaViewController alloc] init];
     [self.navigationController pushViewController:coopview animated:YES];
+    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+    
 }
 
 

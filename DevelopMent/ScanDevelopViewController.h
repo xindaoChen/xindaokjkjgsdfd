@@ -99,6 +99,7 @@
 @property(atomic,strong) NSString *leid;
 @property(atomic,strong) NSString *cid;
 @property(nonatomic,strong) NSString *getCityName;
+@property(nonatomic,strong) NSString *provinceName;
 
 -(id)initWithnumber:( NSInteger )stringnum;
 -(id)initwithclassId:(NSString *)classid stringnum:(NSInteger)stringnum;

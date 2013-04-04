@@ -26,7 +26,7 @@
 
 @implementation ScanDevelopViewController
 
-@synthesize searchfield,listarray,listarray2,listarray3,listarray4,listarray5, searchtable,showCityView,showIndustryView,showLevelView,allProvinceArray,allLevelArray,allIndustryArray,provinceView,levelView,IndustryView,cityView,getDevelopZoneInfo,inid,leid,cid,getCityName;
+@synthesize searchfield,listarray,listarray2,listarray3,listarray4,listarray5, searchtable,showCityView,showIndustryView,showLevelView,allProvinceArray,allLevelArray,allIndustryArray,provinceView,levelView,IndustryView,cityView,getDevelopZoneInfo,inid,leid,cid,getCityName,provinceName;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -62,7 +62,8 @@
 {
     self = [super init];
     if (self) {
-        provinceName = name;
+        self.provinceName = [NSString stringWithFormat:@"%@",name];
+        NSLog(@"******(***%@",provinceName);
         cid = @"";
         flagForInit = 10000;
     }
@@ -103,7 +104,7 @@
     //	self.title = @"搜索";
     allProvinceArrayChina = [[NSMutableArray alloc] initWithObjects:@"全国",@"北京市",@"天津市",@"上海市",@"重庆市",@"河北省", @"山西省",@"辽宁省",@"吉林省",@"黑龙江省",@"江苏省",@"浙江省",@"安徽省",@"山东省",@"广东省",@"江西省",@"内蒙古",@"广西",@"西藏",@"宁夏",@"新疆",@"河南省",@"海南省",@"湖南省",@"福建省",@"贵州省",@"云南省",@"湖北省",@"甘肃省",@"四川省",@"青海省",@"陕西省",@"台湾省",@"香港",@"澳门",nil];
     
-    allProvinceArrayEnglish = [[NSMutableArray alloc]initWithObjects:@"Beijing",@"Tianjing",@"Shanghai",@"Chongqing",@"Hebei", @"Shanxi",@"Liaoning",@"Jilin",@"Heilongjiang",@"Jiangsu",@"Zhejiang",@"Anhui",@"Shandong",@"Guangdong",@"Jiangxi",@"Neimenggu",@"Guangxi",@"Xizang",@"Ningxia",@"Xinjiang",@"Henan",@"Hainan",@"Hunan",@"Fujian",@"Guizhou",@"Yunnan",@"Hubei",@"Gansu",@"Sichuan",@"Qinghai",@"Shanxi",@"Taiwan",@"Hong Kong",@"Macau", nil];
+    allProvinceArrayEnglish = [[NSMutableArray alloc]initWithObjects:@"china",@"Beijing",@"Tianjing",@"Shanghai",@"Chongqing",@"Hebei",@"Shanxi",@"Liaoning",@"Jilin",@"Heilongjiang",@"Jiangsu",@"Zhejiang",@"Anhui",@"Shandong",@"Guangdong",@"Jiangxi",@"Neimenggu",@"Guangxi",@"Xizang",@"Ningxia",@"Xinjiang",@"Henan",@"Hainan",@"Hunan",@"Fujian",@"Guizhou",@"Yunnan",@"Hubei",@"Gansu",@"Sichuan",@"Qinghai",@"Shanxi",@"Taiwan",@"Hong Kong",@"Macau", nil];
     
     AppDelegate*mydelegate = [UIApplication sharedApplication].delegate;
     if ([mydelegate.language isEqualToString: @"english"]) {
@@ -154,11 +155,17 @@
     if ([cid isEqualToString:@""]) {
         getCityName = [NSString stringWithFormat:getCityName = @"{\"type\":\"%@\",\"prov\":\"%@\"}",languageFlag,provinceName] ;
         [self showCityName];
+        NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^%@",provinceName);
     }
+    
+    NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^%@",provinceName);
 
     [self showdevelopZone];
+    NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^%@",provinceName);
     [self showLevelList];
+    NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^%@",provinceName);
     [self showIndustryList];
+    NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^%@",provinceName);
     
     self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
     
@@ -509,7 +516,7 @@ else if([languageFlag isEqualToString:@"english"])
         provinceButonStatue = 1;
     }
     int x=0 ;
-    NSLog(@"111111%@",provinceName);
+ //   NSLog(@"111111%@",provinceName);
      NSLog(@"##%@",tempprovinceName);
     for (int i = 0; i < allProvinceArray.count; i++) {
         NSLog(@"%@",tempprovinceName);
@@ -1039,6 +1046,7 @@ else if([languageFlag isEqualToString:@"english"])
 
         
             [leid retain];
+            [provinceName retain];
             if(levelButonStatue == -1)
             { [UIView animateWithDuration:0.3 animations:^{
                 showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
@@ -1082,7 +1090,7 @@ else if([languageFlag isEqualToString:@"english"])
            
         
             [inid retain];
-            
+            [provinceName retain];
             if(industryButonStatue == -1)
             {[UIView animateWithDuration:0.3 animations:^{
                 showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);

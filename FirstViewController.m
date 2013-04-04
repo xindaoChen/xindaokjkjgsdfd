@@ -20,7 +20,6 @@
 #import "ClassViewController.h"
 #import "GrayPageControl.h"
 #import "UITools.h"
-#import "MBProgressHUD.h"
 #import "AppDelegate.h"
 #import "XDTabBarViewController.h"
 
@@ -369,7 +368,6 @@
     
     if([NetAccess reachable])
     {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         NSString*string1 = @"{\"type\":\"";
         NSString*string2 = [NSString stringWithFormat:@"%@\"}",mydelegate.language];
         NSMutableString*alltring = [[NSMutableString alloc] init];
@@ -527,7 +525,6 @@
  
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if (na.tag == 100){
          NSLog(@"%@",resultSet);
         if (resultSet.count !=0) {

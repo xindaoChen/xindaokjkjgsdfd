@@ -9,6 +9,8 @@
 #import "CooperaViewController.h"
 #import "MyCell.h"
 #import "UITools.h"
+#import "AppDelegate.h"
+#import "XDTabBarViewController.h"
 
 @interface CooperaViewController ()
 
@@ -87,6 +89,7 @@
 
 -(void)backtosuper
 {
+    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
     [self.navigationController   popViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning

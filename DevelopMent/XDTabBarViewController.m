@@ -7,6 +7,7 @@
 //
 
 #import "XDTabBarViewController.h"
+#import "XDHeader.h"
 
 @interface XDTabBarViewController ()
 
@@ -27,6 +28,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self.tabBar setHidden:YES];
 }
 -(void)viewDidLoad
 {
@@ -43,9 +45,13 @@
     // Initialise our two images
     UIImage *btnImage = [UIImage imageNamed:@"homepage_normal_tab"];
     UIImage *btnImageSelected = [UIImage imageNamed:@"homepage_select_tab"];
+    float height = 431;
+    if (iPhone5) {
+        height = 519;
+    }
     
     self.settingsButton = [UIButton buttonWithType:UIButtonTypeCustom]; //Setup the button
-    settingsButton.frame = CGRectMake(0, 431, 106.67, 49); // Set the frame (size and position) of the button)
+    settingsButton.frame = CGRectMake(0, height, 106.67, 49); // Set the frame (size and position) of the button)
     [settingsButton setBackgroundImage:btnImage forState:UIControlStateNormal]; // Set the image for the normal state of the button
     [settingsButton setBackgroundImage:btnImageSelected forState:UIControlStateHighlighted]; // Set the image for the selected state of the button
     [settingsButton setBackgroundImage:btnImageSelected forState:UIControlStateSelected]; // Set the image for the selected state of the button
@@ -62,7 +68,7 @@
     btnImage = [UIImage imageNamed:@"class_normal_tab"];
     btnImageSelected = [UIImage imageNamed:@"class_select_tab"];
     self.infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    infoButton.frame = CGRectMake(106.7, 431, 106.67, 49);
+    infoButton.frame = CGRectMake(106.7, height, 106.67, 49);
     [infoButton setBackgroundImage:btnImage forState:UIControlStateNormal];
     [infoButton setBackgroundImage:btnImageSelected forState:UIControlStateSelected];
     [infoButton setBackgroundImage:btnImageSelected forState:UIControlStateHighlighted];
@@ -73,7 +79,7 @@
     btnImage = [UIImage imageNamed:@"about_normal_tab"];
     btnImageSelected = [UIImage imageNamed:@"about_select_tab"];
     self.aboutUsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    aboutUsButton.frame = CGRectMake(213.4, 431, 106.67, 49);
+    aboutUsButton.frame = CGRectMake(213.4, height, 106.67, 49);
     [aboutUsButton setBackgroundImage:btnImage forState:UIControlStateNormal];
     [aboutUsButton setBackgroundImage:btnImageSelected forState:UIControlStateSelected];
     [aboutUsButton setBackgroundImage:btnImageSelected forState:UIControlStateHighlighted];

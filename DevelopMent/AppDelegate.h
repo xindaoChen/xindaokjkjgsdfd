@@ -11,6 +11,9 @@
 #import "BMKMapManager.h"
 #import "DiscussViewController.h"
 #import "ClassViewController.h"
+
+@class XDTabBarViewController;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     NSString *language;
@@ -19,6 +22,7 @@
     BMKMapManager *mapmange;
     ClassViewController *classview;
     DiscussViewController *disview;
+    XDTabBarViewController *xdTabbar;
 }
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,strong) BMKMapManager* mapManager;
@@ -27,6 +31,8 @@
 @property (nonatomic,strong)  UINavigationController *naviga3;
 @property (nonatomic,strong)  ClassViewController *classview;
 @property (nonatomic,strong) DiscussViewController *disview;
+@property (nonatomic,strong) XDTabBarViewController *xdTabbar;
+
 //数据模型对象
 @property(strong,nonatomic) NSManagedObjectModel *managedObjectModel;
 //上下文对象
@@ -42,4 +48,7 @@
 
 //managedObjectContext的初始化赋值函数
 -(NSManagedObjectContext *)managedObjectContext;
+
++ (AppDelegate *)sharedDelegate;
+
 @end

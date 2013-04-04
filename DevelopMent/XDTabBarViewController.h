@@ -19,4 +19,5 @@
 @property (nonatomic, retain) UIButton *aboutUsButton;
 -(void) addCustomElements;
 -(void) selectTab:(int)tabID;
+- (void) setHideCustomButton:(BOOL) isHide;
 @end

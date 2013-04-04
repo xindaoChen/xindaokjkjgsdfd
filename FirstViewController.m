@@ -21,6 +21,8 @@
 #import "GrayPageControl.h"
 #import "UITools.h"
 #import "MBProgressHUD.h"
+#import "AppDelegate.h"
+#import "XDTabBarViewController.h"
 
 @interface FirstViewController ()
 
@@ -36,6 +38,12 @@
        
     }
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
+    [super viewDidAppear:YES];
 }
 
 - (void)viewDidLoad
@@ -228,6 +236,7 @@
 {
     SearchViewController *seachview = [[SearchViewController alloc] init];
     [self.navigationController pushViewController:seachview animated:YES];
+    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
  }
 
  
@@ -331,6 +340,7 @@
 {
     ArticleViewController *artiview = [[ArticleViewController alloc] initWithurl:[listarray objectAtIndex:button.tag]];
     [self.navigationController pushViewController:artiview animated:YES];
+    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
 
 }
 
@@ -651,7 +661,7 @@
  
     ScanDevelopViewController *dview = [[ScanDevelopViewController alloc] initWithnumber:button.tag];
     [self.navigationController pushViewController:dview animated:YES];
-
+    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
     
 }
 
@@ -668,6 +678,8 @@
     {
         ScanDevelopViewController *searchview = [[ScanDevelopViewController alloc] initwithcityname:trimmedString];
         [self.navigationController pushViewController:searchview animated:YES];
+        [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+
     }
   
 }

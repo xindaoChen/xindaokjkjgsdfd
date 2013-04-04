@@ -8,6 +8,8 @@
 
 #import "WepViewController.h"
 #import "UITools.h"
+#import "AppDelegate.h"
+#import "XDTabBarViewController.h"
 
 @interface WepViewController ()
 
@@ -45,6 +47,7 @@
 
 -(void)backtosuper
 {
+    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
     [self.navigationController   popViewControllerAnimated:YES];
 }
 

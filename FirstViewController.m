@@ -19,8 +19,8 @@
 #import "DevelopViewController.h"
 #import "ClassViewController.h"
 #import "GrayPageControl.h"
-#import "MBProgressHUD.h"
 #import "UITools.h"
+#import "MBProgressHUD.h"
 
 @interface FirstViewController ()
 
@@ -219,10 +219,6 @@
     if (listarray.count != 0) {
         [self setfirstimagetwo];
     }
-   
-    timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessage) userInfo:nil repeats:YES];
-    timer2 = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessagetwo) userInfo:nil repeats:YES];
-   [timer2 setFireDate:[NSDate distantFuture]];
     [self makethebutton];
     [self maketitle];
     
@@ -241,7 +237,7 @@
     AppDelegate*mydelegate = [UIApplication sharedApplication].delegate;
     CGRect fram = mydelegate.window.frame;
     int num = 0;
-    NSLog(@"%@",mydelegate.language);
+ 
     if (fram.size.height>500)
     {
         for (int i = 0; i<3; i++)
@@ -255,7 +251,7 @@
                     if (num<34)
                     {
                        
-                        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                         button.frame = CGRectMake(16*(s+1)+60*s+frame.size.width*i, 85*j+55, 60, 60);
                          [button setImage:[UIImage imageNamed:[picturearray objectAtIndex:num]] forState:UIControlStateNormal];
                         button.tag = num;
@@ -292,8 +288,8 @@
                 {
                     if (num<34)
                     {
-                         NSLog(@"%@",mydelegate.language);
-                        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+                       
+                        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                         button.frame = CGRectMake(16*(s+1)+60*s+frame.size.width*i, 85*j+55, 60, 60);
                         [button setImage:[UIImage imageNamed:[picturearray objectAtIndex:num]] forState:UIControlStateNormal];
                         button.tag = num;
@@ -348,7 +344,7 @@
     {
         mydelegate.language = @"china";
     }
-       
+    
     if([NetAccess reachable])
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -511,14 +507,12 @@
  
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if (na.tag == 100){
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-
+        
         if (resultSet.count !=0) {
-//            [listarray removeAllObjects];
             listarray = resultSet;
             [listarray retain];
-            NSLog(@"%@",listarray);
             for (UIView *subView in firscrollView.subviews)
             {
                 [subView removeFromSuperview];
@@ -540,41 +534,59 @@
 
 -(void)setfirstimage
 {
-//    [idaray removeAllObjects];
      CGRect frame = firscrollView.frame;
+     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+     dispatch_group_t group = dispatch_group_create();
+
      for (int i = 0; i<5; i++)
-    {
-        [idaray  addObject:[[listarray objectAtIndex:i] objectForKey:@"id"]];
-        UIButton*buttongs = [UIButton buttonWithType:UIButtonTypeCustom];
-        buttongs.tag = i;
-        [buttongs addTarget:self action:@selector(yincang:) forControlEvents:UIControlEventTouchUpInside];
-        buttongs.frame = CGRectMake(frame.size.width*i , 0, 320, 120);
-        [firscrollView addSubview:buttongs];
+     {
+            [idaray  addObject:[[listarray objectAtIndex:i] objectForKey:@"id"]];
+            UIButton*buttongs = [UIButton buttonWithType:UIButtonTypeCustom];
+            buttongs.tag = i;
+            [buttongs addTarget:self action:@selector(yincang:) forControlEvents:UIControlEventTouchUpInside];
+            buttongs.frame = CGRectMake(frame.size.width*i , 0, 320, 120);
+            [firscrollView addSubview:buttongs];
+
+            dispatch_group_async(group, queue, ^{
+                NSString *url = [NSString stringWithFormat:getImageUrl,[[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
+                NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
+                UIImage *image = [UIImage imageWithData:data];
+                UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
+                if (data !=nil){
+                    NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:data,@"data", [[listarray objectAtIndex:i] objectForKey:@"developname"],@"developname",[[listarray objectAtIndex:i] objectForKey:@"id"],@"id",[[listarray objectAtIndex:i] objectForKey:@"latitude"],@"latitude",[[listarray objectAtIndex:i] objectForKey:@"longitude"],@"longitude",nil];
+                    [maplistarray addObject:diction];
+                    [diction release];
+                }
+                
+                if (data != nil) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [buttongs setImage:resImage forState:UIControlStateNormal];
+                        [data release];
+                    });
+                }
+                 NSLog(@"group:%d", i);
+        });
         
-        
-        NSString *url = [NSString stringWithFormat:getImageUrl,[[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
-        NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-        UIImage *image = [UIImage imageWithData:data];
-        UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
-        [buttongs setImage:resImage forState:UIControlStateNormal];
-        
-        
-        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];
-        lable.backgroundColor = [UIColor clearColor];
-        lable.textColor = [UIColor whiteColor];
-        lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
-        [firscrollView addSubview:lable];
-        NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:data,@"data", [[listarray objectAtIndex:i] objectForKey:@"developname"],@"developname",[[listarray objectAtIndex:i] objectForKey:@"id"],@"id",[[listarray objectAtIndex:i] objectForKey:@"latitude"],@"latitude",[[listarray objectAtIndex:i] objectForKey:@"longitude"],@"longitude",nil];
-         [maplistarray addObject:diction];
-        [data release];
-        [lable release];
-        [diction release];
-        
-    }
-    NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-    NSString*path=[paths objectAtIndex:0];
-    NSString *filename=[path stringByAppendingPathComponent:@"Picture.plist"];
-    [maplistarray writeToFile:filename atomically:YES];
+            UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];
+            lable.backgroundColor = [UIColor clearColor];
+            lable.textColor = [UIColor whiteColor];
+            lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
+            [firscrollView addSubview:lable];
+            [lable release];
+     }
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        NSLog(@"updateUi");
+        timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessage) userInfo:nil repeats:YES];
+        timer2 = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessagetwo) userInfo:nil repeats:YES];
+        [timer2 setFireDate:[NSDate distantFuture]];
+        NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString*path=[paths objectAtIndex:0];
+        NSString *filename=[path stringByAppendingPathComponent:@"Picture.plist"];
+        [maplistarray writeToFile:filename atomically:YES];
+    });
+    dispatch_release(group);
+    
     
 }
 
@@ -591,7 +603,7 @@
         [buttongs addTarget:self action:@selector(yincang:) forControlEvents:UIControlEventTouchUpInside];
         buttongs.frame = CGRectMake(frame.size.width*i , 0, 320, 120);
         [firscrollView addSubview:buttongs];
-//        [idaray addObject:[[listarray objectAtIndex:i]objectForKey:@"id"]];
+ 
         UIImage *image = [UIImage imageWithData:[[listarray objectAtIndex:i]objectForKey:@"data"]];
         [buttongs setImage:image forState:UIControlStateNormal];
       
@@ -646,14 +658,15 @@
 -(void)mylocation
 {
      
-    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"市"];
+    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"特别行政区"];
     NSString *trimmedString = [buttonbars.text stringByTrimmingCharactersInSet:set];
+    NSLog(@"%@",trimmedString);
     if (!trimmedString) {
        [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"对不起,无法定位您当前的位置"];
     }
     else
     {
-        ScanDevelopViewController *searchview = [[ScanDevelopViewController alloc] initwithcityname:buttonbars.text];
+        ScanDevelopViewController *searchview = [[ScanDevelopViewController alloc] initwithcityname:trimmedString];
         [self.navigationController pushViewController:searchview animated:YES];
     }
   

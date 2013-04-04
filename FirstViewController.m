@@ -42,7 +42,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
     [super viewDidAppear:YES];
 }
 
@@ -236,7 +236,7 @@
 {
     SearchViewController *seachview = [[SearchViewController alloc] init];
     [self.navigationController pushViewController:seachview animated:YES];
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
  }
 
  
@@ -340,7 +340,7 @@
 {
     ArticleViewController *artiview = [[ArticleViewController alloc] initWithurl:[listarray objectAtIndex:button.tag]];
     [self.navigationController pushViewController:artiview animated:YES];
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
 
 }
 
@@ -384,10 +384,10 @@
     }
     else
     {
-        [mydelegate.naviga2 setTitle:@"Classification"];
-        [mydelegate.naviga3 setTitle:@"Relation"];
-        mydelegate.classview.title = @"Classification";
-        mydelegate.disview.title = @"Relation";
+        [mydelegate.naviga2 setTitle:@"category"];
+        [mydelegate.naviga3 setTitle:@"about"];
+        mydelegate.classview.title = @"category";
+        mydelegate.disview.title = @"about";
 
     }
     
@@ -410,7 +410,7 @@
     }
     else
     {
-        self.title = @"Homepage";
+        self.title = @"homepage";
     }
 
 }
@@ -654,7 +654,7 @@
  
     ScanDevelopViewController *dview = [[ScanDevelopViewController alloc] initWithnumber:button.tag];
     [self.navigationController pushViewController:dview animated:YES];
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
     
 }
 
@@ -671,7 +671,7 @@
     {
         ScanDevelopViewController *searchview = [[ScanDevelopViewController alloc] initwithcityname:trimmedString];
         [self.navigationController pushViewController:searchview animated:YES];
-        [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+//        [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
 
     }
   

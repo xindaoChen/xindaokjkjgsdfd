@@ -42,7 +42,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
     [super viewDidAppear:YES];
 }
 
@@ -96,7 +96,7 @@
 {
     SearchViewController *search  = [[SearchViewController alloc] init];
     [self.navigationController pushViewController:search animated:YES];
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
 
 }
 
@@ -258,7 +258,7 @@
     ScanDevelopViewController *developview = [[ScanDevelopViewController alloc] initwithclassId:[[listarray objectAtIndex:indexPath.section] objectForKey:@"id"] stringnum:0];
      
     [self.navigationController pushViewController:developview animated:YES];
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
 
 }
 

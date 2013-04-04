@@ -47,7 +47,7 @@
 
 -(void)backtosuper
 {
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
     [self.navigationController   popViewControllerAnimated:YES];
 }
 

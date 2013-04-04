@@ -26,14 +26,12 @@
     return self;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self.tabBar setHidden:YES];
-}
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [self addCustomElements];
+    [self.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbar_bg"]];
+//    [self addCustomElements];
 }
 
 -(void)addCustomElements

@@ -49,6 +49,6 @@
 //managedObjectContext的初始化赋值函数
 -(NSManagedObjectContext *)managedObjectContext;
 
-+ (AppDelegate *)sharedDelegate;
+//+ (AppDelegate *)sharedDelegate;
 
 @end

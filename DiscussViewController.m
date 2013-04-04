@@ -64,8 +64,8 @@
 //    textview.font =[UIFont systemFontOfSize:15];
 //    [self.view addSubview:textview];
     
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     webview = [[UIWebView alloc] init];
-     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
     UIImageView *myimageview = [[UIImageView alloc] initWithFrame:CGRectMake(90,  10, 140, 140)];
     [myimageview setImage:[UIImage imageNamed:@"applogo.png"]];
     myimageview.userInteractionEnabled=YES;

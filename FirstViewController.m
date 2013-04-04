@@ -260,7 +260,7 @@
                     if (num<34)
                     {
                        
-                        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
                         button.frame = CGRectMake(16*(s+1)+60*s+frame.size.width*i, 85*j+55, 60, 60);
                          [button setImage:[UIImage imageNamed:[picturearray objectAtIndex:num]] forState:UIControlStateNormal];
                         button.tag = num;
@@ -298,7 +298,7 @@
                     if (num<34)
                     {
                        
-                        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
                         button.frame = CGRectMake(16*(s+1)+60*s+frame.size.width*i, 85*j+55, 60, 60);
                         [button setImage:[UIImage imageNamed:[picturearray objectAtIndex:num]] forState:UIControlStateNormal];
                         button.tag = num;
@@ -447,25 +447,23 @@
     [appdele.window addSubview:selectview];
     
     UIButton *buttonnext = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [buttonnext setImage:[UIImage imageNamed:@"english.png"] forState:UIControlStateNormal];
     buttonnext.tag =100;
     [buttonnext addTarget:self action:@selector(EngorChaing:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *buttonnext2 = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [buttonnext2 setImage:[UIImage imageNamed:@"china.png"] forState:UIControlStateNormal];
     buttonnext2.tag =200;
     [buttonnext2 addTarget:self action:@selector(EngorChaing:) forControlEvents:UIControlEventTouchUpInside];
    
     if (fram.size.height>500) {
-        buttonnext.frame = CGRectMake(  160.5 , 510, 100, 40);
+        buttonnext.frame = CGRectMake(  170 , 500, 120, 50);
         
-        buttonnext2.frame = CGRectMake(  60 , 510, 99.5, 40);
+        buttonnext2.frame = CGRectMake(  30 , 500, 120, 50);
         
     }
     else
     {
-        buttonnext.frame = CGRectMake(  150 , 410, 150, 40);
-        buttonnext2.frame = CGRectMake(  20 , 410, 150, 40);
+        buttonnext.frame = CGRectMake(  170 , 405, 120, 60);
+        buttonnext2.frame = CGRectMake(  30 , 405, 120, 60);
     }
     [selectview addSubview:buttonnext];
     [selectview addSubview:buttonnext2];
@@ -615,7 +613,8 @@
         [firscrollView addSubview:buttongs];
  
         UIImage *image = [UIImage imageWithData:[[listarray objectAtIndex:i]objectForKey:@"data"]];
-        [buttongs setImage:image forState:UIControlStateNormal];
+        UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
+        [buttongs setImage:resImage forState:UIControlStateNormal];
       
         UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];
         lable.backgroundColor = [UIColor clearColor];

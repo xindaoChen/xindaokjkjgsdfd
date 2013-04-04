@@ -72,7 +72,14 @@
         [viewss addSubview:scrollview];
         
         CGRect fram = self.view.frame;
-        NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:@"yindao1.png",@"yindao2.png",nil];
+        NSMutableArray *array ;
+        if (fram.size.height>500) {
+             array = [[NSMutableArray alloc] initWithObjects:@"yindao1.png",@"yindao2.png",nil];
+             }
+        else
+        {
+            array = [[NSMutableArray alloc] initWithObjects:@"yindao11.png",@"yindao22.png",nil];
+        }
         for (int i = 0; i<2; i++)
         {
             CGRect frame = scrollview.frame;
@@ -444,15 +451,15 @@
     [buttonnext2 addTarget:self action:@selector(EngorChaing:) forControlEvents:UIControlEventTouchUpInside];
    
     if (fram.size.height>500) {
-        buttonnext.frame = CGRectMake(  160.5 , 520, 100, 40);
+        buttonnext.frame = CGRectMake(  160.5 , 510, 100, 40);
         
-        buttonnext2.frame = CGRectMake(  60 , 520, 99.5, 40);
+        buttonnext2.frame = CGRectMake(  60 , 510, 99.5, 40);
         
     }
     else
     {
-        buttonnext.frame = CGRectMake(  150 , 420, 150, 40);
-        buttonnext2.frame = CGRectMake(  20 , 420, 150, 40);
+        buttonnext.frame = CGRectMake(  150 , 410, 150, 40);
+        buttonnext2.frame = CGRectMake(  20 , 410, 150, 40);
     }
     [selectview addSubview:buttonnext];
     [selectview addSubview:buttonnext2];

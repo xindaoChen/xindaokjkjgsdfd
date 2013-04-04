@@ -22,10 +22,10 @@
     naviga1.tabBarItem.image = [UIImage imageNamed:@"first.png"];
     
     classview = [[ClassViewController alloc] init];
-     naviga2 = [[UINavigationController alloc] initWithRootViewController:classview];
+    naviga2 = [[UINavigationController alloc] initWithRootViewController:classview];
     naviga2.tabBarItem.image = [UIImage imageNamed:@"class.png"];
     
-     disview = [[DiscussViewController alloc] init ];
+    disview = [[DiscussViewController alloc] init ];
     naviga3 = [[UINavigationController alloc] initWithRootViewController:disview];
     naviga3.tabBarItem.image = [UIImage imageNamed:@"yunju.png"];
     NSArray *array = [NSArray arrayWithObjects:naviga1,naviga2,naviga3, nil];
@@ -36,7 +36,7 @@
     
     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
     language = [faflult objectForKey:@"lange"];
-    NSLog(@"%@",language);
+ 
 
 
     [firstview release];

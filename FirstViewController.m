@@ -69,7 +69,7 @@
         [appdele.window addSubview:viewss];
         
         scrollview = [[UIScrollView alloc] initWithFrame:viewss.frame];
-        scrollview.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+        scrollview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
         scrollview.pagingEnabled = YES;
         scrollview.tag = 200;
         scrollview.showsHorizontalScrollIndicator = NO;//不显示水平滑动线
@@ -148,7 +148,7 @@
     mysearch.delegate = self;
       
     secscrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 120, 320, 408)];
-    secscrollview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+    secscrollview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
     secscrollview.pagingEnabled = YES;
     secscrollview.tag =111;
     secscrollview.showsHorizontalScrollIndicator = NO;
@@ -182,14 +182,14 @@
     [self.view addSubview:pageControllertwo];
 
     firscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 120)];
-    firscrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+    firscrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
     firscrollView.pagingEnabled = YES;
     firscrollView.tag = 100;
     firscrollView.showsHorizontalScrollIndicator = NO;//不显示水平滑动线
     firscrollView.showsVerticalScrollIndicator = NO;//不显示垂直滑动线
     firscrollView.delegate = self;
     [firscrollView setContentOffset:CGPointMake(0, 0)];
-    firscrollView.contentSize = CGSizeMake(1600, 120);
+//    firscrollView.contentSize = CGSizeMake(1600, 120);
     [self.view addSubview:firscrollView];
     [self.view addSubview:pageController];
      imagearray = [[NSMutableArray alloc] init];
@@ -267,7 +267,7 @@
                         [button addTarget:self action:@selector(PushtoDevelopview:) forControlEvents:UIControlEventTouchUpInside];
                        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake( 8+76*s+frame.size.width*i, 85*j+113, 76, 20)];
                         lable.font = [UIFont systemFontOfSize:12];
-                        lable.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+                        lable.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
                         lable.textAlignment = NSTextAlignmentCenter;
                         if ([mydelegate.language isEqualToString:@"english"]) {
                             lable.text = [arrayonetwo objectAtIndex:num];
@@ -305,7 +305,7 @@
                         [button addTarget:self action:@selector(PushtoDevelopview:) forControlEvents:UIControlEventTouchUpInside];
                         UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake( 8+76*s+frame.size.width*i, 85*j+113, 76, 20)];
                         lable.font = [UIFont systemFontOfSize:12];
-                        lable.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+                        lable.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
                         lable.textAlignment = NSTextAlignmentCenter;
                         if ([mydelegate.language isEqualToString:@"english"]) {
                             lable.text = [arrayonetwo objectAtIndex:num];
@@ -488,8 +488,8 @@
         CGPoint posit = CGPointMake(frame.size.width * Snumber , 0 );
         [firscrollView setContentOffset:posit animated:YES];
         Snumber++;
-    if (Snumber == 5){
-        Snumber = 4;
+    if (Snumber == listarray.count){
+        Snumber = (listarray.count -1);
         [timer setFireDate:[NSDate distantFuture]];
         [timer2 setFireDate:[NSDate distantPast]];
     }
@@ -521,6 +521,7 @@
         if (resultSet.count !=0) {
             listarray = resultSet;
             [listarray retain];
+             firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
             for (UIView *subView in firscrollView.subviews)
             {
                 [subView removeFromSuperview];
@@ -546,7 +547,7 @@
      dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
      dispatch_group_t group = dispatch_group_create();
 
-     for (int i = 0; i<5; i++)
+     for (int i = 0; i<listarray.count; i++)
      {
             [idaray  addObject:[[listarray objectAtIndex:i] objectForKey:@"id"]];
             UIButton*buttongs = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -572,7 +573,7 @@
                         [data release];
                     });
                 }
-                 NSLog(@"group:%d", i);
+         
         });
         
             UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];
@@ -602,8 +603,8 @@
 {
     pageController.numberOfPages=listarray.count;
     CGRect frame = firscrollView.frame;
-     
-    for (int i = 0; i<5; i++)
+     firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
+    for (int i = 0; i<listarray.count; i++)
     {
         
         UIButton*buttongs = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -639,18 +640,9 @@
             addr= [NSString stringWithFormat:@"%@",result.addressComponent.city];
                      //市
             buttonbars.text = addr;
-            NSLog(@"%@",addr);
+ 
          }
-        if(result.addressComponent.district!=nil)
-        {
-            addr= [NSString stringWithFormat:@"%@%@",addr,result.addressComponent.district];
-                        //区
-        }
-        if(result.addressComponent.streetName!=nil)
-        {
-            addr= [NSString stringWithFormat:@"%@%@",addr,result.addressComponent.streetName];
-                            //街
-        }
+    
     }
 }
 

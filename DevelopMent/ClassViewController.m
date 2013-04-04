@@ -53,8 +53,8 @@
     
     listarray = [[NSMutableArray alloc] init];
     self.tableView.backgroundView = nil;
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
-     
+    
+     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
     NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString*pat=[pathss objectAtIndex:0];
     NSString *filenames=[pat stringByAppendingPathComponent:@"Class.plist"];

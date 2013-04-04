@@ -122,6 +122,10 @@
     firscrollView.showsVerticalScrollIndicator = NO;//不显示垂直滑动线
     firscrollView.delegate = self;
     [firscrollView setContentOffset:CGPointMake(0, 0)];
+    UIImageView *insteadview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 150)];
+    [insteadview setImage:[UIImage imageNamed:@"instead_mes"]];
+    [firscrollView addSubview:insteadview];
+    [insteadview release];
     [self.view addSubview:firscrollView];
     
  
@@ -549,6 +553,7 @@
             label.frame = CGRectMake( frame.size.width*i +10, 155, 230, 30);
            numlabel.frame = CGRectMake( frame.size.width*i +250, 155, 60, 30);
        }
+         [imageview setImage:[UIImage imageNamed:@"instead_mes"]];
          numlabel.backgroundColor = [UIColor clearColor];
          numlabel.text = [NSString stringWithFormat:@"%d/%d",(i+1),introducearray.count];
          imageview.backgroundColor = [UIColor clearColor];
@@ -559,19 +564,19 @@
              UIImage *image = [[UIImage alloc]initWithData:data];
            
             
-//            if (data != nil)
-//            {
-//                 dispatch_async(dispatch_get_main_queue(), ^{   
+            if (data != nil)
+            {
+//                 dispatch_async(dispatch_get_main_queue(), ^{
                      [imageview setImage:image];
-                     NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:[NSString stringWithFormat:@"%@",[[introducearray objectAtIndex:i] objectForKey:@"content"]],@"content",data,@"data", idstring,@"did",[NSString stringWithFormat:@"%d",i] ,@"fid",[[introducearray objectAtIndex:i] objectForKey:@"title"],@"title",nil];
-           
-                     [introducearrytwo addObject:diction];
-         
+                    
          
 //                 });
-//             }
+             }
 //         });
- 
+         NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:[NSString stringWithFormat:@"%@",[[introducearray objectAtIndex:i] objectForKey:@"content"]],@"content",data,@"data", idstring,@"did",[NSString stringWithFormat:@"%d",i] ,@"fid",[[introducearray objectAtIndex:i] objectForKey:@"title"],@"title",nil];
+         
+         [introducearrytwo addObject:diction];
+         [diction release];
      
       textview.backgroundColor = [UIColor clearColor];
       textview.editable = NO;
@@ -585,7 +590,7 @@
          [data release];
          [label release];
          [image release];
-         [diction release];
+       
          [imageview release];
          [textview release];
          [numlabel release];
@@ -629,7 +634,7 @@
              label.frame = CGRectMake( frame.size.width*i +10, 155, 300, 30);
                  numlabel.frame = CGRectMake( frame.size.width*i +250, 155, 60, 30);
          }
-         
+         [imageview setImage:[UIImage imageNamed:@"instead_mes"]];
          numlabel.backgroundColor = [UIColor clearColor];
          numlabel.text = [NSString stringWithFormat:@"%d/%d",(i+1),introducearrytwo.count];
 
@@ -637,10 +642,10 @@
          label.text = [[introducearrytwo objectAtIndex:i] objectForKey:@"title"];
          NSData *aData = [[introducearrytwo objectAtIndex:i] objectForKey:@"data"];
          UIImage *image = [[UIImage alloc]initWithData:aData];
-         [imageview setImage:image];
- 
-         
-         textview.backgroundColor = [UIColor clearColor];
+         if (aData !=nil) {
+              [imageview setImage:image];
+         }
+        textview.backgroundColor = [UIColor clearColor];
          textview.editable = NO;
          textview.textColor = [UIColor blackColor];
          textview.text = [NSString stringWithFormat:@"       %@",[[introducearrytwo objectAtIndex:i] objectForKey:@"content"]];

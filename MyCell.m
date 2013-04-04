@@ -19,7 +19,7 @@
         imageview.backgroundColor = [UIColor clearColor];
         imageview.layer.cornerRadius = 4;
         imageview.layer.masksToBounds = YES;
-        
+        [imageview setImage:[UIImage imageNamed:@"instead_pro"]];
         label = [[UILabel alloc] initWithFrame:CGRectMake(113, 6, 180, 27)];
         
         label.font = [UIFont fontWithName:@"Helvetica" size:16.0];

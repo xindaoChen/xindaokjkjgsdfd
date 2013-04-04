@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "FirstViewController.m"
-         timestampString = "386757198.429175"
+         timestampString = "386759650.905579"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "674"
-         endingLineNumber = "674"
+         startingLineNumber = "679"
+         endingLineNumber = "679"
          landmarkName = "-mylocation"
          landmarkType = "5">
       </FileBreakpoint>

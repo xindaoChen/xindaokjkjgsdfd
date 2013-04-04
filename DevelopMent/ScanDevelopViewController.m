@@ -759,7 +759,7 @@ else if([languageFlag isEqualToString:@"english"])
 {   if(tableView.tag == 1)
        {
        
-            return 60;
+            return 70;
         }
     else if (tableView.tag == 2)
         return 40;

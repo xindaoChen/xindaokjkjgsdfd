@@ -31,7 +31,7 @@
     UIToolbar *toolBar;
     NSMutableArray *arrayone;
      NSMutableArray *arrayonetwo;
-    
+    UISearchBar* searchbar;
     NSTimer *timer;
     NSTimer *timer2;
     NSMutableArray *imagearray;

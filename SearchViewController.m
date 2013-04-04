@@ -45,10 +45,17 @@
     firstview.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:firstview];
   
+    AppDelegate *mydelegate = [UIApplication sharedApplication].delegate;
     searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 6, 300, 30)];
     searchbar.delegate = self;
     [searchbar becomeFirstResponder];
-    searchbar.placeholder = @"请输入您要搜索的关键字";
+    if ([mydelegate.language isEqualToString:@"china"]) {
+        searchbar.placeholder = @"请输入您要搜索的关键字";
+    }
+    else
+    {
+      searchbar.placeholder =@"Please enter your search keyword";
+    }
     UIView *searview = [searchbar.subviews objectAtIndex:0];
     [searview removeFromSuperview];
     searview.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:1 alpha:0.5];

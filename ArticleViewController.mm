@@ -48,7 +48,7 @@
         locationgs.latitude =  [[ array  objectForKey:@"latitude"] floatValue];
         namestring =[ array  objectForKey:@"developname"];
         self.title = namestring;
-        NSLog(@"%@",namestring);
+        
     }
     return self;
 }
@@ -133,7 +133,8 @@
     [myimageview setImage:[UIImage imageNamed:@"applogo.png"]];
     [viewapp addSubview:myimageview];
     
-    UIButton *loadbutton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *loadbutton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [loadbutton setImage:[UIImage imageNamed:@"load.png"] forState:UIControlStateNormal];
     [loadbutton addTarget:self action:@selector(pushtoapp) forControlEvents:UIControlEventTouchUpInside];
     loadbutton.frame = CGRectMake(90, 130, 140, 40);
     [viewapp addSubview:loadbutton];
@@ -233,16 +234,12 @@
     rightbutton.backgroundColor = [UIColor redColor];
     [rightbutton addTarget:self action:@selector(rightfunction) forControlEvents:UIControlEventTouchUpInside];
     
- //   assAiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-  //  assAiv.center = CGPointMake(160, 240);
-  //  assAiv.color = [UIColor whiteColor];
-  //  [self.navigationController.navigationBar addSubview:assAiv];
-//    dataarray = [self getthedata];
+ 
     
     self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
     
     introducearrytwo = [self getthedatatwo];
-    NSLog(@"%d",introducearrytwo.count);
+    
     if (introducearrytwo.count != 0) {
         firscrollView.contentSize = CGSizeMake(320*(introducearrytwo.count), 120);
         [self  introduceviewtwo];
@@ -324,18 +321,9 @@
         if(result.addressComponent.city!=nil)
         {
             addr= [NSString stringWithFormat:@"%@",result.addressComponent.city];
-             NSLog(@" 11111111 %@ ",addr);            //市
+             
         }
-        if(result.addressComponent.district!=nil)
-        {
-            addr= [NSString stringWithFormat:@"%@%@",addr,result.addressComponent.district];
-             NSLog(@" 222222 %@ ",addr);             //区
-        }       
-        if(result.addressComponent.streetName!=nil)
-        {
-            addr= [NSString stringWithFormat:@"%@%@",addr,result.addressComponent.streetName];
-             NSLog(@" 33333 %@ ",addr);                 //街
-        }
+ 
      }
 }
 
@@ -543,17 +531,24 @@
          label.backgroundColor = [UIColor clearColor];
          label.font = [UIFont boldSystemFontOfSize:18];
          label.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
+         UILabel *numlabel = [[UILabel alloc] init];
+         numlabel.textAlignment = NSTextAlignmentCenter;
+          numlabel.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
          if (fram.size.height>500) {
                 imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
                 textview.frame = CGRectMake(frame.size.width*i +10, 190, 300, 265);
                label.frame = CGRectMake( frame.size.width*i +10, 160, 300, 30);
+             numlabel.frame = CGRectMake(frame.size.width*i+250 , 160, 60, 30);
          }
        else
        {
            imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
            textview.frame = CGRectMake(frame.size.width*i +10, 185, 300, 190);
-            label.frame = CGRectMake( frame.size.width*i +10, 155, 300, 30);
+            label.frame = CGRectMake( frame.size.width*i +10, 155, 230, 30);
+           numlabel.frame = CGRectMake( frame.size.width*i +250, 155, 60, 30);
        }
+         numlabel.backgroundColor = [UIColor clearColor];
+         numlabel.text = [NSString stringWithFormat:@"%d/%d",(i+1),introducearray.count];
          imageview.backgroundColor = [UIColor clearColor];
          label.text = [[introducearray objectAtIndex:i] objectForKey:@"title"];
 //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   
@@ -579,17 +574,19 @@
       textview.backgroundColor = [UIColor clearColor];
       textview.editable = NO;
       textview.textColor = [UIColor blackColor];
-       textview.text = [NSString stringWithFormat:@"       %@",[[introducearrytwo objectAtIndex:i] objectForKey:@"content"]];   
+       textview.text = [NSString stringWithFormat:@"       %@",[[introducearray objectAtIndex:i] objectForKey:@"content"]];   
       textview.font =[UIFont systemFontOfSize:16];
       [firscrollView addSubview:imageview];
       [firscrollView addSubview:textview];
       [firscrollView addSubview:label];
+      [firscrollView addSubview:numlabel];
          [data release];
          [label release];
          [image release];
          [diction release];
          [imageview release];
          [textview release];
+         [numlabel release];
          
       }
      NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
@@ -612,17 +609,28 @@
          label.backgroundColor = [UIColor clearColor];
          label.font = [UIFont boldSystemFontOfSize:18];
          label.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
+         UILabel *numlabel = [[UILabel alloc] init];
+         numlabel.textAlignment = NSTextAlignmentCenter;
+         numlabel.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
+
          if (fram.size.height>500) {
              imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
              textview.frame = CGRectMake(frame.size.width*i +10, 190, 300, 265);
              label.frame = CGRectMake( frame.size.width*i +10, 160, 300, 30);
+             numlabel.frame = CGRectMake(frame.size.width*i+250 , 160, 60, 30);
+
          }
          else
          {
              imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
              textview.frame = CGRectMake(frame.size.width*i +10, 185, 300, 190);
              label.frame = CGRectMake( frame.size.width*i +10, 155, 300, 30);
+                 numlabel.frame = CGRectMake( frame.size.width*i +250, 155, 60, 30);
          }
+         
+         numlabel.backgroundColor = [UIColor clearColor];
+         numlabel.text = [NSString stringWithFormat:@"%d/%d",(i+1),introducearrytwo.count];
+
          imageview.backgroundColor = [UIColor clearColor];
          label.text = [[introducearrytwo objectAtIndex:i] objectForKey:@"title"];
          NSData *aData = [[introducearrytwo objectAtIndex:i] objectForKey:@"data"];
@@ -638,10 +646,10 @@
          [firscrollView addSubview:imageview];
          [firscrollView addSubview:textview];
          [firscrollView addSubview:label];
-          
+         [firscrollView addSubview:numlabel];
          [label release];
          [image release];
-        
+         [numlabel release];
          [imageview release];
          [textview release];
          
@@ -657,9 +665,8 @@
     firscrollView.hidden = NO;
     dataview.hidden = YES;
     viewapp.hidden = YES;
-//    self.view.backgroundColor = [UIColor blackColor];
-    
-    if (introd ==YES) {
+    myMapView.hidden = YES;
+     if (introd ==YES) {
         [button1  setImage:[UIImage imageNamed:@"introducex.png"] forState:UIControlStateNormal];
         [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
         [button3  setImage:[UIImage imageNamed:@"maps.png"] forState:UIControlStateNormal];
@@ -705,11 +712,7 @@
 {
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
     {
-//        BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: @"myAnnotation"];
-//         newAnnotationView.pinColor =BMKPinAnnotationColorRed;
-//         newAnnotationView.animatesDrop = YES;
-//          return newAnnotationView;
-        BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: @"myAnnotation"];
+         BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: @"myAnnotation"];
         newAnnotationView.pinColor =BMKPinAnnotationColorPurple;
         newAnnotationView.animatesDrop = YES;
         [newAnnotationView setImage:[UIImage imageNamed:@"tubiao.png"]];
@@ -810,7 +813,7 @@
         [cell addSubview:labletwo];
         [lable release];
         [labletwo release];
-        NSLog(@"%@",dataarray);
+  
         for (int i = 0; i<dataarray.count; i++)
         {
             if ((indexPath.row-1) ==i )
@@ -822,108 +825,7 @@
         }
     }
    
-// else if(tableView.tag ==100 )
-//    {
-//        if (cell == nil) {
-//            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-//        }
-//        else
-//        {
-////            NSArray*subviews = [[NSArray alloc]initWithArray:cell.subviews];
-////            for (UIView *subview in subviews){
-////                [subview removeFromSuperview];
-////            }
-////            [subviews release];
-//        }
-//
-//        UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(15, 5, 50, 50)];
-//        imageview.layer.cornerRadius = 4;
-//        imageview.layer.masksToBounds = YES;
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(75, 5, 240, 20)];
-//        label.backgroundColor = [UIColor clearColor];
-//        UILabel *labeltwo = [[UILabel alloc] initWithFrame:CGRectMake(75, 27, 240, 30)];
-//        labeltwo.backgroundColor = [UIColor clearColor];
-//        labeltwo.font = [UIFont systemFontOfSize:13];
-//        labeltwo.numberOfLines = 2;
-//        [cell addSubview:label];
-//        [cell addSubview:labeltwo];
-//        [cell addSubview:imageview];
-//        [label release];
-//        [labeltwo release];
-//        [imageview release];
-//        
-//         switch (indexPath.row)
-//        {
-//                NSLog(@"%@",apparray);
-//            case 0:
-//                    if (apparray.count != 0) {
-//                     label.text = @"APP下载链接";
-//                     labeltwo.text = [[apparray objectAtIndex:0] objectForKey:@"link"];
-//                   }
-//                  else
-//                  {
-//                      label.text = @"APP下载链接";
-//                     labeltwo.text = @"";
-//                  }
-//                
-//                  [imageview setImage:[UIImage imageNamed:@"appxia.png"]];
-//                  break;
-//            case 1:
-//               
-//                if (apparray.count != 0) {
-//                    labeltwo.text = [[apparray objectAtIndex:0] objectForKey:@"tel"];
-//                      label.text = @"电话";
-//                }
-//                else
-//                {
-//                    labeltwo.text = @"";
-//                }
-//
-//                 [imageview setImage:[UIImage imageNamed:@"dianhua.png"]];
-//                break;
-//            case 2:
-//                
-//                if (apparray.count != 0) {
-//                    labeltwo.text = [[apparray objectAtIndex:0] objectForKey:@"fax"];
-//                     label.text = @"传真";
-//                }
-//                else
-//                {
-//                    labeltwo.text = @" ";
-//                }
-//               [imageview setImage:[UIImage imageNamed:@"chuanzhen.png"]];
-//                break;
-//            case 3:
-//               
-//                if (apparray.count != 0) {
-//                    labeltwo.text = [[apparray objectAtIndex:0] objectForKey:@"fax"];
-//                      label.text = @"邮件";
-//                }
-//                else
-//                {
-//                    labeltwo.text = @" ";
-//                }
-//                [imageview setImage:[UIImage imageNamed:@"youjian.png"]];
-//                break;
-//            case 4:
-//                
-//                if (apparray.count != 0) {
-//                    labeltwo.text = [[apparray objectAtIndex:0] objectForKey:@"site"];
-//                     label.text = @"网址";
-//                }
-//                else
-//                {
-//                    labeltwo.text = @" ";
-//                }
-//                  [imageview setImage:[UIImage imageNamed:@"wangzhi.png"]];
-//                break;
-//                
-//            default:
-//                break;
-//        }
-//        return  cell;
-//    }
-     return cell;
+      return cell;
 }
 
 -(void)savedatamessagetwo
@@ -941,9 +843,9 @@
     //托管对象准备好后，调用托管对象上下文的save方法将数据写入数据库
     BOOL isSaveSuccess = [[[self appDelegate] managedObjectContext]save:&error];
     if (!isSaveSuccess){
-        NSLog(@"Error: %@,%@",error,[error userInfo]);
+        
     }else {
-        NSLog(@"huancun Save successful!");
+        
     }
     [introducearrytwo removeAllObjects];
 }
@@ -966,9 +868,9 @@
     //托管对象准备好后，调用托管对象上下文的save方法将数据写入数据库
     BOOL isSaveSuccess = [[[self appDelegate] managedObjectContext]save:&error];
     if (!isSaveSuccess){
-        NSLog(@"Error: %@,%@",error,[error userInfo]);
+        
     }else {
-        NSLog(@"Save successful!");
+        
     }
 }
 

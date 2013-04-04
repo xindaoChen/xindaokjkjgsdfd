@@ -681,7 +681,7 @@ else if([languageFlag isEqualToString:@"english"])
         
     }
     if (na.tag == 150) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    //    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
      
         [listarray3 removeAllObjects];
@@ -692,7 +692,7 @@ else if([languageFlag isEqualToString:@"english"])
         [cityView reloadData];
     }
     if (na.tag == 151) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+      //  [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
        
         [listarray4 removeAllObjects];
@@ -704,7 +704,7 @@ else if([languageFlag isEqualToString:@"english"])
     }
     if (na.tag == 152) {
          
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+      //  [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
         [listarray5 removeAllObjects];
        
@@ -780,7 +780,7 @@ else if([languageFlag isEqualToString:@"english"])
     
     switch (tableView.tag) {
         case 1:   //主界面tableview
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+           // [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
 
             if (cell == nil) {
@@ -823,6 +823,7 @@ else if([languageFlag isEqualToString:@"english"])
                     [image release];
                 });
             }
+             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             
             return cell;
         case 2: //provinceVIew
@@ -849,6 +850,7 @@ else if([languageFlag isEqualToString:@"english"])
             break;
         case 3: //  cityView
         //    [assAiv stopAnimating];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
             if (cell == nil) {
                 cell = [[[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];

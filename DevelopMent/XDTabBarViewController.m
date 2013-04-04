@@ -53,6 +53,10 @@
     [settingsButton setImage:btnImageSelected forState:UIControlStateHighlighted|UIControlStateSelected];
     [settingsButton setTag:0]; // Assign the button a “tag” so when our “click” event is called we know which button was pressed.
     [settingsButton setSelected:true]; // Set this button as selected (we will select the others to false as we only want Tab 1 to be selected initially
+
+//   
+//    UIBarButtonItem * item1 = [self.toolbarItems objectAtIndex:0];
+//    [item1 setCustomView:settingsButton];
     
     // Now we repeat the process for the other buttons
     btnImage = [UIImage imageNamed:@"class_normal_tab"];
@@ -87,6 +91,14 @@
     [infoButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [aboutUsButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
+
+- (void)setHideCustomButton:(BOOL) isHide
+{
+    [settingsButton setHidden:isHide];
+    [infoButton setHidden:isHide];
+    [aboutUsButton setHidden:isHide];
+}
+
 - (void)buttonClicked:(id)sender
 {
     int tagNum = [sender tag];

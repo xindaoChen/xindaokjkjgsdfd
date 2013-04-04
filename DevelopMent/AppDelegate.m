@@ -29,9 +29,11 @@
     naviga3 = [[UINavigationController alloc] initWithRootViewController:disview];
     naviga3.tabBarItem.image = [UIImage imageNamed:@"yunju.png"];
     NSArray *array = [NSArray arrayWithObjects:naviga1,naviga2,naviga3, nil];
+    
     XDTabBarViewController *tabbar=[[[XDTabBarViewController alloc] init] autorelease];
     tabbar.viewControllers=array;
     tabbar.delegate=(id)self;
+    _xdTabbar = tabbar;
     self.window.rootViewController = tabbar;
     
     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
@@ -56,6 +58,10 @@
     return YES;
 }
 
+
++ (AppDelegate *)sharedDelegate {
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
 
 -(NSManagedObjectModel *)managedObjectModel
 {

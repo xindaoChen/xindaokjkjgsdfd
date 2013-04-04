@@ -79,7 +79,7 @@
     UIButton *button1= [UIButton buttonWithType:UIButtonTypeCustom];
     [button1 addTarget:self action:@selector(coopview) forControlEvents:UIControlEventTouchUpInside];
     [button1 setBackgroundImage:[UIImage imageNamed:@"cell_bg_0.png"] forState:UIControlStateNormal];
-    [button1 setTitle:@"合作单位" forState:UIControlStateNormal];
+  
      button1.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     [button1 setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
 
@@ -89,24 +89,42 @@
     
     UIButton *button2= [UIButton buttonWithType:UIButtonTypeCustom];
     [button2 setBackgroundImage:[UIImage imageNamed:@"cell_bg_1.png"] forState:UIControlStateNormal];
-    [button2 setTitle:@"合作媒体" forState:UIControlStateNormal];
+ 
     button2.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     [button2 setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
 
     
 	UIButton *button3= [UIButton buttonWithType:UIButtonTypeCustom];
     [button3 setBackgroundImage:[UIImage imageNamed:@"cell_bg_2.png"] forState:UIControlStateNormal];
-    [button3 setTitle:@"常见机构投资者" forState:UIControlStateNormal];
+
       button3.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     [button3 setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
 
 
     UIButton *button4= [UIButton buttonWithType:UIButtonTypeCustom];
     [button4 setBackgroundImage:[UIImage imageNamed:@"cell_bg_3.png"] forState:UIControlStateNormal];
-    [button4 setTitle:@"去点评一下" forState:UIControlStateNormal];
+
     button4.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     [button4 addTarget:self action:@selector(pushtoreview) forControlEvents:UIControlEventTouchUpInside];
     [button4 setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    
+    AppDelegate *mydelefate = [UIApplication sharedApplication].delegate;
+    if ([mydelefate.language isEqualToString:@"english"]) {
+        [button4 setTitle:@"Give me ratings" forState:UIControlStateNormal];
+        [button3 setTitle:@"Common investors" forState:UIControlStateNormal];
+        [button2 setTitle:@"Media Partners" forState:UIControlStateNormal];
+        [button1 setTitle:@"Cooperation" forState:UIControlStateNormal];
+
+         
+    }
+    else
+    {
+        [button4 setTitle:@"去点评一下" forState:UIControlStateNormal];
+        [button3 setTitle:@"常见机构投资者" forState:UIControlStateNormal];
+        [button2 setTitle:@"合作媒体" forState:UIControlStateNormal];
+        [button1 setTitle:@"合作单位" forState:UIControlStateNormal];
+    }
+    
     
        if (fram.size.height>500)
        {

@@ -517,10 +517,11 @@
 {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if (na.tag == 100){
-        
+         NSLog(@"%@",resultSet);
         if (resultSet.count !=0) {
             listarray = resultSet;
             [listarray retain];
+           
              firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
             for (UIView *subView in firscrollView.subviews)
             {
@@ -554,6 +555,7 @@
             buttongs.tag = i;
             [buttongs addTarget:self action:@selector(yincang:) forControlEvents:UIControlEventTouchUpInside];
             buttongs.frame = CGRectMake(frame.size.width*i , 0, 320, 120);
+            [buttongs setImage:[UIImage imageNamed:@"instead_fir.png"] forState:UIControlStateNormal];
             [firscrollView addSubview:buttongs];
 
             dispatch_group_async(group, queue, ^{

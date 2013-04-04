@@ -202,6 +202,7 @@
     dataview.delegate = self;
     dataview.dataSource = self;
     dataview.hidden = YES;
+    dataview.userInteractionEnabled = NO;
     dataview.tag = 200;
     dataview.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:dataview];

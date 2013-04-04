@@ -183,17 +183,18 @@
 {
     if (na.tag ==100) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        if (resultSet.count !=0) {
+            [listarray removeAllObjects];
+            listarray = resultSet;
+            [listarray retain];
+            [self.tableView reloadData];
+            NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+            NSString*path=[paths objectAtIndex:0];
+            NSString *filename=[path stringByAppendingPathComponent:@"Class.plist"];
+            [listarray writeToFile:filename atomically:YES];
 
-        [listarray removeAllObjects];
-        listarray = resultSet;
-        [listarray retain];
-        NSLog(@"%@",listarray);
-         [self.tableView reloadData];
-        NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-        NSString*path=[paths objectAtIndex:0];
-        NSString *filename=[path stringByAppendingPathComponent:@"Class.plist"];
-        [listarray writeToFile:filename atomically:YES];
-       
+        }
+        
     }
 }
 

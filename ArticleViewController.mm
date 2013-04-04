@@ -89,15 +89,17 @@
     [button4 addTarget:self action:@selector(pushtospp) forControlEvents:UIControlEventTouchUpInside];
     button4.backgroundColor = [UIColor grayColor];
 
+    float height = 54;
+    float lenght_height = 448;
      if (fram.size.height>500) {
         firscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 455)];
         dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-30, 320,540 ) style:UITableViewStylePlain];
          myMapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 505)];
          viewapp = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320,505 )];
-        button1.frame = CGRectMake(0, 456, 80, 51);
-        button2.frame = CGRectMake(80, 456, 80, 51);
-        button3.frame = CGRectMake(160, 456, 80, 51);
-        button4.frame = CGRectMake(240, 456, 80, 51);
+        button1.frame = CGRectMake(0, lenght_height, 80, height);
+        button2.frame = CGRectMake(80, lenght_height, 80, height);
+        button3.frame = CGRectMake(160, lenght_height, 80, height);
+        button4.frame = CGRectMake(240, lenght_height, 80, height);
     }
     else
     {
@@ -105,10 +107,10 @@
          dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-30, 320,410 ) style:UITableViewStylePlain];
          myMapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 415)];
          viewapp = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320,375 )];
-        button1.frame = CGRectMake(0, 370, 80, 51);
-        button2.frame = CGRectMake(80, 370, 80, 51);
-        button3.frame = CGRectMake(160, 370, 80, 51);
-        button4.frame = CGRectMake(240, 370, 80, 51);
+        button1.frame = CGRectMake(0, 363, 80, height);
+        button2.frame = CGRectMake(80, 363, 80, height);
+        button3.frame = CGRectMake(160, 363, 80, height);
+        button4.frame = CGRectMake(240, 363, 80, height);
     }
     [button1  setImage:[UIImage imageNamed:@"introducex.png"] forState:UIControlStateNormal];
     [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
@@ -239,6 +241,7 @@
     [self.view addSubview:button2];
     [self.view addSubview:button3];
     [self.view addSubview:button4];
+    
     leftbutton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 //    leftbutton.frame = CGRectMake(0,0,20,40);
     leftbutton.backgroundColor = [UIColor blueColor];

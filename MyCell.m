@@ -15,19 +15,19 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        imageview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 6, 90, 48)];
+        imageview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 6, 90, 58)];
         imageview.backgroundColor = [UIColor clearColor];
         imageview.layer.cornerRadius = 4;
         imageview.layer.masksToBounds = YES;
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(113, 6, 180, 21)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(113, 6, 180, 27)];
         
-        label.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+        label.font = [UIFont fontWithName:@"Helvetica" size:16.0];
         label.backgroundColor = [UIColor clearColor];
      //   label.font = [UIFont boldSystemFontOfSize:17];
 
        
-        labeltwo = [[UILabel alloc] initWithFrame:CGRectMake(113, 24, 180, 30)];
+        labeltwo = [[UILabel alloc] initWithFrame:CGRectMake(113,30, 180, 34)];
         labeltwo.backgroundColor = [UIColor clearColor];
         labeltwo.numberOfLines = 2;
         labeltwo.font = [UIFont systemFontOfSize:12];

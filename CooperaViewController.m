@@ -42,7 +42,7 @@
     [super viewDidLoad];
       [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
-
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
     self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
 
     mytableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 504) style:UITableViewStylePlain];
@@ -89,7 +89,7 @@
 
 -(void)backtosuper
 {
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
     [self.navigationController   popViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning

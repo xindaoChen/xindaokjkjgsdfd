@@ -42,7 +42,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
     [super viewDidAppear:YES];
 }
 
@@ -53,8 +53,8 @@
     
     listarray = [[NSMutableArray alloc] init];
     self.tableView.backgroundView = nil;
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
-     
+    
+     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
     NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString*pat=[pathss objectAtIndex:0];
     NSString *filenames=[pat stringByAppendingPathComponent:@"Class.plist"];
@@ -96,7 +96,7 @@
 {
     SearchViewController *search  = [[SearchViewController alloc] init];
     [self.navigationController pushViewController:search animated:YES];
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
 
 }
 
@@ -183,17 +183,18 @@
 {
     if (na.tag ==100) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        if (resultSet.count !=0) {
+            [listarray removeAllObjects];
+            listarray = resultSet;
+            [listarray retain];
+            [self.tableView reloadData];
+            NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+            NSString*path=[paths objectAtIndex:0];
+            NSString *filename=[path stringByAppendingPathComponent:@"Class.plist"];
+            [listarray writeToFile:filename atomically:YES];
 
-        [listarray removeAllObjects];
-        listarray = resultSet;
-        [listarray retain];
-        NSLog(@"%@",listarray);
-         [self.tableView reloadData];
-        NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-        NSString*path=[paths objectAtIndex:0];
-        NSString *filename=[path stringByAppendingPathComponent:@"Class.plist"];
-        [listarray writeToFile:filename atomically:YES];
-       
+        }
+        
     }
 }
 
@@ -257,7 +258,7 @@
     ScanDevelopViewController *developview = [[ScanDevelopViewController alloc] initwithclassId:[[listarray objectAtIndex:indexPath.section] objectForKey:@"id"] stringnum:0];
      
     [self.navigationController pushViewController:developview animated:YES];
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
 
 }
 

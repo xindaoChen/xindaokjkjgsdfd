@@ -42,7 +42,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
     [super viewDidAppear:YES];
 }
 
@@ -69,7 +69,7 @@
         [appdele.window addSubview:viewss];
         
         scrollview = [[UIScrollView alloc] initWithFrame:viewss.frame];
-        scrollview.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+        scrollview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
         scrollview.pagingEnabled = YES;
         scrollview.tag = 200;
         scrollview.showsHorizontalScrollIndicator = NO;//不显示水平滑动线
@@ -148,7 +148,7 @@
     mysearch.delegate = self;
       
     secscrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 120, 320, 408)];
-    secscrollview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+    secscrollview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
     secscrollview.pagingEnabled = YES;
     secscrollview.tag =111;
     secscrollview.showsHorizontalScrollIndicator = NO;
@@ -182,14 +182,14 @@
     [self.view addSubview:pageControllertwo];
 
     firscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 120)];
-    firscrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+    firscrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
     firscrollView.pagingEnabled = YES;
     firscrollView.tag = 100;
     firscrollView.showsHorizontalScrollIndicator = NO;//不显示水平滑动线
     firscrollView.showsVerticalScrollIndicator = NO;//不显示垂直滑动线
     firscrollView.delegate = self;
     [firscrollView setContentOffset:CGPointMake(0, 0)];
-    firscrollView.contentSize = CGSizeMake(1600, 120);
+//    firscrollView.contentSize = CGSizeMake(1600, 120);
     [self.view addSubview:firscrollView];
     [self.view addSubview:pageController];
      imagearray = [[NSMutableArray alloc] init];
@@ -236,7 +236,7 @@
 {
     SearchViewController *seachview = [[SearchViewController alloc] init];
     [self.navigationController pushViewController:seachview animated:YES];
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
  }
 
  
@@ -260,14 +260,14 @@
                     if (num<34)
                     {
                        
-                        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
                         button.frame = CGRectMake(16*(s+1)+60*s+frame.size.width*i, 85*j+55, 60, 60);
                          [button setImage:[UIImage imageNamed:[picturearray objectAtIndex:num]] forState:UIControlStateNormal];
                         button.tag = num;
                         [button addTarget:self action:@selector(PushtoDevelopview:) forControlEvents:UIControlEventTouchUpInside];
                        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake( 8+76*s+frame.size.width*i, 85*j+113, 76, 20)];
                         lable.font = [UIFont systemFontOfSize:12];
-                        lable.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+                        lable.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
                         lable.textAlignment = NSTextAlignmentCenter;
                         if ([mydelegate.language isEqualToString:@"english"]) {
                             lable.text = [arrayonetwo objectAtIndex:num];
@@ -298,14 +298,14 @@
                     if (num<34)
                     {
                        
-                        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
                         button.frame = CGRectMake(16*(s+1)+60*s+frame.size.width*i, 85*j+55, 60, 60);
                         [button setImage:[UIImage imageNamed:[picturearray objectAtIndex:num]] forState:UIControlStateNormal];
                         button.tag = num;
                         [button addTarget:self action:@selector(PushtoDevelopview:) forControlEvents:UIControlEventTouchUpInside];
                         UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake( 8+76*s+frame.size.width*i, 85*j+113, 76, 20)];
                         lable.font = [UIFont systemFontOfSize:12];
-                        lable.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+                        lable.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
                         lable.textAlignment = NSTextAlignmentCenter;
                         if ([mydelegate.language isEqualToString:@"english"]) {
                             lable.text = [arrayonetwo objectAtIndex:num];
@@ -340,7 +340,7 @@
 {
     ArticleViewController *artiview = [[ArticleViewController alloc] initWithurl:[listarray objectAtIndex:button.tag]];
     [self.navigationController pushViewController:artiview animated:YES];
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
 
 }
 
@@ -384,10 +384,10 @@
     }
     else
     {
-        [mydelegate.naviga2 setTitle:@"Classification"];
-        [mydelegate.naviga3 setTitle:@"Relation"];
-        mydelegate.classview.title = @"Classification";
-        mydelegate.disview.title = @"Relation";
+        [mydelegate.naviga2 setTitle:@"category"];
+        [mydelegate.naviga3 setTitle:@"about"];
+        mydelegate.classview.title = @"category";
+        mydelegate.disview.title = @"about";
 
     }
     
@@ -410,7 +410,7 @@
     }
     else
     {
-        self.title = @"Homepage";
+        self.title = @"homepage";
     }
 
 }
@@ -447,25 +447,23 @@
     [appdele.window addSubview:selectview];
     
     UIButton *buttonnext = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [buttonnext setImage:[UIImage imageNamed:@"english.png"] forState:UIControlStateNormal];
     buttonnext.tag =100;
     [buttonnext addTarget:self action:@selector(EngorChaing:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *buttonnext2 = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [buttonnext2 setImage:[UIImage imageNamed:@"china.png"] forState:UIControlStateNormal];
     buttonnext2.tag =200;
     [buttonnext2 addTarget:self action:@selector(EngorChaing:) forControlEvents:UIControlEventTouchUpInside];
    
     if (fram.size.height>500) {
-        buttonnext.frame = CGRectMake(  160.5 , 510, 100, 40);
+        buttonnext.frame = CGRectMake(  170 , 500, 120, 50);
         
-        buttonnext2.frame = CGRectMake(  60 , 510, 99.5, 40);
+        buttonnext2.frame = CGRectMake(  30 , 500, 120, 50);
         
     }
     else
     {
-        buttonnext.frame = CGRectMake(  150 , 410, 150, 40);
-        buttonnext2.frame = CGRectMake(  20 , 410, 150, 40);
+        buttonnext.frame = CGRectMake(  170 , 405, 120, 60);
+        buttonnext2.frame = CGRectMake(  30 , 405, 120, 60);
     }
     [selectview addSubview:buttonnext];
     [selectview addSubview:buttonnext2];
@@ -490,8 +488,8 @@
         CGPoint posit = CGPointMake(frame.size.width * Snumber , 0 );
         [firscrollView setContentOffset:posit animated:YES];
         Snumber++;
-    if (Snumber == 5){
-        Snumber = 4;
+    if (Snumber == listarray.count){
+        Snumber = (listarray.count -1);
         [timer setFireDate:[NSDate distantFuture]];
         [timer2 setFireDate:[NSDate distantPast]];
     }
@@ -519,10 +517,12 @@
 {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if (na.tag == 100){
-        
+         NSLog(@"%@",resultSet);
         if (resultSet.count !=0) {
             listarray = resultSet;
             [listarray retain];
+           
+             firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
             for (UIView *subView in firscrollView.subviews)
             {
                 [subView removeFromSuperview];
@@ -548,13 +548,14 @@
      dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
      dispatch_group_t group = dispatch_group_create();
 
-     for (int i = 0; i<5; i++)
+     for (int i = 0; i<listarray.count; i++)
      {
             [idaray  addObject:[[listarray objectAtIndex:i] objectForKey:@"id"]];
             UIButton*buttongs = [UIButton buttonWithType:UIButtonTypeCustom];
             buttongs.tag = i;
             [buttongs addTarget:self action:@selector(yincang:) forControlEvents:UIControlEventTouchUpInside];
             buttongs.frame = CGRectMake(frame.size.width*i , 0, 320, 120);
+            [buttongs setImage:[UIImage imageNamed:@"instead_fir.png"] forState:UIControlStateNormal];
             [firscrollView addSubview:buttongs];
 
             dispatch_group_async(group, queue, ^{
@@ -574,7 +575,7 @@
                         [data release];
                     });
                 }
-                 NSLog(@"group:%d", i);
+         
         });
         
             UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];
@@ -604,8 +605,8 @@
 {
     pageController.numberOfPages=listarray.count;
     CGRect frame = firscrollView.frame;
-     
-    for (int i = 0; i<5; i++)
+     firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
+    for (int i = 0; i<listarray.count; i++)
     {
         
         UIButton*buttongs = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -615,7 +616,8 @@
         [firscrollView addSubview:buttongs];
  
         UIImage *image = [UIImage imageWithData:[[listarray objectAtIndex:i]objectForKey:@"data"]];
-        [buttongs setImage:image forState:UIControlStateNormal];
+        UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
+        [buttongs setImage:resImage forState:UIControlStateNormal];
       
         UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];
         lable.backgroundColor = [UIColor clearColor];
@@ -640,18 +642,9 @@
             addr= [NSString stringWithFormat:@"%@",result.addressComponent.city];
                      //市
             buttonbars.text = addr;
-            NSLog(@"%@",addr);
+ 
          }
-        if(result.addressComponent.district!=nil)
-        {
-            addr= [NSString stringWithFormat:@"%@%@",addr,result.addressComponent.district];
-                        //区
-        }
-        if(result.addressComponent.streetName!=nil)
-        {
-            addr= [NSString stringWithFormat:@"%@%@",addr,result.addressComponent.streetName];
-                            //街
-        }
+    
     }
 }
 
@@ -661,7 +654,7 @@
  
     ScanDevelopViewController *dview = [[ScanDevelopViewController alloc] initWithnumber:button.tag];
     [self.navigationController pushViewController:dview animated:YES];
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
     
 }
 
@@ -678,7 +671,7 @@
     {
         ScanDevelopViewController *searchview = [[ScanDevelopViewController alloc] initwithcityname:trimmedString];
         [self.navigationController pushViewController:searchview animated:YES];
-        [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+//        [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
 
     }
   

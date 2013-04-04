@@ -57,7 +57,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
-
+     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
       [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
  
     sum = 0;
@@ -115,7 +115,7 @@
     [button3  setImage:[UIImage imageNamed:@"maps.png"] forState:UIControlStateNormal];
     [button4  setImage:[UIImage imageNamed:@"app.png"] forState:UIControlStateNormal];
     
-    firscrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+    firscrollView.backgroundColor =   [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
     firscrollView.pagingEnabled = YES;
     firscrollView.tag = 100;
     firscrollView.showsHorizontalScrollIndicator = NO;//不显示水平滑动线
@@ -126,7 +126,7 @@
     
  
   
-    viewapp.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+    viewapp.backgroundColor =   [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
     viewapp.hidden = YES;
      [self.view addSubview:viewapp];
      UIImageView *myimageview = [[UIImageView alloc] initWithFrame:CGRectMake(90,  -10, 140, 140)];
@@ -197,11 +197,12 @@
     
     
 
-    UIImageView *imageview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
+    UIImageView *imageview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"di_wen.png"]];
     [dataview setBackgroundView:imageview];
     dataview.delegate = self;
     dataview.dataSource = self;
     dataview.hidden = YES;
+    dataview.userInteractionEnabled = NO;
     dataview.tag = 200;
     dataview.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:dataview];

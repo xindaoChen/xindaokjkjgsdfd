@@ -123,8 +123,7 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-   
-     [delegate netAccess:self RequestFinished:[request.responseString JSONValue]];
+      [delegate netAccess:self RequestFinished:[request.responseString JSONValue]];
 }
 
 

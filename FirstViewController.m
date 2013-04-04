@@ -404,7 +404,7 @@
     }
     
 
-    [UIView animateWithDuration:1
+    [UIView animateWithDuration:0.5
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut animations:^(void){
                             selectview.alpha = 0.0;

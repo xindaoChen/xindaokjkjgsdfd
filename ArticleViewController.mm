@@ -162,6 +162,10 @@
     mylable1 = [[UILabel alloc] initWithFrame:CGRectMake(125, 180, 160, 40)];
     mylable1.backgroundColor = [UIColor clearColor];
     [viewapp addSubview:mylable1];
+    UIButton *phonebuton = [UIButton buttonWithType:UIButtonTypeCustom];
+    phonebuton.backgroundColor = [UIColor redColor];
+    phonebuton.frame = CGRectMake(130, 180, 230, 40);
+    [viewapp addSubview:phonebuton];
     
     UIImageView *imageview2 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 225, 40, 40)];
     imageview2.backgroundColor = [UIColor clearColor];

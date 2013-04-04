@@ -87,7 +87,7 @@
 //开发区图片+名称+文字说明
 -(void)thedevelopZone:(NSString *)string
 {
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETCITY]]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETDEVELOP]]];
     request.delegate = self;
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
@@ -96,7 +96,7 @@
 
 -(void)thecityName:(NSString *)string           //获取城市列表
 {
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETDEVELOP]]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETCITY]]];
     request.delegate = self;
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
@@ -123,6 +123,7 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    NSLog(@"%@",request);
       [delegate netAccess:self RequestFinished:[request.responseString JSONValue]];
 }
 

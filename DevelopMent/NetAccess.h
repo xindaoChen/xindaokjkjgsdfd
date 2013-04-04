@@ -18,8 +18,8 @@
 //#define Appintroduce @"http://www.dacheq.cn/index.php/index/app"   //APP
 //#define getImageUrl  @"http://www.dacheq.cn/assets/developimage/%@"   //根据图片名获取图片
 
-//#define HOST_URL                @"http://www.dacheq.cn/"
-#define HOST_URL                @"http://192.168.1.101:8010/"
+#define HOST_URL                @"http://www.dacheq.com/"
+//#define HOST_URL                @"http://192.168.1.101:8010/"
 
 #define API_DEVELOPIAMGE @"assets/developimage/"         //根据图片名获取图片
 #define API_APP @"index.php/index/app"                                //APP

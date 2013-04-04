@@ -206,10 +206,9 @@
     
  
     
-    UISearchBar* searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(40, 120, 240, 40)];
+    searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(40, 120, 240, 40)];
     searchbar.delegate = self;
-    searchbar.placeholder = @"搜索";
-     UIView *searview = [searchbar.subviews objectAtIndex:0];
+    UIView *searview = [searchbar.subviews objectAtIndex:0];
     [searview removeFromSuperview];
     [self.view addSubview:searchbar];
     
@@ -354,6 +353,15 @@
     {
         mydelegate.language = @"china";
     }
+    
+    if ([mydelegate.language isEqualToString:@"china"]) {
+        searchbar.placeholder = @"搜索";
+    }
+    else
+    {
+        searchbar.placeholder = @"search";
+    }
+
     
     if([NetAccess reachable])
     {

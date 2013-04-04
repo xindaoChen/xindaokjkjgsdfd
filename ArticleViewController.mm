@@ -73,7 +73,7 @@
     webview = [[UIWebView alloc] init];
     apparray = [[NSMutableArray alloc] init];
      button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button1 addTarget:self action:@selector(introduce) forControlEvents:UIControlEventTouchUpInside];
+     [button1 addTarget:self action:@selector(introduce) forControlEvents:UIControlEventTouchUpInside];
      button1.backgroundColor = [UIColor grayColor];
     
      button2 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -94,10 +94,10 @@
         dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-30, 320,540 ) style:UITableViewStylePlain];
          myMapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 505)];
          viewapp = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320,505 )];
-        button1.frame = CGRectMake(0, 456, 80, 48);
-        button2.frame = CGRectMake(80, 456, 80, 48);
-        button3.frame = CGRectMake(160, 456, 80, 48);
-        button4.frame = CGRectMake(240, 456, 80, 48);
+        button1.frame = CGRectMake(0, 456, 80, 51);
+        button2.frame = CGRectMake(80, 456, 80, 51);
+        button3.frame = CGRectMake(160, 456, 80, 51);
+        button4.frame = CGRectMake(240, 456, 80, 51);
     }
     else
     {
@@ -105,10 +105,10 @@
          dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-30, 320,410 ) style:UITableViewStylePlain];
          myMapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 415)];
          viewapp = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320,375 )];
-        button1.frame = CGRectMake(0, 370, 80, 46);
-        button2.frame = CGRectMake(80, 370, 80, 46);
-        button3.frame = CGRectMake(160, 370, 80, 46);
-        button4.frame = CGRectMake(240, 370, 80, 46);
+        button1.frame = CGRectMake(0, 370, 80, 51);
+        button2.frame = CGRectMake(80, 370, 80, 51);
+        button3.frame = CGRectMake(160, 370, 80, 51);
+        button4.frame = CGRectMake(240, 370, 80, 51);
     }
     [button1  setImage:[UIImage imageNamed:@"introducex.png"] forState:UIControlStateNormal];
     [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
@@ -136,7 +136,7 @@
     UIButton *loadbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     [loadbutton setImage:[UIImage imageNamed:@"load.png"] forState:UIControlStateNormal];
     [loadbutton addTarget:self action:@selector(pushtoapp) forControlEvents:UIControlEventTouchUpInside];
-    loadbutton.frame = CGRectMake(90, 130, 140, 40);
+    loadbutton.frame = CGRectMake(100, 130, 120, 40);
     [viewapp addSubview:loadbutton];
     
     UIImageView *imageview1 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 180, 40, 40)];
@@ -475,11 +475,12 @@
     else if (na.tag ==111)
     {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        NSLog(@"%@",resultSet);
 
         apparray = resultSet;
         [apparray retain];
        
-        if ([[[apparray objectAtIndex:0] objectForKey:@"tel"]  isEqualToString:@""]) {
+        if ([[[apparray objectAtIndex:0] objectForKey:@"tel"]  isEqualToString:@""]  ||  resultSet ==nil) {
            
             mylable1.text = @"暂无数据";
         }
@@ -488,7 +489,7 @@
              mylable1.text = [[apparray objectAtIndex:0] objectForKey:@"tel"];
        }
         
-        if ([[[apparray objectAtIndex:0] objectForKey:@"fax"] isEqualToString:@""]) {
+        if ([[[apparray objectAtIndex:0] objectForKey:@"fax"] isEqualToString:@""] ||  resultSet ==nil) {
             
              mylable2.text = @"暂无数据";
         }
@@ -497,7 +498,7 @@
            mylable2.text = [[apparray objectAtIndex:0] objectForKey:@"fax"];
         }
 
-        if ([[[apparray objectAtIndex:0] objectForKey:@"email"] isEqualToString:@""]) {
+        if ([[[apparray objectAtIndex:0] objectForKey:@"email"] isEqualToString:@""] ||  resultSet ==nil) {
             
              mylable3.text = @"暂无数据";
         }
@@ -506,7 +507,7 @@
            mylable3.text = [[apparray objectAtIndex:0] objectForKey:@"email"];
         }
 
-        if ( [[[apparray objectAtIndex:0] objectForKey:@"site"] isEqualToString:@""]) {
+        if ( [[[apparray objectAtIndex:0] objectForKey:@"site"] isEqualToString:@""] ||  resultSet ==nil) {
            
              mylable4.text = @"暂无数据";
         }
@@ -537,14 +538,14 @@
           numlabel.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
          if (fram.size.height>500) {
                 imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
-                textview.frame = CGRectMake(frame.size.width*i +10, 190, 300, 265);
+                textview.frame = CGRectMake(frame.size.width*i +10, 190, 300, 262);
                label.frame = CGRectMake( frame.size.width*i +10, 160, 300, 30);
              numlabel.frame = CGRectMake(frame.size.width*i+250 , 160, 60, 30);
          }
        else
        {
            imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
-           textview.frame = CGRectMake(frame.size.width*i +10, 185, 300, 190);
+           textview.frame = CGRectMake(frame.size.width*i +10, 185, 300, 185);
             label.frame = CGRectMake( frame.size.width*i +10, 155, 230, 30);
            numlabel.frame = CGRectMake( frame.size.width*i +250, 155, 60, 30);
        }
@@ -616,7 +617,7 @@
 
          if (fram.size.height>500) {
              imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
-             textview.frame = CGRectMake(frame.size.width*i +10, 190, 300, 265);
+             textview.frame = CGRectMake(frame.size.width*i +10, 190, 300, 262);
              label.frame = CGRectMake( frame.size.width*i +10, 160, 300, 30);
              numlabel.frame = CGRectMake(frame.size.width*i+250 , 160, 60, 30);
 
@@ -624,7 +625,7 @@
          else
          {
              imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
-             textview.frame = CGRectMake(frame.size.width*i +10, 185, 300, 190);
+             textview.frame = CGRectMake(frame.size.width*i +10, 185, 300, 185);
              label.frame = CGRectMake( frame.size.width*i +10, 155, 300, 30);
                  numlabel.frame = CGRectMake( frame.size.width*i +250, 155, 60, 30);
          }

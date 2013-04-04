@@ -20,7 +20,6 @@
 #import "ClassViewController.h"
 #import "GrayPageControl.h"
 #import "UITools.h"
-#import "MBProgressHUD.h"
 #import "AppDelegate.h"
 #import "XDTabBarViewController.h"
 
@@ -369,7 +368,6 @@
     
     if([NetAccess reachable])
     {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         NSString*string1 = @"{\"type\":\"";
         NSString*string2 = [NSString stringWithFormat:@"%@\"}",mydelegate.language];
         NSMutableString*alltring = [[NSMutableString alloc] init];
@@ -404,7 +402,7 @@
     }
     
 
-    [UIView animateWithDuration:1
+    [UIView animateWithDuration:0.5
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut animations:^(void){
                             selectview.alpha = 0.0;
@@ -527,7 +525,6 @@
  
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if (na.tag == 100){
          NSLog(@"%@",resultSet);
         if (resultSet.count !=0) {
@@ -571,7 +568,12 @@
             [firscrollView addSubview:buttongs];
 
             dispatch_group_async(group, queue, ^{
-                NSString *url = [NSString stringWithFormat:getImageUrl,[[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
+ 
+                NSString *url = [NSString stringWithFormat:
+                                 @"%@%@%@",
+                                 HOST_URL, API_DEVELOPIAMGE,
+                                 [[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
+                
                 NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
                 UIImage *image = [UIImage imageWithData:data];
                 UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];

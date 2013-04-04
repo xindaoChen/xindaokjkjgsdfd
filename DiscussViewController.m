@@ -159,16 +159,12 @@
 
 -(void)pushtoapp
 {
-    NSURL *URL = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"];
-    [webview loadRequest:[NSURLRequest requestWithURL:URL]];
-
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"]];
 }
 
 -(void)pushtoreview
 {
-    NSURL *URL = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/sheng-xiang-mei-shu-guan-fan/id514893190?mt=8"];
-    [webview loadRequest:[NSURLRequest requestWithURL:URL]];
-
+   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"]];
 }
 
 - (void)didReceiveMemoryWarning

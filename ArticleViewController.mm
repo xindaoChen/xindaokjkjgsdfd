@@ -89,15 +89,17 @@
     [button4 addTarget:self action:@selector(pushtospp) forControlEvents:UIControlEventTouchUpInside];
     button4.backgroundColor = [UIColor grayColor];
 
+    float height = 54;
+    float lenght_height = 448;
      if (fram.size.height>500) {
         firscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 455)];
         dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-30, 320,540 ) style:UITableViewStylePlain];
          myMapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 505)];
          viewapp = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320,505 )];
-        button1.frame = CGRectMake(0, 456, 80, 51);
-        button2.frame = CGRectMake(80, 456, 80, 51);
-        button3.frame = CGRectMake(160, 456, 80, 51);
-        button4.frame = CGRectMake(240, 456, 80, 51);
+        button1.frame = CGRectMake(0, lenght_height, 80, height);
+        button2.frame = CGRectMake(80, lenght_height, 80, height);
+        button3.frame = CGRectMake(160, lenght_height, 80, height);
+        button4.frame = CGRectMake(240, lenght_height, 80, height);
     }
     else
     {
@@ -105,10 +107,10 @@
          dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-30, 320,410 ) style:UITableViewStylePlain];
          myMapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 415)];
          viewapp = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320,375 )];
-        button1.frame = CGRectMake(0, 370, 80, 51);
-        button2.frame = CGRectMake(80, 370, 80, 51);
-        button3.frame = CGRectMake(160, 370, 80, 51);
-        button4.frame = CGRectMake(240, 370, 80, 51);
+        button1.frame = CGRectMake(0, 363, 80, height);
+        button2.frame = CGRectMake(80, 363, 80, height);
+        button3.frame = CGRectMake(160, 363, 80, height);
+        button4.frame = CGRectMake(240, 363, 80, height);
     }
     [button1  setImage:[UIImage imageNamed:@"introducex.png"] forState:UIControlStateNormal];
     [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
@@ -137,11 +139,17 @@
     [myimageview setImage:[UIImage imageNamed:@"applogo.png"]];
     [viewapp addSubview:myimageview];
     
-    UIButton *loadbutton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [loadbutton setImage:[UIImage imageNamed:@"load.png"] forState:UIControlStateNormal];
+    UIButton*loadbutton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [loadbutton setImage:[UIImage imageNamed:@"load.png"] forState:UIControlStateNormal];
+    [loadbutton setBackgroundImage:[UIImage imageNamed:@"load.png"] forState:UIControlStateNormal];
     [loadbutton addTarget:self action:@selector(pushtoapp) forControlEvents:UIControlEventTouchUpInside];
     loadbutton.frame = CGRectMake(100, 130, 120, 40);
     [viewapp addSubview:loadbutton];
+    loadlabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 80, 40)];
+    loadlabel.backgroundColor = [UIColor clearColor];
+    loadlabel.font = [UIFont systemFontOfSize:16];
+    loadlabel.textColor = [UIColor whiteColor];
+    [loadbutton addSubview:loadlabel];
     
     UIImageView *imageview1 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 180, 40, 40)];
     imageview1.backgroundColor = [UIColor clearColor];
@@ -156,6 +164,10 @@
     mylable1 = [[UILabel alloc] initWithFrame:CGRectMake(125, 180, 160, 40)];
     mylable1.backgroundColor = [UIColor clearColor];
     [viewapp addSubview:mylable1];
+    UIButton *phonebuton = [UIButton buttonWithType:UIButtonTypeCustom];
+    phonebuton.backgroundColor = [UIColor redColor];
+    phonebuton.frame = CGRectMake(130, 180, 230, 40);
+    [viewapp addSubview:phonebuton];
     
     UIImageView *imageview2 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 225, 40, 40)];
     imageview2.backgroundColor = [UIColor clearColor];
@@ -229,6 +241,7 @@
     [self.view addSubview:button2];
     [self.view addSubview:button3];
     [self.view addSubview:button4];
+    
     leftbutton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 //    leftbutton.frame = CGRectMake(0,0,20,40);
     leftbutton.backgroundColor = [UIColor blueColor];
@@ -254,9 +267,8 @@
 
 -(void)pushtoapp
 {
-    NSURL *URL = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"];
-     [webview loadRequest:[NSURLRequest requestWithURL:URL]];
-
+    
+   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"]];
 }
 
 
@@ -483,6 +495,17 @@
 
         apparray = resultSet;
         [apparray retain];
+        if ([[[apparray objectAtIndex:0] objectForKey:@"link"] isEqualToString:@""] ||  resultSet ==nil) {
+ 
+             loadlabel.text = @"点击下载";
+            
+            
+        }
+        else
+        {
+            loadlabel.text = @"暂无APP";
+         }
+        
        
         if ([[[apparray objectAtIndex:0] objectForKey:@"tel"]  isEqualToString:@""]  ||  resultSet ==nil) {
            
@@ -559,7 +582,11 @@
          imageview.backgroundColor = [UIColor clearColor];
          label.text = [[introducearray objectAtIndex:i] objectForKey:@"title"];
 //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   
-             NSString *url = [NSString stringWithFormat:getImageUrl,[[introducearray objectAtIndex:i] objectForKey:@"img"]];
+           NSString *url = [NSString stringWithFormat:
+                            @"%@%@%@",
+                            HOST_URL, API_DEVELOPIAMGE,
+                            [[introducearray objectAtIndex:i] objectForKey:@"img"]];
+         
              NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
              UIImage *image = [[UIImage alloc]initWithData:data];
            

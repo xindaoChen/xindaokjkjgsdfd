@@ -20,15 +20,15 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     FirstViewController* firstview = [[FirstViewController alloc] init];
     UINavigationController *naviga1 = [[UINavigationController alloc] initWithRootViewController:firstview];
-//    naviga1.tabBarItem.image = [UIImage imageNamed:@"first.png"];
+    naviga1.tabBarItem.image = [UIImage imageNamed:@"homepage"];
     
     classview = [[ClassViewController alloc] init];
     naviga2 = [[UINavigationController alloc] initWithRootViewController:classview];
-//    naviga2.tabBarItem.image = [UIImage imageNamed:@"class.png"];
+    naviga2.tabBarItem.image = [UIImage imageNamed:@"class"];
     
     disview = [[DiscussViewController alloc] init ];
     naviga3 = [[UINavigationController alloc] initWithRootViewController:disview];
-//    naviga3.tabBarItem.image = [UIImage imageNamed:@"yunju.png"];
+    naviga3.tabBarItem.image = [UIImage imageNamed:@"about"];
     NSArray *array = [NSArray arrayWithObjects:naviga1,naviga2,naviga3, nil];
     
     XDTabBarViewController *tabbar=[[[XDTabBarViewController alloc] init] autorelease];

@@ -37,7 +37,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
     [super viewDidAppear:YES];
 }
 
@@ -134,7 +134,7 @@
 {
     CooperaViewController *coopview = [[CooperaViewController alloc] init];
     [self.navigationController pushViewController:coopview animated:YES];
-    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
+//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
     
 }
 

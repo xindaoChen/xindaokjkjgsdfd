@@ -526,7 +526,7 @@
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
     if (na.tag == 100){
-         NSLog(@"%@",resultSet);
+         NSLog(@"netAccess resultSet:%@",resultSet);
         if (resultSet.count !=0) {
             listarray = resultSet;
             [listarray retain];

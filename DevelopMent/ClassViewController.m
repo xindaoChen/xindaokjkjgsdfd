@@ -23,6 +23,7 @@
 
 @implementation ClassViewController
 @synthesize listarray;
+@synthesize gNetAccess = _gNetAccess;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
@@ -60,6 +61,8 @@
     NSString *filenames=[pat stringByAppendingPathComponent:@"Class.plist"];
     listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
      
+    NetAccess *netAccess = [[NetAccess alloc]init];
+    _gNetAccess = netAccess;
     
     if (listarray.count != 0) {
         [self.tableView reloadData];
@@ -80,10 +83,9 @@
         NSMutableString*alltring = [[NSMutableString alloc] init];
         [alltring appendString:string1];
         [alltring appendString:string2];
-        NetAccess *netAccess = [[NetAccess alloc]init];
-        netAccess.delegate = self;
-        netAccess.tag = 100;
-        [netAccess theclassmessage:alltring];
+        _gNetAccess.delegate = self;
+        _gNetAccess.tag = 100;
+        [_gNetAccess theclassmessage:alltring];
     }
     else
     {
@@ -160,10 +162,17 @@
 }
 
  
- 
+#pragma mark -- NetAccessDelegate
+
+- (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+}
 
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+
     if (na.tag ==100) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if (resultSet.count !=0) {

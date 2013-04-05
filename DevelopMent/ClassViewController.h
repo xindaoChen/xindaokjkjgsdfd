@@ -11,8 +11,10 @@
 @interface ClassViewController : UITableViewController<NetAccessDelegate>
 {
     NSMutableArray *listarray;
+    NetAccess *gNetAccess;
 }
 @property(nonatomic,strong)NSMutableArray *listarray;
+@property (nonatomic, strong) NetAccess *gNetAccess;
 
 - (id)initWithStyle:(UITableViewStyle)style;
 @end

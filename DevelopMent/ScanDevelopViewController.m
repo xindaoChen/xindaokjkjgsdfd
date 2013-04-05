@@ -74,8 +74,8 @@
 {
     [super viewDidLoad];
     
-   
-    
+    NetAccess *netAccess = [[NetAccess alloc] init];
+    _gNetAccess = netAccess;
     
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
     button2.frame = CGRectMake(10, 2, 40, 40);
@@ -296,6 +296,9 @@
     provinceButonStatue = 1;
     levelButonStatue = 1;
     industryButonStatue = 1;
+    
+
+    
 }
 
 -(void)backtosuper
@@ -309,10 +312,9 @@
     
     if([NetAccess reachable])
     {
-        NetAccess *netAccess = [[NetAccess alloc]init];
-        netAccess.delegate = self;
-        netAccess.tag = 100;
-        [netAccess thedevelopZone:getDevelopZoneInfo];
+        _gNetAccess.delegate = self;
+        _gNetAccess.tag = 100;
+        [_gNetAccess thedevelopZone:getDevelopZoneInfo];
        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         //  [getDevelopZoneInfo release];
     }
@@ -354,10 +356,9 @@
  //   getCityName = @"{\"type\":\"china\",\"prov\":\"辽宁\"}";
     if([NetAccess reachable])
     {
-        NetAccess *netAccess2 = [[NetAccess alloc]init];
-        netAccess2.delegate = self;
-        netAccess2.tag = 150;
-        [netAccess2 thecityName:getCityName];
+        _gNetAccess.delegate = self;
+        _gNetAccess.tag = 150;
+        [_gNetAccess thecityName:getCityName];
         
        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
        
@@ -380,10 +381,9 @@
     
     if([NetAccess reachable])
     {
-        NetAccess *netAccess3 = [[NetAccess alloc]init];
-        netAccess3.delegate = self;
-        netAccess3.tag = 151;    //tag = 151 ,levellist
-        [netAccess3 thelevelList:getLevelList];
+        _gNetAccess.delegate = self;
+        _gNetAccess.tag = 151;    //tag = 151 ,levellist
+        [_gNetAccess thelevelList:getLevelList];
         
        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
@@ -400,10 +400,9 @@ else if([languageFlag isEqualToString:@"english"])
     
     if([NetAccess reachable])
     {
-        NetAccess *netAccess3 = [[NetAccess alloc]init];
-        netAccess3.delegate = self;
-        netAccess3.tag = 151;    //tag = 151 ,levellist
-        [netAccess3 thelevelList:getLevelList];
+        _gNetAccess.delegate = self;
+        _gNetAccess.tag = 151;    //tag = 151 ,levellist
+        [_gNetAccess thelevelList:getLevelList];
         
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
@@ -421,10 +420,9 @@ else if([languageFlag isEqualToString:@"english"])
     NSString *getIndustryList = @"{\"type\":\"china\"}";
     if([NetAccess reachable])
     {
-        NetAccess *netAccess4 = [[NetAccess alloc]init];
-        netAccess4.delegate = self;
-        netAccess4.tag = 152;    //tag = 151 ,levellist
-        [netAccess4 theindustryList:getIndustryList];
+        _gNetAccess.delegate = self;
+        _gNetAccess.tag = 152;    //tag = 151 ,levellist
+        [_gNetAccess theindustryList:getIndustryList];
        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
     else
@@ -439,10 +437,9 @@ else if([languageFlag isEqualToString:@"english"])
     {
         NSString *getIndustryList = @"{\"type\":\"english\"}";
 
-        NetAccess *netAccess4 = [[NetAccess alloc]init];
-        netAccess4.delegate = self;
-        netAccess4.tag = 152;    //tag = 151 ,levellist
-        [netAccess4 theindustryList:getIndustryList];
+        _gNetAccess.delegate = self;
+        _gNetAccess.tag = 152;    //tag = 151 ,levellist
+        [_gNetAccess theindustryList:getIndustryList];
       [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
     }
@@ -639,9 +636,18 @@ else if([languageFlag isEqualToString:@"english"])
     
 
 }
+#pragma mark -- NetAccessDelegate
+
+- (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+}
+
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
-//    [assAiv stopAnimating];
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if (na.tag ==100) {
         
         [listarray removeAllObjects];
@@ -675,7 +681,6 @@ else if([languageFlag isEqualToString:@"english"])
         
     }
     if (na.tag == 150) {
-    //    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
      
         [listarray3 removeAllObjects];
@@ -685,9 +690,6 @@ else if([languageFlag isEqualToString:@"english"])
         [cityView reloadData];
     }
     if (na.tag == 151) {
-      //  [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-
-       
         [listarray4 removeAllObjects];
         
         listarray4 = resultSet;
@@ -792,7 +794,7 @@ else if([languageFlag isEqualToString:@"english"])
             
             
             NSString *index_row = [NSString stringWithFormat:@"%d", indexPath.row];
-            
+
             if ([imagesDictionary valueForKey:index_row] != nil) {
                 [cell.imageview setImage:[imagesDictionary valueForKey:index_row]];
             }else{

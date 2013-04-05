@@ -18,6 +18,8 @@
 		445B747B170C405C00557D86 /* class_select_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 445B7475170C405C00557D86 /* class_select_tab@2x.png */; };
 		445B747C170C405C00557D86 /* homepage_normal_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 445B7476170C405C00557D86 /* homepage_normal_tab@2x.png */; };
 		445B747D170C405C00557D86 /* homepage_select_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 445B7477170C405C00557D86 /* homepage_select_tab@2x.png */; };
+		44D4837A170EBC250044AB41 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D48378170EBC250044AB41 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		44D4837B170EBC250044AB41 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 44D48379170EBC250044AB41 /* README.md */; };
 		44E1B45B170D572500EB215F /* about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44E1B457170D572500EB215F /* about@2x.png */; };
 		44E1B45C170D572500EB215F /* class@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44E1B458170D572500EB215F /* class@2x.png */; };
 		44E1B45D170D572500EB215F /* homepage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44E1B459170D572500EB215F /* homepage@2x.png */; };
@@ -176,6 +178,9 @@
 		445B7475170C405C00557D86 /* class_select_tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "class_select_tab@2x.png"; sourceTree = "<group>"; };
 		445B7476170C405C00557D86 /* homepage_normal_tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homepage_normal_tab@2x.png"; sourceTree = "<group>"; };
 		445B7477170C405C00557D86 /* homepage_select_tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homepage_select_tab@2x.png"; sourceTree = "<group>"; };
+		44D48377170EBC250044AB41 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		44D48378170EBC250044AB41 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		44D48379170EBC250044AB41 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		44E1B457170D572500EB215F /* about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@2x.png"; sourceTree = "<group>"; };
 		44E1B458170D572500EB215F /* class@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "class@2x.png"; sourceTree = "<group>"; };
 		44E1B459170D572500EB215F /* homepage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homepage@2x.png"; sourceTree = "<group>"; };
@@ -411,6 +416,7 @@
 		4412566D17098C2A007B7C9E /* XCLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				44D48376170EBC250044AB41 /* JSONKit */,
 				4401869C170BFF8D002EF4C6 /* MBProgressHUD.h */,
 				4401869D170BFF8D002EF4C6 /* MBProgressHUD.m */,
 				4412566B17098C09007B7C9E /* XDHeader.h */,
@@ -418,6 +424,16 @@
 				4412566F17098E32007B7C9E /* UITools.m */,
 			);
 			name = XCLibrary;
+			sourceTree = "<group>";
+		};
+		44D48376170EBC250044AB41 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				44D48377170EBC250044AB41 /* JSONKit.h */,
+				44D48378170EBC250044AB41 /* JSONKit.m */,
+				44D48379170EBC250044AB41 /* README.md */,
+			);
+			path = JSONKit;
 			sourceTree = "<group>";
 		};
 		7852576F16F94FA000726F8E = {
@@ -873,6 +889,7 @@
 				C8095719170D8E4000780FC3 /* levelbutton1.png in Resources */,
 				789924E2170D788E00292EE2 /* instead_mes.png in Resources */,
 				789924E4170D890E00292EE2 /* load@2x.png in Resources */,
+				44D4837B170EBC250044AB41 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,6 +936,7 @@
 				4401869E170BFF8D002EF4C6 /* MBProgressHUD.m in Sources */,
 				C80956FD170C397800780FC3 /* calssCell.m in Sources */,
 				445B7471170C3E5900557D86 /* XDTabBarViewController.m in Sources */,
+				44D4837A170EBC250044AB41 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

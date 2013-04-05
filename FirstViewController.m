@@ -29,6 +29,8 @@
 
 @implementation FirstViewController
 
+@synthesize gNetAccess = _gNetAccess;
+
 @synthesize firscrollView,secscrollview,pageController,pageControllertwo,toolBar,maplistarray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -59,6 +61,9 @@
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"all_view_bg"]];
     [bgView addSubview:imageView];
     [self.view addSubview:bgView];
+    
+    NetAccess *netAccess = [[NetAccess alloc]init];
+    _gNetAccess = netAccess;
     
     if(![faflult objectForKey:@"key"])
     {
@@ -360,10 +365,9 @@
         NSMutableString*alltring = [[NSMutableString alloc] init];
         [alltring appendString:string1];
         [alltring appendString:string2];
-        NetAccess *netAccess = [[NetAccess alloc]init];
-        netAccess.delegate = self;
-        netAccess.tag = 100;
-        [netAccess theFirstviewPicture:alltring];
+        _gNetAccess.delegate = self;
+        _gNetAccess.tag = 100;
+        [_gNetAccess theFirstviewPicture:alltring];
     }
     else
     {
@@ -507,33 +511,6 @@
 
 
  
- 
--(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
-{
-    if (na.tag == 100){
-         NSLog(@"%@",resultSet);
-        if (resultSet.count !=0) {
-            listarray = resultSet;
-           
-             firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
-            for (UIView *subView in firscrollView.subviews)
-            {
-                [subView removeFromSuperview];
-            }
-            
-            [self setfirstimage];
-             
-            pageController.numberOfPages=listarray.count;
-
-        }
-        else
-        {
-        [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"暂无数据"];
-
-        }
-   
-      }
-}
 
 -(void)setfirstimage
 {
@@ -700,5 +677,43 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark -- NetAccessDelegate
+
+- (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+}
+
+-(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    if (na.tag == 100){
+        NSLog(@"%@",resultSet);
+        if (resultSet.count !=0) {
+            listarray = resultSet;
+            
+            firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
+            for (UIView *subView in firscrollView.subviews)
+            {
+                [subView removeFromSuperview];
+            }
+            
+            [self setfirstimage];
+            
+            pageController.numberOfPages=listarray.count;
+            
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"暂无数据"];
+            
+        }
+        
+    }
+}
+
 
 @end

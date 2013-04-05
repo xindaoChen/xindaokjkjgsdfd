@@ -76,7 +76,8 @@
     [button2 addTarget:self action:@selector(backtosuper) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftBtnTopItem = [[UIBarButtonItem alloc] initWithCustomView:button2];
     self.navigationItem.leftBarButtonItem = leftBtnTopItem;
-       
+    NetAccess *netAccess = [[NetAccess alloc]init];
+    _gNetAccess= netAccess;
 }
 
 
@@ -91,10 +92,9 @@
     if([NetAccess reachable])
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        NetAccess *netAccess = [[NetAccess alloc]init];
-        netAccess.delegate = self;
-        netAccess.tag = 100;
-        [netAccess searchthemessage:allstring];
+        _gNetAccess.delegate = self;
+        _gNetAccess.tag = 100;
+        [_gNetAccess searchthemessage:allstring];
         
     }
     else
@@ -111,13 +111,19 @@
     [self.navigationController   popViewControllerAnimated:YES];
 }
  
- 
+
+
+#pragma mark -- NetAccessDelegate
+
+- (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+}
 
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-
-
     if (na.tag ==100) {
 //        [listarray removeAllObjects];
         listarray = resultSet;
@@ -135,7 +141,6 @@
 }
 
 
- 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

@@ -55,6 +55,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NetAccess *netAccess = [[NetAccess alloc] init];
+    _gNetAccess = netAccess;
+    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
      self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
       [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
@@ -249,8 +253,7 @@
     rightbutton.frame = CGRectMake(0,0,20,40);
     rightbutton.backgroundColor = [UIColor redColor];
     [rightbutton addTarget:self action:@selector(rightfunction) forControlEvents:UIControlEventTouchUpInside];
-    
- 
+
     
     self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
     
@@ -303,12 +306,10 @@
             [allstring appendString:string2];
             [allstring appendString:string3];
             [allstring appendString:string4];
-            NetAccess *netAccess = [[NetAccess alloc] init];
-            netAccess.delegate = self;
-            netAccess.tag = 110;
-            [netAccess theIntroducemessage:allstring];
+            _gNetAccess.delegate = self;
+            _gNetAccess.tag = 110;
+            [_gNetAccess theIntroducemessage:allstring];
 
-            
         }
     }
     else
@@ -377,10 +378,9 @@
             [allstring appendString:string2];
             [allstring appendString:string3];
             [allstring appendString:string4];
-            NetAccess *netAccess = [[NetAccess alloc]init];
-            netAccess.delegate = self;
-            netAccess.tag = 111;
-            [netAccess theAppmessage:allstring];
+            _gNetAccess.delegate = self;
+            _gNetAccess.tag = 111;
+            [_gNetAccess theAppmessage:allstring];
 
         }
     }
@@ -428,10 +428,9 @@
                 [allstring appendString:string2];
                 [allstring appendString:string3];
                 [allstring appendString:string4];
-                NetAccess *netAccess = [[NetAccess alloc]init];
-                netAccess.delegate = self;
-                netAccess.tag = 100;
-                [netAccess thedatamessage:allstring];
+                _gNetAccess.delegate = self;
+                _gNetAccess.tag = 100;
+                [_gNetAccess thedatamessage:allstring];
 
             }
         }
@@ -446,14 +445,19 @@
     sum = 1;
 }
 
- 
+#pragma mark -- NetAccessDelegate
+
+- (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+}
+
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
-   
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if (na.tag ==100)
     {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-
         dataarray = resultSet;
 
        
@@ -466,8 +470,6 @@
     }
     else if (na.tag ==110)
     {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-
         introducearray = resultSet;
         firscrollView.contentSize = CGSizeMake(320*(introducearray.count), 120);
 //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   [self  clearmessagetwo];});
@@ -488,7 +490,6 @@
     }
     else if (na.tag ==111)
     {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         NSLog(@"%@",resultSet);
 
         apparray = resultSet;
@@ -496,7 +497,6 @@
         if ([[[apparray objectAtIndex:0] objectForKey:@"link"] isEqualToString:@""] ||  resultSet ==nil) {
  
              loadlabel.text = @"点击下载";
-            
             
         }
         else

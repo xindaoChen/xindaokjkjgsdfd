@@ -9,9 +9,9 @@
 #import "NetAccess.h"
 #import "Reachability.h"
 #import "ASIFormDataRequest.h"
+#import "JSONKit.h"
+
 @implementation NetAccess
-@synthesize delegate = _delegate;
-@synthesize tag = _tag;
 
 //判断有无可用网络
 +(BOOL)reachable
@@ -29,58 +29,70 @@
 //首页图片
 -(void)theFirstviewPicture:(NSString*)string
 {
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"%@%@",HOST_URL,API_INDEXIMG]]];
+    NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@",HOST_URL,API_INDEXIMG]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
+    NSLog(@"url:%@ params:%@", url, string);
 }
 
 
 //搜索页
 -(void)searchthemessage:(NSString *)string
 {
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_SEARCH]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_SEARCH]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
-
+    NSLog(@"url:%@ params:%@", url, string);
 }
 
 //指数
 -(void)thedatamessage:(NSString *)string
 {
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETINDEX]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETINDEX]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
+    NSLog(@"url:%@ params:%@", url, string);
 }
 
 //分类
 -(void)theclassmessage:(NSString *)string
 {
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_CLASS]]];
+    NSURL *url =[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_CLASS]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
+    NSLog(@"url:%@ params:%@", url, string);
 }
 
 //简介
 -(void)theIntroducemessage:(NSString *)string
 {
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_INTRO]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_INTRO]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
+    NSLog(@"url:%@ params:%@", url , string);
+
 
 }
 //APP
 -(void)theAppmessage:(NSString *)string 
 {
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_APP]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_APP]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
-    
+    NSLog(@"url:%@ params:%@", url , string);
+
 }
 
 
@@ -88,29 +100,34 @@
 //开发区图片+名称+文字说明
 -(void)thedevelopZone:(NSString *)string
 {
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETDEVELOP]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETDEVELOP]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
-    
+    NSLog(@"url:%@ params:%@", url , string);
 }
 
 -(void)thecityName:(NSString *)string           //获取城市列表
 {
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETCITY]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETCITY]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
-    
+    NSLog(@"url:%@ params:%@", url , string);
+
 }
 
 -(void)thelevelList:(NSString *)string       //等级列表
 {
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_LEVEL]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_LEVEL]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
-    
+    NSLog(@"url:%@ params:%@", url , string);
+
 }
 
 -(void)theindustryList:(NSString *)string           //行业列表
@@ -124,10 +141,15 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    NSLog(@"%@",request);
-    [delegate netAccess:self RequestFinished:[request.responseString JSONValue]];
+    NSLog(@"ASIFinish request:%@",[[request.responseString JSONValue] JSONString]);
+    [_delegate netAccess:self RequestFinished:[request.responseString JSONValue]];
 }
 
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSLog(@"ASIFail request:%@",[[request.responseString JSONValue] JSONString]);
+    [_delegate netAccess:self RequestFailed:[request.responseString JSONValue]];
+}
 
 @end
 

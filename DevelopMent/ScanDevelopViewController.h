@@ -101,6 +101,9 @@
 @property(nonatomic,strong) NSString *getCityName;
 @property(nonatomic,strong) NSString *provinceName;
 @property (nonatomic, strong) NetAccess *gNetAccess;
+@property (nonatomic,strong) NetAccess *cityNetAccess;
+@property (nonatomic,strong) NetAccess *levelNetAcess;
+@property (nonatomic,strong) NetAccess *industryNetAcess;
 
 -(id)initWithnumber:( NSInteger )stringnum;
 -(id)initWithclassId:(NSString *)classid stringnum:(NSInteger)stringnum;

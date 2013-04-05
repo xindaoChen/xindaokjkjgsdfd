@@ -75,7 +75,14 @@
     [super viewDidLoad];
     
     NetAccess *netAccess = [[NetAccess alloc] init];
+     NetAccess *netAccess1 = [[NetAccess alloc] init];
+     NetAccess *netAccess2 = [[NetAccess alloc] init];
+     NetAccess *netAccess3 = [[NetAccess alloc] init];
+    
     _gNetAccess = netAccess;
+    _cityNetAccess = netAccess1;
+    _levelNetAcess = netAccess2;
+    _industryNetAcess = netAccess3;
     
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
     button2.frame = CGRectMake(10, 2, 40, 40);
@@ -356,9 +363,9 @@
  //   getCityName = @"{\"type\":\"china\",\"prov\":\"辽宁\"}";
     if([NetAccess reachable])
     {
-        _gNetAccess.delegate = self;
-        _gNetAccess.tag = 150;
-        [_gNetAccess thecityName:getCityName];
+        _cityNetAccess.delegate = self;
+        _cityNetAccess.tag = 150;
+        [_cityNetAccess thecityName:getCityName];
         
        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
        
@@ -381,9 +388,9 @@
     
     if([NetAccess reachable])
     {
-        _gNetAccess.delegate = self;
-        _gNetAccess.tag = 151;    //tag = 151 ,levellist
-        [_gNetAccess thelevelList:getLevelList];
+        _levelNetAcess.delegate = self;
+        _levelNetAcess.tag = 151;    //tag = 151 ,levellist
+        [_levelNetAcess thelevelList:getLevelList];
         
        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
@@ -400,9 +407,9 @@ else if([languageFlag isEqualToString:@"english"])
     
     if([NetAccess reachable])
     {
-        _gNetAccess.delegate = self;
-        _gNetAccess.tag = 151;    //tag = 151 ,levellist
-        [_gNetAccess thelevelList:getLevelList];
+        _levelNetAcess.delegate = self;
+        _levelNetAcess.tag = 151;    //tag = 151 ,levellist
+        [_levelNetAcess thelevelList:getLevelList];
         
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
@@ -420,9 +427,9 @@ else if([languageFlag isEqualToString:@"english"])
     NSString *getIndustryList = @"{\"type\":\"china\"}";
     if([NetAccess reachable])
     {
-        _gNetAccess.delegate = self;
-        _gNetAccess.tag = 152;    //tag = 151 ,levellist
-        [_gNetAccess theindustryList:getIndustryList];
+        _industryNetAcess.delegate = self;
+        _industryNetAcess.tag = 152;    //tag = 151 ,levellist
+        [_industryNetAcess theindustryList:getIndustryList];
        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
     else
@@ -437,9 +444,9 @@ else if([languageFlag isEqualToString:@"english"])
     {
         NSString *getIndustryList = @"{\"type\":\"english\"}";
 
-        _gNetAccess.delegate = self;
-        _gNetAccess.tag = 152;    //tag = 151 ,levellist
-        [_gNetAccess theindustryList:getIndustryList];
+        _industryNetAcess.delegate = self;
+        _industryNetAcess.tag = 152;    //tag = 151 ,levellist
+        [_industryNetAcess theindustryList:getIndustryList];
       [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
     }
@@ -987,7 +994,9 @@ else if([languageFlag isEqualToString:@"english"])
                     provinceButonStatue = 1;
                 }
                 developnumhasget = 0;
-                allListArray  = [[NSMutableArray alloc]init];
+                [imagesDictionary removeAllObjects];
+
+                [allListArray  removeAllObjects];
                           
                 [self showdevelopZone];
 
@@ -1054,7 +1063,9 @@ else if([languageFlag isEqualToString:@"english"])
             
            // [provinceView init];
             developnumhasget = 0;
-            allListArray  = [[NSMutableArray alloc]init];
+            [imagesDictionary removeAllObjects];
+
+           [allListArray  removeAllObjects];
 
             
 
@@ -1093,8 +1104,9 @@ else if([languageFlag isEqualToString:@"english"])
             
            // [provinceView init];
             developnumhasget = 0;
+            [imagesDictionary removeAllObjects];
 
-            allListArray  = [[NSMutableArray alloc]init];
+            [allListArray  removeAllObjects];
             [self showdevelopZone];
             break;
         }
@@ -1132,7 +1144,10 @@ else if([languageFlag isEqualToString:@"english"])
 
             
                     developnumhasget = 0;
-            allListArray  = [[NSMutableArray alloc]init];
+            
+            [imagesDictionary removeAllObjects];
+
+          [allListArray  removeAllObjects];
 
                      
             [self showdevelopZone];

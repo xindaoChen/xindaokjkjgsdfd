@@ -746,7 +746,7 @@ else if([languageFlag isEqualToString:@"english"])
             return allProvinceArray.count;
             break;
         case 3:
-            return listarray3.count;
+            return listarray3.count + 1;
             break;
         case 4:
             return listarray4.count + 1;
@@ -865,10 +865,31 @@ else if([languageFlag isEqualToString:@"english"])
             if (cell == nil) {
                 cell = [[[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
             }
+            
+            if (indexPath.row == 0) {
+                if ([languageFlag isEqualToString:@"china"]) {
+                    cell.textLabel.text = @"   全部";
+                    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+                }
+                else if([languageFlag isEqualToString:@"english"])
+                {
+                    cell.textLabel.text = @"   all";
+                    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+                }
+                return  cell;
+            }
+            else
+            {
+                cell.textLabel.text = [NSString stringWithFormat:@" %@",[[listarray3 objectAtIndex:indexPath.row -1] objectForKey:@"cityname"]];
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+            
+            }
+            
+            
             cell.selectedBackgroundView = [[[UIView alloc] initWithFrame:cell.frame] autorelease];
             cell.selectedBackgroundView.backgroundColor = [UIColor grayColor];
-            cell.textLabel.text = [NSString stringWithFormat:@" %@",[[listarray3 objectAtIndex:indexPath.row] objectForKey:@"cityname"]];
-             cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+//            cell.textLabel.text = [NSString stringWithFormat:@" %@",[[listarray3 objectAtIndex:indexPath.row -1] objectForKey:@"cityname"]];
+//             cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
             return cell;
             break;
         case 4:   //levelVIew
@@ -998,9 +1019,28 @@ else if([languageFlag isEqualToString:@"english"])
                 tempprovinceName = provinceName;
             }
           //  tempprovinceName = provinceName;
-            provinceName = [[listarray3 objectAtIndex:indexPath.row] objectForKey:@"cityname"];
+            
+            
+            if (indexPath.row >0 && indexPath.row <= listarray3.count) {
+                provinceLabel.text = [[listarray3 objectAtIndex:indexPath.row - 1] objectForKey:@"cityname"] ;
+                provinceName = [[listarray3 objectAtIndex:indexPath.row - 1] objectForKey:@"cityname"];
+
+               // leid = [[listarray4 objectAtIndex:indexPath.row-1] objectForKey:@"id"];
+            }
+            else
+            {
+                provinceLabel.text = tempprovinceName;
+                provinceName = tempprovinceName;
+                // [levelbutton setTitle:@"全部" forState:UIControlStateNormal];
+              //  leid = @"";
+            }
+
+            
+            
+            
+         //   provinceName = [[listarray3 objectAtIndex:indexPath.row] objectForKey:@"cityname"];
           //  [provincebutton setTitle:provinceName forState:UIControlStateNormal];
-            provinceLabel.text = provinceName;
+         //   provinceLabel.text = provinceName;
             
             getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
             levelbutton.titleLabel.text = @"全部";

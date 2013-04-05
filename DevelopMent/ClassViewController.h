@@ -11,11 +11,8 @@
 @interface ClassViewController : UITableViewController<NetAccessDelegate>
 {
     NSMutableArray *listarray;
-   // UILabel *label;
 }
 @property(nonatomic,strong)NSMutableArray *listarray;
 
-
- 
 - (id)initWithStyle:(UITableViewStyle)style;
 @end

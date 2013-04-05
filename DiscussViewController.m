@@ -152,8 +152,6 @@
 {
     CooperaViewController *coopview = [[CooperaViewController alloc] init];
     [self.navigationController pushViewController:coopview animated:YES];
-//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
-    
 }
 
 

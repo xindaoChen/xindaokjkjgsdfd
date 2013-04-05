@@ -10,7 +10,8 @@
 #import "Reachability.h"
 #import "ASIFormDataRequest.h"
 @implementation NetAccess
-@synthesize delegate,tag;
+@synthesize delegate = _delegate;
+@synthesize tag = _tag;
 
 //判断有无可用网络
 +(BOOL)reachable
@@ -30,7 +31,7 @@
 {
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"%@%@",HOST_URL,API_INDEXIMG]]];
     request.delegate = self;
-     [request setPostValue:string forKey:@"parameter"];
+    [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
 }
 
@@ -124,7 +125,7 @@
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSLog(@"%@",request);
-      [delegate netAccess:self RequestFinished:[request.responseString JSONValue]];
+    [delegate netAccess:self RequestFinished:[request.responseString JSONValue]];
 }
 
 

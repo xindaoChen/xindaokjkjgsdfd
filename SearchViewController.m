@@ -76,8 +76,6 @@
     [button2 addTarget:self action:@selector(backtosuper) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftBtnTopItem = [[UIBarButtonItem alloc] initWithCustomView:button2];
     self.navigationItem.leftBarButtonItem = leftBtnTopItem;
-    [leftBtnTopItem release];
-    
        
 }
 
@@ -93,7 +91,6 @@
     if([NetAccess reachable])
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
         NetAccess *netAccess = [[NetAccess alloc]init];
         netAccess.delegate = self;
         netAccess.tag = 100;
@@ -124,7 +121,6 @@
     if (na.tag ==100) {
 //        [listarray removeAllObjects];
         listarray = resultSet;
-        [listarray retain];
         
         NSLog(@"%@",listarray);
         [ searchbar resignFirstResponder];
@@ -162,7 +158,7 @@
     static NSString *CellIdentifier = @"Cell";
     MyCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
      }
  
     if (listarray.count != 0) {
@@ -190,8 +186,6 @@
                         [imageDic setObject:image forKey:[NSNumber numberWithInt:indexPath.row]];
                     });
                 }
-                [data release];
-                [image release];
             });
     
 
@@ -223,15 +217,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
- 
--(void)dealloc
-{
-    
-    [listarray release];listarray = nil;
-    [searchtable release];searchtable = nil;
-  //  [assAiv release];assAiv = nil;
-    [super dealloc];
-}
-
 
 @end

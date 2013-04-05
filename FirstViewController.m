@@ -28,12 +28,13 @@
 @end
 
 @implementation FirstViewController
+
 @synthesize firscrollView,secscrollview,pageController,pageControllertwo,toolBar,maplistarray;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-//         self.hidesBottomBarWhenPushed = YES;
        
     }
     return self;
@@ -41,7 +42,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
     [super viewDidAppear:YES];
 }
 
@@ -49,13 +49,14 @@
 {
     [super viewDidLoad];
    
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
-     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
-      AppDelegate *appdele = [UIApplication sharedApplication].delegate;
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
+    AppDelegate *appdele = [UIApplication sharedApplication].delegate;
     
     UIView *bgView = [[UIView alloc] init];
     bgView.frame = self.view.bounds;
-    UIImageView *imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"all_view_bg"] ] autorelease];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"all_view_bg"]];
     [bgView addSubview:imageView];
     [self.view addSubview:bgView];
     
@@ -68,7 +69,7 @@
         [appdele.window addSubview:viewss];
         
         scrollview = [[UIScrollView alloc] initWithFrame:viewss.frame];
-        scrollview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
+        scrollview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen"]];
         scrollview.pagingEnabled = YES;
         scrollview.tag = 200;
         scrollview.showsHorizontalScrollIndicator = NO;//不显示水平滑动线
@@ -81,11 +82,11 @@
         CGRect fram = self.view.frame;
         NSMutableArray *array ;
         if (fram.size.height>500) {
-             array = [[NSMutableArray alloc] initWithObjects:@"yindao1.png",@"yindao2.png",nil];
+             array = [[NSMutableArray alloc] initWithObjects:@"yindao1",@"yindao2",nil];
              }
         else
         {
-            array = [[NSMutableArray alloc] initWithObjects:@"yindao11.png",@"yindao22.png",nil];
+            array = [[NSMutableArray alloc] initWithObjects:@"yindao11",@"yindao22",nil];
         }
         for (int i = 0; i<2; i++)
         {
@@ -93,11 +94,9 @@
             UIImageView *firstview = [[UIImageView alloc] initWithFrame:CGRectMake(frame.size.width*i , 0, 320, frame.size.height)];
             [firstview setImage:[UIImage imageNamed:[array objectAtIndex:i]]];
             [scrollview addSubview:firstview];
-            [firstview release];
             if (i==1)
             {
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//                [button setImage:[UIImage imageNamed:@"start.png"] forState:UIControlStateNormal];
                 [button addTarget:self action:@selector(push) forControlEvents:UIControlEventTouchUpInside];
  
                 if (fram.size.height>500) {
@@ -113,8 +112,6 @@
                 [scrollview addSubview:button];
             }
         }
-        [array release];
-        [scrollview release];
         
     }
     else
@@ -140,8 +137,6 @@
     [button2 addTarget:self action:@selector(mylocation) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftBtnTopItem = [[UIBarButtonItem alloc] initWithCustomView:button2];
     self.navigationItem.rightBarButtonItem = leftBtnTopItem;
-    [leftBtnTopItem release];
-    
     
     mysearch = [[BMKSearch alloc] init];
     mysearch.delegate = self;
@@ -174,8 +169,6 @@
     
     pageControllertwo.backgroundColor = [UIColor clearColor];
     pageControllertwo.currentPage=0;
-//    [pageControllertwo setCurrentPageIndicatorTintColor:[UIColor redColor]];
-//    [pageControllertwo setPageIndicatorTintColor:[UIColor grayColor]];
     pageControllertwo.userInteractionEnabled=NO;
     pageControllertwo.alpha=1;
     [self.view addSubview:pageControllertwo];
@@ -188,13 +181,11 @@
     firscrollView.showsVerticalScrollIndicator = NO;//不显示垂直滑动线
     firscrollView.delegate = self;
     [firscrollView setContentOffset:CGPointMake(0, 0)];
-//    firscrollView.contentSize = CGSizeMake(1600, 120);
     [self.view addSubview:firscrollView];
     [self.view addSubview:pageController];
     UIImageView *insteadview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 120)];
     [insteadview setImage:[UIImage imageNamed:@"instead_fir"]];
     [firscrollView addSubview:insteadview];
-    [insteadview release];
      imagearray = [[NSMutableArray alloc] init];
  
   
@@ -203,9 +194,8 @@
     myMapView.showsUserLocation = YES;
  
     UIImageView *myview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 120, 320, 42)];
-    [myview setImage:[UIImage imageNamed:@"gray.png"]];
+    [myview setImage:[UIImage imageNamed:@"gray"]];
     [self.view addSubview:myview];
-    [myview release];
     
  
     
@@ -221,7 +211,6 @@
    [self.view addSubview:button];
 
      
-   
     NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString*pat=[pathss objectAtIndex:0];
     NSString *filenames=[pat stringByAppendingPathComponent:@"Picture.plist"];
@@ -281,7 +270,6 @@
                         num++;
                         [secscrollview addSubview:lable];
                         [secscrollview addSubview:button];
-                        [lable release];
                         
                     }
                 }
@@ -320,7 +308,6 @@
                         num++;
                         [secscrollview addSubview:lable];
                         [secscrollview addSubview:button];
-                        [lable release];
                     }
                 }
             }
@@ -377,7 +364,6 @@
         netAccess.delegate = self;
         netAccess.tag = 100;
         [netAccess theFirstviewPicture:alltring];
-        [alltring release];
     }
     else
     {
@@ -445,15 +431,14 @@
     selectview = [[UIView alloc] initWithFrame:appdele.window.frame];
     UIImageView *images = [[UIImageView alloc] initWithFrame:selectview.frame];
     if (fram.size.height>520) {
-        [images setImage:[UIImage imageNamed:@"yindao3.png"]];
+        [images setImage:[UIImage imageNamed:@"yindao3"]];
     }
     else
     {
-         [images setImage:[UIImage imageNamed:@"yindao31.png"]];
+         [images setImage:[UIImage imageNamed:@"yindao31"]];
     }
    
     [selectview addSubview:images];
-    [images release];
     [appdele.window addSubview:selectview];
     
     UIButton *buttonnext = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -529,7 +514,6 @@
          NSLog(@"%@",resultSet);
         if (resultSet.count !=0) {
             listarray = resultSet;
-            [listarray retain];
            
              firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
             for (UIView *subView in firscrollView.subviews)
@@ -580,13 +564,11 @@
                 if (data !=nil){
                     NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:data,@"data", [[listarray objectAtIndex:i] objectForKey:@"developname"],@"developname",[[listarray objectAtIndex:i] objectForKey:@"id"],@"id",[[listarray objectAtIndex:i] objectForKey:@"latitude"],@"latitude",[[listarray objectAtIndex:i] objectForKey:@"longitude"],@"longitude",nil];
                     [maplistarray addObject:diction];
-                    [diction release];
                 }
                 
                 if (data != nil) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [buttongs setImage:resImage forState:UIControlStateNormal];
-                        [data release];
                     });
                 }
          
@@ -597,7 +579,6 @@
             lable.textColor = [UIColor whiteColor];
             lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
             [firscrollView addSubview:lable];
-            [lable release];
      }
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
@@ -619,7 +600,7 @@
 {
     pageController.numberOfPages=listarray.count;
     CGRect frame = firscrollView.frame;
-     firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
+    firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
     for (int i = 0; i<listarray.count; i++)
     {
         
@@ -638,8 +619,7 @@
         lable.backgroundColor = [UIColor clearColor];
         lable.textColor = [UIColor whiteColor];
         lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
-         [firscrollView addSubview:lable];
-        [lable release];
+        [firscrollView addSubview:lable];
     }
 
 }
@@ -684,7 +664,7 @@
     }
     else
     {
-        ScanDevelopViewController *searchview = [[ScanDevelopViewController alloc] initwithcityname:trimmedString];
+        ScanDevelopViewController *searchview = [[ScanDevelopViewController alloc] initWithcityname:trimmedString];
         [self.navigationController pushViewController:searchview animated:YES];
 //        [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
 
@@ -720,26 +700,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
--(void)dealloc
-{
-    [firscrollView release];firscrollView = nil;
-    [secscrollview release];secscrollview = nil;
-    [pageController release];pageController = nil;
-    [pageControllertwo release];pageControllertwo = nil;
-    [listarray release];listarray = nil;
-    [maplistarray release];maplistarray = nil;
-    [buttonbars release];buttonbars = nil;
-    [toolBar release];toolBar = nil;
-    [arrayone release];arrayone = nil;
-    [imagearray release];imagearray = nil;
-    [mysearch release];mysearch = nil;
-    [super dealloc];
-    
-}
-
-
 
 @end

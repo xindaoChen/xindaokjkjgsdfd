@@ -14,7 +14,6 @@
 #import "Data.h"
 #import "MyCell.h"
 #import "Introduce.h"
-#import "CooperaViewController.h"
 #import "WepViewController.h"
 #import "MBProgressHUD.h"
 #import "UITools.h"
@@ -72,30 +71,30 @@
     introducearrytwo = [[NSMutableArray alloc] init];
     webview = [[UIWebView alloc] init];
     apparray = [[NSMutableArray alloc] init];
-     button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-     [button1 addTarget:self action:@selector(introduce) forControlEvents:UIControlEventTouchUpInside];
-     button1.backgroundColor = [UIColor grayColor];
-    
-     button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-     [button2 addTarget:self action:@selector(datamessage) forControlEvents:UIControlEventTouchUpInside];
-     button2.backgroundColor = [UIColor grayColor];
-    
-     button3 = [UIButton buttonWithType:UIButtonTypeCustom];
+    button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button1 addTarget:self action:@selector(introduce) forControlEvents:UIControlEventTouchUpInside];
+    button1.backgroundColor = [UIColor grayColor];
+
+    button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button2 addTarget:self action:@selector(datamessage) forControlEvents:UIControlEventTouchUpInside];
+    button2.backgroundColor = [UIColor grayColor];
+
+    button3 = [UIButton buttonWithType:UIButtonTypeCustom];
     [button3 addTarget:self action:@selector(mapviewarea) forControlEvents:UIControlEventTouchUpInside];
     button3.backgroundColor = [UIColor grayColor];
-    
-     button4 = [UIButton buttonWithType:UIButtonTypeCustom];
+
+    button4 = [UIButton buttonWithType:UIButtonTypeCustom];
     [button4 setTitle:@"APP" forState:UIControlStateNormal];
     [button4 addTarget:self action:@selector(pushtospp) forControlEvents:UIControlEventTouchUpInside];
     button4.backgroundColor = [UIColor grayColor];
 
     float height = 54;
     float lenght_height = 448;
-     if (fram.size.height>500) {
+    if (fram.size.height>500) {
         firscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 455)];
         dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-30, 320,540 ) style:UITableViewStylePlain];
-         myMapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 505)];
-         viewapp = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320,505 )];
+        myMapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 505)];
+        viewapp = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320,505 )];
         button1.frame = CGRectMake(0, lenght_height, 80, height);
         button2.frame = CGRectMake(80, lenght_height, 80, height);
         button3.frame = CGRectMake(160, lenght_height, 80, height);
@@ -104,9 +103,9 @@
     else
     {
         firscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 375)];
-         dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-30, 320,410 ) style:UITableViewStylePlain];
-         myMapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 415)];
-         viewapp = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320,375 )];
+        dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-30, 320,410 ) style:UITableViewStylePlain];
+        myMapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 415)];
+        viewapp = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320,375 )];
         button1.frame = CGRectMake(0, 363, 80, height);
         button2.frame = CGRectMake(80, 363, 80, height);
         button3.frame = CGRectMake(160, 363, 80, height);
@@ -127,7 +126,6 @@
     UIImageView *insteadview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 150)];
     [insteadview setImage:[UIImage imageNamed:@"instead_mes"]];
     [firscrollView addSubview:insteadview];
-    [insteadview release];
     [self.view addSubview:firscrollView];
     
  
@@ -155,12 +153,12 @@
     imageview1.backgroundColor = [UIColor clearColor];
     [imageview1 setImage:[UIImage imageNamed:@"phone.png"]];
     [viewapp addSubview:imageview1];
-    [imageview1 release];
+
     UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(70, 180, 60, 40)];
     label1.backgroundColor = [UIColor clearColor];
     label1.text = @"电话 :";
     [viewapp addSubview:label1];
-    [label1 release];
+
     mylable1 = [[UILabel alloc] initWithFrame:CGRectMake(125, 180, 160, 40)];
     mylable1.backgroundColor = [UIColor clearColor];
     [viewapp addSubview:mylable1];
@@ -173,12 +171,12 @@
     imageview2.backgroundColor = [UIColor clearColor];
      [imageview2 setImage:[UIImage imageNamed:@"fax.png"]];
     [viewapp addSubview:imageview2];
-    [imageview2 release];
+
     UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(70, 225, 60, 40)];
     label2.backgroundColor = [UIColor clearColor];
     label2.text = @"传真 :";
     [viewapp addSubview:label2];
-    [label2 release];
+
     mylable2 = [[UILabel alloc] initWithFrame:CGRectMake(125, 225, 160, 40)];
     mylable2.backgroundColor = [UIColor clearColor];
     [viewapp addSubview:mylable2];
@@ -187,12 +185,12 @@
     imageview3.backgroundColor = [UIColor clearColor];
      [imageview3 setImage:[UIImage imageNamed:@"email.png"]];
     [viewapp addSubview:imageview3];
-    [imageview3 release];
+
     UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(70, 270, 60, 40)];
     label3.backgroundColor = [UIColor clearColor];
     label3.text = @"邮件 :";
     [viewapp addSubview:label3];
-    [label3 release];
+
     mylable3 = [[UILabel alloc] initWithFrame:CGRectMake(125, 270, 160, 40)];
     mylable3.backgroundColor = [UIColor clearColor];
     [viewapp addSubview:mylable3];
@@ -201,12 +199,12 @@
     imageview4.backgroundColor = [UIColor clearColor];
      [imageview4 setImage:[UIImage imageNamed:@"site.png"]];
     [viewapp addSubview:imageview4];
-    [imageview4 release];
+
     UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(70, 315, 60, 40)];
     label4.backgroundColor = [UIColor clearColor];
     label4.text = @"网址 :";
     [viewapp addSubview:label4];
-    [label4 release];
+
     mylable4 = [[UILabel alloc] initWithFrame:CGRectMake(125, 315, 160, 40)];
     mylable4.backgroundColor = [UIColor clearColor];
     [viewapp addSubview:mylable4];
@@ -309,7 +307,7 @@
             netAccess.delegate = self;
             netAccess.tag = 110;
             [netAccess theIntroducemessage:allstring];
-            [allstring release];
+
             
         }
     }
@@ -383,7 +381,7 @@
             netAccess.delegate = self;
             netAccess.tag = 111;
             [netAccess theAppmessage:allstring];
-            [allstring release];
+
         }
     }
     else
@@ -434,7 +432,7 @@
                 netAccess.delegate = self;
                 netAccess.tag = 100;
                 [netAccess thedatamessage:allstring];
-                [allstring release];
+
             }
         }
         else
@@ -457,7 +455,7 @@
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
         dataarray = resultSet;
-        [dataarray retain];
+
        
         if (dataarray.count !=0) {
              [dataview reloadData];
@@ -494,7 +492,7 @@
         NSLog(@"%@",resultSet);
 
         apparray = resultSet;
-        [apparray retain];
+
         if ([[[apparray objectAtIndex:0] objectForKey:@"link"] isEqualToString:@""] ||  resultSet ==nil) {
  
              loadlabel.text = @"点击下载";
@@ -542,7 +540,6 @@
         {
             mylable4.text = [[apparray objectAtIndex:0] objectForKey:@"site"];
         }
-
  
         
     }
@@ -602,25 +599,18 @@
 //         });
          NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:[NSString stringWithFormat:@"%@",[[introducearray objectAtIndex:i] objectForKey:@"content"]],@"content",data,@"data", idstring,@"did",[NSString stringWithFormat:@"%d",i] ,@"fid",[[introducearray objectAtIndex:i] objectForKey:@"title"],@"title",nil];
          
-         [introducearrytwo addObject:diction];
-         [diction release];
+      [introducearrytwo addObject:diction];
+
      
       textview.backgroundColor = [UIColor clearColor];
       textview.editable = NO;
       textview.textColor = [UIColor blackColor];
-       textview.text = [NSString stringWithFormat:@"       %@",[[introducearray objectAtIndex:i] objectForKey:@"content"]];   
+      textview.text = [NSString stringWithFormat:@"       %@",[[introducearray objectAtIndex:i] objectForKey:@"content"]];   
       textview.font =[UIFont systemFontOfSize:16];
       [firscrollView addSubview:imageview];
       [firscrollView addSubview:textview];
       [firscrollView addSubview:label];
       [firscrollView addSubview:numlabel];
-         [data release];
-         [label release];
-         [image release];
-       
-         [imageview release];
-         [textview release];
-         [numlabel release];
          
       }
      NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
@@ -681,12 +671,6 @@
          [firscrollView addSubview:textview];
          [firscrollView addSubview:label];
          [firscrollView addSubview:numlabel];
-         [label release];
-         [image release];
-         [numlabel release];
-         [imageview release];
-         [textview release];
-         
      }
      
 
@@ -765,8 +749,6 @@
         lable.text = namestring;
         [view addSubview:lable];
         [newAnnotationView addSubview:view];
-        [view release];
-        [lable release];
         
         return newAnnotationView;
 
@@ -826,7 +808,7 @@
      if (tableView.tag ==200)
     {
         if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
         else
         {
@@ -834,7 +816,6 @@
             for (UIView *subview in subviews){
                 [subview removeFromSuperview];
             }
-            [subviews release];
         }
    
         UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, 120, 40)];
@@ -845,8 +826,6 @@
         labletwo.textColor =  [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0]; 
         [cell addSubview:lable];
         [cell addSubview:labletwo];
-        [lable release];
-        [labletwo release];
   
         for (int i = 0; i<dataarray.count; i++)
         {
@@ -935,9 +914,6 @@
         [array addObject:glossary];
         
     }
-    [request release];
-    [sortDescriptions release];
-    [sortDescriptor release];
     return array;
 }
 
@@ -966,10 +942,7 @@
         [NSDictionary dictionaryWithObjectsAndKeys: entry.did,@"id",entry.indexname,@"indexname",entry.num,@"num",entry.developname,@"developname",nil];
            [array addObject:glossary];
        }
-  
-    [sortDescriptor release];
-    [sortDescriptions release];
-    [request release];
+
     return array;
 }
 
@@ -996,8 +969,6 @@
         
         [[self appDelegate ].managedObjectContext save:&error];
     }
-    
-    [request release];
    
 }
 
@@ -1028,7 +999,6 @@
         
         [[self appDelegate ].managedObjectContext save:&error];
     }
-    [request release];
 }
 
 
@@ -1068,29 +1038,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
- 
- 
--(void)dealloc
-{
-    [introducearrytwo release];introducearrytwo = nil;
-    [introducearray release];introducearray = nil;
-    [dataarray release];dataarray = nil;
-    [myAnnotation release];myAnnotation = nil;
-    [myMapView release];myMapView = nil;
-  //  [assAiv release];assAiv = nil;
-    [firscrollView release];firscrollView = nil;
-    [dataview release];dataview = nil;
-    [viewapp release];viewapp = nil;
-    [webview release];webview = nil;
-    [mylable1 release];mylable1 = nil;
-     [mylable2 release];mylable2 = nil;
-     [mylable3 release];mylable3 = nil;
-     [mylable4 release];mylable4 = nil;
-         
-    [super dealloc];
-}
-
-
 
 @end

@@ -34,7 +34,6 @@
 #define API_INDEXIMG @"index.php/index/indexImg"           //首页图片  
 
 
-
 //#define Firstviewimage @"http://192.168.1.101:8010/index.php/index/indexImg"  //首页图片
 //#define Searchinterface @"http://192.168.1.101:8010/index.php/index/search"      //搜索页搜索数据
 //#define DataInterface @"http://192.168.1.101:8010/index.php/index/getindex"    //指数
@@ -58,6 +57,7 @@
 }
 @property(nonatomic,assign)id<NetAccessDelegate> delegate;
 @property(nonatomic,assign) int tag;
+
 +(BOOL)reachable;
 -(void)theFirstviewPicture:(NSString*)string;
 -(void)searchthemessage:(NSString *)string;

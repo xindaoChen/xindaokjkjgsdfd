@@ -90,7 +90,7 @@
     button4.backgroundColor = [UIColor grayColor];
 
     float height = 54;
-    float lenght_height = 448;
+    float lenght_height = 450;
      if (fram.size.height>500) {
         firscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 455)];
         dataview = [[UITableView alloc] initWithFrame:CGRectMake(0,-30, 320,540 ) style:UITableViewStylePlain];
@@ -165,9 +165,16 @@
     mylable1.backgroundColor = [UIColor clearColor];
     [viewapp addSubview:mylable1];
     UIButton *phonebuton = [UIButton buttonWithType:UIButtonTypeCustom];
-    phonebuton.backgroundColor = [UIColor redColor];
-    phonebuton.frame = CGRectMake(130, 180, 230, 40);
+    phonebuton.backgroundColor = [UIColor clearColor];
+    [phonebuton addTarget:self action:@selector(takephone) forControlEvents:UIControlEventTouchUpInside];
+    phonebuton.frame = CGRectMake(120, 180, 230, 40);
     [viewapp addSubview:phonebuton];
+    
+    UIButton *phonebuton2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    phonebuton2.backgroundColor = [UIColor clearColor];
+    [phonebuton2 addTarget:self action:@selector(pushtosite) forControlEvents:UIControlEventTouchUpInside];
+    phonebuton2.frame = CGRectMake(120, 315, 230, 40);
+    [viewapp addSubview:phonebuton2];
     
     UIImageView *imageview2 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 225, 40, 40)];
     imageview2.backgroundColor = [UIColor clearColor];
@@ -264,6 +271,29 @@
     }
 }
 
+
+-(void)takephone
+{
+    UIAlertView *av = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"%@",[[apparray objectAtIndex:0] objectForKey:@"tel"]] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"呼叫", nil];
+    av.tag = 0;
+    [av show];
+
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+        if(buttonIndex == 1)
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",[[apparray objectAtIndex:0] objectForKey:@"tel"]]]];
+        }
+ 
+}
+
+-(void)pushtosite
+{
+     
+     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",[[apparray objectAtIndex:0] objectForKey:@"site"]]]];
+}
 
 -(void)pushtoapp
 {

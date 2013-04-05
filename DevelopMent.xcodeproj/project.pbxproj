@@ -95,6 +95,7 @@
 		787AA25F170B180B00B746BB /* moveimage_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 787AA255170B180B00B746BB /* moveimage_pic.png */; };
 		787AA260170B180B00B746BB /* provinceCell1.png in Resources */ = {isa = PBXBuildFile; fileRef = 787AA256170B180B00B746BB /* provinceCell1.png */; };
 		787AA261170B180B00B746BB /* provinceCell2.png in Resources */ = {isa = PBXBuildFile; fileRef = 787AA257170B180B00B746BB /* provinceCell2.png */; };
+		7888F490170E644000BFEC99 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7888F48F170E644000BFEC99 /* libbaidumapapi.a */; };
 		78917454170D1AE4006F0D94 /* yindao1.png in Resources */ = {isa = PBXBuildFile; fileRef = 78917450170D1AE4006F0D94 /* yindao1.png */; };
 		78917455170D1AE4006F0D94 /* yindao2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78917451170D1AE4006F0D94 /* yindao2.png */; };
 		78917456170D1AE4006F0D94 /* yindao11.png in Resources */ = {isa = PBXBuildFile; fileRef = 78917452170D1AE4006F0D94 /* yindao11.png */; };
@@ -141,7 +142,6 @@
 		789924D8170D682D00292EE2 /* instead_pro.png in Resources */ = {isa = PBXBuildFile; fileRef = 789924D7170D682D00292EE2 /* instead_pro.png */; };
 		789924E2170D788E00292EE2 /* instead_mes.png in Resources */ = {isa = PBXBuildFile; fileRef = 789924E1170D788E00292EE2 /* instead_mes.png */; };
 		789924E4170D890E00292EE2 /* load@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 789924E3170D890E00292EE2 /* load@2x.png */; };
-		789924EC170DAE9000292EE2 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 789924EB170DAE9000292EE2 /* libbaidumapapi.a */; };
 		789AEAF316F9AADD00610CE8 /* DevelopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 789AEAF216F9AADC00610CE8 /* DevelopViewController.m */; };
 		78A30F4B16FA92A7007FED16 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A30F4A16FA92A7007FED16 /* CoreLocation.framework */; };
 		78A30F4D16FA92BC007FED16 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A30F4C16FA92BC007FED16 /* QuartzCore.framework */; };
@@ -275,6 +275,7 @@
 		787AA255170B180B00B746BB /* moveimage_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moveimage_pic.png; sourceTree = "<group>"; };
 		787AA256170B180B00B746BB /* provinceCell1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = provinceCell1.png; sourceTree = "<group>"; };
 		787AA257170B180B00B746BB /* provinceCell2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = provinceCell2.png; sourceTree = "<group>"; };
+		7888F48F170E644000BFEC99 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		78917450170D1AE4006F0D94 /* yindao1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yindao1.png; sourceTree = "<group>"; };
 		78917451170D1AE4006F0D94 /* yindao2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yindao2.png; sourceTree = "<group>"; };
 		78917452170D1AE4006F0D94 /* yindao11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yindao11.png; sourceTree = "<group>"; };
@@ -349,7 +350,6 @@
 		789924D7170D682D00292EE2 /* instead_pro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instead_pro.png; sourceTree = "<group>"; };
 		789924E1170D788E00292EE2 /* instead_mes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instead_mes.png; sourceTree = "<group>"; };
 		789924E3170D890E00292EE2 /* load@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "load@2x.png"; sourceTree = "<group>"; };
-		789924EB170DAE9000292EE2 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		789AEAF116F9AADC00610CE8 /* DevelopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DevelopViewController.h; path = ../DevelopViewController.h; sourceTree = "<group>"; };
 		789AEAF216F9AADC00610CE8 /* DevelopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DevelopViewController.m; path = ../DevelopViewController.m; sourceTree = "<group>"; };
 		78A30F2916FA90BA007FED16 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
@@ -429,7 +429,7 @@
 				7852577C16F94FA000726F8E /* UIKit.framework in Frameworks */,
 				7852577E16F94FA000726F8E /* Foundation.framework in Frameworks */,
 				7852578016F94FA000726F8E /* CoreGraphics.framework in Frameworks */,
-				789924EC170DAE9000292EE2 /* libbaidumapapi.a in Frameworks */,
+				7888F490170E644000BFEC99 /* libbaidumapapi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,7 +521,7 @@
 				445B7470170C3E5900557D86 /* XDTabBarViewController.m */,
 				78EAB75116FD9B4A00534880 /* MyCell.h */,
 				78EAB75216FD9B4A00534880 /* MyCell.m */,
-				789924EB170DAE9000292EE2 /* libbaidumapapi.a */,
+				7888F48F170E644000BFEC99 /* libbaidumapapi.a */,
 				78945D771707CA090034230A /* background.png */,
 				78A30F5A16FAB830007FED16 /* mapapi.bundle */,
 				78A30F2816FA90BA007FED16 /* inc */,

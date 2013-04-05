@@ -788,7 +788,7 @@ else if([languageFlag isEqualToString:@"english"])
         case 1:   //主界面tableview
            // [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
-
+             
             if (cell == nil) {
                 cell = [[[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
             }
@@ -1139,24 +1139,31 @@ else if([languageFlag isEqualToString:@"english"])
         if (indexPath.row == [allListArray count] - 1 && indexPath.row < count -1)
         {  UIView *footview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
             NSLog(@"$%d,%d,%d",indexPath.row,[allListArray count]-1,count -1);
-            footactive = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-            
-            footactive.center = CGPointMake(160, 30);
-            footactive.color = [UIColor blackColor];
-            [footview addSubview:footactive];
-            [footactive startAnimating];
+//            footactive = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//            
+//            footactive.center = CGPointMake(160, 30);
+//            footactive.color = [UIColor blackColor];
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+           [button setTitle:@"加载更多" forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+            button.frame = footview.frame;
+            button.backgroundColor = [UIColor clearColor];
+       //     [button setBackgroundImage:[UIImage imageNamed:@"levelbutton1.png"] forState:UIControlStateNormal];
+            [button addTarget:self action:@selector(getMoreInfo) forControlEvents:UIControlEventTouchUpInside];
+            [footview addSubview:button];
+            //[footactive startAnimating];
             tableView.tableFooterView = footview;
             
                        
-            getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\",\"time\":\"%@\"}",provinceName,leid,inid,cid,[[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"] ];
-            
-            NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);
-            NSLog(@"^^%@",getDevelopZoneInfo);
-            [provinceName retain];
-            [self showdevelopZone];
+//            getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\",\"time\":\"%@\"}",provinceName,leid,inid,cid,[[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"] ];
+//            
+//            NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);
+//            NSLog(@"^^%@",getDevelopZoneInfo);
+//            [provinceName retain];
+//            [self showdevelopZone];
             
             [footview release];
-            tableView.tableFooterView = nil;
+       //     tableView.tableFooterView = nil;
             
         }
         
@@ -1164,6 +1171,19 @@ else if([languageFlag isEqualToString:@"english"])
     
 }
 
+
+
+-(void)getMoreInfo
+{
+    getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\",\"time\":\"%@\"}",provinceName,leid,inid,cid,[[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"] ];
+    
+    NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);
+    NSLog(@"^^%@",getDevelopZoneInfo);
+    [provinceName retain];
+    [self showdevelopZone];
+    searchtable.tableFooterView = nil;
+
+}
 
 
 -(void)dealloc

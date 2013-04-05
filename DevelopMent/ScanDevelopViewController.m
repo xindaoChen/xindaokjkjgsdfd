@@ -984,7 +984,8 @@ else if([languageFlag isEqualToString:@"english"])
                 [listarray3 removeAllObjects];
                 inid= @"";
                 leid = @"";
-                
+                [imagesDictionary removeAllObjects];
+                [imagesDictionary retain];
                 [provinceName retain];
                 
                 if(provinceButonStatue == -1)
@@ -1065,6 +1066,8 @@ else if([languageFlag isEqualToString:@"english"])
             
            // [provinceView init];
             developnumhasget = 0;
+            [imagesDictionary removeAllObjects];
+
             [allListArray release];
             allListArray  = [[NSMutableArray alloc]init];
 
@@ -1105,6 +1108,8 @@ else if([languageFlag isEqualToString:@"english"])
             
            // [provinceView init];
             developnumhasget = 0;
+            [imagesDictionary removeAllObjects];
+
             [allListArray release];
             allListArray  = [[NSMutableArray alloc]init];
 
@@ -1149,6 +1154,8 @@ else if([languageFlag isEqualToString:@"english"])
 
             
                     developnumhasget = 0;
+            [imagesDictionary removeAllObjects];
+
             [allListArray release];
             allListArray  = [[NSMutableArray alloc]init];
 

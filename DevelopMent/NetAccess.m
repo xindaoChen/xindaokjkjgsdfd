@@ -132,10 +132,17 @@
 
 -(void)theindustryList:(NSString *)string           //行业列表
 {
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_TRADECLASS]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_TRADECLASS]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
+    NSLog(@"url:%@ params:%@", url , string);
+    
+}
+
+- (void) cancelAsynchronousRequest
+{
     
 }
 

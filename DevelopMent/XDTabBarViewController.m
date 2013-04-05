@@ -132,12 +132,6 @@
     self.selectedIndex = tabID;
 }
 
-- (void)dealloc {
-    [settingsButton release];
-    [infoButton release];
-    [aboutUsButton release];
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {

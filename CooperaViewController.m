@@ -27,16 +27,6 @@
     return self;
 }
 
--(id)initwithname:(NSString *)string
-{
-    self = [super init];
- 
-        if (self) {
-            self.title = string;
-        }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -75,7 +65,7 @@
     static NSString *CellIdentifier = @"Cell";
     MyCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     return cell;
 }

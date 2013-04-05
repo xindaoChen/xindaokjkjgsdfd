@@ -23,6 +23,7 @@
 
 @implementation ClassViewController
 @synthesize listarray;
+@synthesize gNetAccess = _gNetAccess;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
@@ -54,12 +55,14 @@
     listarray = [[NSMutableArray alloc] init];
     self.tableView.backgroundView = nil;
     
-     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
     NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString*pat=[pathss objectAtIndex:0];
     NSString *filenames=[pat stringByAppendingPathComponent:@"Class.plist"];
     listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
      
+    NetAccess *netAccess = [[NetAccess alloc]init];
+    _gNetAccess = netAccess;
     
     if (listarray.count != 0) {
         [self.tableView reloadData];
@@ -80,10 +83,9 @@
         NSMutableString*alltring = [[NSMutableString alloc] init];
         [alltring appendString:string1];
         [alltring appendString:string2];
-        NetAccess *netAccess = [[NetAccess alloc]init];
-        netAccess.delegate = self;
-        netAccess.tag = 100;
-        [netAccess theclassmessage:alltring];
+        _gNetAccess.delegate = self;
+        _gNetAccess.tag = 100;
+        [_gNetAccess theclassmessage:alltring];
     }
     else
     {
@@ -96,8 +98,6 @@
 {
     SearchViewController *search  = [[SearchViewController alloc] init];
     [self.navigationController pushViewController:search animated:YES];
-//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -148,106 +148,46 @@
         cell = [[calssCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
     }
-     //  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     UIImageView *imageview = [[UIImageView alloc]initWithFrame:cell.frame];
     imageview.image = [UIImage imageNamed:[NSString stringWithFormat:@"cell_bg_%d",indexPath.section%6]];
-    cell.selectedBackgroundView = [[[UIView alloc] initWithFrame:cell.frame] autorelease];
+    cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
     cell.selectedBackgroundView.backgroundColor = [UIColor grayColor];
     cell.backgroundView = imageview;
     
-        cell.label.text =[NSString stringWithFormat:@"%@",[[listarray  objectAtIndex:  indexPath.section] objectForKey:@"classname"]];
-    NSLog(@"##################################%@",cell.label.text);
-    //label.font = [UIFont fontWithName:@"Helvetica" size:15.0];
-   // label.backgroundColor = [UIColor clearColor];
-    
-    
-  //  [cell addSubview:label];
-    [imageview release];
-   // [label release];
-
-    
-       
-    
-
-    
-    
+    cell.label.text =[NSString stringWithFormat:@"%@",[[listarray  objectAtIndex:  indexPath.section] objectForKey:@"classname"]];
+    NSLog(@"%s:%@", __PRETTY_FUNCTION__, cell.label.text);
 
     return cell;
 }
 
  
- 
+#pragma mark -- NetAccessDelegate
+
+- (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+}
 
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+
     if (na.tag ==100) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if (resultSet.count !=0) {
             [listarray removeAllObjects];
             listarray = resultSet;
-            [listarray retain];
             [self.tableView reloadData];
+            
             NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
             NSString*path=[paths objectAtIndex:0];
             NSString *filename=[path stringByAppendingPathComponent:@"Class.plist"];
             [listarray writeToFile:filename atomically:YES];
-
         }
         
     }
 }
-
-
-
--(void)dealloc
-{
-    [listarray release];listarray = nil;
-    [super dealloc];
-}
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
-
 
  
 #pragma mark - Table view delegate
@@ -255,10 +195,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-    ScanDevelopViewController *developview = [[ScanDevelopViewController alloc] initwithclassId:[[listarray objectAtIndex:indexPath.section] objectForKey:@"id"] stringnum:0];
+    ScanDevelopViewController *developview = [[ScanDevelopViewController alloc] initWithclassId:[[listarray objectAtIndex:indexPath.section] objectForKey:@"id"] stringnum:0];
      
     [self.navigationController pushViewController:developview animated:YES];
-//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
 
 }
 

@@ -100,10 +100,11 @@
 @property(atomic,strong) NSString *cid;
 @property(nonatomic,strong) NSString *getCityName;
 @property(nonatomic,strong) NSString *provinceName;
+@property (nonatomic, strong) NetAccess *gNetAccess;
 
 -(id)initWithnumber:( NSInteger )stringnum;
--(id)initwithclassId:(NSString *)classid stringnum:(NSInteger)stringnum;
--(id)initwithcityname:(NSString *)name;
+-(id)initWithclassId:(NSString *)classid stringnum:(NSInteger)stringnum;
+-(id)initWithcityname:(NSString *)name;
 
 @end
 

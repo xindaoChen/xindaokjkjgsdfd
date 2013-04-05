@@ -12,6 +12,4 @@
 {
     UITableView *mytableview;
 }
- 
--(id)initwithname:(NSString *)string;
 @end

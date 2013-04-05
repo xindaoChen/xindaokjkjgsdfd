@@ -43,12 +43,14 @@
     NSMutableArray *picturearray;
     ClassViewController *classeview;
     DiscussViewController *disview;
+    NetAccess *gNetAccess;
 }
 @property(nonatomic,strong)UIScrollView *firscrollView;
 @property(nonatomic,strong)UIScrollView *secscrollview;
 @property(nonatomic,strong)UIPageControl *pageController;
 @property(nonatomic,strong)UIPageControl *pageControllertwo;
 @property(nonatomic,strong) UIToolbar *toolBar;
+@property (nonatomic, strong) NetAccess *gNetAccess;
  
 @property(nonatomic,strong) NSMutableArray *maplistarray;
 @end

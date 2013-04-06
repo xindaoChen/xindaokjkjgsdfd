@@ -59,6 +59,9 @@
     NetAccess *netAccess = [[NetAccess alloc] init];
     _gNetAccess = netAccess;
     
+    _appNetAccess = [[NetAccess alloc] init];;
+    _dataNetAccess = [[NetAccess alloc] init];
+    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
      self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
       [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
@@ -275,6 +278,7 @@
 
 -(void)backtosuper
 {
+    [self canRequest];
     [self.navigationController  popViewControllerAnimated:YES];
 }
 
@@ -378,9 +382,9 @@
             [allstring appendString:string2];
             [allstring appendString:string3];
             [allstring appendString:string4];
-            _gNetAccess.delegate = self;
-            _gNetAccess.tag = 111;
-            [_gNetAccess theAppmessage:allstring];
+            _appNetAccess.delegate = self;
+            _appNetAccess.tag = 111;
+            [_appNetAccess theAppmessage:allstring];
 
         }
     }
@@ -428,9 +432,9 @@
                 [allstring appendString:string2];
                 [allstring appendString:string3];
                 [allstring appendString:string4];
-                _gNetAccess.delegate = self;
-                _gNetAccess.tag = 100;
-                [_gNetAccess thedatamessage:allstring];
+                _dataNetAccess.delegate = self;
+                _dataNetAccess.tag = 100;
+                [_dataNetAccess thedatamessage:allstring];
 
             }
         }
@@ -915,6 +919,13 @@
         
     }
     return array;
+}
+
+- (void)canRequest
+{
+    [_gNetAccess cancelAsynchronousRequest];
+    [_appNetAccess cancelAsynchronousRequest];
+    [_dataNetAccess cancelAsynchronousRequest];
 }
 
 

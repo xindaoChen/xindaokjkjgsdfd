@@ -567,7 +567,6 @@
     });
     dispatch_release(group);
     
-    
 }
 
 -(void)setfirstimagetwo

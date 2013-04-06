@@ -11,6 +11,8 @@
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 
+#define kTimeOutseconds 10
+
 @implementation NetAccess
 
 //判断有无可用网络
@@ -25,15 +27,17 @@
     return YES;
 }
 
-
 //首页图片
 -(void)theFirstviewPicture:(NSString*)string
 {
     NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@",HOST_URL,API_INDEXIMG]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
+    _gRequest = request;
+
     NSLog(@"url:%@ params:%@", url, string);
 }
 
@@ -44,8 +48,11 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_SEARCH]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
+    _gRequest = request;
+
     NSLog(@"url:%@ params:%@", url, string);
 }
 
@@ -55,8 +62,11 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETINDEX]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
+    _gRequest = request;
+
     NSLog(@"url:%@ params:%@", url, string);
 }
 
@@ -66,8 +76,11 @@
     NSURL *url =[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_CLASS]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
+    _gRequest = request;
+
     NSLog(@"url:%@ params:%@", url, string);
 }
 
@@ -77,11 +90,12 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_INTRO]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
+    _gRequest = request;
+
     NSLog(@"url:%@ params:%@", url , string);
-
-
 }
 //APP
 -(void)theAppmessage:(NSString *)string 
@@ -89,8 +103,11 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_APP]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
+    _gRequest = request;
+
     NSLog(@"url:%@ params:%@", url , string);
 
 }
@@ -102,9 +119,13 @@
 {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETDEVELOP]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setTimeOutSeconds:kTimeOutseconds];
     request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
+    _gRequest = request;
+
     NSLog(@"url:%@ params:%@", url , string);
 }
 
@@ -113,8 +134,11 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETCITY]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
+    _gRequest = request;
+
     NSLog(@"url:%@ params:%@", url , string);
 
 }
@@ -124,8 +148,11 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_LEVEL]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
+    _gRequest = request;
+
     NSLog(@"url:%@ params:%@", url , string);
 
 }
@@ -135,15 +162,17 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_TRADECLASS]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
     [request setPostValue:string forKey:@"parameter"];
     [request startAsynchronous];
+    _gRequest = request;
+
     NSLog(@"url:%@ params:%@", url , string);
-    
 }
 
-- (void) cancelAsynchronousRequest
+- (void)cancelAsynchronousRequest
 {
-    
+    [_gRequest cancel];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request

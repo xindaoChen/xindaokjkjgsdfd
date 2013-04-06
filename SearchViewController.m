@@ -107,7 +107,7 @@
 
 -(void)backtosuper
 {
-//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
+    [_gNetAccess cancelAsynchronousRequest];
     [self.navigationController   popViewControllerAnimated:YES];
 }
  

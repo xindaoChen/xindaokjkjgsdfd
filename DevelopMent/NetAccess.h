@@ -13,10 +13,12 @@
 #import "XDHeader.h"
 
 @protocol NetAccessDelegate;
+@class ASIFormDataRequest;
 
 @interface NetAccess : NSObject<ASIHTTPRequestDelegate>
 @property(nonatomic,weak)id<NetAccessDelegate> delegate;
 @property(nonatomic,assign) int tag;
+@property (nonatomic, strong) ASIFormDataRequest *gRequest;
 
 +(BOOL)reachable;
 -(void)theFirstviewPicture:(NSString*)string;
@@ -31,6 +33,8 @@
 -(void)thecityName:(NSString *)string;
 -(void)thelevelList:(NSString *)string;
 -(void)theindustryList:(NSString *)string;
+- (void)cancelAsynchronousRequest;
+
 
 @end
 

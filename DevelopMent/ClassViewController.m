@@ -43,7 +43,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
     [super viewDidAppear:YES];
 }
 

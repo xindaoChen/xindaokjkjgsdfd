@@ -310,8 +310,16 @@
 
 -(void)backtosuper
 {
-//    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:NO];
+    [self canRequest];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)canRequest
+{
+    [_gNetAccess cancelAsynchronousRequest];
+    [_cityNetAccess cancelAsynchronousRequest];
+    [_levelNetAcess cancelAsynchronousRequest];
+    [_industryNetAcess cancelAsynchronousRequest];
 }
 
 -(void)showdevelopZone

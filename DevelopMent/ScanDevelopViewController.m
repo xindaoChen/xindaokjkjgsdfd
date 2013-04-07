@@ -14,12 +14,12 @@
 #import "MBProgressHUD.h"
 #import "UITools.h"
 #import "XDTabBarViewController.h"
-<<<<<<< HEAD
+
 #import "HLDeferredList.h"
 
-=======
+
 #import "Yunju.h"
->>>>>>> 65e15df500ca6bbef4b58722360884fd0b4202d4
+
 
 #define UI_SCREEN_WIDTH                 320
 #define UI_SCREEN_HEIGHT                ([[UIScreen mainScreen] bounds].size.height)

@@ -13,4 +13,5 @@
 //    UITextView*   textview;
     UIWebView *webview;
 }
+@property (nonatomic, strong) NSString *urlHost;
 @end

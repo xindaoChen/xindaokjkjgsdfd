@@ -115,6 +115,8 @@
 @property(nonatomic,strong)  HLDeferred *levelDeferred;
 @property(nonatomic,strong)  HLDeferred *industryDeferred;
 @property(nonatomic,strong)  HLDeferredList *deferredList;
+@property (nonatomic, strong) NSString *urlHost;
+
 
 -(id)initWithnumber:( NSInteger )stringnum;
 -(id)initWithclassId:(NSString *)classid stringnum:(NSInteger)stringnum;

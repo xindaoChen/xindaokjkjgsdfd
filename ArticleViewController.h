@@ -64,6 +64,7 @@
 @property (nonatomic, strong) NetAccess *gNetAccess;
 @property (nonatomic, strong) NetAccess *appNetAccess;
 @property (nonatomic, strong) NetAccess *dataNetAccess;
+@property (nonatomic, strong) NSString *urlHost;
 
 - (id)initWithurl:(NSDictionary *)array;
 @end

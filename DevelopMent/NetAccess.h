@@ -19,6 +19,8 @@
 @property(nonatomic,weak)id<NetAccessDelegate> delegate;
 @property(nonatomic,assign) int tag;
 @property (nonatomic, strong) ASIFormDataRequest *gRequest;
+ 
+
 
 +(BOOL)reachable;
 -(void)theFirstviewPicture:(NSString*)string;

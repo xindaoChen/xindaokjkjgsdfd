@@ -51,7 +51,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
+    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+    _urlHost = delegate.domainName;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"]
                                                   forBarMetrics:UIBarMetricsDefault];
     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
@@ -533,7 +534,7 @@
                  
                  NSString *url = [NSString stringWithFormat:
                                   @"%@%@%@",
-                                  HOST_URL, API_DEVELOPIAMGE,
+                                  _urlHost, API_DEVELOPIAMGE,
                                   [[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
                  
                  NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
@@ -569,7 +570,7 @@
                  
                  NSString *url = [NSString stringWithFormat:
                                   @"%@%@%@",
-                                  HOST_URL, API_DEVELOPIAMGE,
+                                  _urlHost, API_DEVELOPIAMGE,
                                   [[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
                  
                  NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];

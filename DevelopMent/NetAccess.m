@@ -10,7 +10,7 @@
 #import "Reachability.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
-
+#import "AppDelegate.h"
 #define kTimeOutseconds 10
 
 @implementation NetAccess
@@ -27,10 +27,15 @@
     return YES;
 }
 
+ 
+
 //首页图片
 -(void)theFirstviewPicture:(NSString*)string
 {
-    NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@",HOST_URL,API_INDEXIMG]];
+ 
+    AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+ 
+    NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@",mydele.domainName,API_INDEXIMG]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setTimeOutSeconds:kTimeOutseconds];
@@ -45,7 +50,8 @@
 //搜索页
 -(void)searchthemessage:(NSString *)string
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_SEARCH]];
+    AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",mydele.domainName,API_SEARCH]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setTimeOutSeconds:kTimeOutseconds];
@@ -59,7 +65,8 @@
 //指数
 -(void)thedatamessage:(NSString *)string
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETINDEX]];
+     AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",mydele.domainName,API_GETINDEX]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setTimeOutSeconds:kTimeOutseconds];
@@ -73,7 +80,8 @@
 //分类
 -(void)theclassmessage:(NSString *)string
 {
-    NSURL *url =[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_CLASS]];
+     AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+    NSURL *url =[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",mydele.domainName,API_CLASS]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setTimeOutSeconds:kTimeOutseconds];
@@ -87,7 +95,8 @@
 //简介
 -(void)theIntroducemessage:(NSString *)string
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_INTRO]];
+     AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",mydele.domainName,API_INTRO]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setTimeOutSeconds:kTimeOutseconds];
@@ -100,7 +109,8 @@
 //APP
 -(void)theAppmessage:(NSString *)string 
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_APP]];
+     AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",mydele.domainName,API_APP]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setTimeOutSeconds:kTimeOutseconds];
@@ -117,7 +127,8 @@
 //开发区图片+名称+文字说明
 -(void)thedevelopZone:(NSString *)string
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETDEVELOP]];
+     AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",mydele.domainName,API_GETDEVELOP]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setTimeOutSeconds:kTimeOutseconds];
     request.delegate = self;
@@ -131,7 +142,8 @@
 
 -(void)thecityName:(NSString *)string           //获取城市列表
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_GETCITY]];
+     AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",mydele.domainName,API_GETCITY]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setTimeOutSeconds:kTimeOutseconds];
@@ -145,7 +157,8 @@
 
 -(void)thelevelList:(NSString *)string       //等级列表
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_LEVEL]];
+     AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",mydele.domainName,API_LEVEL]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setTimeOutSeconds:kTimeOutseconds];
@@ -159,7 +172,8 @@
 
 -(void)theindustryList:(NSString *)string           //行业列表
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,API_TRADECLASS]];
+     AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",mydele.domainName,API_TRADECLASS]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setTimeOutSeconds:kTimeOutseconds];

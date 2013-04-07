@@ -141,6 +141,7 @@
 		78CDCA0A16FEE4FA0087474D /* CDJournal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78CDCA0816FEE4FA0087474D /* CDJournal.xcdatamodeld */; };
 		78EAB75016FD86EC00534880 /* Class.List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78EAB74F16FD86EC00534880 /* Class.List.plist */; };
 		78EAB75316FD9B4B00534880 /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EAB75216FD9B4A00534880 /* MyCell.m */; };
+		78EB3B4D1711689F00ABC02A /* XDAppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EB3B4C1711689F00ABC02A /* XDAppConfig.m */; };
 		78FF51B4170C121F00F01DCB /* app.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FF51AC170C121F00F01DCB /* app.png */; };
 		78FF51B5170C121F00F01DCB /* datax.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FF51AD170C121F00F01DCB /* datax.png */; };
 		78FF51B6170C121F00F01DCB /* appx.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FF51AE170C121F00F01DCB /* appx.png */; };
@@ -375,6 +376,8 @@
 		78EAB74F16FD86EC00534880 /* Class.List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Class.List.plist; path = ../Class.List.plist; sourceTree = "<group>"; };
 		78EAB75116FD9B4A00534880 /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCell.h; path = ../MyCell.h; sourceTree = "<group>"; };
 		78EAB75216FD9B4A00534880 /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCell.m; path = ../MyCell.m; sourceTree = "<group>"; };
+		78EB3B4B1711689F00ABC02A /* XDAppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDAppConfig.h; sourceTree = "<group>"; };
+		78EB3B4C1711689F00ABC02A /* XDAppConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDAppConfig.m; sourceTree = "<group>"; };
 		78FF51AC170C121F00F01DCB /* app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app.png; sourceTree = "<group>"; };
 		78FF51AD170C121F00F01DCB /* datax.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = datax.png; sourceTree = "<group>"; };
 		78FF51AE170C121F00F01DCB /* appx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appx.png; sourceTree = "<group>"; };
@@ -446,6 +449,8 @@
 				4412566B17098C09007B7C9E /* XDHeader.h */,
 				4412566E17098E32007B7C9E /* UITools.h */,
 				4412566F17098E32007B7C9E /* UITools.m */,
+				78EB3B4B1711689F00ABC02A /* XDAppConfig.h */,
+				78EB3B4C1711689F00ABC02A /* XDAppConfig.m */,
 				7898355E17110E8400FBB6C3 /* Yunju.h */,
 			);
 			name = XCLibrary;
@@ -967,6 +972,7 @@
 				C83B5BF717115D6F00B3ABA0 /* HLDeferredList.m in Sources */,
 				C83B5BF817115D6F00B3ABA0 /* HLFailure.m in Sources */,
 				44282C211711181000C42FF9 /* XDWebViewController.m in Sources */,
+				78EB3B4D1711689F00ABC02A /* XDAppConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

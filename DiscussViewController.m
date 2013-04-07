@@ -139,12 +139,17 @@
 
 -(void)pushtoapp
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"]];
+    [self pushtoreview];
 }
 
 -(void)pushtoreview
 {
-   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"]];
+    NSString *appName = [NSString stringWithString:
+                         [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
+    NSURL *appStoreURL = [NSURL URLWithString:[[NSString stringWithFormat:@"itms-apps://itunes.com/app/%@",appName]  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding ]];
+    NSLog(@"appStoreURL:%@", appStoreURL);
+
+    [[UIApplication sharedApplication] openURL:appStoreURL];
 }
 
 - (void)didReceiveMemoryWarning

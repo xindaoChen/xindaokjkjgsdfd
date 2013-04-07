@@ -44,7 +44,9 @@
     ClassViewController *classeview;
     DiscussViewController *disview;
     NetAccess *gNetAccess;
-}
+    
+    NSMutableArray *buttonarray;
+     }
 @property(nonatomic,strong)UIScrollView *firscrollView;
 @property(nonatomic,strong)UIScrollView *secscrollview;
 @property(nonatomic,strong)UIPageControl *pageController;

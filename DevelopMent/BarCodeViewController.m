@@ -19,6 +19,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.hidesBottomBarWhenPushed = YES;
         self.title = @"二维码";
     }
     return self;

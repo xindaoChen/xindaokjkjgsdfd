@@ -963,13 +963,10 @@
 				C80956FD170C397800780FC3 /* calssCell.m in Sources */,
 				445B7471170C3E5900557D86 /* XDTabBarViewController.m in Sources */,
 				44D4837A170EBC250044AB41 /* JSONKit.m in Sources */,
-<<<<<<< HEAD
 				C83B5BF617115D6F00B3ABA0 /* HLDeferred.m in Sources */,
 				C83B5BF717115D6F00B3ABA0 /* HLDeferredList.m in Sources */,
 				C83B5BF817115D6F00B3ABA0 /* HLFailure.m in Sources */,
-=======
 				44282C211711181000C42FF9 /* XDWebViewController.m in Sources */,
->>>>>>> 65e15df500ca6bbef4b58722360884fd0b4202d4
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

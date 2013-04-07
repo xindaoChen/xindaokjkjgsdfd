@@ -100,6 +100,8 @@
 @property(atomic,strong) NSString *cid;
 @property(nonatomic,strong) NSString *getCityName;
 @property(nonatomic,strong) NSString *provinceName;
+@property(nonatomic,strong) NSString *tempprovinceName;
+
 @property (nonatomic, strong) NetAccess *gNetAccess;
 @property (nonatomic,strong) NetAccess *cityNetAccess;
 @property (nonatomic,strong) NetAccess *levelNetAcess;

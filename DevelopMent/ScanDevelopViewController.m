@@ -14,6 +14,7 @@
 #import "MBProgressHUD.h"
 #import "UITools.h"
 #import "XDTabBarViewController.h"
+#import "HLDeferredList.h"
 
 
 #define UI_SCREEN_WIDTH                 320
@@ -26,7 +27,7 @@
 
 @implementation ScanDevelopViewController
 
-@synthesize searchfield,listarray,listarray2,listarray3,listarray4,listarray5, searchtable,showCityView,showIndustryView,showLevelView,allProvinceArray,allLevelArray,allIndustryArray,provinceView,levelView,IndustryView,cityView,getDevelopZoneInfo,inid,leid,cid,getCityName,provinceName;
+@synthesize searchfield,listarray,listarray2,listarray3,listarray4,listarray5, searchtable,showCityView,showIndustryView,showLevelView,allProvinceArray,allLevelArray,allIndustryArray,provinceView,levelView,IndustryView,cityView,getDevelopZoneInfo,inid,leid,cid,getCityName,provinceName,tempprovinceName;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,6 +64,7 @@
     self = [super init];
     if (self) {
         self.provinceName = [NSString stringWithFormat:@"%@",name];
+       // self.tempprovinceName = @"";
         NSLog(@"******(***%@",provinceName);
         cid = @"";
         flagForInit = 10000;
@@ -102,7 +104,7 @@
     contectFlag = @"a";
     inid = @"";
     leid = @"";
-    tempprovinceName = @"";
+    
  
     developnumhasget = 0;
    // cid = @"";
@@ -131,6 +133,7 @@
     
     if (flagForInit != 10000) {   //判断上一个界面传的值是市名还是下标。若不是市名，从数组中提取市名。
         provinceName = [allProvinceArray objectAtIndex:num];
+       // tempprovinceName = @"";
     }
    // provinceName = [allProvinceArray objectAtIndex:num];
   //  assAiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -183,7 +186,7 @@
     
     [provincebutton addTarget:self action:@selector(showCity) forControlEvents:UIControlEventTouchUpInside];
 
-    provinceLabel = [[UILabel alloc]initWithFrame:CGRectMake(2,5, 87, 30)];
+    provinceLabel = [[UILabel alloc]initWithFrame:CGRectMake(5,5, 79, 30)];
     provinceLabel.backgroundColor = [UIColor clearColor];
     provinceLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
     provinceLabel.text = provinceName;
@@ -207,7 +210,7 @@
       [levelbutton setBackgroundImage:[UIImage imageNamed:@"levelbutton1.png"] forState:UIControlStateNormal];
     [levelbutton addTarget:self action:@selector(showLevel) forControlEvents:UIControlEventTouchUpInside];
  
-    levelLabel = [[UILabel alloc]initWithFrame:CGRectMake(4,5, 93, 30)];
+    levelLabel = [[UILabel alloc]initWithFrame:CGRectMake(5,5, 79, 30)];
     levelLabel.backgroundColor = [UIColor clearColor];
     levelLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
     levelLabel.text = levelName;
@@ -224,7 +227,7 @@
     [industrybutton setBackgroundImage:[UIImage imageNamed:@"industrybutton1.png"] forState:UIControlStateNormal];
     [industrybutton addTarget:self action:@selector(showIndustry) forControlEvents:UIControlEventTouchUpInside];
     
-    industryLabel = [[UILabel alloc]initWithFrame:CGRectMake(2,5, 85, 30)];
+    industryLabel = [[UILabel alloc]initWithFrame:CGRectMake(5,5, 79, 30)];
     industryLabel.backgroundColor = [UIColor clearColor];
     industryLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
     industryLabel.textColor = [UIColor grayColor];
@@ -362,6 +365,53 @@
 
     
 }
+
+
+
+-(void)footAddDevelopZone
+{
+    
+    if([NetAccess reachable])
+    {
+        _gNetAccess.delegate = self;
+        _gNetAccess.tag = 100;
+        [_gNetAccess thedevelopZone:getDevelopZoneInfo];
+       // [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [footactive startAnimating];
+        
+        //  [getDevelopZoneInfo release];
+    }
+    else
+    {
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+        
+        NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString*pat=[pathss objectAtIndex:0];
+        NSString *filenames=[pat stringByAppendingPathComponent:@"developZone.plist"];
+        listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+        if (listarray.count > 1) {
+            NSString *name = [listarray objectAtIndex:listarray.count  -1];
+            if ([name isEqualToString:provinceName]) {
+                [listarray removeLastObject];
+                for (id obj in listarray) {
+                    [allListArray addObject:obj];
+                }
+                [searchtable reloadData];
+            }
+            
+            
+        }
+        
+        
+        
+        
+    }
+    
+    
+    
+}
+
+
 
 
 -(void)showCityName
@@ -657,6 +707,14 @@ else if([languageFlag isEqualToString:@"english"])
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    if (searchtable.tableFooterView) {
+        [UIView animateWithDuration:0.3 animations:^{
+            searchtable.tableFooterView = nil;
+            searchtable.tableFooterView.tag = 100051;
+
+            [footactive stopAnimating];
+        }];
+    }
 }
 
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
@@ -664,7 +722,14 @@ else if([languageFlag isEqualToString:@"english"])
     NSLog(@"%s", __PRETTY_FUNCTION__);
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if (na.tag ==100) {
-        
+        if (searchtable.tableFooterView.tag == 100050) {
+            [UIView animateWithDuration:0.3 animations:^{
+                searchtable.tableFooterView = nil;
+                searchtable.tableFooterView.tag = 100051;
+                [footactive stopAnimating];
+            }];
+        }
+      //  searchtable.tableFooterView = nil;
         [listarray removeAllObjects];
         listarray = resultSet;
         if (listarray.count != 0) {
@@ -765,7 +830,7 @@ else if([languageFlag isEqualToString:@"english"])
 {   if(tableView.tag == 1)
        {
        
-            return 70;
+            return 78;
         }
     else if (tableView.tag == 2)
         return 40;
@@ -783,6 +848,8 @@ else if([languageFlag isEqualToString:@"english"])
 {
     static NSString *CellIdentifier = @"Cell";
     MyCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIndentifier2 = @"Cell2";
+    UITableViewCell *cell2 = [tableView dequeueReusableCellWithIdentifier:CellIndentifier2];
     
     switch (tableView.tag) {
         case 1:   //主界面tableview
@@ -810,6 +877,8 @@ else if([languageFlag isEqualToString:@"english"])
             cell.label.text = [[allListArray objectAtIndex:indexPath.row] objectForKey:@"developname"];
             
             NSLog(@"allListArray Count:%d",allListArray.count);
+            
+            
             cell.labeltwo.text = [[allListArray objectAtIndex:indexPath.row] objectForKey:@"content"];
             
             
@@ -817,6 +886,7 @@ else if([languageFlag isEqualToString:@"english"])
 
             if ([imagesDictionary valueForKey:index_row] != nil) {
                 [cell.imageview setImage:[imagesDictionary valueForKey:index_row]];
+                
             }else{
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
  
@@ -842,26 +912,26 @@ else if([languageFlag isEqualToString:@"english"])
         }
         case 2: //provinceVIew
         {
-            if (cell == nil) {
-                cell = [[MyCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+            if (cell2 == nil) {
+                cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIndentifier2];
             }
 //            UIImageView *imageview = [[[UIImageView alloc] initWithFrame:cell.frame] autorelease];
 //            imageview.image = [UIImage imageNamed:@"provinceCell1"];
-            cell.selectedBackgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"provinceCell1"]];
+            cell2.selectedBackgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"provinceCell1"]];
             
         //    cell.selectedBackgroundView = imageview;
 //        cell.selectedBackgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"provinceCell1"]];
             
-            cell.textLabel.highlightedTextColor = [UIColor blackColor];
-            [cell.textLabel setTextColor:[UIColor blackColor]];
+            cell2.textLabel.highlightedTextColor = [UIColor blackColor];
+            [cell2.textLabel setTextColor:[UIColor blackColor]];
         
-            cell.textLabel.text = [allProvinceArray objectAtIndex:indexPath.row];
-            cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+            cell2.textLabel.text = [allProvinceArray objectAtIndex:indexPath.row];
+            cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
 
          
         
         
-            return cell;
+            return cell2;
         }
         //  cityView
         case 3:
@@ -869,87 +939,87 @@ else if([languageFlag isEqualToString:@"english"])
         //    [assAiv stopAnimating];
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
-            if (cell == nil) {
-                cell = [[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            if (cell2 == nil) {
+                cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIndentifier2];
             }
             
             if (indexPath.row == 0) {
                 if ([languageFlag isEqualToString:@"china"]) {
-                    cell.textLabel.text = @"   全部";
-                    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+                    cell2.textLabel.text = @"   全部";
+                    cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
                 }
                 else if([languageFlag isEqualToString:@"english"])
                 {
-                    cell.textLabel.text = @"   all";
-                    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+                    cell2.textLabel.text = @"   all";
+                    cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
                 }
-                return  cell;
+                return  cell2;
             }
             else
             {
-                cell.textLabel.text = [NSString stringWithFormat:@" %@",[[listarray3 objectAtIndex:indexPath.row -1] objectForKey:@"cityname"]];
-                cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+                cell2.textLabel.text = [NSString stringWithFormat:@" %@",[[listarray3 objectAtIndex:indexPath.row -1] objectForKey:@"cityname"]];
+                cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
             
             }
             
-            cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
-            cell.selectedBackgroundView.backgroundColor = [UIColor grayColor];
+            cell2.selectedBackgroundView = [[UIView alloc] initWithFrame:cell2.frame];
+            cell2.selectedBackgroundView.backgroundColor = [UIColor grayColor];
 //            cell.textLabel.text = [NSString stringWithFormat:@" %@",[[listarray3 objectAtIndex:indexPath.row -1] objectForKey:@"cityname"]];
 //             cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
-            return cell;
+            return cell2;
         }
         case 4:   //levelVIew
         {
-            if (cell == nil) {
-                cell = [[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            if (cell2 == nil) {
+                cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIndentifier2];
             }
-            cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
-            cell.selectedBackgroundView.backgroundColor = [UIColor grayColor];
+            cell2.selectedBackgroundView = [[UIView alloc] initWithFrame:cell2.frame];
+            cell2.selectedBackgroundView.backgroundColor = [UIColor grayColor];
             if (indexPath.row == 0) {
                 if ([languageFlag isEqualToString:@"china"]) {
-                    cell.textLabel.text = @"   全部";
-                    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+                    cell2.textLabel.text = @"   全部";
+                    cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
                 }
                 else if([languageFlag isEqualToString:@"english"])
                 {
-                cell.textLabel.text = @"   all";
-                cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+                cell2.textLabel.text = @"   all";
+                cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
                 }
-                 return cell;
+                 return cell2;
             }
             else{
-            cell.textLabel.text = [NSString stringWithFormat:@"   %@",[[listarray4 objectAtIndex:indexPath.row-1] objectForKey:@"levelname"]];
+            cell2.textLabel.text = [NSString stringWithFormat:@"   %@",[[listarray4 objectAtIndex:indexPath.row-1] objectForKey:@"levelname"]];
             }
-             cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
-            return cell;
+             cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+            return cell2;
         }
         case 5:   //industry view
         {
-            if (cell == nil) {
-                cell = [[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            if (cell2 == nil) {
+                cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIndentifier2];
             }
-            cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
-            cell.selectedBackgroundView.backgroundColor = [UIColor grayColor];
+            cell2.selectedBackgroundView = [[UIView alloc] initWithFrame:cell2.frame];
+            cell2.selectedBackgroundView.backgroundColor = [UIColor grayColor];
             if (indexPath.row == 0) {
                 if ([languageFlag isEqualToString:@"china"]) {
-                    cell.textLabel.text = @"   全部";
-                    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+                    cell2.textLabel.text = @"   全部";
+                    cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
                 }
                 else if([languageFlag isEqualToString:@"english"])
                 {
-                    cell.textLabel.text = @"   all";
-                    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+                    cell2.textLabel.text = @"   all";
+                    cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
                 }
 
                 
-                return cell;
+                return cell2;
             }
             else{
 
-            cell.textLabel.text = [NSString stringWithFormat:@"   %@",[[listarray5 objectAtIndex:indexPath.row - 1] objectForKey:@"name"]];
+            cell2.textLabel.text = [NSString stringWithFormat:@"   %@",[[listarray5 objectAtIndex:indexPath.row - 1] objectForKey:@"name"]];
             }
-            cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
-            return cell;
+            cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+            return cell2;
         }
         default:
         {
@@ -990,8 +1060,8 @@ else if([languageFlag isEqualToString:@"english"])
                 provinceLabel.text = provinceName;
                 tempprovinceName = provinceName;
                 getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
-                levelbutton.titleLabel.text = @"全部";
-                industrybutton.titleLabel.text = @"全部";
+                levelLabel.text = @"全部";
+                industryLabel.text = @"全部";
                 [listarray3 removeAllObjects];
                 inid= @"";
                 leid = @"";
@@ -1010,7 +1080,7 @@ else if([languageFlag isEqualToString:@"english"])
                 [imagesDictionary removeAllObjects];
 
                 [allListArray  removeAllObjects];
-                          
+//                searchtable.tableFooterView.tag = 100051;
                 [self showdevelopZone];
 
 
@@ -1055,8 +1125,8 @@ else if([languageFlag isEqualToString:@"english"])
          //   provinceLabel.text = provinceName;
             
             getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
-            levelbutton.titleLabel.text = @"全部";
-            industrybutton.titleLabel.text = @"全部";
+            levelLabel.text = @"全部";
+            industryLabel.text = @"全部";
             inid= @"";
             leid = @"";
             
@@ -1081,7 +1151,7 @@ else if([languageFlag isEqualToString:@"english"])
            [allListArray  removeAllObjects];
 
             
-
+//            searchtable.tableFooterView.tag = 100051;
             [self showdevelopZone];
             
             break;
@@ -1120,6 +1190,7 @@ else if([languageFlag isEqualToString:@"english"])
             [imagesDictionary removeAllObjects];
 
             [allListArray  removeAllObjects];
+//             searchtable.tableFooterView.tag = 100051;
             [self showdevelopZone];
             break;
         }
@@ -1162,7 +1233,7 @@ else if([languageFlag isEqualToString:@"english"])
 
           [allListArray  removeAllObjects];
 
-                     
+        //    searchtable.tableFooterView.tag = 100051;
             [self showdevelopZone];
             break;
         }
@@ -1189,22 +1260,23 @@ else if([languageFlag isEqualToString:@"english"])
           
         if (indexPath.row == [allListArray count] - 1 && indexPath.row < count -1)
         {  UIView *footview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
-            NSLog(@"$%d,%d,%d",indexPath.row,[allListArray count]-1,count -1);
-//            footactive = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//            
-//            footactive.center = CGPointMake(160, 30);
-//            footactive.color = [UIColor blackColor];
+            NSLog(@"$&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%d,%d,%d",indexPath.row,[allListArray count]-1,count -1);
+            footactive = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            
+            footactive.center = CGPointMake(220, 30);
+            footactive.color = [UIColor blackColor];
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
            [button setTitle:@"加载更多" forState:UIControlStateNormal];
             [button setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
             button.frame = footview.frame;
             button.backgroundColor = [UIColor clearColor];
-       //     [button setBackgroundImage:[UIImage imageNamed:@"levelbutton1.png"] forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageNamed:@"levelbutton1.png"] forState:UIControlStateNormal];
             [button addTarget:self action:@selector(getMoreInfo) forControlEvents:UIControlEventTouchUpInside];
+            [button addSubview:footactive];
             [footview addSubview:button];
-            //[footactive startAnimating];
-            tableView.tableFooterView = footview;
-            
+          //  [footactive startAnimating];
+            searchtable.tableFooterView = footview;
+                       searchtable.tableFooterView.tag = 100050;
                        
 //            getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\",\"time\":\"%@\"}",provinceName,leid,inid,cid,[[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"] ];
 //            
@@ -1228,8 +1300,10 @@ else if([languageFlag isEqualToString:@"english"])
     getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\",\"time\":\"%@\"}",provinceName,leid,inid,cid,[[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"] ];
     NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);
     NSLog(@"^^%@",getDevelopZoneInfo);
-    [self showdevelopZone];
-    searchtable.tableFooterView = nil;
+   
+
+    [self footAddDevelopZone];
+//    searchtable.tableFooterView = nil;
 }
 
 

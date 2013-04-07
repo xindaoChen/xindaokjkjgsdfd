@@ -81,13 +81,10 @@
 }
 
 
-//- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+//-(void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 //{
-//    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
-//    NSLog(@"%@",token);
 //    
 //}
-//
 //- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 //{
 //    NSLog(@"Failed to get token, error: %@", error);

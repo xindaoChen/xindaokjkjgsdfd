@@ -31,7 +31,7 @@
 
 @implementation ScanDevelopViewController
 
-@synthesize searchfield,listarray,listarray2,listarray3,listarray4,listarray5, searchtable,showCityView,showIndustryView,showLevelView,allProvinceArray,allLevelArray,allIndustryArray,provinceView,levelView,IndustryView,cityView,getDevelopZoneInfo,inid,leid,cid,getCityName,provinceName,tempprovinceName;
+@synthesize searchfield,listarray,listarray2,listarray3,listarray4,listarray5, searchtable,showCityView,showIndustryView,showLevelView,allProvinceArray,allLevelArray,allIndustryArray,provinceView,levelView,IndustryView,cityView,getDevelopZoneInfo,inid,leid,cid,getCityName,provinceName,tempprovinceName,cityDeferred,levelDeferred,industryDeferred,deferredList;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,6 +49,7 @@
     if (self) {
         num = stringnum + 1;
         cid = @"";
+        tempprovinceName = @"";
     }
     return self;
 }
@@ -59,6 +60,7 @@
     if (self) {
         num = stringnum;
         cid = classid;
+        tempprovinceName = @"";
     }
     return  self;
 }
@@ -102,7 +104,7 @@
     contectFlag = @"a";
     inid = @"";
     leid = @"";
-    
+    netAcessTimeFlag = 0;
  
     developnumhasget = 0;
    // cid = @"";
@@ -171,6 +173,26 @@
     [self showLevelList];
  
     [self showIndustryList];
+    self.developDeferred = [[HLDeferred alloc] init];
+    self.cityDeferred = [[HLDeferred alloc] init];
+    self.levelDeferred = [[HLDeferred alloc] init];
+    
+    self.industryDeferred = [[HLDeferred alloc] init];
+    NSArray *deferreds = [NSArray arrayWithObjects:
+                          self.developDeferred,
+                          self.cityDeferred,
+                        //  self.levelDeferred,
+                        //  self.industryDeferred,
+                          nil];
+    
+    self.deferredList = [[HLDeferredList alloc] initWithDeferreds:deferreds
+                                                 fireOnFirstError:YES];
+    [self.deferredList then:^id(id result) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+        return result;
+    }];
+
  
     
     self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
@@ -571,7 +593,8 @@ else if([languageFlag isEqualToString:@"english"])
         NSLog(@"%@",tempprovinceName);
 
         if ([tempprovinceName isEqualToString:@""]) {
-            NSLog(@"%@",tempprovinceName);
+            NSLog(@"11111111%@,%@",tempprovinceName,provinceName);
+         //   NSLog(@"%@",provinceName);
             if ([provinceName isEqualToString:[allProvinceArray objectAtIndex:i]]) {
                 x = i;
                 break;
@@ -718,7 +741,7 @@ else if([languageFlag isEqualToString:@"english"])
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if (na.tag ==100) {
         if (searchtable.tableFooterView.tag == 100050) {
             [UIView animateWithDuration:0.3 animations:^{
@@ -755,6 +778,16 @@ else if([languageFlag isEqualToString:@"english"])
             
         }
         
+        if (netAcessTimeFlag  < 2) {
+             [self.developDeferred takeResult:@"ok"];
+            netAcessTimeFlag ++;
+        }
+        else
+        {
+              [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        }
+        
+       // [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         [searchtable reloadData];
         
     }
@@ -764,13 +797,25 @@ else if([languageFlag isEqualToString:@"english"])
         [listarray3 removeAllObjects];
         
         listarray3 = resultSet;
+        if (netAcessTimeFlag < 2) {
+            [self.cityDeferred takeResult:@"ok"];
+            netAcessTimeFlag++;
+        }
+        else
+        {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+            
+        }
         
+
         [cityView reloadData];
     }
     if (na.tag == 151) {
         [listarray4 removeAllObjects];
         
         listarray4 = resultSet;
+        
        
     }
     if (na.tag == 152) {
@@ -855,7 +900,7 @@ else if([languageFlag isEqualToString:@"english"])
         {
 
             //主界面tableview
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES]; 
+          //  [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
              
 
@@ -935,7 +980,7 @@ else if([languageFlag isEqualToString:@"english"])
         case 3:
         {
         //    [assAiv stopAnimating];
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+           // [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
             if (cell2 == nil) {
                 cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIndentifier2];

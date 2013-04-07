@@ -14,6 +14,7 @@
 #import "WepViewController.h"
 #import "MBProgressHUD.h"
 #import "UITools.h"
+#import "Yunju.h"
 
 @interface ArticleViewController ()
 
@@ -275,20 +276,29 @@
 
 -(void)takephone
 {
-    UIAlertView *av = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"%@",[[apparray objectAtIndex:0] objectForKey:@"tel"]] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"呼叫", nil];
-    av.tag = 0;
-    [av show];
+ 
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil
+                                  delegate:self
+                                  cancelButtonTitle:@"取消"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:[NSString stringWithFormat:@"拨打 %@",[[apparray objectAtIndex:0] objectForKey:@"tel"]],nil];
+  
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
 
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-        if(buttonIndex == 1)
+ 
+        if (buttonIndex == 0)     //打电话
         {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",[[apparray objectAtIndex:0] objectForKey:@"tel"]]]];
+             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",[[apparray objectAtIndex:0] objectForKey:@"tel"]]]];
         }
  
 }
+
+ 
 
 -(void)pushtosite
 {
@@ -351,7 +361,7 @@
 //            [self  introduceviewtwo];
 //        }
 
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
 
     }
 
@@ -418,7 +428,7 @@
     else
     {
         dataarray =   [self getthedata];
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
     
     }
 
@@ -468,7 +478,7 @@
         else
         {
             dataarray =   [self getthedata];
-            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
 
         }
 
@@ -514,7 +524,7 @@
         }
         else
         {
-             [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"对不起，暂无数据"];
+             [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
         }
     
         

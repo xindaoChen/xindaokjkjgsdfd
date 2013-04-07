@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BMapKit.h"
 #import "NetAccess.h"
-@interface ArticleViewController : UIViewController<UIWebViewDelegate,BMKMapViewDelegate,BMKSearchDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,NetAccessDelegate>
+@interface ArticleViewController : UIViewController<UIWebViewDelegate,BMKMapViewDelegate,BMKSearchDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,NetAccessDelegate,UIActionSheetDelegate>
 {
      
 //    UITableView *APPview;

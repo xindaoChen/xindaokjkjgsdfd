@@ -50,6 +50,7 @@
         num = stringnum + 1;
         cid = @"";
         tempprovinceName = @"";
+        netAcessTimeFlag = 0;
     }
     return self;
 }
@@ -60,6 +61,8 @@
     if (self) {
         num = stringnum;
         cid = classid;
+        
+        netAcessTimeFlag = 2;
         tempprovinceName = @"";
     }
     return  self;
@@ -74,6 +77,7 @@
         NSLog(@"******(***%@",provinceName);
         cid = @"";
         flagForInit = 10000;
+        netAcessTimeFlag = 0;
     }
     return self;
 }
@@ -105,7 +109,7 @@
     contectFlag = @"a";
     inid = @"";
     leid = @"";
-    netAcessTimeFlag = 0;
+//    netAcessTimeFlag = 0;
  
     developnumhasget = 0;
    // cid = @"";

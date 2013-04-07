@@ -70,7 +70,7 @@
     self = [super init];
     if (self) {
         self.provinceName = [NSString stringWithFormat:@"%@",name];
-       // self.tempprovinceName = @"";
+        self.tempprovinceName = [NSString stringWithFormat:@"%@",provincestring];
         NSLog(@"******(***%@",provinceName);
         cid = @"";
         flagForInit = 10000;
@@ -134,7 +134,7 @@
     
     if (flagForInit != 10000) {   //判断上一个界面传的值是市名还是下标。若不是市名，从数组中提取市名。
         provinceName = [allProvinceArray objectAtIndex:num];
-       // tempprovinceName = @"";
+        tempprovinceName = @"";
     }
    // provinceName = [allProvinceArray objectAtIndex:num];
   //  assAiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];

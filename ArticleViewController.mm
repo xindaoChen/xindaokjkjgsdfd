@@ -1075,9 +1075,9 @@
         else if(indexPath.row ==4)
 
         {
-            NSURL *URL = [NSURL URLWithString:@"http://www.sina.com.cn/"];
-            WepViewController *views = [[WepViewController alloc] initWithurl:URL];
-            [self.navigationController pushViewController:views animated:YES];
+//            NSURL *URL = [NSURL URLWithString:@"http://www.sina.com.cn/"];
+//            WepViewController *views = [[WepViewController alloc] initWithurl:URL];
+//            [self.navigationController pushViewController:views animated:YES];
         }
     }
 }

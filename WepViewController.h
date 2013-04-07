@@ -10,9 +10,9 @@
 
 @interface WepViewController : UIViewController<UIWebViewDelegate>
 {
-    UIWebView *mainview;
-    NSURL *myurl;
+    UIWebView *webview;
+    NSUInteger inter;
 }
-@property(nonatomic,strong) NSURL *myurl;
-- (id)initWithurl:(NSURL*)urls;
+ 
+- (id)initWithnumber:(NSUInteger)number;
 @end

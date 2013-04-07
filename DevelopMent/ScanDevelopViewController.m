@@ -73,7 +73,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+    _urlHost = delegate.domainName;
     NetAccess *netAccess = [[NetAccess alloc] init];
      NetAccess *netAccess1 = [[NetAccess alloc] init];
      NetAccess *netAccess2 = [[NetAccess alloc] init];
@@ -816,7 +817,7 @@ else if([languageFlag isEqualToString:@"english"])
  
                     NSString *url = [NSString stringWithFormat:
                                      @"%@%@%@",
-                                     HOST_URL, API_DEVELOPIAMGE,
+                                     _urlHost, API_DEVELOPIAMGE,
                                      [[allListArray objectAtIndex:indexPath.row] objectForKey:@"deveimage"]];
                     NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
                     UIImage *image = [[UIImage alloc] initWithData:data];

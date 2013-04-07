@@ -25,4 +25,6 @@
 @property(nonatomic,strong)NSMutableArray *listarray;
 @property(nonatomic,strong)UITableView *searchtable;
 @property (nonatomic, strong) NetAccess *gNetAccess;
+@property (nonatomic, strong) NSString *urlHost;
+
 @end

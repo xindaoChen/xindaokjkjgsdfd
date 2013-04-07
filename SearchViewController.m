@@ -37,7 +37,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
+    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+    _urlHost = delegate.domainName;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
 
     listarray = [[NSMutableArray alloc] init];
@@ -177,7 +178,7 @@
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSString *url = [NSString stringWithFormat:
                                  @"%@%@%@",
-                                 HOST_URL, API_DEVELOPIAMGE,
+                                 _urlHost, API_DEVELOPIAMGE,
                                  [[listarray objectAtIndex:indexPath.row] objectForKey:@"deveimage"]];
                  NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
                 UIImage *image = [[UIImage alloc]initWithData:data];

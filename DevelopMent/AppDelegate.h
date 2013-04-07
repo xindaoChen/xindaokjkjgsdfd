@@ -32,6 +32,7 @@
 @property (nonatomic,strong)  ClassViewController *classview;
 @property (nonatomic,strong) DiscussViewController *disview;
 @property (nonatomic,strong) XDTabBarViewController *xdTabbar;
+@property (nonatomic, strong) NSString *domainName;
 
 //数据模型对象
 @property(strong,nonatomic) NSManagedObjectModel *managedObjectModel;

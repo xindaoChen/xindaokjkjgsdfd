@@ -104,6 +104,8 @@
 @property (nonatomic,strong) NetAccess *cityNetAccess;
 @property (nonatomic,strong) NetAccess *levelNetAcess;
 @property (nonatomic,strong) NetAccess *industryNetAcess;
+@property (nonatomic, strong) NSString *urlHost;
+
 
 -(id)initWithnumber:( NSInteger )stringnum;
 -(id)initWithclassId:(NSString *)classid stringnum:(NSInteger)stringnum;

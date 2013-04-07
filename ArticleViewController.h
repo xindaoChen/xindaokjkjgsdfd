@@ -49,7 +49,7 @@
     UILabel *mylable4;
     
     UILabel *loadlabel;
-    
+    UIButton*loadbutton;
     
 }
  

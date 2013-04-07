@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "XDTabBarViewController.h"
 #import "WepViewController.h"
+#import "XDHeader.h"
 @interface DiscussViewController ()
 
 @end
@@ -156,15 +157,15 @@
 {
     NSString *url;
     if (sender.tag == 100) {
-        url = @"http://192.168.1.101:8010/index.php/other/cooperator";
+        url =[NSString stringWithFormat:@"%@%@",Web_URL,@"index.php/other/cooperator"];
     }
     else if (sender.tag == 200)
     {
-        url = @"http://192.168.1.101:8010/index.php/other/media";
+         url =[NSString stringWithFormat:@"%@%@",Web_URL,@"index.php/other/media"];
     }
     else if (sender.tag == 300)
     {
-        url = @"http://192.168.1.101:8010/index.php/other/investor";
+         url =[NSString stringWithFormat:@"%@%@",Web_URL,@"index.php/other/investor"];
     }
     WepViewController *mywepview = [[WepViewController alloc] initWithUrl:url];
     if (sender.tag == 100) {

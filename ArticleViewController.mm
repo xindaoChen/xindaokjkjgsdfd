@@ -142,8 +142,7 @@
     [myimageview setImage:[UIImage imageNamed:@"applogo.png"]];
     [viewapp addSubview:myimageview];
     
-    UIButton*loadbutton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [loadbutton setImage:[UIImage imageNamed:@"load.png"] forState:UIControlStateNormal];
+    loadbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     [loadbutton setBackgroundImage:[UIImage imageNamed:@"load.png"] forState:UIControlStateNormal];
     [loadbutton addTarget:self action:@selector(pushtoapp) forControlEvents:UIControlEventTouchUpInside];
     loadbutton.frame = CGRectMake(100, 130, 120, 40);
@@ -538,14 +537,14 @@
         apparray = resultSet;
 
         if ([[[apparray objectAtIndex:0] objectForKey:@"link"] isEqualToString:@""] ||  resultSet ==nil) {
- 
             
-              loadlabel.text = @"暂无APP";
-            
-        }
+             loadlabel.text = @"暂无APP";
+             loadbutton.userInteractionEnabled = NO;
+         }
         else
         {
-               loadlabel.text = @"点击下载";
+             loadlabel.text = @"点击下载";
+             loadbutton.userInteractionEnabled = YES;
          }
         
        

@@ -785,10 +785,15 @@ else if([languageFlag isEqualToString:@"english"])
     MyCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     switch (tableView.tag) {
-        case 1:
+        case 1:   //主界面tableview
+           // [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         {
+
             //主界面tableview
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES]; 
+
+             
+
             if (cell == nil) {
                 cell = [[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
             }
@@ -1208,7 +1213,6 @@ else if([languageFlag isEqualToString:@"english"])
 //            [provinceName retain];
 //            [self showdevelopZone];
             
-
        //     tableView.tableFooterView = nil;
             
         }
@@ -1222,12 +1226,10 @@ else if([languageFlag isEqualToString:@"english"])
 -(void)getMoreInfo
 {
     getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\",\"time\":\"%@\"}",provinceName,leid,inid,cid,[[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"] ];
-    
     NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);
     NSLog(@"^^%@",getDevelopZoneInfo);
     [self showdevelopZone];
     searchtable.tableFooterView = nil;
-
 }
 
 

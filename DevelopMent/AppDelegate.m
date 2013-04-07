@@ -42,6 +42,12 @@
     
     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
     language = [faflult objectForKey:@"lange"];
+    
+    int lt = UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge;
+   [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationType) lt];
+    
+
+    
     self.window.backgroundColor = [UIColor whiteColor];
     mapManager = [[BMKMapManager alloc] init];
     BOOL ret = [mapManager start:@"77D26CBA93676420DF337777AC65CF762264B858"
@@ -76,6 +82,22 @@
     managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     return managedObjectModel;
 }
+
+
+//- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+//{
+//    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
+//    NSLog(@"%@",token);
+//    
+//}
+//
+//- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+//{
+//    NSLog(@"Failed to get token, error: %@", error);
+//    
+//}
+
+
 
 -(NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {

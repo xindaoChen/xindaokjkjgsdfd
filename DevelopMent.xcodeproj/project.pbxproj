@@ -11,6 +11,7 @@
 		4401869E170BFF8D002EF4C6 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4401869D170BFF8D002EF4C6 /* MBProgressHUD.m */; };
 		4412566617097C7E007B7C9E /* GrayPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4412566517097C7E007B7C9E /* GrayPageControl.m */; };
 		4412567017098E32007B7C9E /* UITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4412566F17098E32007B7C9E /* UITools.m */; };
+		44282C211711181000C42FF9 /* XDWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44282C201711181000C42FF9 /* XDWebViewController.m */; };
 		445B7471170C3E5900557D86 /* XDTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 445B7470170C3E5900557D86 /* XDTabBarViewController.m */; };
 		445B7478170C405C00557D86 /* about_normal_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 445B7472170C405C00557D86 /* about_normal_tab@2x.png */; };
 		445B7479170C405C00557D86 /* about_select_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 445B7473170C405C00557D86 /* about_select_tab@2x.png */; };
@@ -170,6 +171,8 @@
 		4412566B17098C09007B7C9E /* XDHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XDHeader.h; path = DevelopMent/XDHeader.h; sourceTree = "<group>"; };
 		4412566E17098E32007B7C9E /* UITools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITools.h; sourceTree = "<group>"; };
 		4412566F17098E32007B7C9E /* UITools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITools.m; sourceTree = "<group>"; };
+		44282C1F1711181000C42FF9 /* XDWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDWebViewController.h; sourceTree = "<group>"; };
+		44282C201711181000C42FF9 /* XDWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDWebViewController.m; sourceTree = "<group>"; };
 		445B746F170C3E5900557D86 /* XDTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDTabBarViewController.h; sourceTree = "<group>"; };
 		445B7470170C3E5900557D86 /* XDTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDTabBarViewController.m; sourceTree = "<group>"; };
 		445B7472170C405C00557D86 /* about_normal_tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_normal_tab@2x.png"; sourceTree = "<group>"; };
@@ -506,6 +509,8 @@
 				7895D6B316FE9FE700604F50 /* NetAccess.m */,
 				445B746F170C3E5900557D86 /* XDTabBarViewController.h */,
 				445B7470170C3E5900557D86 /* XDTabBarViewController.m */,
+				44282C1F1711181000C42FF9 /* XDWebViewController.h */,
+				44282C201711181000C42FF9 /* XDWebViewController.m */,
 				78EAB75116FD9B4A00534880 /* MyCell.h */,
 				78EAB75216FD9B4A00534880 /* MyCell.m */,
 				7888F48F170E644000BFEC99 /* libbaidumapapi.a */,
@@ -937,6 +942,7 @@
 				C80956FD170C397800780FC3 /* calssCell.m in Sources */,
 				445B7471170C3E5900557D86 /* XDTabBarViewController.m in Sources */,
 				44D4837A170EBC250044AB41 /* JSONKit.m in Sources */,
+				44282C211711181000C42FF9 /* XDWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

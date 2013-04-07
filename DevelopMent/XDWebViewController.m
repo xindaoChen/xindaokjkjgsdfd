@@ -7,6 +7,7 @@
 //
 
 #import "XDWebViewController.h"
+#import "UITools.h"
 
 @interface XDWebViewController ()
 
@@ -26,7 +27,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.title = _titleString;
+    self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
 }
 
 - (void)didReceiveMemoryWarning

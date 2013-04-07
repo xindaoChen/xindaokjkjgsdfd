@@ -125,7 +125,7 @@
         [self englishorching];
     }
 
-        Snumber = 0;
+    Snumber = 0;
     CGRect fram = self.view.frame;
     listarray = [[NSMutableArray alloc] init];
     buttonbars = [[UILabel alloc]  init];
@@ -193,7 +193,7 @@
     [insteadview setImage:[UIImage imageNamed:@"instead_fir"]];
     [firscrollView addSubview:insteadview];
      imagearray = [[NSMutableArray alloc] init];
- 
+    buttonarray = [[NSMutableArray alloc] init];
   
     myMapView = [[ BMKMapView alloc] init];
     myMapView.delegate =self;
@@ -470,7 +470,7 @@
 }
 
 
-- (void)changeUIView       
+- (void)changeUIView
 {
     [UIView animateWithDuration:2
                           delay:0
@@ -518,43 +518,84 @@
 
      for (int i = 0; i<listarray.count; i++)
      {
-            [idaray  addObject:[[listarray objectAtIndex:i] objectForKey:@"id"]];
-            UIButton*buttongs = [UIButton buttonWithType:UIButtonTypeCustom];
-            buttongs.tag = i;
-            [buttongs addTarget:self action:@selector(yincang:) forControlEvents:UIControlEventTouchUpInside];
-            buttongs.frame = CGRectMake(frame.size.width*i , 0, 320, 120);
-            [buttongs setImage:[UIImage imageNamed:@"instead_fir"] forState:UIControlStateNormal];
-            [firscrollView addSubview:buttongs];
+      
+         if (buttonarray.count ==0)
+         {
+             UIButton*buttongs = [UIButton buttonWithType:UIButtonTypeCustom];
+             buttongs.tag = i;
+             [buttongs addTarget:self action:@selector(yincang:) forControlEvents:UIControlEventTouchUpInside];
+             buttongs.frame = CGRectMake(frame.size.width*i , 0, 320, 120);
+             [buttongs setImage:[UIImage imageNamed:@"instead_fir"] forState:UIControlStateNormal];
+             [firscrollView addSubview:buttongs];
+             
+             [idaray  addObject:[[listarray objectAtIndex:i] objectForKey:@"id"]];
+             dispatch_group_async(group, queue, ^{
+                 
+                 NSString *url = [NSString stringWithFormat:
+                                  @"%@%@%@",
+                                  HOST_URL, API_DEVELOPIAMGE,
+                                  [[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
+                 
+                 NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
+                 UIImage *image = [UIImage imageWithData:data];
+                 UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
+                 if (data !=nil){
+                     NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:data,@"data", [[listarray objectAtIndex:i] objectForKey:@"developname"],@"developname",[[listarray objectAtIndex:i] objectForKey:@"id"],@"id",[[listarray objectAtIndex:i] objectForKey:@"latitude"],@"latitude",[[listarray objectAtIndex:i] objectForKey:@"longitude"],@"longitude",nil];
+                     [maplistarray addObject:diction];
+                 }
+                 
+                 if (data != nil) {
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         [buttongs setImage:resImage forState:UIControlStateNormal];
+                     });
+                 }
+                 
+             });
+             
+             UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];
+             lable.backgroundColor = [UIColor clearColor];
+             lable.textColor = [UIColor whiteColor];
+             lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
+             [firscrollView addSubview:lable];
 
-            dispatch_group_async(group, queue, ^{
- 
-                NSString *url = [NSString stringWithFormat:
-                                 @"%@%@%@",
-                                 HOST_URL, API_DEVELOPIAMGE,
-                                 [[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
-                
-                NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-                UIImage *image = [UIImage imageWithData:data];
-                UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
-                if (data !=nil){
-                    NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:data,@"data", [[listarray objectAtIndex:i] objectForKey:@"developname"],@"developname",[[listarray objectAtIndex:i] objectForKey:@"id"],@"id",[[listarray objectAtIndex:i] objectForKey:@"latitude"],@"latitude",[[listarray objectAtIndex:i] objectForKey:@"longitude"],@"longitude",nil];
-                    [maplistarray addObject:diction];
-                }
-                
-                if (data != nil) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [buttongs setImage:resImage forState:UIControlStateNormal];
-                    });
-                }
-         
-        });
-        
-            UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];
-            lable.backgroundColor = [UIColor clearColor];
-            lable.textColor = [UIColor whiteColor];
-            lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
-            [firscrollView addSubview:lable];
-     }
+         }
+         else
+         {
+             
+             [firscrollView addSubview:[buttonarray objectAtIndex:i]];
+             
+             [idaray  addObject:[[listarray objectAtIndex:i] objectForKey:@"id"]];
+             dispatch_group_async(group, queue, ^{
+                 
+                 NSString *url = [NSString stringWithFormat:
+                                  @"%@%@%@",
+                                  HOST_URL, API_DEVELOPIAMGE,
+                                  [[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
+                 
+                 NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
+                 UIImage *image = [UIImage imageWithData:data];
+                 UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
+                 if (data !=nil){
+                     NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:data,@"data", [[listarray objectAtIndex:i] objectForKey:@"developname"],@"developname",[[listarray objectAtIndex:i] objectForKey:@"id"],@"id",[[listarray objectAtIndex:i] objectForKey:@"latitude"],@"latitude",[[listarray objectAtIndex:i] objectForKey:@"longitude"],@"longitude",nil];
+                     [maplistarray addObject:diction];
+                 }
+                 
+                 if (data != nil) {
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         [[buttonarray objectAtIndex:i] setImage:resImage forState:UIControlStateNormal];
+                     });
+                 }
+                 
+             });
+             
+             UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];
+             lable.backgroundColor = [UIColor clearColor];
+             lable.textColor = [UIColor whiteColor];
+             lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
+             [firscrollView addSubview:lable];
+
+         }
+    }
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         NSLog(@"updateUi");
@@ -567,7 +608,7 @@
         [maplistarray writeToFile:filename atomically:YES];
     });
     dispatch_release(group);
-    
+
 }
 
 -(void)setfirstimagetwo
@@ -582,9 +623,10 @@
         buttongs.tag = i;
         [buttongs addTarget:self action:@selector(yincang:) forControlEvents:UIControlEventTouchUpInside];
         buttongs.frame = CGRectMake(frame.size.width*i , 0, 320, 120);
-        [buttongs setImage:[UIImage imageNamed:@"instead_fir"] forState:UIControlStateNormal];
+//        [buttongs setImage:[UIImage imageNamed:@"instead_fir"] forState:UIControlStateNormal];
         [firscrollView addSubview:buttongs];
- 
+        [buttonarray addObject:buttongs];
+        
         UIImage *image = [UIImage imageWithData:[[listarray objectAtIndex:i]objectForKey:@"data"]];
         UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
         [buttongs setImage:resImage forState:UIControlStateNormal];
@@ -705,7 +747,7 @@
         }
         else
         {
-            [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+//            [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
             
         }
         

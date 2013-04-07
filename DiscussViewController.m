@@ -11,7 +11,7 @@
 #import "CooperaViewController.h"
 #import "AppDelegate.h"
 #import "XDTabBarViewController.h"
-
+#import "WepViewController.h"
 @interface DiscussViewController ()
 
 @end
@@ -59,10 +59,11 @@
     
     
     UIButton *button1= [UIButton buttonWithType:UIButtonTypeCustom];
-    [button1 addTarget:self action:@selector(coopview) forControlEvents:UIControlEventTouchUpInside];
+//    [button1 addTarget:self action:@selector(coopview) forControlEvents:UIControlEventTouchUpInside];
     [button1 setBackgroundImage:[UIImage imageNamed:@"cell_bg_0.png"] forState:UIControlStateNormal];
-  
+    [button1 addTarget:self action:@selector(pushtowebview:) forControlEvents:UIControlEventTouchUpInside];
      button1.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    button1.tag =100;
     [button1 setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
 
    
@@ -71,15 +72,17 @@
     
     UIButton *button2= [UIButton buttonWithType:UIButtonTypeCustom];
     [button2 setBackgroundImage:[UIImage imageNamed:@"cell_bg_1.png"] forState:UIControlStateNormal];
- 
+    [button2 addTarget:self action:@selector(pushtowebview:) forControlEvents:UIControlEventTouchUpInside];
+    button2.tag =200;
     button2.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     [button2 setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
 
     
 	UIButton *button3= [UIButton buttonWithType:UIButtonTypeCustom];
     [button3 setBackgroundImage:[UIImage imageNamed:@"cell_bg_2.png"] forState:UIControlStateNormal];
-
-      button3.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    [button3 addTarget:self action:@selector(pushtowebview:) forControlEvents:UIControlEventTouchUpInside];
+    button3.tag =300;
+   button3.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     [button3 setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
 
 
@@ -129,12 +132,44 @@
     [self.view addSubview:button3];
     [self.view addSubview:button4];
 }
- 
--(void)coopview
+
+
+-(void)pushtowebview:(UIButton *)sender
 {
-    CooperaViewController *coopview = [[CooperaViewController alloc] init];
-    [self.navigationController pushViewController:coopview animated:YES];
+    NSString *url;
+    if (sender.tag == 100) {
+        url = @"http://192.168.1.101:8010/index.php/other/cooperator";
+    }
+    else if (sender.tag == 200)
+    {
+        url = @"http://192.168.1.101:8010/index.php/other/media";
+    }
+    else if (sender.tag == 300)
+    {
+        url = @"http://192.168.1.101:8010/index.php/other/investor";
+    }
+    WepViewController *mywepview = [[WepViewController alloc] initWithUrl:url];
+    if (sender.tag == 100) {
+       mywepview.title = @"合作单位";
+    }
+    else if (sender.tag == 200)
+    {
+       mywepview.title = @"合作媒体";
+    }
+    else if (sender.tag == 300)
+    {
+        mywepview.title = @"常见机构投资者";
+    }
+
+    
+    [self.navigationController pushViewController:mywepview animated:YES];
 }
+//
+//-(void)coopview
+//{
+//    CooperaViewController *coopview = [[CooperaViewController alloc] init];
+//    [self.navigationController pushViewController:coopview animated:YES];
+//}
 
 
 -(void)pushtoapp

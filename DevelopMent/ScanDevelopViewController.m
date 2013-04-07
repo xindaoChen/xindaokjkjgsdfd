@@ -1311,14 +1311,14 @@ else if([languageFlag isEqualToString:@"english"])
             NSLog(@"$&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%d,%d,%d",indexPath.row,[allListArray count]-1,count -1);
             footactive = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             
-            footactive.center = CGPointMake(220, 30);
+            footactive.center = CGPointMake(105, 30);
             footactive.color = [UIColor blackColor];
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-           [button setTitle:@"加载更多" forState:UIControlStateNormal];
+           [button setTitle:@"加载更多..." forState:UIControlStateNormal];
             [button setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
             button.frame = footview.frame;
             button.backgroundColor = [UIColor clearColor];
-            [button setBackgroundImage:[UIImage imageNamed:@"levelbutton1.png"] forState:UIControlStateNormal];
+           // [button setBackgroundImage:[UIImage imageNamed:@"levelbutton1.png"] forState:UIControlStateNormal];
             [button addTarget:self action:@selector(getMoreInfo) forControlEvents:UIControlEventTouchUpInside];
             [button addSubview:footactive];
             [footview addSubview:button];

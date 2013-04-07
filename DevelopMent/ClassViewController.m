@@ -152,7 +152,7 @@
     UIImageView *imageview = [[UIImageView alloc]initWithFrame:cell.frame];
     imageview.image = [UIImage imageNamed:[NSString stringWithFormat:@"cell_bg_%d",indexPath.section%6]];
     cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
-    cell.selectedBackgroundView.backgroundColor =[UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:0.6];;
+    cell.selectedBackgroundView.backgroundColor =[UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:0.4];;
     cell.backgroundView = imageview;
     
     cell.label.text =[NSString stringWithFormat:@"%@",[[listarray  objectAtIndex:  indexPath.section] objectForKey:@"classname"]];

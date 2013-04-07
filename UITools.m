@@ -38,7 +38,7 @@
     
     HUD.mode = MBProgressHUDModeCustomView;
     [HUD show:YES];
-    [HUD hide:YES afterDelay:2];
+    [HUD hide:YES afterDelay:0.8];
 }
 
 + (UIImage *)reSizeImage:(UIImage *)image toSize:(CGSize)reSize

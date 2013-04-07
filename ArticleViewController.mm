@@ -500,13 +500,15 @@
     if (na.tag ==100)
     {
         dataarray = resultSet;
-
-       
         if (dataarray.count !=0) {
              [dataview reloadData];
+            [self clearmessage];
+            [self savedatamessage];
         }
-        [self clearmessage];
-        [self savedatamessage];
+        else{
+            [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+        }
+       
         
     }
     else if (na.tag ==110)
@@ -537,12 +539,13 @@
 
         if ([[[apparray objectAtIndex:0] objectForKey:@"link"] isEqualToString:@""] ||  resultSet ==nil) {
  
-             loadlabel.text = @"点击下载";
+            
+              loadlabel.text = @"暂无APP";
             
         }
         else
         {
-            loadlabel.text = @"暂无APP";
+               loadlabel.text = @"点击下载";
          }
         
        

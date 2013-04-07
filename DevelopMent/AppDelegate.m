@@ -31,7 +31,7 @@
     naviga3.tabBarItem.image = [UIImage imageNamed:@"about"];
     NSArray *array = [NSArray arrayWithObjects:naviga1,naviga2,naviga3, nil];
     
-    XDTabBarViewController *tabbar=[[[XDTabBarViewController alloc] init] autorelease];
+    XDTabBarViewController *tabbar=[[XDTabBarViewController alloc] init];
     tabbar.viewControllers=array;
     tabbar.delegate=(id)self;
     self.xdTabbar = tabbar;
@@ -39,12 +39,6 @@
     
     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
     language = [faflult objectForKey:@"lange"];
- 
-
-    [firstview release];
-    [classview release];
-    [disview release];
-    
     
     
     self.window.backgroundColor = [UIColor whiteColor];
@@ -68,7 +62,7 @@
     if (managedObjectModel != nil) {
         return managedObjectModel;
     }
-    managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];
+    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     return managedObjectModel;
 }
 

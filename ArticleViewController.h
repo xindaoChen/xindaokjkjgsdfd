@@ -61,6 +61,9 @@
 //@property(nonatomic,strong) UITableView *APPview;
 @property(nonatomic,strong)  NSString*idstring;
 @property(nonatomic,strong)   UIView *viewapp;
+@property (nonatomic, strong) NetAccess *gNetAccess;
+@property (nonatomic, strong) NetAccess *appNetAccess;
+@property (nonatomic, strong) NetAccess *dataNetAccess;
 
 - (id)initWithurl:(NSDictionary *)array;
 @end

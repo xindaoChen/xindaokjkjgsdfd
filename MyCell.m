@@ -45,12 +45,4 @@
     // Configure the view for the selected state
 }
 
--(void)dealloc
-{
-    [label release];label = nil;
-    [labeltwo release];labeltwo = nil;
-    [imageview release];imageview = nil;
-    [super dealloc];
-}
-
 @end

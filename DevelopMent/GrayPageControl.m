@@ -14,8 +14,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        activeImage = [[UIImage imageNamed:@"active_page_image"] retain];
-        inactiveImage = [[UIImage imageNamed:@"inactive_page_image"] retain];    }
+        activeImage = [UIImage imageNamed:@"active_page_image"];
+        inactiveImage = [UIImage imageNamed:@"inactive_page_image"];
+    }
     return self;
 }
 

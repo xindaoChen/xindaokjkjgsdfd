@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "XDTabBarViewController.h"
+#import "XDHeader.h"
 
 #import "FirstViewController.h"
 @implementation AppDelegate
@@ -17,6 +18,8 @@
 @synthesize xdTabbar;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    _domainName = HOST_URL;
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     FirstViewController* firstview = [[FirstViewController alloc] init];
     UINavigationController *naviga1 = [[UINavigationController alloc] initWithRootViewController:firstview];
@@ -81,13 +84,10 @@
 }
 
 
-//- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+//-(void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 //{
-//    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
-//    NSLog(@"%@",token);
 //    
 //}
-//
 //- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 //{
 //    NSLog(@"Failed to get token, error: %@", error);

@@ -9,6 +9,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NetAccess.h"
+#import "HLDeferredList.h"
 
 @interface ScanDevelopViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,NetAccessDelegate>
 {
@@ -63,6 +64,7 @@
     NSString *getDevelopZoneInfo;
    NSString *getCityName;
     NSString *languageFlag;
+    int  netAcessTimeFlag;
     
     
     int provinceButonStatue;   //记录每个按钮的状态互斥  选中-1，
@@ -72,6 +74,8 @@
     UILabel *provinceLabel;
     UILabel *levelLabel;
     UILabel *industryLabel;
+    
+    
     
 }
 @property(nonatomic,strong)UITextField *searchfield;
@@ -106,6 +110,13 @@
 @property (nonatomic,strong) NetAccess *cityNetAccess;
 @property (nonatomic,strong) NetAccess *levelNetAcess;
 @property (nonatomic,strong) NetAccess *industryNetAcess;
+@property(nonatomic,strong)  HLDeferred *developDeferred;
+@property(nonatomic,strong)  HLDeferred *cityDeferred;
+@property(nonatomic,strong)  HLDeferred *levelDeferred;
+@property(nonatomic,strong)  HLDeferred *industryDeferred;
+@property(nonatomic,strong)  HLDeferredList *deferredList;
+@property (nonatomic, strong) NSString *urlHost;
+
 
 -(id)initWithnumber:( NSInteger )stringnum;
 -(id)initWithclassId:(NSString *)classid stringnum:(NSInteger)stringnum;

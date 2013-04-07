@@ -56,4 +56,7 @@
 @property (nonatomic, strong) NetAccess *gNetAccess;
  
 @property(nonatomic,strong) NSMutableArray *maplistarray;
+@property (nonatomic, strong) NSString *urlHost;
+
+
 @end

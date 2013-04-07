@@ -47,6 +47,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+    _urlHost = delegate.domainName;
+
       [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
     CGRect fram = self.view.frame;
     
@@ -155,17 +158,15 @@
 {
     NSString *url;
     if (sender.tag == 100) {
-        
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URL_YUNJU]];
-        return;
+        url =[NSString stringWithFormat:@"%@%@",_urlHost,@"index.php/other/cooperator"];
     }
     else if (sender.tag == 200)
     {
-         url =[NSString stringWithFormat:@"%@%@",Web_URL,@"index.php/other/cooperator"];
+         url =[NSString stringWithFormat:@"%@%@",_urlHost,@"index.php/other/media"];
     }
     else if (sender.tag == 300)
     {
-         url =[NSString stringWithFormat:@"%@%@",Web_URL,@"index.php/other/investor"];
+         url =[NSString stringWithFormat:@"%@%@",_urlHost,@"index.php/other/investor"];
     }
     WepViewController *mywepview = [[WepViewController alloc] initWithUrl:url];
     if (sender.tag == 100) {

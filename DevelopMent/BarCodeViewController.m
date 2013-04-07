@@ -7,6 +7,7 @@
 //
 
 #import "BarCodeViewController.h"
+#import "UITools.h"
 
 @interface BarCodeViewController ()
 
@@ -18,7 +19,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.title = @"二维码";
     }
     return self;
 }
@@ -26,8 +27,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
+    UIImageView *barImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"appstore_qr"]];
+    barImageView.frame = CGRectMake(95, 70, 120, 120);
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(106, 200, 130, 20)];
+    label.text = @"扫描即可下载";
+    label.textColor = [UIColor blackColor];
+    label.backgroundColor = [UIColor clearColor];
+    
+    [self.view addSubview:label];
+    
+    [self.view addSubview:barImageView];
 	// Do any additional setup after loading the view.
 }
+
+-(void)backtosuper
+{
+    [self.navigationController   popViewControllerAnimated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

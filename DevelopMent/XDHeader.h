@@ -11,7 +11,6 @@
 
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
-#define Web_URL     @"http://192.168.1.101:8010/"
 #define HOST_URL                @"http://www.dacheq.com/"
 //#define HOST_URL                @"http://192.168.1.101:8010/"
 
@@ -29,5 +28,20 @@
 
 #define URL_YUNJU           @"http://m.baidu.com/"
 
+
+#define DEFINE_SINGLETON_FOR_HEADER(className) \
+\
++ (className *)shared##className;
+
+#define DEFINE_SINGLETON_FOR_CLASS(className) \
+\
++ (className *)shared##className { \
+static className *shared##className = nil; \
+static dispatch_once_t onceToken; \
+dispatch_once(&onceToken, ^{ \
+shared##className = [[self alloc] init]; \
+}); \
+return shared##className; \
+}
 
 #endif

@@ -653,8 +653,11 @@
             addr= [NSString stringWithFormat:@"%@",result.addressComponent.city];
                      //市
             buttonbars.text = addr;
- 
-         }
+          }
+        if (result.addressComponent.province !=nil) {
+            addr= [NSString stringWithFormat:@"%@",result.addressComponent.province];
+            province = addr;
+        }
     
     }
 }
@@ -674,13 +677,13 @@
      
     NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"特别行政区"];
     NSString *trimmedString = [buttonbars.text stringByTrimmingCharactersInSet:set];
-    NSLog(@"%@",trimmedString);
+     
     if (!trimmedString) {
        [UITools showPopMessage:self titleInfo:@"提示" messageInfo:CannotLocate];
     }
     else
     {
-        ScanDevelopViewController *searchview = [[ScanDevelopViewController alloc] initWithcityname:trimmedString];
+        ScanDevelopViewController *searchview = [[ScanDevelopViewController alloc] initWithcityname:trimmedString andprovince:province];
         [self.navigationController pushViewController:searchview animated:YES];
 //        [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
 

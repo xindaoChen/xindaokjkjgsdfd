@@ -50,7 +50,7 @@
     
     UILabel *loadlabel;
     UIButton*loadbutton;
-    
+
 }
  
 @property(nonatomic,strong) NSURL *myurl;

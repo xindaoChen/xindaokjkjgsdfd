@@ -107,7 +107,7 @@
 
 -(id)initWithnumber:( NSInteger )stringnum;
 -(id)initWithclassId:(NSString *)classid stringnum:(NSInteger)stringnum;
--(id)initWithcityname:(NSString *)name;
+-(id)initWithcityname:(NSString *)name andprovince:(NSString *)provincestring;
 
 @end
 

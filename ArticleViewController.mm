@@ -515,28 +515,24 @@
         introducearray = resultSet;
         firscrollView.contentSize = CGSizeMake(320*(introducearray.count), 120);
 //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   [self  clearmessagetwo];});
-        for (UIView *subView in firscrollView.subviews)
-        {
-             [subView removeFromSuperview];
-        }
         [introducearrytwo removeAllObjects];
         if (introducearray.count != 0) {
+            for (UIView *subView in firscrollView.subviews)
+            {
+                [subView removeFromSuperview];
+            }
+
              [self introduceview];
         }
         else
         {
              [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
         }
-    
-        
     }
     else if (na.tag ==111)
     {
-        NSLog(@"%@",resultSet);
-
-        apparray = resultSet;
-
-        if ([[[apparray objectAtIndex:0] objectForKey:@"link"] isEqualToString:@""] ||  resultSet ==nil) {
+         apparray = resultSet;
+         if ([[[apparray objectAtIndex:0] objectForKey:@"link"] isEqualToString:@""] ||  resultSet ==nil) {
             
              loadlabel.text = @"暂无APP";
              loadbutton.userInteractionEnabled = NO;
@@ -831,7 +827,7 @@
     if (tableView.tag ==100) {
          return 60;
     }
-    return 40;
+    return 35;
 }
 
 

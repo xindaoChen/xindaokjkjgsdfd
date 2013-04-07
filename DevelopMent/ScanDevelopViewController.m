@@ -58,7 +58,7 @@
     return  self;
 }
 
--(id)initWithcityname:(NSString *)name
+-(id)initWithcityname:(NSString *)name andprovince:(NSString *)provincestring
 {
     self = [super init];
     if (self) {

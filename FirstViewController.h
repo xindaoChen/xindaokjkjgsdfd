@@ -28,6 +28,7 @@
     BMKSearch *mysearch;
     BMKMapView *myMapView;
     UILabel *buttonbars;
+    NSString *province;
     UIToolbar *toolBar;
     NSMutableArray *arrayone;
      NSMutableArray *arrayonetwo;

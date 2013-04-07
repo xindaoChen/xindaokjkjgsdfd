@@ -47,26 +47,8 @@
     [super viewDidLoad];
       [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
     CGRect fram = self.view.frame;
-//    if (fram.size.height>500) {
-//          textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 15, 300, 160)];
-//    }
-//    else
-//    {
-//          textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 15, 300, 150)];
-//    }
-//   
-//    textview.backgroundColor = [UIColor redColor];
-//    textview.editable = NO;
-//    textview.scrollEnabled = NO;
-//    textview.layer.cornerRadius = 6;
-//    textview.layer.masksToBounds = YES;
-//    textview.text =@"       本产品致力于提供最详尽的全国开发区信息。采用LBS定位，默认显示所在城市的所有开发区，同时支持按省份浏览，按行业浏览，按名字关键字搜索等。针对每个开发区，都有单独的系列页面进行详尽的说明，对于有独立APP的开发区，提供其下载链接。";
-//    textview.textColor = [UIColor blackColor];
-//    textview.font =[UIFont systemFontOfSize:15];
-//    [self.view addSubview:textview];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
-    webview = [[UIWebView alloc] init];
     UIImageView *myimageview = [[UIImageView alloc] initWithFrame:CGRectMake(90,  10, 140, 140)];
     [myimageview setImage:[UIImage imageNamed:@"applogo.png"]];
     myimageview.userInteractionEnabled=YES;
@@ -193,12 +175,17 @@
 
 -(void)pushtoapp
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"]];
+    [self pushtoreview];
 }
 
 -(void)pushtoreview
 {
-   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"]];
+    NSString *appName = [NSString stringWithString:
+                         [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
+    NSURL *appStoreURL = [NSURL URLWithString:[[NSString stringWithFormat:@"itms-apps://itunes.com/app/%@",appName]  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding ]];
+    NSLog(@"appStoreURL:%@", appStoreURL);
+
+    [[UIApplication sharedApplication] openURL:appStoreURL];
 }
 
 - (void)didReceiveMemoryWarning

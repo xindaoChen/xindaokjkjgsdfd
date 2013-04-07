@@ -192,12 +192,12 @@
     [provincebutton addSubview:provinceLabel];
     
     
-    UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(frame.size.width/3, 0, 1, 40)];
-    image.image = [UIImage imageNamed:@"sx"];
-    UIImageView *image1 = [[UIImageView alloc]initWithFrame:CGRectMake(2*frame.size.width/3 + 1, 0, 1, 40)];
-    image1.image = [UIImage imageNamed:@"sx"];
-    UIImageView *image2 = [[UIImageView alloc]initWithFrame:CGRectMake(0,40,320,1)];
-    image1.image = [UIImage imageNamed:@"hx"];
+//    UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(frame.size.width/3, 0, 1, 40)];
+//    image.image = [UIImage imageNamed:@"sx"];
+//    UIImageView *image1 = [[UIImageView alloc]initWithFrame:CGRectMake(2*frame.size.width/3 + 1, 0, 1, 40)];
+//    image1.image = [UIImage imageNamed:@"sx"];
+//    UIImageView *image2 = [[UIImageView alloc]initWithFrame:CGRectMake(0,40,320,1)];
+//    image1.image = [UIImage imageNamed:@"hx"];
 
     levelbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     levelbutton.frame = CGRectMake(106.5, 0,107, 40);
@@ -285,15 +285,15 @@
     [self.view addSubview:industrybutton];
     [self.view addSubview:levelbutton];
     [self.view addSubview:provincebutton];
-    [self.view addSubview:image];
-    [self.view addSubview:image1];
-    [self.view addSubview:image2];
+   // [self.view addSubview:image];
+   // [self.view addSubview:image1];
+  //  [self.view addSubview:image2];
 
-    moveImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,-3, self.view.frame.size.width/3,7 )];
+    moveImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,-3,106.5,7 )];
     moveImageView.image = [UIImage  imageNamed:@"moveimage_pic"];
-    moveImageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/3,-3,self.view.frame.size.width/3,7 )];
+    moveImageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(106.5,-3,107,7 )];
     moveImageView2.image = [UIImage  imageNamed:@"moveimage_pic"];
-    moveImageView3 = [[UIImageView alloc]initWithFrame:CGRectMake(2*self.view.frame.size.width/3,-3, self.view.frame.size.width/3,7 )];
+    moveImageView3 = [[UIImageView alloc]initWithFrame:CGRectMake(213.5,-3,106.5,7 )];
     moveImageView3.image = [UIImage  imageNamed:@"moveimage_pic"];
 
     [showCityView addSubview:moveImageView];
@@ -686,7 +686,7 @@ else if([languageFlag isEqualToString:@"english"])
             
         }
         if (allListArray.count == 0) {
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        //    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
              [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"对不起,暂无数据"];
             
@@ -788,7 +788,7 @@ else if([languageFlag isEqualToString:@"english"])
         case 1:
         {
             //主界面tableview
-           // [MBProgressHUD hideAllHUDsForView:self.view animated:YES]; 
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES]; 
             if (cell == nil) {
                 cell = [[MyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
             }
@@ -831,7 +831,7 @@ else if([languageFlag isEqualToString:@"english"])
                     }
                 });
             }
-             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+         //    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             
             return cell;
         }

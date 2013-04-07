@@ -34,7 +34,7 @@
     [mainview loadRequest:[NSURLRequest requestWithURL:myurl]];
     self.view = mainview;
     
-    ;
+  
     self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
     
 }

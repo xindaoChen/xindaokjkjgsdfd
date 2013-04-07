@@ -84,13 +84,7 @@
     _levelNetAcess = netAccess2;
     _industryNetAcess = netAccess3;
     
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button2.frame = CGRectMake(10, 2, 40, 40);
-    [button2 setImage:[UIImage imageNamed:@"jiantou.png"] forState:UIControlStateNormal];
-    [button2 addTarget:self action:@selector(backtosuper) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftBtnTopItem = [[UIBarButtonItem alloc] initWithCustomView:button2];
-    self.navigationItem.leftBarButtonItem = leftBtnTopItem;    
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
+     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
 
     allListArray = [[NSMutableArray alloc] init];
     imagesDictionary = [[NSMutableDictionary alloc] init];

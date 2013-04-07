@@ -17,13 +17,13 @@
 
 @implementation WepViewController
  
-- (id)initWithnumber:(NSUInteger)number
+- (id)initWithUrl:(NSString*)weburl
 {
     self = [super init];
     if (self)
     {
-        inter = number;
-         self.hidesBottomBarWhenPushed = YES;
+        myurl = weburl;
+      self.hidesBottomBarWhenPushed = YES;
      }
     return self;
 }
@@ -33,19 +33,7 @@
     webview = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     webview.delegate = self;
     webview.scalesPageToFit = YES;
-    NSURL *myurl;
-    if (inter ==100) {
-        myurl = [NSURL URLWithString:@"http://192.168.1.101:8010/index.php/other/cooperator"];
-    }
-    else if(inter ==200)
-    {
-         myurl = [NSURL URLWithString:@"http://192.168.1.101:8010/index.php/other/media"];
-    }
-    else if(inter ==300)
-    {
-         myurl = [NSURL URLWithString:@"http://192.168.1.101:8010/index.php/other/investor"];
-    }
-   [webview loadRequest:[NSURLRequest requestWithURL:myurl]];
+    [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:myurl]]];
     self.view = webview;
     self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
     

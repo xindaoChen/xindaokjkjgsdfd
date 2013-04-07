@@ -154,7 +154,32 @@
 
 -(void)pushtowebview:(UIButton *)sender
 {
-    WepViewController *mywepview = [[WepViewController alloc] initWithnumber:sender.tag];
+    NSString *url;
+    if (sender.tag == 100) {
+        url = @"http://192.168.1.101:8010/index.php/other/cooperator";
+    }
+    else if (sender.tag == 200)
+    {
+        url = @"http://192.168.1.101:8010/index.php/other/media";
+    }
+    else if (sender.tag == 300)
+    {
+        url = @"http://192.168.1.101:8010/index.php/other/investor";
+    }
+    WepViewController *mywepview = [[WepViewController alloc] initWithUrl:url];
+    if (sender.tag == 100) {
+       mywepview.title = @"合作单位";
+    }
+    else if (sender.tag == 200)
+    {
+       mywepview.title = @"合作媒体";
+    }
+    else if (sender.tag == 300)
+    {
+        mywepview.title = @"常见机构投资者";
+    }
+
+    
     [self.navigationController pushViewController:mywepview animated:YES];
 }
 //

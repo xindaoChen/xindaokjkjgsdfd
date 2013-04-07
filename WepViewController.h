@@ -11,8 +11,9 @@
 @interface WepViewController : UIViewController<UIWebViewDelegate>
 {
     UIWebView *webview;
-    NSUInteger inter;
+    NSString *myurl;
 }
- 
-- (id)initWithnumber:(NSUInteger)number;
+
+@property (nonatomic, strong) NSString *titleName;
+- (id)initWithUrl:(NSString*)weburl;
 @end

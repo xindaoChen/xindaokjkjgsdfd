@@ -15,6 +15,7 @@
 #import "MBProgressHUD.h"
 #import "UITools.h"
 #import "XDTabBarViewController.h"
+#import "Yunju.h"
 
 @interface SearchViewController ()
 
@@ -71,13 +72,8 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
     [self.view addSubview:searchtable];
     
-    
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button2.frame = CGRectMake(0, 2, 40, 40);
-    [button2 setImage:[UIImage imageNamed:@"jiantou.png"] forState:UIControlStateNormal];
-    [button2 addTarget:self action:@selector(backtosuper) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftBtnTopItem = [[UIBarButtonItem alloc] initWithCustomView:button2];
-    self.navigationItem.leftBarButtonItem = leftBtnTopItem;
+      self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
+ 
     NetAccess *netAccess = [[NetAccess alloc]init];
     _gNetAccess= netAccess;
 }
@@ -103,7 +99,7 @@
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
     }
     
 
@@ -160,7 +156,7 @@
         }
         else
         {
-           [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"没有搜索结果"];        }
+           [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutResult];        }
         
     }
 }

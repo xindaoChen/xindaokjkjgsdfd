@@ -28,6 +28,7 @@
     BMKSearch *mysearch;
     BMKMapView *myMapView;
     UILabel *buttonbars;
+    NSString *province;
     UIToolbar *toolBar;
     NSMutableArray *arrayone;
      NSMutableArray *arrayonetwo;
@@ -44,7 +45,9 @@
     ClassViewController *classeview;
     DiscussViewController *disview;
     NetAccess *gNetAccess;
-}
+    
+    NSMutableArray *buttonarray;
+     }
 @property(nonatomic,strong)UIScrollView *firscrollView;
 @property(nonatomic,strong)UIScrollView *secscrollview;
 @property(nonatomic,strong)UIPageControl *pageController;

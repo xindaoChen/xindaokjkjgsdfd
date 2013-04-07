@@ -11,7 +11,7 @@
 
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
-
+#define Web_URL     @"http://192.168.1.101:8010/"
 #define HOST_URL                @"http://www.dacheq.com/"
 //#define HOST_URL                @"http://192.168.1.101:8010/"
 

@@ -10,34 +10,51 @@
 #import "UITools.h"
 #import "AppDelegate.h"
 #import "XDTabBarViewController.h"
-
+#import "MBProgressHUD.h"
 @interface WepViewController ()
 
 @end
 
 @implementation WepViewController
-@synthesize myurl;
-- (id)initWithurl:(NSURL*)urls
+ 
+- (id)initWithUrl:(NSString*)weburl
 {
     self = [super init];
-    if (self) {
-        myurl = urls;
-    }
+    if (self)
+    {
+        myurl = weburl;
+      self.hidesBottomBarWhenPushed = YES;
+     }
     return self;
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    mainview = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    mainview.delegate = self;
-    mainview.scalesPageToFit = YES;
-    [mainview loadRequest:[NSURLRequest requestWithURL:myurl]];
-    self.view = mainview;
-    
-    ;
+    webview = [[UIWebView alloc] initWithFrame:self.view.frame];
+    webview.delegate = self;
+    webview.scalesPageToFit = YES;
+    [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:myurl]]];
+    self.view = webview;
     self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
     
 }
+
+
+-(void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

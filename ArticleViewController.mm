@@ -14,6 +14,7 @@
 #import "WepViewController.h"
 #import "MBProgressHUD.h"
 #import "UITools.h"
+#import "Yunju.h"
 
 @interface ArticleViewController ()
 
@@ -141,8 +142,7 @@
     [myimageview setImage:[UIImage imageNamed:@"applogo.png"]];
     [viewapp addSubview:myimageview];
     
-    UIButton*loadbutton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [loadbutton setImage:[UIImage imageNamed:@"load.png"] forState:UIControlStateNormal];
+    loadbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     [loadbutton setBackgroundImage:[UIImage imageNamed:@"load.png"] forState:UIControlStateNormal];
     [loadbutton addTarget:self action:@selector(pushtoapp) forControlEvents:UIControlEventTouchUpInside];
     loadbutton.frame = CGRectMake(100, 130, 120, 40);
@@ -275,20 +275,29 @@
 
 -(void)takephone
 {
-    UIAlertView *av = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"%@",[[apparray objectAtIndex:0] objectForKey:@"tel"]] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"呼叫", nil];
-    av.tag = 0;
-    [av show];
+ 
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil
+                                  delegate:self
+                                  cancelButtonTitle:@"取消"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:[NSString stringWithFormat:@"拨打 %@",[[apparray objectAtIndex:0] objectForKey:@"tel"]],nil];
+  
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
 
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-        if(buttonIndex == 1)
+ 
+        if (buttonIndex == 0)     //打电话
         {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",[[apparray objectAtIndex:0] objectForKey:@"tel"]]]];
+             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",[[apparray objectAtIndex:0] objectForKey:@"tel"]]]];
         }
  
 }
+
+ 
 
 -(void)pushtosite
 {
@@ -351,7 +360,7 @@
 //            [self  introduceviewtwo];
 //        }
 
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
 
     }
 
@@ -418,7 +427,7 @@
     else
     {
         dataarray =   [self getthedata];
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
     
     }
 
@@ -468,7 +477,7 @@
         else
         {
             dataarray =   [self getthedata];
-            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
 
         }
 
@@ -490,13 +499,15 @@
     if (na.tag ==100)
     {
         dataarray = resultSet;
-
-       
         if (dataarray.count !=0) {
              [dataview reloadData];
+            [self clearmessage];
+            [self savedatamessage];
         }
-        [self clearmessage];
-        [self savedatamessage];
+        else{
+            [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+        }
+       
         
     }
     else if (na.tag ==110)
@@ -504,35 +515,32 @@
         introducearray = resultSet;
         firscrollView.contentSize = CGSizeMake(320*(introducearray.count), 120);
 //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   [self  clearmessagetwo];});
-        for (UIView *subView in firscrollView.subviews)
-        {
-             [subView removeFromSuperview];
-        }
         [introducearrytwo removeAllObjects];
         if (introducearray.count != 0) {
+            for (UIView *subView in firscrollView.subviews)
+            {
+                [subView removeFromSuperview];
+            }
+
              [self introduceview];
         }
         else
         {
-             [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"对不起，暂无数据"];
+             [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
         }
-    
-        
     }
     else if (na.tag ==111)
     {
-        NSLog(@"%@",resultSet);
-
-        apparray = resultSet;
-
-        if ([[[apparray objectAtIndex:0] objectForKey:@"link"] isEqualToString:@""] ||  resultSet ==nil) {
- 
-             loadlabel.text = @"点击下载";
+         apparray = resultSet;
+         if ([[[apparray objectAtIndex:0] objectForKey:@"link"] isEqualToString:@""] ||  resultSet ==nil) {
             
-        }
+             loadlabel.text = @"暂无APP";
+             loadbutton.userInteractionEnabled = NO;
+         }
         else
         {
-            loadlabel.text = @"暂无APP";
+             loadlabel.text = @"点击下载";
+             loadbutton.userInteractionEnabled = YES;
          }
         
        
@@ -819,7 +827,7 @@
     if (tableView.tag ==100) {
          return 60;
     }
-    return 40;
+    return 35;
 }
 
 
@@ -1062,9 +1070,9 @@
         else if(indexPath.row ==4)
 
         {
-            NSURL *URL = [NSURL URLWithString:@"http://www.sina.com.cn/"];
-            WepViewController *views = [[WepViewController alloc] initWithurl:URL];
-            [self.navigationController pushViewController:views animated:YES];
+//            NSURL *URL = [NSURL URLWithString:@"http://www.sina.com.cn/"];
+//            WepViewController *views = [[WepViewController alloc] initWithurl:URL];
+//            [self.navigationController pushViewController:views animated:YES];
         }
     }
 }

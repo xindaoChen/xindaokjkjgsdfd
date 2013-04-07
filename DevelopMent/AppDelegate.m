@@ -21,7 +21,7 @@
     FirstViewController* firstview = [[FirstViewController alloc] init];
     UINavigationController *naviga1 = [[UINavigationController alloc] initWithRootViewController:firstview];
     naviga1.tabBarItem.image = [UIImage imageNamed:@"homepage"];
-    
+ 
     classview = [[ClassViewController alloc] init];
     naviga2 = [[UINavigationController alloc] initWithRootViewController:classview];
     naviga2.tabBarItem.image = [UIImage imageNamed:@"class"];
@@ -39,12 +39,15 @@
     
     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
     language = [faflult objectForKey:@"lange"];
+<<<<<<< HEAD
     
     int lt = UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge;
    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationType) lt];
     
 
     
+=======
+>>>>>>> 65e15df500ca6bbef4b58722360884fd0b4202d4
     self.window.backgroundColor = [UIColor whiteColor];
     mapManager = [[BMKMapManager alloc] init];
     BOOL ret = [mapManager start:@"77D26CBA93676420DF337777AC65CF762264B858"
@@ -53,7 +56,17 @@
          
     }
     [self.window makeKeyAndVisible];
+    
+    
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
     return YES;
+}
+
+ 
+
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSLog(@"regisger success：%@",deviceToken);
 }
 
 

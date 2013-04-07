@@ -11,7 +11,8 @@
 #import "CooperaViewController.h"
 #import "AppDelegate.h"
 #import "XDTabBarViewController.h"
-
+#import "WepViewController.h"
+#import "XDHeader.h"
 @interface DiscussViewController ()
 
 @end
@@ -46,26 +47,8 @@
     [super viewDidLoad];
       [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
     CGRect fram = self.view.frame;
-//    if (fram.size.height>500) {
-//          textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 15, 300, 160)];
-//    }
-//    else
-//    {
-//          textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 15, 300, 150)];
-//    }
-//   
-//    textview.backgroundColor = [UIColor redColor];
-//    textview.editable = NO;
-//    textview.scrollEnabled = NO;
-//    textview.layer.cornerRadius = 6;
-//    textview.layer.masksToBounds = YES;
-//    textview.text =@"       本产品致力于提供最详尽的全国开发区信息。采用LBS定位，默认显示所在城市的所有开发区，同时支持按省份浏览，按行业浏览，按名字关键字搜索等。针对每个开发区，都有单独的系列页面进行详尽的说明，对于有独立APP的开发区，提供其下载链接。";
-//    textview.textColor = [UIColor blackColor];
-//    textview.font =[UIFont systemFontOfSize:15];
-//    [self.view addSubview:textview];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
-    webview = [[UIWebView alloc] init];
     UIImageView *myimageview = [[UIImageView alloc] initWithFrame:CGRectMake(90,  10, 140, 140)];
     [myimageview setImage:[UIImage imageNamed:@"applogo.png"]];
     myimageview.userInteractionEnabled=YES;
@@ -77,10 +60,11 @@
     
     
     UIButton *button1= [UIButton buttonWithType:UIButtonTypeCustom];
-    [button1 addTarget:self action:@selector(coopview) forControlEvents:UIControlEventTouchUpInside];
+//    [button1 addTarget:self action:@selector(coopview) forControlEvents:UIControlEventTouchUpInside];
     [button1 setBackgroundImage:[UIImage imageNamed:@"cell_bg_0.png"] forState:UIControlStateNormal];
-  
+    [button1 addTarget:self action:@selector(pushtowebview:) forControlEvents:UIControlEventTouchUpInside];
      button1.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    button1.tag =100;
     [button1 setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
 
    
@@ -89,15 +73,17 @@
     
     UIButton *button2= [UIButton buttonWithType:UIButtonTypeCustom];
     [button2 setBackgroundImage:[UIImage imageNamed:@"cell_bg_1.png"] forState:UIControlStateNormal];
- 
+    [button2 addTarget:self action:@selector(pushtowebview:) forControlEvents:UIControlEventTouchUpInside];
+    button2.tag =200;
     button2.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     [button2 setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
 
     
 	UIButton *button3= [UIButton buttonWithType:UIButtonTypeCustom];
     [button3 setBackgroundImage:[UIImage imageNamed:@"cell_bg_2.png"] forState:UIControlStateNormal];
-
-      button3.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    [button3 addTarget:self action:@selector(pushtowebview:) forControlEvents:UIControlEventTouchUpInside];
+    button3.tag =300;
+   button3.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     [button3 setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
 
 
@@ -147,22 +133,59 @@
     [self.view addSubview:button3];
     [self.view addSubview:button4];
 }
- 
--(void)coopview
+
+
+-(void)pushtowebview:(UIButton *)sender
 {
-    CooperaViewController *coopview = [[CooperaViewController alloc] init];
-    [self.navigationController pushViewController:coopview animated:YES];
+    NSString *url;
+    if (sender.tag == 100) {
+        url =[NSString stringWithFormat:@"%@%@",Web_URL,@"index.php/other/cooperator"];
+    }
+    else if (sender.tag == 200)
+    {
+         url =[NSString stringWithFormat:@"%@%@",Web_URL,@"index.php/other/media"];
+    }
+    else if (sender.tag == 300)
+    {
+         url =[NSString stringWithFormat:@"%@%@",Web_URL,@"index.php/other/investor"];
+    }
+    WepViewController *mywepview = [[WepViewController alloc] initWithUrl:url];
+    if (sender.tag == 100) {
+       mywepview.title = @"合作单位";
+    }
+    else if (sender.tag == 200)
+    {
+       mywepview.title = @"合作媒体";
+    }
+    else if (sender.tag == 300)
+    {
+        mywepview.title = @"常见机构投资者";
+    }
+
+    
+    [self.navigationController pushViewController:mywepview animated:YES];
 }
+//
+//-(void)coopview
+//{
+//    CooperaViewController *coopview = [[CooperaViewController alloc] init];
+//    [self.navigationController pushViewController:coopview animated:YES];
+//}
 
 
 -(void)pushtoapp
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"]];
+    [self pushtoreview];
 }
 
 -(void)pushtoreview
 {
-   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"]];
+    NSString *appName = [NSString stringWithString:
+                         [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
+    NSURL *appStoreURL = [NSURL URLWithString:[[NSString stringWithFormat:@"itms-apps://itunes.com/app/%@",appName]  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding ]];
+    NSLog(@"appStoreURL:%@", appStoreURL);
+
+    [[UIApplication sharedApplication] openURL:appStoreURL];
 }
 
 - (void)didReceiveMemoryWarning

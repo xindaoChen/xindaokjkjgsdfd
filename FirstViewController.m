@@ -22,7 +22,7 @@
 #import "UITools.h"
 #import "AppDelegate.h"
 #import "XDTabBarViewController.h"
-
+#import "Yunju.h"
 @interface FirstViewController ()
 
 @end
@@ -371,7 +371,7 @@
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
     }
     
     [self makethebutton];
@@ -633,7 +633,7 @@
     NSString *trimmedString = [buttonbars.text stringByTrimmingCharactersInSet:set];
     NSLog(@"%@",trimmedString);
     if (!trimmedString) {
-       [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"对不起,无法定位您当前的位置"];
+       [UITools showPopMessage:self titleInfo:@"提示" messageInfo:Cannotlocate];
     }
     else
     {
@@ -704,7 +704,7 @@
         }
         else
         {
-            [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"暂无数据"];
+            [UITools showPopMessage:self titleInfo:@"提示" messageInfo:Erroedata];
             
         }
         

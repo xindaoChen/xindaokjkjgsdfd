@@ -275,19 +275,21 @@
 
 -(void)takephone
 {
-    UIAlertView *av = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"%@",[[apparray objectAtIndex:0] objectForKey:@"tel"]] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"呼叫", nil];
-    av.tag = 0;
-    [av show];
-
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil
+                                  delegate:self
+                                  cancelButtonTitle:@"取消!"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:[NSString stringWithFormat:@"拨打 %@",[[apparray objectAtIndex:0] objectForKey:@"tel"]],nil];
+     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-        if(buttonIndex == 1)
-        {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",[[apparray objectAtIndex:0] objectForKey:@"tel"]]]];
-        }
  
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+   
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",[[apparray objectAtIndex:0] objectForKey:@"tel"]]]];
 }
 
 -(void)pushtosite

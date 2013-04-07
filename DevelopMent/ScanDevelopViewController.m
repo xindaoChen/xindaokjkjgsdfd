@@ -14,7 +14,7 @@
 #import "MBProgressHUD.h"
 #import "UITools.h"
 #import "XDTabBarViewController.h"
-
+#import "Yunju.h"
 
 #define UI_SCREEN_WIDTH                 320
 #define UI_SCREEN_HEIGHT                ([[UIScreen mainScreen] bounds].size.height)
@@ -84,13 +84,7 @@
     _levelNetAcess = netAccess2;
     _industryNetAcess = netAccess3;
     
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button2.frame = CGRectMake(10, 2, 40, 40);
-    [button2 setImage:[UIImage imageNamed:@"jiantou.png"] forState:UIControlStateNormal];
-    [button2 addTarget:self action:@selector(backtosuper) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftBtnTopItem = [[UIBarButtonItem alloc] initWithCustomView:button2];
-    self.navigationItem.leftBarButtonItem = leftBtnTopItem;    
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
+     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
 
     allListArray = [[NSMutableArray alloc] init];
     imagesDictionary = [[NSMutableDictionary alloc] init];
@@ -335,7 +329,7 @@
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
         
         NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
         NSString*pat=[pathss objectAtIndex:0];
@@ -381,7 +375,7 @@
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
     }
     
    
@@ -404,7 +398,7 @@
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
     }
     
     }
@@ -423,7 +417,7 @@ else if([languageFlag isEqualToString:@"english"])
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
     }
 
 }
@@ -442,7 +436,7 @@ else if([languageFlag isEqualToString:@"english"])
     }
     else
     {
-       [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+       [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
     }
 }
     
@@ -460,7 +454,7 @@ else if([languageFlag isEqualToString:@"english"])
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
     }
 }
     
@@ -688,7 +682,7 @@ else if([languageFlag isEqualToString:@"english"])
         if (allListArray.count == 0) {
         //    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
-             [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"对不起,暂无数据"];
+             [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
             
         }
         

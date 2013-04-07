@@ -326,6 +326,7 @@
 		7895D6B216FE9FE700604F50 /* NetAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAccess.h; sourceTree = "<group>"; };
 		7895D6B316FE9FE700604F50 /* NetAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAccess.m; sourceTree = "<group>"; };
 		7895D6B516FEC32200604F50 /* Picture.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Picture.plist; path = ../Picture.plist; sourceTree = "<group>"; };
+		7898355E17110E8400FBB6C3 /* Yunju.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Yunju.h; sourceTree = "<group>"; };
 		789924D5170D681200292EE2 /* instead_fir.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instead_fir.png; sourceTree = "<group>"; };
 		789924D7170D682D00292EE2 /* instead_pro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instead_pro.png; sourceTree = "<group>"; };
 		789924E1170D788E00292EE2 /* instead_mes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instead_mes.png; sourceTree = "<group>"; };
@@ -428,6 +429,7 @@
 				4412566B17098C09007B7C9E /* XDHeader.h */,
 				4412566E17098E32007B7C9E /* UITools.h */,
 				4412566F17098E32007B7C9E /* UITools.m */,
+				7898355E17110E8400FBB6C3 /* Yunju.h */,
 			);
 			name = XCLibrary;
 			sourceTree = "<group>";

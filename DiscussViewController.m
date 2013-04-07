@@ -13,6 +13,8 @@
 #import "XDTabBarViewController.h"
 #import "WepViewController.h"
 #import "XDHeader.h"
+#import "BarCodeViewController.h"
+
 @interface DiscussViewController ()
 
 @end
@@ -52,13 +54,13 @@
     CGRect fram = self.view.frame;
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
-    UIImageView *myimageview = [[UIImageView alloc] initWithFrame:CGRectMake(90,  10, 140, 140)];
+    UIImageView *myimageview = [[UIImageView alloc] initWithFrame:CGRectMake(95, 10, 130, 100)];
     [myimageview setImage:[UIImage imageNamed:@"applogo.png"]];
-    myimageview.userInteractionEnabled=YES;
-    UITapGestureRecognizer *tapImgView=[[UITapGestureRecognizer alloc]initWithTarget:self
-                                                                              action:@selector(pushtoapp)];
-    [myimageview addGestureRecognizer:tapImgView];
-
+//    myimageview.userInteractionEnabled=YES;
+//    UITapGestureRecognizer *tapImgView=[[UITapGestureRecognizer alloc]initWithTarget:self
+//                                                                              action:@selector(pushtoapp)];
+//    [myimageview addGestureRecognizer:tapImgView];
+ 
     [self.view addSubview:myimageview];
     
     
@@ -97,37 +99,50 @@
     [button4 addTarget:self action:@selector(pushtoreview) forControlEvents:UIControlEventTouchUpInside];
     [button4 setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
     
+    UIButton *buttonFor2D= [UIButton buttonWithType:UIButtonTypeCustom];
+    [buttonFor2D setBackgroundImage:[UIImage imageNamed:@"cell_bg_4.png"] forState:UIControlStateNormal];
+    
+    buttonFor2D.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    [buttonFor2D addTarget:self action:@selector(pushto2D) forControlEvents:UIControlEventTouchUpInside];
+    [buttonFor2D setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    
+    
     AppDelegate *mydelefate = [UIApplication sharedApplication].delegate;
     if ([mydelefate.language isEqualToString:@"english"]) {
         [button4 setTitle:@"Give me ratings" forState:UIControlStateNormal];
         [button3 setTitle:@"Common investors" forState:UIControlStateNormal];
         [button2 setTitle:@"Media Partners" forState:UIControlStateNormal];
         [button1 setTitle:@"Cooperation" forState:UIControlStateNormal];
+        [buttonFor2D setTitle:@"2D bar code" forState:UIControlStateNormal];
 
-         
     }
     else
     {
         [button4 setTitle:@"去点评一下" forState:UIControlStateNormal];
         [button3 setTitle:@"常见机构投资者" forState:UIControlStateNormal];
-        [button2 setTitle:@"合作媒体" forState:UIControlStateNormal];
-        [button1 setTitle:@"合作单位" forState:UIControlStateNormal];
+        [button2 setTitle:@"合作单位" forState:UIControlStateNormal];
+        [button1 setTitle:@"科润创新" forState:UIControlStateNormal];
+        [buttonFor2D setTitle:@"二维码" forState:UIControlStateNormal];
     }
     
-    
-       if (fram.size.height>500)
-       {
-            button1.frame = CGRectMake(10, 215, 300, 37);
-            button2.frame = CGRectMake(10, 258, 300, 37);
-            button3.frame = CGRectMake(10, 301, 300, 37);
-           button4.frame = CGRectMake(10,345, 300, 37);
-       }
+    float hight = 20;
+   if (fram.size.height>500)
+   {
+        button1.frame = CGRectMake(10, 205 - hight, 300, 37);
+        button2.frame = CGRectMake(10, 248 - hight, 300, 37);
+        button3.frame = CGRectMake(10, 291 - hight, 300, 37);
+        button4.frame = CGRectMake(10, 335 - hight, 300, 37);
+        buttonFor2D.frame = CGRectMake(10,378 - hight, 300, 37);
+
+
+   }
     else
     {
-        button1.frame = CGRectMake(10, 180, 300, 37);
-        button2.frame = CGRectMake(10, 223, 300, 37);
-        button3.frame = CGRectMake(10,266, 300, 37);
-        button4.frame = CGRectMake(10,309, 300, 37);
+        button1.frame = CGRectMake(10, 170 - hight, 300, 37);
+        button2.frame = CGRectMake(10, 213 - hight, 300, 37);
+        button3.frame = CGRectMake(10,256 - hight, 300, 37);
+        button4.frame = CGRectMake(10,299 - hight, 300, 37);
+        buttonFor2D.frame = CGRectMake(10,342 - hight, 300, 37);
 
     }
     
@@ -135,6 +150,7 @@
     [self.view addSubview:button2];
     [self.view addSubview:button3];
     [self.view addSubview:button4];
+    [self.view addSubview:buttonFor2D];
 }
 
 
@@ -154,18 +170,17 @@
     }
     WepViewController *mywepview = [[WepViewController alloc] initWithUrl:url];
     if (sender.tag == 100) {
-       mywepview.title = @"合作单位";
+//       mywepview.title = @"合作单位";
     }
     else if (sender.tag == 200)
     {
-       mywepview.title = @"合作媒体";
+       mywepview.title = @"合作单位";
     }
     else if (sender.tag == 300)
     {
         mywepview.title = @"常见机构投资者";
     }
 
-    
     [self.navigationController pushViewController:mywepview animated:YES];
 }
 //
@@ -175,6 +190,12 @@
 //    [self.navigationController pushViewController:coopview animated:YES];
 //}
 
+- (void)pushto2D
+{
+    BarCodeViewController *barcode = [[BarCodeViewController alloc] init];
+    
+    [self.navigationController pushViewController:barcode animated:YES];
+}
 
 -(void)pushtoapp
 {

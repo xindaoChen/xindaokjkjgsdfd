@@ -12,6 +12,8 @@
 		4412566617097C7E007B7C9E /* GrayPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4412566517097C7E007B7C9E /* GrayPageControl.m */; };
 		4412567017098E32007B7C9E /* UITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4412566F17098E32007B7C9E /* UITools.m */; };
 		44282C211711181000C42FF9 /* XDWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44282C201711181000C42FF9 /* XDWebViewController.m */; };
+		44282C281711802900C42FF9 /* appstore_qr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44282C271711802900C42FF9 /* appstore_qr@2x.png */; };
+		44282C2B171181DF00C42FF9 /* BarCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44282C2A171181DF00C42FF9 /* BarCodeViewController.m */; };
 		445B7471170C3E5900557D86 /* XDTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 445B7470170C3E5900557D86 /* XDTabBarViewController.m */; };
 		445B7478170C405C00557D86 /* about_normal_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 445B7472170C405C00557D86 /* about_normal_tab@2x.png */; };
 		445B7479170C405C00557D86 /* about_select_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 445B7473170C405C00557D86 /* about_select_tab@2x.png */; };
@@ -178,6 +180,9 @@
 		4412566F17098E32007B7C9E /* UITools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITools.m; sourceTree = "<group>"; };
 		44282C1F1711181000C42FF9 /* XDWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDWebViewController.h; sourceTree = "<group>"; };
 		44282C201711181000C42FF9 /* XDWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDWebViewController.m; sourceTree = "<group>"; };
+		44282C271711802900C42FF9 /* appstore_qr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appstore_qr@2x.png"; sourceTree = "<group>"; };
+		44282C29171181DF00C42FF9 /* BarCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarCodeViewController.h; sourceTree = "<group>"; };
+		44282C2A171181DF00C42FF9 /* BarCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarCodeViewController.m; sourceTree = "<group>"; };
 		445B746F170C3E5900557D86 /* XDTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDTabBarViewController.h; sourceTree = "<group>"; };
 		445B7470170C3E5900557D86 /* XDTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDTabBarViewController.m; sourceTree = "<group>"; };
 		445B7472170C405C00557D86 /* about_normal_tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_normal_tab@2x.png"; sourceTree = "<group>"; };
@@ -536,6 +541,8 @@
 				445B7470170C3E5900557D86 /* XDTabBarViewController.m */,
 				44282C1F1711181000C42FF9 /* XDWebViewController.h */,
 				44282C201711181000C42FF9 /* XDWebViewController.m */,
+				44282C29171181DF00C42FF9 /* BarCodeViewController.h */,
+				44282C2A171181DF00C42FF9 /* BarCodeViewController.m */,
 				78EAB75116FD9B4A00534880 /* MyCell.h */,
 				78EAB75216FD9B4A00534880 /* MyCell.m */,
 				78945D771707CA090034230A /* background.png */,
@@ -570,6 +577,7 @@
 		7893702C17044D9000F8159C /* Picture */ = {
 			isa = PBXGroup;
 			children = (
+				44282C271711802900C42FF9 /* appstore_qr@2x.png */,
 				C8168D4D171119F400AE79A0 /* border.png */,
 				789924E1170D788E00292EE2 /* instead_mes.png */,
 				789924D5170D681200292EE2 /* instead_fir.png */,
@@ -921,6 +929,7 @@
 				789924E4170D890E00292EE2 /* load@2x.png in Resources */,
 				44D4837B170EBC250044AB41 /* README.md in Resources */,
 				C8168D4E171119F400AE79A0 /* border.png in Resources */,
+				44282C281711802900C42FF9 /* appstore_qr@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -972,6 +981,7 @@
 				C83B5BF717115D6F00B3ABA0 /* HLDeferredList.m in Sources */,
 				C83B5BF817115D6F00B3ABA0 /* HLFailure.m in Sources */,
 				44282C211711181000C42FF9 /* XDWebViewController.m in Sources */,
+				44282C2B171181DF00C42FF9 /* BarCodeViewController.m in Sources */,
 				78EB3B4D1711689F00ABC02A /* XDAppConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -26,6 +26,8 @@
 #define API_SEARCH          @"index.php/index/search"         //搜索页搜索数据
 #define API_INDEXIMG        @"index.php/index/indexImg"       //首页图片
 
+#define URL_YUNJU           @"http://m.baidu.com/"
+
 
 #define DEFINE_SINGLETON_FOR_HEADER(className) \
 \

@@ -30,9 +30,9 @@
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
     UIImageView *barImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"appstore_qr"]];
-    barImageView.frame = CGRectMake(95, 70, 120, 120);
+    barImageView.frame = CGRectMake(90, 70, 140, 140);
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(106, 200, 130, 20)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(106, 220, 130, 20)];
     label.text = @"扫描即可下载";
     label.textColor = [UIColor blackColor];
     label.backgroundColor = [UIColor clearColor];

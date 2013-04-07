@@ -158,7 +158,8 @@
 {
     NSString *url;
     if (sender.tag == 100) {
-        url =[NSString stringWithFormat:@"%@%@",_urlHost,@"index.php/other/cooperator"];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URL_YUNJU]];
+        return;
     }
     else if (sender.tag == 200)
     {

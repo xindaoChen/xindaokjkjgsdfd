@@ -142,7 +142,7 @@
     viewapp.backgroundColor =   [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
     viewapp.hidden = YES;
      [self.view addSubview:viewapp];
-     UIImageView *myimageview = [[UIImageView alloc] initWithFrame:CGRectMake(90,  -10, 140, 140)];
+     UIImageView *myimageview = [[UIImageView alloc] initWithFrame:CGRectMake(95, 10, 130, 100)];
     [myimageview setImage:[UIImage imageNamed:@"applogo.png"]];
     [viewapp addSubview:myimageview];
     

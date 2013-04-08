@@ -387,7 +387,7 @@
      
     if (sender.tag == 100) {
         mydelegate.language = @"english";
-             searchbar.placeholder = @"search";
+             searchbar.placeholder = @"Search";
     }
     else if (sender.tag == 200)
     {
@@ -455,9 +455,9 @@
     }
     else
     {
-        [mydelegate.naviga2 setTitle:@"category"];
+        [mydelegate.naviga2 setTitle:@"Category"];
         [mydelegate.naviga3 setTitle:@"about"];
-        mydelegate.classview.title = @"category";
+        mydelegate.classview.title = @"Category";
         mydelegate.disview.title = @"about";
 
     }
@@ -482,7 +482,7 @@
     }
     else
     {
-        self.title = @"homepage";
+        self.title = @"Homepage";
     }
 
 }

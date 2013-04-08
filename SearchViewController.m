@@ -29,7 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
-        self.title = @"搜索";
+      //  self.title = @"搜索";
     }
     return self;
 }
@@ -55,10 +55,12 @@
     [searchbar becomeFirstResponder];
     if ([mydelegate.language isEqualToString:@"china"]) {
         searchbar.placeholder = @"请输入您要搜索的开发区名字";
+        self.title = @"搜索";
     }
     else
     {
       searchbar.placeholder =@"Please enter your search keyword";
+        self.title = @"Search";
     }
     UIView *searview = [searchbar.subviews objectAtIndex:0];
     [searview removeFromSuperview];

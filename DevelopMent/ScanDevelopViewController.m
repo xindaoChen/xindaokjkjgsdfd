@@ -122,9 +122,9 @@
     if ([mydelegate.language isEqualToString: @"english"]) {
         allProvinceArray = allProvinceArrayEnglish;
         languageFlag = @"english";
-        levelName = @"level";
-        industryName = @"industry";
-        self.title = @" The DevelopeZone";
+        levelName = @"Level";
+        industryName = @"Industry";
+        self.title = @"DevelopeZone";
         
     }
     else if ([mydelegate.language isEqualToString:@"china"])
@@ -1052,7 +1052,7 @@ else if([languageFlag isEqualToString:@"english"])
                 }
                 else if([languageFlag isEqualToString:@"english"])
                 {
-                    cell2.textLabel.text = @"   all";
+                    cell2.textLabel.text = @"   All";
                     cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
                 }
                 return  cell2;
@@ -1084,7 +1084,7 @@ else if([languageFlag isEqualToString:@"english"])
                 }
                 else if([languageFlag isEqualToString:@"english"])
                 {
-                cell2.textLabel.text = @"   all";
+                cell2.textLabel.text = @"   All";
                 cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
                 }
                  return cell2;
@@ -1109,7 +1109,7 @@ else if([languageFlag isEqualToString:@"english"])
                 }
                 else if([languageFlag isEqualToString:@"english"])
                 {
-                    cell2.textLabel.text = @"   all";
+                    cell2.textLabel.text = @"   All";
                     cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
                 }
 
@@ -1207,8 +1207,8 @@ else if([languageFlag isEqualToString:@"english"])
                     provinceLabel.text = provinceName;
                     tempprovinceName = provinceName;
                     getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
-                    levelLabel.text = @"all";
-                    industryLabel.text = @"all";
+                    levelLabel.text = @"All";
+                    industryLabel.text = @"All";
                     [listarray3 removeAllObjects];
                     inid= @"";
                     leid = @"";
@@ -1368,8 +1368,8 @@ else if([languageFlag isEqualToString:@"english"])
                 //   provinceLabel.text = provinceName;
                 
                 getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"english\",\"cityname\":\"%@\"}",provinceName];
-                levelLabel.text = @"all";
-                industryLabel.text = @"all";
+                levelLabel.text = @"All";
+                industryLabel.text = @"All";
                 inid= @"";
                 leid = @"";
                 
@@ -1637,7 +1637,7 @@ else if([languageFlag isEqualToString:@"english"])
                 }
                 else
                 {
-                    industryLabel.text = @"all";
+                    industryLabel.text = @"All";
                     //[industrybutton setTitle:@"全部" forState:UIControlStateNormal];
                     inid = @"";
                 }

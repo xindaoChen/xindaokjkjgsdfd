@@ -69,7 +69,7 @@
     
     NetAccess *netAccess = [[NetAccess alloc]init];
     _gNetAccess = netAccess;
-    
+    NSLog(@"%@",[faflult objectForKey:@"key"]);
     if(![faflult objectForKey:@"key"])
     {
         
@@ -221,15 +221,7 @@
    [self.view addSubview:button];
 
      
-    NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-    NSString*pat=[pathss objectAtIndex:0];
-    NSString *filenames=[pat stringByAppendingPathComponent:@"Picture.plist"];
-    listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
-    if (listarray.count != 0) {
-        [self setfirstimagetwo];
-    }
-    [self makethebutton];
-    [self maketitle];
+
     
  }
 
@@ -354,8 +346,11 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    NSLog(@"%@",[request.responseString JSONValue]);
     AppDelegate *mydele = [UIApplication sharedApplication].delegate;
     NSString *string = [[request.responseString JSONValue] objectForKey:@"version"];
+    mydele.compsite = [[request.responseString JSONValue] objectForKey:@"site"];
+    mydele.applink = [[request.responseString JSONValue] objectForKey:@"applink"];
     if  ([string intValue]>mydele.version.intValue) {
         mydele.version = [ [request.responseString JSONValue]   objectForKey:@"version"];
          mydele.domainName = [[request.responseString JSONValue] objectForKey:@"domain"];
@@ -394,13 +389,33 @@
      
     if (sender.tag == 100) {
         mydelegate.language = @"english";
-             searchbar.placeholder = @"search";
+             searchbar.placeholder = @"Search";
     }
     else if (sender.tag == 200)
     {
         mydelegate.language = @"china";
          searchbar.placeholder = @"搜索";
     }
+    
+    NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString*pat=[pathss objectAtIndex:0];
+   
+    if ([ mydelegate.language isEqualToString:@"china"]) {
+        NSString *filenames=[pat stringByAppendingPathComponent:@"Picture.plist"];
+        listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+        
+    }
+    else
+    {
+        NSString *filenames=[pat stringByAppendingPathComponent:@"PictureCopy.plist"];
+        listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+        
+    }
+    if (listarray.count != 0) {
+        [self setfirstimagetwo];
+    }
+    [self makethebutton];
+    [self maketitle];
     
       if([NetAccess reachable])
     {
@@ -442,9 +457,9 @@
     }
     else
     {
-        [mydelegate.naviga2 setTitle:@"category"];
+        [mydelegate.naviga2 setTitle:@"Category"];
         [mydelegate.naviga3 setTitle:@"about"];
-        mydelegate.classview.title = @"category";
+        mydelegate.classview.title = @"Category";
         mydelegate.disview.title = @"about";
 
     }
@@ -469,7 +484,7 @@
     }
     else
     {
-        self.title = @"homepage";
+        self.title = @"Homepage";
     }
 
 }
@@ -479,8 +494,8 @@
     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
     [faflult setObject:@"2" forKey:@"keytwo"];
     [faflult setObject:@"1" forKey:@"key"];
-//    [faflult synchronize];
-     
+    [faflult synchronize];
+    
 
     [self englishorching];
     [self changeUIView];
@@ -578,7 +593,7 @@
      for (int i = 0; i<listarray.count; i++)
      {
       
-         if (buttonarray.count ==0)
+         if (buttonarray.count ==0 || buttonarray.count !=listarray.count)
          {
              UIButton*buttongs = [UIButton buttonWithType:UIButtonTypeCustom];
              buttongs.tag = i;
@@ -661,10 +676,23 @@
         timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessage) userInfo:nil repeats:YES];
         timer2 = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessagetwo) userInfo:nil repeats:YES];
         [timer2 setFireDate:[NSDate distantFuture]];
+        
         NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
         NSString*path=[paths objectAtIndex:0];
-        NSString *filename=[path stringByAppendingPathComponent:@"Picture.plist"];
-        [maplistarray writeToFile:filename atomically:YES];
+        AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
+      
+        if ([mydelega.language isEqualToString:@"china"]) {
+            NSString *filename=[path stringByAppendingPathComponent:@"Picture.plist"];
+            [maplistarray writeToFile:filename atomically:YES];
+           
+        }
+       else
+       {
+           NSString *filename=[path stringByAppendingPathComponent:@"PictureCopy.plist"];
+           [maplistarray writeToFile:filename atomically:YES];
+          
+       }
+        
     });
     dispatch_release(group);
 

@@ -346,7 +346,7 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    NSLog(@"%@",[request.responseString JSONValue]);
+ 
     AppDelegate *mydele = [UIApplication sharedApplication].delegate;
     NSString *string = [[request.responseString JSONValue] objectForKey:@"version"];
     mydele.compsite = [[request.responseString JSONValue] objectForKey:@"site"];

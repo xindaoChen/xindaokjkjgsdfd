@@ -186,7 +186,19 @@
     NSLog(@"url:%@ params:%@", url , string);
 }
 
-
+-(void)postDevicetoken:(NSString *)string           //提交推送touken
+{
+    AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",mydele.domainName,API_DEVICETOKEN]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
+    [request setPostValue:string forKey:@"parameter"];
+    [request startAsynchronous];
+    _gRequest = request;
+    
+    NSLog(@"url:%@ params:%@", url , string);
+}
 
 //获取版本号
 -(void)getnewVersion
@@ -207,6 +219,8 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    NSLog(@"ASIFinish request:%@",request.responseString );
+
     NSLog(@"ASIFinish request:%@",[[request.responseString JSONValue] JSONString]);
     [_delegate netAccess:self RequestFinished:[request.responseString JSONValue]];
 }

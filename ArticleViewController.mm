@@ -495,7 +495,7 @@
     }
     else
     {
-        dataarray =   [self getthedata];
+      
         AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
         if ([delegate.language isEqualToString:@"china"])
         {
@@ -518,6 +518,9 @@
     viewapp.hidden = YES;
     dataview.hidden = NO;
    // assAiv.color = [UIColor blackColor];
+    
+    dataarray =   [self getthedata];
+    [dataview reloadData];
     self.view.backgroundColor = [UIColor whiteColor];
     if (databool ==YES) {
         [button1  setImage:[UIImage imageNamed:@"introduce.png"] forState:UIControlStateNormal];
@@ -554,7 +557,7 @@
         }
         else
         {
-            dataarray =   [self getthedata];
+
 //            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
             AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
             if ([delegate.language isEqualToString:@"china"])
@@ -1226,12 +1229,12 @@
     
     [request setPredicate:predicate];
     NSArray *results = [[self appDelegate ].managedObjectContext executeFetchRequest:request error:&error];
-    if(error){
-        
+//    if(error){
+    
         for(Data*object in results) {
             [[self appDelegate].managedObjectContext deleteObject:object];
         }
-    }
+//    }
     
     if([[self appDelegate ].managedObjectContext hasChanges]) {
         

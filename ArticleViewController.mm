@@ -960,14 +960,14 @@
         newAnnotationView.pinColor =BMKPinAnnotationColorPurple;
         newAnnotationView.animatesDrop = YES;
         [newAnnotationView setImage:[UIImage imageNamed:@"tubiao.png"]];
-        CGSize textSize = [namestring sizeWithFont:[UIFont systemFontOfSize:13]
-                                 constrainedToSize:CGSizeMake(200, 9999)
+        CGSize textSize = [namestring sizeWithFont:[UIFont systemFontOfSize:14]
+                                 constrainedToSize:CGSizeMake(500, 9999)
                                      lineBreakMode:NSLineBreakByCharWrapping];
          
-        UIImageView *view  = [[UIImageView alloc] initWithFrame:CGRectMake(-textSize.width/2-8, -35, textSize.width+40, 35)];
+        UIImageView *view  = [[UIImageView alloc] initWithFrame:CGRectMake(-textSize.width/2+2 , -35, textSize.width+20, 35)];
         [view setBackgroundColor:[UIColor clearColor]];
         [view setImage:[UIImage imageNamed:@"heikuang.png"]];
-        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(5, 5,textSize.width+30, 20)];
+        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(5, 5,textSize.width+15, 20)];
         lable.textColor = [UIColor whiteColor];
         lable.backgroundColor = [UIColor clearColor];
          lable.textAlignment = NSTextAlignmentCenter;

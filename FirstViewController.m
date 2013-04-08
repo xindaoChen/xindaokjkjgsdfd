@@ -69,7 +69,7 @@
     
     NetAccess *netAccess = [[NetAccess alloc]init];
     _gNetAccess = netAccess;
-    
+    NSLog(@"%@",[faflult objectForKey:@"key"]);
     if(![faflult objectForKey:@"key"])
     {
         
@@ -221,15 +221,7 @@
    [self.view addSubview:button];
 
      
-    NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-    NSString*pat=[pathss objectAtIndex:0];
-    NSString *filenames=[pat stringByAppendingPathComponent:@"Picture.plist"];
-    listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
-    if (listarray.count != 0) {
-        [self setfirstimagetwo];
-    }
-    [self makethebutton];
-    [self maketitle];
+
     
  }
 
@@ -403,6 +395,26 @@
          searchbar.placeholder = @"搜索";
     }
     
+    NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString*pat=[pathss objectAtIndex:0];
+   
+    if ([ mydelegate.language isEqualToString:@"china"]) {
+        NSString *filenames=[pat stringByAppendingPathComponent:@"Picture.plist"];
+        listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+        
+    }
+    else
+    {
+        NSString *filenames=[pat stringByAppendingPathComponent:@"PictureCopy.plist"];
+        listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+        
+    }
+    if (listarray.count != 0) {
+        [self setfirstimagetwo];
+    }
+    [self makethebutton];
+    [self maketitle];
+    
       if([NetAccess reachable])
     {
         NSString*string1 = @"{\"type\":\"";
@@ -480,8 +492,8 @@
     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
     [faflult setObject:@"2" forKey:@"keytwo"];
     [faflult setObject:@"1" forKey:@"key"];
-//    [faflult synchronize];
-     
+    [faflult synchronize];
+    
 
     [self englishorching];
     [self changeUIView];
@@ -662,10 +674,23 @@
         timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessage) userInfo:nil repeats:YES];
         timer2 = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessagetwo) userInfo:nil repeats:YES];
         [timer2 setFireDate:[NSDate distantFuture]];
+        
         NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
         NSString*path=[paths objectAtIndex:0];
-        NSString *filename=[path stringByAppendingPathComponent:@"Picture.plist"];
-        [maplistarray writeToFile:filename atomically:YES];
+        AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
+      
+        if ([mydelega.language isEqualToString:@"china"]) {
+            NSString *filename=[path stringByAppendingPathComponent:@"Picture.plist"];
+            [maplistarray writeToFile:filename atomically:YES];
+           
+        }
+       else
+       {
+           NSString *filename=[path stringByAppendingPathComponent:@"PictureCopy.plist"];
+           [maplistarray writeToFile:filename atomically:YES];
+          
+       }
+        
     });
     dispatch_release(group);
 

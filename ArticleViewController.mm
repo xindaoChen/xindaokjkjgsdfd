@@ -902,7 +902,7 @@
          [firscrollView addSubview:numlabel];
      }
      
-
+     [introducearrytwo removeAllObjects];
  }
  
 

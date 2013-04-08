@@ -186,12 +186,7 @@
 
     [self.navigationController pushViewController:mywepview animated:YES];
 }
-//
-//-(void)coopview
-//{
-//    CooperaViewController *coopview = [[CooperaViewController alloc] init];
-//    [self.navigationController pushViewController:coopview animated:YES];
-//}
+ 
 
 - (void)pushto2D
 {
@@ -205,7 +200,7 @@
 {
     AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
     if (mydelega.applink != nil || ![mydelega.applink isEqualToString:@""]) {
-        NSURL *appurl = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@",mydelega.applink]];
+        NSURL *appurl = [NSURL URLWithString:[NSString stringWithFormat:@"%@",mydelega.applink]];
          [[UIApplication sharedApplication] openURL:appurl];
     }else{
         NSString *appName = [NSString stringWithString:

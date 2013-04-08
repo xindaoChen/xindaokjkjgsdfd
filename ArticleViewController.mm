@@ -297,7 +297,7 @@
     self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
     
     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
-    NSLog(@"%@",[faflult objectForKey:idstring]);
+ 
     if ([[faflult objectForKey:idstring] isEqualToString:delegate.language]) {
            introducearrytwo = [self getthedatatwo];
         if (introducearrytwo.count != 0) {
@@ -580,6 +580,8 @@
 - (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+     [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorConnect];
 }
 
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
@@ -1074,17 +1076,20 @@
 
 -(void)savedatamessagetwo
 {
-    for (int i = 0; i<introducearrytwo.count; i++)
-    {
-        Introduce *entry = (Introduce *)[NSEntityDescription insertNewObjectForEntityForName:@"Introduce" inManagedObjectContext:[[self appDelegate ]managedObjectContext]];
-        [ entry setDid:[[introducearrytwo objectAtIndex:i] objectForKey:@"did"]];
-        [entry  setFid:[[introducearrytwo objectAtIndex:i]objectForKey:@"fid"]];
-        [entry setTitle:[[introducearrytwo objectAtIndex:i]objectForKey:@"title"]];
-        [entry setContent:[[introducearrytwo objectAtIndex:i] objectForKey:@"content"]];
-        [ entry setData:[[introducearrytwo objectAtIndex:i] objectForKey:@"data"]];
-        
-      }
-    NSError *error;
+    if (introducearrytwo.count != 0) {
+        for (int i = 0; i<introducearrytwo.count; i++)
+        {
+            Introduce *entry = (Introduce *)[NSEntityDescription insertNewObjectForEntityForName:@"Introduce" inManagedObjectContext:[[self appDelegate ]managedObjectContext]];
+            [ entry setDid:[[introducearrytwo objectAtIndex:i] objectForKey:@"did"]];
+            [entry  setFid:[[introducearrytwo objectAtIndex:i]objectForKey:@"fid"]];
+            [entry setTitle:[[introducearrytwo objectAtIndex:i]objectForKey:@"title"]];
+            [entry setContent:[[introducearrytwo objectAtIndex:i] objectForKey:@"content"]];
+            [ entry setData:[[introducearrytwo objectAtIndex:i] objectForKey:@"data"]];
+            
+        }
+
+    }
+      NSError *error;
     //托管对象准备好后，调用托管对象上下文的save方法将数据写入数据库
     BOOL isSaveSuccess = [[[self appDelegate] managedObjectContext]save:&error];
     if (!isSaveSuccess){

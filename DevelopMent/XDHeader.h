@@ -26,7 +26,7 @@
 #define API_GETINDEX                   @"index.php/index/getindex"       //指数
 #define API_SEARCH                       @"index.php/index/search"         //搜索页搜索数据
 #define API_INDEXIMG                   @"index.php/index/indexImg"       //首页图片
-
+#define API_2DIMAGE                  @"assets/two/appstore.png"          //2维码图片
 
 #define KEY_FOR_HOST_URL          @"host_url"
 #define KEY_FOR_VERSION             @"version"

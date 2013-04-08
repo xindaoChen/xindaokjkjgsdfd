@@ -35,6 +35,7 @@
 -(void)thecityName:(NSString *)string;
 -(void)thelevelList:(NSString *)string;
 -(void)theindustryList:(NSString *)string;
+-(void)the2Dimage:(NSString *)string;
 - (void)cancelAsynchronousRequest;
 
 

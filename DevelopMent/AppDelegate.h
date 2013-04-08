@@ -12,6 +12,8 @@
 #import "DiscussViewController.h"
 #import "ClassViewController.h"
 #import "FirstViewController.h"
+#import "NetAccess.h"
+
 @class XDTabBarViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -24,6 +26,7 @@
     DiscussViewController *disview;
     XDTabBarViewController *xdTabbar;
     FirstViewController* firstview;
+    NetAccess *deviceTokenAccess;
 }
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,strong) BMKMapManager* mapManager;
@@ -36,6 +39,7 @@
 @property (nonatomic,strong) XDTabBarViewController *xdTabbar;
 @property (nonatomic, strong) NSString *domainName;
 @property (nonatomic, strong) NSString *version;
+@property (nonatomic ,strong) NetAccess *deviceTokenAccess;
 
 //数据模型对象
 @property(strong,nonatomic) NSManagedObjectModel *managedObjectModel;

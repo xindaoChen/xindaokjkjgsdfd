@@ -36,6 +36,7 @@
 -(void)thelevelList:(NSString *)string;
 -(void)theindustryList:(NSString *)string;
 - (void)cancelAsynchronousRequest;
+-(void)postDevicetoken:(NSString *)string; //提交推送touken
 
 
 @end

@@ -17,7 +17,7 @@
 @implementation AppDelegate
 @synthesize language;
 @synthesize mapManager,classview,disview,firstview;
-@synthesize managedObjectContext,managedObjectModel,persistentStoreCoordinator,naviga2,naviga3;
+@synthesize managedObjectContext,managedObjectModel,persistentStoreCoordinator,naviga2,naviga3,deviceTokenAccess;
 @synthesize xdTabbar;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -84,11 +84,29 @@
 
 
 
+// Delegation methods
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
+    NSLog(@"regisger success： desc:%@", [devToken description]);
+    NSDictionary *bundleDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *appName = [bundleDictionary objectForKey:@"CFBundleDisplayName"];
+    
+    NSString *deviceToken = [[[[devToken description]
+                               stringByReplacingOccurrencesOfString:@"<" withString:@""]
+                              stringByReplacingOccurrencesOfString:@">" withString:@""]
+                             stringByReplacingOccurrencesOfString:@" " withString:@""];
+  
+    
+    if ([deviceToken length] > 30) {
+        NSString *params = [NSString stringWithFormat:@"{\"appname\":\"%@\",\"devicetoken\":\"%@\"}",appName,deviceToken];
+        NetAccess *netAccess = [[NetAccess alloc] init];
+        self.deviceTokenAccess = netAccess;
+        [self.deviceTokenAccess postDevicetoken:params];
+    }
+    
+}
 
- 
--(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-    NSLog(@"regisger success：%@",deviceToken);
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
+    NSLog(@"Error in registration. Error: %@", err);
 }
 
 
@@ -106,17 +124,15 @@
 }
 
 
-//-(void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-//{
-//    
-//}
-//- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
-//{
-//    NSLog(@"Failed to get token, error: %@", error);
-//    
-//}
+- (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
+{
+    
+}
 
-
+- (void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
+{
+    NSLog(@"Post Device Token netAcess:%@", resultSet);
+}
 
 -(NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {

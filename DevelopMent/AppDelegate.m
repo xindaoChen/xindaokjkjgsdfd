@@ -55,7 +55,7 @@
     tabbar.delegate=(id)self;
     self.xdTabbar = tabbar;
     self.window.rootViewController = tabbar;
-    
+    pushAccount = 0;
     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
     language = [faflult objectForKey:@"lange"];
     
@@ -98,7 +98,8 @@
                              stringByReplacingOccurrencesOfString:@" " withString:@""];
   
     
-    if ([deviceToken length] > 30) {
+    if ([deviceToken length] > 30 && pushAccount == 0) {
+        pushAccount++;
         NSString *params = [NSString stringWithFormat:@"{\"appname\":\"%@\",\"devicetoken\":\"%@\"}",appName,deviceToken];
         NetAccess *netAccess = [[NetAccess alloc] init];
         self.deviceTokenAccess = netAccess;

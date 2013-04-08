@@ -20,6 +20,7 @@
     UISearchBar *searchbar ;
     NSMutableDictionary *imageDic;
     NSMutableDictionary *imagesDictionary;
+    UIButton *footbutton;
    
 }
 

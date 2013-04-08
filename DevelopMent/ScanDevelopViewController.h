@@ -55,6 +55,7 @@
     UIButton *industrybutton;
     UIButton *levelbutton;
     UIButton *provincebutton;
+    UIButton *footbutton;
     
     UITableView *provinceView;
     UITableView *cityView;

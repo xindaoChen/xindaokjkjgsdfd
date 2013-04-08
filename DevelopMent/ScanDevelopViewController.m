@@ -96,6 +96,8 @@
     _cityNetAccess = netAccess1;
     _levelNetAcess = netAccess2;
     _industryNetAcess = netAccess3;
+    footbutton = [UIButton buttonWithType:UIButtonTypeCustom];
+
     
      self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"all_view_bg"]];
 
@@ -1047,12 +1049,12 @@ else if([languageFlag isEqualToString:@"english"])
             
             if (indexPath.row == 0) {
                 if ([languageFlag isEqualToString:@"china"]) {
-                    cell2.textLabel.text = @"   全部";
+                    cell2.textLabel.text = @" 全部";
                     cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
                 }
                 else if([languageFlag isEqualToString:@"english"])
                 {
-                    cell2.textLabel.text = @"   All";
+                    cell2.textLabel.text = @" All";
                     cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
                 }
                 return  cell2;
@@ -1741,22 +1743,22 @@ else if([languageFlag isEqualToString:@"english"])
             
             footactive.center = CGPointMake(105, 30);
             footactive.color = [UIColor blackColor];
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             if ([languageFlag isEqualToString:@"china"]) {
-                 [button setTitle:@"加载更多..." forState:UIControlStateNormal];
+                 [footbutton setTitle:@"点击加载更多..." forState:UIControlStateNormal];
             }
             else if ([languageFlag isEqualToString:@"english"])
             {
-                 [button setTitle:@"More..." forState:UIControlStateNormal];
+                 [footbutton setTitle:@"More..." forState:UIControlStateNormal];
             }
 //           [button setTitle:@"加载更多..." forState:UIControlStateNormal];
-            [button setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
-            button.frame = footview.frame;
-            button.backgroundColor = [UIColor clearColor];
+            [footbutton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+            footbutton.frame = footview.frame;
+            footbutton.backgroundColor = [UIColor clearColor];
            // [button setBackgroundImage:[UIImage imageNamed:@"levelbutton1.png"] forState:UIControlStateNormal];
-            [button addTarget:self action:@selector(getMoreInfo) forControlEvents:UIControlEventTouchUpInside];
-            [button addSubview:footactive];
-            [footview addSubview:button];
+            [footbutton addTarget:self action:@selector(getMoreInfo) forControlEvents:UIControlEventTouchUpInside];
+            [footbutton addSubview:footactive];
+            [footview addSubview:footbutton];
           //  [footactive startAnimating];
             searchtable.tableFooterView = footview;
                        searchtable.tableFooterView.tag = 100050;
@@ -1779,7 +1781,17 @@ else if([languageFlag isEqualToString:@"english"])
 
 
 -(void)getMoreInfo
-{  if([languageFlag isEqualToString:@"china"])
+
+{
+    if ([languageFlag isEqualToString:@"china"]) {
+         [footbutton setTitle:@"加载中..." forState:UIControlStateNormal];
+    }
+    else
+    {
+        [footbutton setTitle:@"loading..." forState:UIControlStateNormal];
+    }
+    
+    if([languageFlag isEqualToString:@"china"])
    {
          getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\",\"time\":\"%@\"}",provinceName,leid,inid,cid,[[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"] ];
        NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);

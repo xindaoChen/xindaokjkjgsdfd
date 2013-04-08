@@ -39,6 +39,7 @@
     [super viewDidLoad];
     AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
     _urlHost = delegate.domainName;
+    footbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
 
     listarray = [[NSMutableArray alloc] init];
@@ -285,30 +286,30 @@
             
             footactive.center = CGPointMake(105, 30);
             footactive.color = [UIColor blackColor];
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+          //  UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             
             AppDelegate *mydelegate = [UIApplication sharedApplication].delegate;
            
           
           
             if ([mydelegate.language isEqualToString:@"china"]) {
-                [button setTitle:@"加载更多..." forState:UIControlStateNormal];
+                [footbutton setTitle:@"点击加载更多..." forState:UIControlStateNormal];
             }
             else
             {
-                [button setTitle:@"More..." forState:UIControlStateNormal];
+                [footbutton setTitle:@"More..." forState:UIControlStateNormal];
             }
 
             
             
           //  [button setTitle:@"加载更多..." forState:UIControlStateNormal];
-            [button setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
-            button.frame = footview.frame;
-            button.backgroundColor = [UIColor clearColor];
+            [footbutton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+            footbutton.frame = footview.frame;
+            footbutton.backgroundColor = [UIColor clearColor];
            // [button setBackgroundImage:[UIImage imageNamed:@"levelbutton1.png"] forState:UIControlStateNormal];
-            [button addTarget:self action:@selector(getMoreInfo) forControlEvents:UIControlEventTouchUpInside];
-            [button addSubview:footactive];
-            [footview addSubview:button];
+            [footbutton addTarget:self action:@selector(getMoreInfo) forControlEvents:UIControlEventTouchUpInside];
+            [footbutton addSubview:footactive];
+            [footview addSubview:footbutton];
             //  [footactive startAnimating];
             searchtable.tableFooterView = footview;
             searchtable.tableFooterView.tag = 100050;
@@ -328,9 +329,19 @@
  time = [[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"];
     
     
+    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+    if ([delegate.language isEqualToString:@"china"])
+    {
+        
+         [footbutton setTitle:@"加载中..." forState:UIControlStateNormal];
+    }
+    else
+    {
+        [footbutton setTitle:@"loading..." forState:UIControlStateNormal];
+    }
     
     
-    
+
     
   //  [searchBar resignFirstResponder];
     AppDelegate *appdele = [UIApplication sharedApplication].delegate;

@@ -416,7 +416,19 @@
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+//        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        
+        AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+        if ([delegate.language isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"Internet Contact" messageInfo:ErrorInternetEnglish];
+        }
+
+        
     }
     
      [self gitnewversion];
@@ -730,7 +742,21 @@
     NSString *trimmedStringext = [province stringByTrimmingCharactersInSet:setnext];
 
     if (!trimmedString) {
-       [UITools showPopMessage:self titleInfo:@"提示" messageInfo:CannotLocate];
+        
+        AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+        if ([delegate.language isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"提示" messageInfo:CannotLocate];
+
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"Contect" messageInfo:CannotLocateEnglish];
+
+        }
+        
+ 
+//       [UITools showPopMessage:self titleInfo:@"提示" messageInfo:CannotLocate];
     }
     else
     {

@@ -32,6 +32,8 @@
         _domainName  = HOST_URL;
         _version = INIT_VERSION;
     }
+    NSLog(@"%@",_version);
+    NSLog(@"%@",_domainName);
    [defaults synchronize];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

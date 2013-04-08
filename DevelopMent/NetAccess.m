@@ -96,6 +96,7 @@
 //简介
 -(void)theIntroducemessage:(NSString *)string
 {
+    
      AppDelegate *mydele = [UIApplication sharedApplication].delegate;
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",mydele.domainName,API_INTRO]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];

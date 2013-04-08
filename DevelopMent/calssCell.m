@@ -15,7 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        label = [[UILabel alloc] initWithFrame:CGRectMake(50, 9, 230, 22)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(30, 9, 250, 22)];
         //label.text =[NSString stringWithFormat:@"%@",[[listarray  objectAtIndex:  indexPath.section] objectForKey:@"classname"]];
         label.font = [UIFont fontWithName:@"Helvetica" size:15.0];
         label.textColor = [UIColor grayColor];

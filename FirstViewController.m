@@ -394,7 +394,7 @@
      
     if (sender.tag == 100) {
         mydelegate.language = @"english";
-             searchbar.placeholder = @"search";
+             searchbar.placeholder = @"Search";
     }
     else if (sender.tag == 200)
     {

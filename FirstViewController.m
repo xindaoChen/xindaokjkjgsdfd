@@ -23,7 +23,7 @@
 #import "AppDelegate.h"
 #import "XDTabBarViewController.h"
 #import "Yunju.h"
-
+#import "ASIFormDataRequest.h"
 @interface FirstViewController ()
 
 @end
@@ -51,6 +51,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+ 
+
     AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
     _urlHost = delegate.domainName;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"]
@@ -340,27 +343,66 @@
 
 }
 
+-(void)gitnewversion
+{
+    NSURL *url = [NSURL URLWithString:@"http://www.dacheq.com/index.php/index/domain"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    request.delegate = self;
+    [request setTimeOutSeconds:10];
+    [request startAsynchronous];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+    NSString *string = [[request.responseString JSONValue] objectForKey:@"version"];
+    if  ([string intValue]>mydele.version.intValue) {
+        mydele.version = [ [request.responseString JSONValue]   objectForKey:@"version"];
+         mydele.domainName = [[request.responseString JSONValue] objectForKey:@"domain"];
+        _urlHost = mydele.domainName;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setValue:mydele.version forKey:KEY_FOR_VERSION];
+        [defaults setValue:mydele.domainName forKey:KEY_FOR_HOST_URL];
+        [self changefirstview];
+    }
+}
+
+-(void)changefirstview
+{
+     AppDelegate*mydelegate = [UIApplication sharedApplication].delegate;
+    if([NetAccess reachable])
+    {
+        NSString*string1 = @"{\"type\":\"";
+        NSString*string2 = [NSString stringWithFormat:@"%@\"}",mydelegate.language];
+        NSMutableString*alltring = [[NSMutableString alloc] init];
+        [alltring appendString:string1];
+        [alltring appendString:string2];
+        _gNetAccess.delegate = self;
+        _gNetAccess.tag = 100;
+        [_gNetAccess theFirstviewPicture:alltring];
+    }
+    else
+    {
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+    }
+
+}
+
 -(void)EngorChaing:(UIButton *)sender
 {
     AppDelegate*mydelegate = [UIApplication sharedApplication].delegate;
+     
     if (sender.tag == 100) {
         mydelegate.language = @"english";
+             searchbar.placeholder = @"search";
     }
     else if (sender.tag == 200)
     {
         mydelegate.language = @"china";
+         searchbar.placeholder = @"搜索";
     }
     
-    if ([mydelegate.language isEqualToString:@"china"]) {
-        searchbar.placeholder = @"搜索";
-    }
-    else
-    {
-        searchbar.placeholder = @"search";
-    }
-
-    
-    if([NetAccess reachable])
+      if([NetAccess reachable])
     {
         NSString*string1 = @"{\"type\":\"";
         NSString*string2 = [NSString stringWithFormat:@"%@\"}",mydelegate.language];
@@ -388,6 +430,8 @@
         
     }
     
+     [self gitnewversion];
+    
     [self makethebutton];
     [self maketitle];
     if ([mydelegate.language isEqualToString:@"china"]) {
@@ -413,10 +457,11 @@
                         }completion:^(BOOL finished){
                         }];
 
-   
+  
 }
 
--(void)maketitle
+
+ -(void)maketitle
 {
     AppDelegate *mydelegat = [UIApplication sharedApplication].delegate;
     if (  [mydelegat.language  isEqualToString: @"china"]) {
@@ -434,7 +479,8 @@
     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
     [faflult setObject:@"2" forKey:@"keytwo"];
     [faflult setObject:@"1" forKey:@"key"];
-    [faflult synchronize];
+//    [faflult synchronize];
+     
 
     [self englishorching];
     [self changeUIView];
@@ -690,7 +736,10 @@
      
     NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"特别行政区"];
     NSString *trimmedString = [buttonbars.text stringByTrimmingCharactersInSet:set];
-     
+    
+    NSCharacterSet *setnext = [NSCharacterSet characterSetWithCharactersInString:@"壮族自治区""自治区""回族自治区""维吾尔自治区""特别行政区"];
+    NSString *trimmedStringext = [province stringByTrimmingCharactersInSet:setnext];
+
     if (!trimmedString) {
         
         AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
@@ -710,7 +759,7 @@
     }
     else
     {
-        ScanDevelopViewController *searchview = [[ScanDevelopViewController alloc] initWithcityname:trimmedString andprovince:province];
+        ScanDevelopViewController *searchview = [[ScanDevelopViewController alloc] initWithcityname:trimmedString andprovince:trimmedStringext];
         [self.navigationController pushViewController:searchview animated:YES];
 //        [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
 
@@ -761,6 +810,7 @@
     
     if (na.tag == 100){
         NSLog(@"%@",resultSet);
+      
         if (resultSet.count !=0) {
             listarray = resultSet;
             
@@ -778,6 +828,7 @@
         else
         {
 //            [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+             
             
         }
         

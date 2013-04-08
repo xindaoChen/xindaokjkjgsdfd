@@ -9,19 +9,33 @@
 #import "AppDelegate.h"
 #import "XDTabBarViewController.h"
 #import "XDHeader.h"
+#import "NetAccess.h"
 
-#import "FirstViewController.h"
+
+#import "JSON.h" 
+#import "JSONKit.h"
 @implementation AppDelegate
 @synthesize language;
-@synthesize mapManager,classview,disview;
+@synthesize mapManager,classview,disview,firstview;
 @synthesize managedObjectContext,managedObjectModel,persistentStoreCoordinator,naviga2,naviga3;
 @synthesize xdTabbar;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    _domainName = HOST_URL;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:KEY_FOR_HOST_URL] != nil) {
+        _domainName  =  [defaults objectForKey:KEY_FOR_HOST_URL];
+        _version = [defaults objectForKey:KEY_FOR_VERSION];
+    }else{
+        [defaults setValue:HOST_URL forKey:KEY_FOR_HOST_URL];
+        [defaults setValue:INIT_VERSION forKey:KEY_FOR_VERSION];
+        _domainName  = HOST_URL;
+        _version = INIT_VERSION;
+    }
+   [defaults synchronize];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    FirstViewController* firstview = [[FirstViewController alloc] init];
+     firstview = [[FirstViewController alloc] init];
     UINavigationController *naviga1 = [[UINavigationController alloc] initWithRootViewController:firstview];
     naviga1.tabBarItem.image = [UIImage imageNamed:@"homepage"];
  
@@ -59,11 +73,19 @@
     
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
+    
+    
+    
+   
+        
+    
     return YES;
 }
 
- 
 
+
+
+ 
 -(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     NSLog(@"regisger success：%@",deviceToken);

@@ -10,4 +10,7 @@
 
 @interface BarCodeViewController : UIViewController
 
+
+
+@property (nonatomic, strong) NSString *urlHost;
 @end

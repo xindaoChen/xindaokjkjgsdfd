@@ -819,6 +819,7 @@
      
       textview.backgroundColor = [UIColor clearColor];
       textview.editable = NO;
+     textview.textAlignment = NSTextAlignmentCenter;
       textview.textColor = [UIColor blackColor];
       textview.text = [NSString stringWithFormat:@"       %@",[[introducearray objectAtIndex:i] objectForKey:@"content"]];   
       textview.font =[UIFont systemFontOfSize:16];
@@ -893,6 +894,7 @@
          }
         textview.backgroundColor = [UIColor clearColor];
          textview.editable = NO;
+          textview.textAlignment = NSTextAlignmentCenter;
          textview.textColor = [UIColor blackColor];
          textview.text = [NSString stringWithFormat:@"       %@",[[introducearrytwo objectAtIndex:i] objectForKey:@"content"]];
          textview.font =[UIFont systemFontOfSize:16];

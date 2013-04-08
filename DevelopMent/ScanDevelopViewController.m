@@ -178,6 +178,7 @@
     [self showLevelList];
  
     [self showIndustryList];
+    
     self.developDeferred = [[HLDeferred alloc] init];
     self.cityDeferred = [[HLDeferred alloc] init];
     self.levelDeferred = [[HLDeferred alloc] init];
@@ -493,7 +494,7 @@ else if([languageFlag isEqualToString:@"english"])
         _levelNetAcess.delegate = self;
         _levelNetAcess.tag = 151;    //tag = 151 ,levellist
         [_levelNetAcess thelevelList:getLevelList];
-        
+        NSLog(@"^^^^^^^^^^^^^^^^^^^^^%@",getLevelList);
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
     else
@@ -820,6 +821,7 @@ else if([languageFlag isEqualToString:@"english"])
         [listarray4 removeAllObjects];
         
         listarray4 = resultSet;
+        NSLog(@"^^^^^^^^^^&%@",resultSet);
         
        
     }
@@ -1101,16 +1103,164 @@ else if([languageFlag isEqualToString:@"english"])
         }
         case 2:
         {
-     //  [provinceView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-            if ([[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"全国"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"北京市"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"天津市"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"上海市" ]||[[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"重庆市"]) {
-                provinceName = [allProvinceArray objectAtIndex:indexPath.row];
-             //  [provincebutton setTitle:provinceName forState:UIControlStateNormal];
-                provinceLabel.text = provinceName;
-                tempprovinceName = provinceName;
+            if ([languageFlag isEqualToString:@"china"])
+            {
+                //  [provinceView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+                if ([[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"全国"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"北京市"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"天津市"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"上海市" ]||[[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"重庆市"]) {
+                    provinceName = [allProvinceArray objectAtIndex:indexPath.row];
+                    //  [provincebutton setTitle:provinceName forState:UIControlStateNormal];
+                    provinceLabel.text = provinceName;
+                    tempprovinceName = provinceName;
+                    getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
+                    levelLabel.text = @"全部";
+                    industryLabel.text = @"全部";
+                    [listarray3 removeAllObjects];
+                    inid= @"";
+                    leid = @"";
+                    
+                    if(provinceButonStatue == -1)
+                    {
+                        [UIView animateWithDuration:0.3 animations:^{
+                            showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+                            [provincebutton setBackgroundImage:[UIImage imageNamed:@"provincebutton1.png"] forState:UIControlStateNormal];
+                            provinceLabel.textColor = [UIColor grayColor];
+                            // [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+                        }];
+                        provinceButonStatue = 1;
+                    }
+                    developnumhasget = 0;
+                    [imagesDictionary removeAllObjects];
+                    
+                    [allListArray  removeAllObjects];
+                    //                searchtable.tableFooterView.tag = 100051;
+                    [self showdevelopZone];
+                    
+                    
+                }
+                else{
+                    getCityName = [NSString stringWithFormat:getCityName = @"{\"type\":\"china\",\"prov\":\"%@\"}",[allProvinceArray objectAtIndex:indexPath.row]] ;
+                    tempprovinceName = [allProvinceArray objectAtIndex:indexPath.row];
+                    
+                    
+                    [self showCityName];
+                }
+
+            }
+            else if([languageFlag isEqualToString:@"english"])
+            {
+                
+                if ([[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"china"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"Beijing"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"Tianjin"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"Shanghai" ]||[[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"Chongqing"]) {
+                    provinceName = [allProvinceArray objectAtIndex:indexPath.row];
+                    //  [provincebutton setTitle:provinceName forState:UIControlStateNormal];
+                    provinceLabel.text = provinceName;
+                    tempprovinceName = provinceName;
+                    getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
+                    levelLabel.text = @"all";
+                    industryLabel.text = @"all";
+                    [listarray3 removeAllObjects];
+                    inid= @"";
+                    leid = @"";
+                    
+                    if(provinceButonStatue == -1)
+                    {
+                        [UIView animateWithDuration:0.3 animations:^{
+                            showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+                            [provincebutton setBackgroundImage:[UIImage imageNamed:@"provincebutton1.png"] forState:UIControlStateNormal];
+                            provinceLabel.textColor = [UIColor grayColor];
+                            // [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+                        }];
+                        provinceButonStatue = 1;
+                    }
+                    developnumhasget = 0;
+                    [imagesDictionary removeAllObjects];
+                    
+                    [allListArray  removeAllObjects];
+                    //                searchtable.tableFooterView.tag = 100051;
+                    [self showdevelopZone];
+                    
+                    
+                }
+                else{
+                    getCityName = [NSString stringWithFormat:getCityName = @"{\"type\":\"china\",\"prov\":\"%@\"}",[allProvinceArray objectAtIndex:indexPath.row]] ;
+                    tempprovinceName = [allProvinceArray objectAtIndex:indexPath.row];
+                    
+                    
+                    [self showCityName];
+                }
+            }
+            
+//           //  [provinceView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+//            if ([[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"全国"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"北京市"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"天津市"] || [[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"上海市" ]||[[allProvinceArray objectAtIndex:indexPath.row] isEqualToString:@"重庆市"]) {
+//                provinceName = [allProvinceArray objectAtIndex:indexPath.row];
+//             //  [provincebutton setTitle:provinceName forState:UIControlStateNormal];
+//                provinceLabel.text = provinceName;
+//                tempprovinceName = provinceName;
+//                getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
+//                levelLabel.text = @"全部";
+//                industryLabel.text = @"全部";
+//                [listarray3 removeAllObjects];
+//                inid= @"";
+//                leid = @"";
+//                
+//                if(provinceButonStatue == -1)
+//                {
+//                    [UIView animateWithDuration:0.3 animations:^{
+//                        showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+//                       [provincebutton setBackgroundImage:[UIImage imageNamed:@"provincebutton1.png"] forState:UIControlStateNormal];
+//                        provinceLabel.textColor = [UIColor grayColor];
+//                        // [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+//                    }];
+//                    provinceButonStatue = 1;
+//                }
+//                developnumhasget = 0;
+//                [imagesDictionary removeAllObjects];
+//
+//                [allListArray  removeAllObjects];
+////                searchtable.tableFooterView.tag = 100051;
+//                [self showdevelopZone];
+//
+//
+//            }
+//            else{
+//            getCityName = [NSString stringWithFormat:getCityName = @"{\"type\":\"china\",\"prov\":\"%@\"}",[allProvinceArray objectAtIndex:indexPath.row]] ;
+//                tempprovinceName = [allProvinceArray objectAtIndex:indexPath.row];
+//               
+//               
+//            [self showCityName];
+//            }
+            break;
+        }
+        case 3:
+        {
+            if ([languageFlag isEqualToString:@"china"])//汉语模式
+            {
+                
+                [cityView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+                if ([tempprovinceName isEqualToString:@""]) {
+                    tempprovinceName = provinceName;
+                }
+              
+                
+                
+                if (indexPath.row >0 && indexPath.row <= listarray3.count) {
+                    provinceLabel.text = [[listarray3 objectAtIndex:indexPath.row - 1] objectForKey:@"cityname"] ;
+                    provinceName = [[listarray3 objectAtIndex:indexPath.row - 1] objectForKey:@"cityname"];
+                    
+                    // leid = [[listarray4 objectAtIndex:indexPath.row-1] objectForKey:@"id"];
+                }
+                else
+                {
+                    provinceLabel.text = tempprovinceName;
+                    provinceName = tempprovinceName;
+                }
+                
+                //   provinceName = [[listarray3 objectAtIndex:indexPath.row] objectForKey:@"cityname"];
+                //  [provincebutton setTitle:provinceName forState:UIControlStateNormal];
+                //   provinceLabel.text = provinceName;
+                
                 getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
                 levelLabel.text = @"全部";
                 industryLabel.text = @"全部";
-                [listarray3 removeAllObjects];
                 inid= @"";
                 leid = @"";
                 
@@ -1118,173 +1268,399 @@ else if([languageFlag isEqualToString:@"english"])
                 {
                     [UIView animateWithDuration:0.3 animations:^{
                         showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-                       [provincebutton setBackgroundImage:[UIImage imageNamed:@"provincebutton1.png"] forState:UIControlStateNormal];
+                        [provincebutton setBackgroundImage:[UIImage imageNamed:@"provincebutton1.png"] forState:UIControlStateNormal];
+                        //      moveImageView.frame = CGRectMake(-100, 35, 100, 8);
+                        //     [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
                         provinceLabel.textColor = [UIColor grayColor];
-                        // [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+                        
                     }];
                     provinceButonStatue = 1;
                 }
+                
+                
+                // [provinceView init];
                 developnumhasget = 0;
                 [imagesDictionary removeAllObjects];
-
+                
                 [allListArray  removeAllObjects];
-//                searchtable.tableFooterView.tag = 100051;
+                
+                
+                //            searchtable.tableFooterView.tag = 100051;
                 [self showdevelopZone];
-
-
+                
             }
-            else{
-            getCityName = [NSString stringWithFormat:getCityName = @"{\"type\":\"china\",\"prov\":\"%@\"}",[allProvinceArray objectAtIndex:indexPath.row]] ;
-                tempprovinceName = [allProvinceArray objectAtIndex:indexPath.row];
-               
-               
-            [self showCityName];
-            }
-            break;
-        }
-        case 3:
-        {
-        [cityView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-            if ([tempprovinceName isEqualToString:@""]) {
-                tempprovinceName = provinceName;
-            }
-          //  tempprovinceName = provinceName;
-            
-            
-            if (indexPath.row >0 && indexPath.row <= listarray3.count) {
-                provinceLabel.text = [[listarray3 objectAtIndex:indexPath.row - 1] objectForKey:@"cityname"] ;
-                provinceName = [[listarray3 objectAtIndex:indexPath.row - 1] objectForKey:@"cityname"];
-
-               // leid = [[listarray4 objectAtIndex:indexPath.row-1] objectForKey:@"id"];
-            }
-            else
+            else if([languageFlag isEqualToString:@"english"])//英语模式
             {
-                provinceLabel.text = tempprovinceName;
-                provinceName = tempprovinceName;
-                // [levelbutton setTitle:@"全部" forState:UIControlStateNormal];
-              //  leid = @"";
+                
+                [cityView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+                if ([tempprovinceName isEqualToString:@""]) {
+                    tempprovinceName = provinceName;
+                }
+                
+                
+                
+                if (indexPath.row >0 && indexPath.row <= listarray3.count) {
+                    provinceLabel.text = [[listarray3 objectAtIndex:indexPath.row - 1] objectForKey:@"cityname"] ;
+                    provinceName = [[listarray3 objectAtIndex:indexPath.row - 1] objectForKey:@"cityname"];
+                    
+                    // leid = [[listarray4 objectAtIndex:indexPath.row-1] objectForKey:@"id"];
+                }
+                else
+                {
+                    provinceLabel.text = tempprovinceName;
+                    provinceName = tempprovinceName;
+                }
+                
+                //   provinceName = [[listarray3 objectAtIndex:indexPath.row] objectForKey:@"cityname"];
+                //  [provincebutton setTitle:provinceName forState:UIControlStateNormal];
+                //   provinceLabel.text = provinceName;
+                
+                getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"english\",\"cityname\":\"%@\"}",provinceName];
+                levelLabel.text = @"all";
+                industryLabel.text = @"all";
+                inid= @"";
+                leid = @"";
+                
+                if(provinceButonStatue == -1)
+                {
+                    [UIView animateWithDuration:0.3 animations:^{
+                        showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+                        [provincebutton setBackgroundImage:[UIImage imageNamed:@"provincebutton1.png"] forState:UIControlStateNormal];
+                        //      moveImageView.frame = CGRectMake(-100, 35, 100, 8);
+                        //     [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+                        provinceLabel.textColor = [UIColor grayColor];
+                        
+                    }];
+                    provinceButonStatue = 1;
+                }
+                
+                
+                // [provinceView init];
+                developnumhasget = 0;
+                [imagesDictionary removeAllObjects];
+                
+                [allListArray  removeAllObjects];
+                
+                
+                //            searchtable.tableFooterView.tag = 100051;
+                [self showdevelopZone];
+                
             }
-
             
-            
-            
-         //   provinceName = [[listarray3 objectAtIndex:indexPath.row] objectForKey:@"cityname"];
-          //  [provincebutton setTitle:provinceName forState:UIControlStateNormal];
-         //   provinceLabel.text = provinceName;
-            
-            getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
-            levelLabel.text = @"全部";
-            industryLabel.text = @"全部";
-            inid= @"";
-            leid = @"";
-            
-            if(provinceButonStatue == -1)
-            {
-                [UIView animateWithDuration:0.3 animations:^{
-                    showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-                   [provincebutton setBackgroundImage:[UIImage imageNamed:@"provincebutton1.png"] forState:UIControlStateNormal];
-                    //      moveImageView.frame = CGRectMake(-100, 35, 100, 8);
-               //     [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
-                    provinceLabel.textColor = [UIColor grayColor];
-
-                }];
-                provinceButonStatue = 1;
-            }
-
-            
-           // [provinceView init];
-            developnumhasget = 0;
-            [imagesDictionary removeAllObjects];
-
-           [allListArray  removeAllObjects];
-
-            
-//            searchtable.tableFooterView.tag = 100051;
-            [self showdevelopZone];
-            
+//            
+//        [cityView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+//            if ([tempprovinceName isEqualToString:@""]) {
+//                tempprovinceName = provinceName;
+//            }
+//          //  tempprovinceName = provinceName;
+//            
+//            
+//            if (indexPath.row >0 && indexPath.row <= listarray3.count) {
+//                provinceLabel.text = [[listarray3 objectAtIndex:indexPath.row - 1] objectForKey:@"cityname"] ;
+//                provinceName = [[listarray3 objectAtIndex:indexPath.row - 1] objectForKey:@"cityname"];
+//
+//               // leid = [[listarray4 objectAtIndex:indexPath.row-1] objectForKey:@"id"];
+//            }
+//            else
+//            {
+//                provinceLabel.text = tempprovinceName;
+//                provinceName = tempprovinceName;
+//                // [levelbutton setTitle:@"全部" forState:UIControlStateNormal];
+//              //  leid = @"";
+//            }
+//
+//            
+//            
+//            
+//         //   provinceName = [[listarray3 objectAtIndex:indexPath.row] objectForKey:@"cityname"];
+//          //  [provincebutton setTitle:provinceName forState:UIControlStateNormal];
+//         //   provinceLabel.text = provinceName;
+//            
+//            getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
+//            levelLabel.text = @"全部";
+//            industryLabel.text = @"全部";
+//            inid= @"";
+//            leid = @"";
+//            
+//            if(provinceButonStatue == -1)
+//            {
+//                [UIView animateWithDuration:0.3 animations:^{
+//                    showCityView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+//                   [provincebutton setBackgroundImage:[UIImage imageNamed:@"provincebutton1.png"] forState:UIControlStateNormal];
+//                    //      moveImageView.frame = CGRectMake(-100, 35, 100, 8);
+//               //     [provincebutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+//                    provinceLabel.textColor = [UIColor grayColor];
+//
+//                }];
+//                provinceButonStatue = 1;
+//            }
+//
+//            
+//           // [provinceView init];
+//            developnumhasget = 0;
+//            [imagesDictionary removeAllObjects];
+//
+//           [allListArray  removeAllObjects];
+//
+//            
+////            searchtable.tableFooterView.tag = 100051;
+//            [self showdevelopZone];
+//            
             break;
         }
         case 4:
         {
-         [levelView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-            if (indexPath.row >0 && indexPath.row <= listarray4.count) {
-                levelLabel.text = [[listarray4 objectAtIndex:indexPath.row - 1] objectForKey:@"levelname"] ;
-                leid = [[listarray4 objectAtIndex:indexPath.row-1] objectForKey:@"id"];
-            }
-            else
+            if ([languageFlag isEqualToString:@"china"])
             {
-                levelLabel.text = @"全部";
-              // [levelbutton setTitle:@"全部" forState:UIControlStateNormal];
-                leid = @"";
+                
+                [levelView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+                if (indexPath.row >0 && indexPath.row <= listarray4.count)
+                {
+                    levelLabel.text = [[listarray4 objectAtIndex:indexPath.row - 1] objectForKey:@"levelname"] ;
+                    leid = [[listarray4 objectAtIndex:indexPath.row-1] objectForKey:@"id"];
+                }
+                else
+                {
+                    levelLabel.text = @"全部";
+                    // [levelbutton setTitle:@"全部" forState:UIControlStateNormal];
+                    leid = @"";
+                }
+                
+                getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\"}",provinceName,leid,inid,cid];
+                
+                
+                if(levelButonStatue == -1)
+                { [UIView animateWithDuration:0.3 animations:^{
+                    showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+                    [levelbutton setBackgroundImage:[UIImage imageNamed:@"levelbutton1.png"] forState:UIControlStateNormal];
+                    //  moveImageView.frame = CGRectMake(-100, 35, 100, 10);
+                    
+                    levelLabel.textColor = [UIColor grayColor];
+                    //[levelbutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+                }];
+                    levelButonStatue = 1;
+                }
+                
+                // [provinceView init];
+                developnumhasget = 0;
+                [imagesDictionary removeAllObjects];
+                
+                [allListArray  removeAllObjects];
+                //             searchtable.tableFooterView.tag = 100051;
+                [self showdevelopZone];
+            
+
             }
             
-            getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\"}",provinceName,leid,inid,cid];
-
-        
-            if(levelButonStatue == -1)
-            { [UIView animateWithDuration:0.3 animations:^{
-                showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-             [levelbutton setBackgroundImage:[UIImage imageNamed:@"levelbutton1.png"] forState:UIControlStateNormal];
-                //  moveImageView.frame = CGRectMake(-100, 35, 100, 10);
-               
-                levelLabel.textColor = [UIColor grayColor];
-                //[levelbutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
-            }];
-                levelButonStatue = 1;
+            else if([languageFlag isEqualToString:@"english"])
+            {
+                [levelView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+                if (indexPath.row >0 && indexPath.row <= listarray4.count)
+                {
+                    levelLabel.text = [[listarray4 objectAtIndex:indexPath.row - 1] objectForKey:@"levelname"] ;
+                    leid = [[listarray4 objectAtIndex:indexPath.row-1] objectForKey:@"id"];
+                }
+                else
+                {
+                    levelLabel.text = @"all";
+                    // [levelbutton setTitle:@"全部" forState:UIControlStateNormal];
+                    leid = @"";
+                }
+                
+                getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"english\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\"}",provinceName,leid,inid,cid];
+                
+                
+                if(levelButonStatue == -1)
+                { [UIView animateWithDuration:0.3 animations:^{
+                    showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+                    [levelbutton setBackgroundImage:[UIImage imageNamed:@"levelbutton1.png"] forState:UIControlStateNormal];
+                    //  moveImageView.frame = CGRectMake(-100, 35, 100, 10);
+                    
+                    levelLabel.textColor = [UIColor grayColor];
+                    //[levelbutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+                }];
+                    levelButonStatue = 1;
+                }
+                
+                // [provinceView init];
+                developnumhasget = 0;
+                [imagesDictionary removeAllObjects];
+                
+                [allListArray  removeAllObjects];
+                //             searchtable.tableFooterView.tag = 100051;
+                [self showdevelopZone];
+                
             }
             
-           // [provinceView init];
-            developnumhasget = 0;
-            [imagesDictionary removeAllObjects];
-
-            [allListArray  removeAllObjects];
-//             searchtable.tableFooterView.tag = 100051;
-            [self showdevelopZone];
             break;
+//         [levelView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+//            if (indexPath.row >0 && indexPath.row <= listarray4.count) {
+//                levelLabel.text = [[listarray4 objectAtIndex:indexPath.row - 1] objectForKey:@"levelname"] ;
+//                leid = [[listarray4 objectAtIndex:indexPath.row-1] objectForKey:@"id"];
+//            }
+//            else
+//            {
+//                levelLabel.text = @"全部";
+//              // [levelbutton setTitle:@"全部" forState:UIControlStateNormal];
+//                leid = @"";
+//            }
+//            
+//            getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\"}",provinceName,leid,inid,cid];
+//
+//        
+//            if(levelButonStatue == -1)
+//            { [UIView animateWithDuration:0.3 animations:^{
+//                showLevelView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+//             [levelbutton setBackgroundImage:[UIImage imageNamed:@"levelbutton1.png"] forState:UIControlStateNormal];
+//                //  moveImageView.frame = CGRectMake(-100, 35, 100, 10);
+//               
+//                levelLabel.textColor = [UIColor grayColor];
+//                //[levelbutton  setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+//            }];
+//                levelButonStatue = 1;
+//            }
+//            
+//           // [provinceView init];
+//            developnumhasget = 0;
+//            [imagesDictionary removeAllObjects];
+//
+//            [allListArray  removeAllObjects];
+////             searchtable.tableFooterView.tag = 100051;
+//            [self showdevelopZone];
+//            break;
         }
         case 5:
         {
-        [IndustryView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-            if (indexPath.row >0 && indexPath.row <= listarray5.count) {
-               industryLabel.text = [[listarray5 objectAtIndex:indexPath.row-1] objectForKey:@"name"];
-               
-                inid = [[listarray5 objectAtIndex:indexPath.row-1] objectForKey:@"id"];
-            }
-            else
+            if ([languageFlag isEqualToString:@"china"])//中文模式
             {
-             industryLabel.text = @"全部";
-                //[industrybutton setTitle:@"全部" forState:UIControlStateNormal];
-                inid = @"";
-            }
-
-            
-            
-         
-            getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\"}",provinceName,leid,inid,cid];
-           
-            if(industryButonStatue == -1)
-            {[UIView animateWithDuration:0.3 animations:^{
-                showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
-               [industrybutton setBackgroundImage:[UIImage imageNamed:@"industrybutton1.png"] forState:UIControlStateNormal];
-                //     moveImageView.frame = CGRectMake(-100, 35, 100, 10);
-                industryLabel.textColor = [UIColor grayColor];
                 
-            }];
-                industryButonStatue = 1;
+                [IndustryView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+                if (indexPath.row >0 && indexPath.row <= listarray5.count) {
+                    industryLabel.text = [[listarray5 objectAtIndex:indexPath.row-1] objectForKey:@"name"];
+                    
+                    inid = [[listarray5 objectAtIndex:indexPath.row-1] objectForKey:@"id"];
+                }
+                else
+                {
+                    industryLabel.text = @"全部";
+                    //[industrybutton setTitle:@"全部" forState:UIControlStateNormal];
+                    inid = @"";
+                }
+                
+                
+                
+                
+                getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\"}",provinceName,leid,inid,cid];
+                
+                if(industryButonStatue == -1)
+                {[UIView animateWithDuration:0.3 animations:^{
+                    showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+                    [industrybutton setBackgroundImage:[UIImage imageNamed:@"industrybutton1.png"] forState:UIControlStateNormal];
+                    //     moveImageView.frame = CGRectMake(-100, 35, 100, 10);
+                    industryLabel.textColor = [UIColor grayColor];
+                    
+                }];
+                    industryButonStatue = 1;
+                }
+                
+                
+                
+                developnumhasget = 0;
+                
+                [imagesDictionary removeAllObjects];
+                
+                [allListArray  removeAllObjects];
+                
+                //    searchtable.tableFooterView.tag = 100051;
+                [self showdevelopZone];
+           }
+            else if([languageFlag isEqualToString:@"english"])//英语模式
+            {
+                
+                [IndustryView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+                if (indexPath.row >0 && indexPath.row <= listarray5.count) {
+                    industryLabel.text = [[listarray5 objectAtIndex:indexPath.row-1] objectForKey:@"name"];
+                    
+                    inid = [[listarray5 objectAtIndex:indexPath.row-1] objectForKey:@"id"];
+                }
+                else
+                {
+                    industryLabel.text = @"all";
+                    //[industrybutton setTitle:@"全部" forState:UIControlStateNormal];
+                    inid = @"";
+                }
+                
+                
+                
+                
+                getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"english\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\"}",provinceName,leid,inid,cid];
+                
+                if(industryButonStatue == -1)
+                {[UIView animateWithDuration:0.3 animations:^{
+                    showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+                    [industrybutton setBackgroundImage:[UIImage imageNamed:@"industrybutton1.png"] forState:UIControlStateNormal];
+                    //     moveImageView.frame = CGRectMake(-100, 35, 100, 10);
+                    industryLabel.textColor = [UIColor grayColor];
+                    
+                }];
+                    industryButonStatue = 1;
+                }
+                
+                
+                
+                developnumhasget = 0;
+                
+                [imagesDictionary removeAllObjects];
+                
+                [allListArray  removeAllObjects];
+                
+                //    searchtable.tableFooterView.tag = 100051;
+                [self showdevelopZone];
             }
-            
-
-            
-                    developnumhasget = 0;
-            
-            [imagesDictionary removeAllObjects];
-
-          [allListArray  removeAllObjects];
-
-        //    searchtable.tableFooterView.tag = 100051;
-            [self showdevelopZone];
+//        [IndustryView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+//            if (indexPath.row >0 && indexPath.row <= listarray5.count) {
+//               industryLabel.text = [[listarray5 objectAtIndex:indexPath.row-1] objectForKey:@"name"];
+//               
+//                inid = [[listarray5 objectAtIndex:indexPath.row-1] objectForKey:@"id"];
+//            }
+//            else
+//            {
+//             industryLabel.text = @"全部";
+//                //[industrybutton setTitle:@"全部" forState:UIControlStateNormal];
+//                inid = @"";
+//            }
+//
+//            
+//            
+//         
+//            getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\"}",provinceName,leid,inid,cid];
+//           
+//            if(industryButonStatue == -1)
+//            {[UIView animateWithDuration:0.3 animations:^{
+//                showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
+//               [industrybutton setBackgroundImage:[UIImage imageNamed:@"industrybutton1.png"] forState:UIControlStateNormal];
+//                //     moveImageView.frame = CGRectMake(-100, 35, 100, 10);
+//                industryLabel.textColor = [UIColor grayColor];
+//                
+//            }];
+//                industryButonStatue = 1;
+//            }
+//            
+//
+//            
+//                    developnumhasget = 0;
+//            
+//            [imagesDictionary removeAllObjects];
+//
+//          [allListArray  removeAllObjects];
+//
+//        //    searchtable.tableFooterView.tag = 100051;
+//            [self showdevelopZone];
             break;
         }
+            
+            
+            
         default:
           
             break;
@@ -1308,13 +1684,20 @@ else if([languageFlag isEqualToString:@"english"])
           
         if (indexPath.row == [allListArray count] - 1 && indexPath.row < count -1)
         {  UIView *footview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
-            NSLog(@"$&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%d,%d,%d",indexPath.row,[allListArray count]-1,count -1);
+           
             footactive = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             
             footactive.center = CGPointMake(105, 30);
             footactive.color = [UIColor blackColor];
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-           [button setTitle:@"加载更多..." forState:UIControlStateNormal];
+            if ([languageFlag isEqualToString:@"china"]) {
+                 [button setTitle:@"加载更多..." forState:UIControlStateNormal];
+            }
+            else if ([languageFlag isEqualToString:@"english"])
+            {
+                 [button setTitle:@"More..." forState:UIControlStateNormal];
+            }
+//           [button setTitle:@"加载更多..." forState:UIControlStateNormal];
             [button setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
             button.frame = footview.frame;
             button.backgroundColor = [UIColor clearColor];
@@ -1344,14 +1727,21 @@ else if([languageFlag isEqualToString:@"english"])
 
 
 -(void)getMoreInfo
-{
-    getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\",\"time\":\"%@\"}",provinceName,leid,inid,cid,[[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"] ];
-    NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);
-    NSLog(@"^^%@",getDevelopZoneInfo);
-   
+{  if([languageFlag isEqualToString:@"china"])
+   {
+         getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\",\"time\":\"%@\"}",provinceName,leid,inid,cid,[[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"] ];
+       NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);
+       NSLog(@"^^%@",getDevelopZoneInfo);
+   }
+   else if([languageFlag isEqualToString:@"english"])
+   {
+       getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"english\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\",\"time\":\"%@\"}",provinceName,leid,inid,cid,[[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"] ];
+       NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);
+       NSLog(@"^^%@",getDevelopZoneInfo);
+       
+   }
+[self footAddDevelopZone];
 
-    [self footAddDevelopZone];
-//    searchtable.tableFooterView = nil;
 }
 
 

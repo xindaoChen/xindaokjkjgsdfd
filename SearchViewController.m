@@ -253,17 +253,32 @@
         
         
         int count = [[[allListarray objectAtIndex:0] objectForKey:@"count"] intValue];
-        NSLog(@"%d",count);
-         NSLog(@"$&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%d,%d,%d",indexPath.row,[allListarray count]-1,count -1);
+      
+        
         if (indexPath.row == [allListarray count] - 1 && indexPath.row < count -1)
         {  UIView *footview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
-            NSLog(@"$&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%d,%d,%d",indexPath.row,[allListarray count]-1,count -1);
+          
             footactive = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             
             footactive.center = CGPointMake(105, 30);
             footactive.color = [UIColor blackColor];
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            [button setTitle:@"加载更多..." forState:UIControlStateNormal];
+            
+            AppDelegate *mydelegate = [UIApplication sharedApplication].delegate;
+           
+          
+          
+            if ([mydelegate.language isEqualToString:@"china"]) {
+                [button setTitle:@"加载更多..." forState:UIControlStateNormal];
+            }
+            else
+            {
+                [button setTitle:@"More..." forState:UIControlStateNormal];
+            }
+
+            
+            
+          //  [button setTitle:@"加载更多..." forState:UIControlStateNormal];
             [button setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
             button.frame = footview.frame;
             button.backgroundColor = [UIColor clearColor];
@@ -275,14 +290,7 @@
             searchtable.tableFooterView = footview;
             searchtable.tableFooterView.tag = 100050;
             
-            //            getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\",\"time\":\"%@\"}",provinceName,leid,inid,cid,[[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"] ];
-            //
-            //            NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);
-            //            NSLog(@"^^%@",getDevelopZoneInfo);
-            //            [provinceName retain];
-            //            [self showdevelopZone];
-            
-            //     tableView.tableFooterView = nil;
+         
             
         }
         
@@ -305,7 +313,7 @@
     AppDelegate *appdele = [UIApplication sharedApplication].delegate;
     NSString *allstring = [NSString stringWithFormat:@"{\"type\":\"%@\",\"search\":\"%@\",\"time\":\"%@\"}",appdele.language,searchbar.text,time];
     time = @"";
-    NSLog(@"####################################%@",allstring);
+ 
     if([NetAccess reachable])
     {
       //  [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -320,13 +328,7 @@
         [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
     }
 
-//    NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);
-//    NSLog(@"^^%@",getDevelopZoneInfo);
-//    
-//    
-//    [self footAddDevelopZone];
-    //    searchtable.tableFooterView = nil;
-    NSLog(@"00000009****************************************");
+
 }
 
 

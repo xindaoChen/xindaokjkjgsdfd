@@ -29,7 +29,7 @@
 -(void)theclassmessage:(NSString*)string;
 -(void)theIntroducemessage:(NSString *)string;
 -(void)theAppmessage:(NSString *)string;
-
+-(void)getnewVersion;
 
 -(void)thedevelopZone:(NSString *)string;
 -(void)thecityName:(NSString *)string;

@@ -32,10 +32,11 @@
 //首页图片
 -(void)theFirstviewPicture:(NSString*)string
 {
- 
+   
     AppDelegate *mydele = [UIApplication sharedApplication].delegate;
- 
     NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@",mydele.domainName,API_INDEXIMG]];
+     NSLog(@"%@",mydele.domainName);
+    NSLog(@"%@",url);
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setTimeOutSeconds:kTimeOutseconds];
@@ -182,6 +183,20 @@
     _gRequest = request;
 
     NSLog(@"url:%@ params:%@", url , string);
+}
+
+
+
+//获取版本号
+-(void)getnewVersion
+{
+    
+    NSURL *url = [NSURL URLWithString:@"http://192.168.1.101:8010/index.php/index/domain"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
+    [request startAsynchronous];
+    _gRequest = request;
 }
 
 - (void)cancelAsynchronousRequest

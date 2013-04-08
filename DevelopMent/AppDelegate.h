@@ -11,7 +11,7 @@
 #import "BMKMapManager.h"
 #import "DiscussViewController.h"
 #import "ClassViewController.h"
-
+#import "FirstViewController.h"
 @class XDTabBarViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -23,6 +23,7 @@
     ClassViewController *classview;
     DiscussViewController *disview;
     XDTabBarViewController *xdTabbar;
+    FirstViewController* firstview;
 }
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,strong) BMKMapManager* mapManager;
@@ -31,8 +32,10 @@
 @property (nonatomic,strong)  UINavigationController *naviga3;
 @property (nonatomic,strong)  ClassViewController *classview;
 @property (nonatomic,strong) DiscussViewController *disview;
+@property (nonatomic,strong) FirstViewController* firstview;
 @property (nonatomic,strong) XDTabBarViewController *xdTabbar;
 @property (nonatomic, strong) NSString *domainName;
+@property (nonatomic, strong) NSString *version;
 
 //数据模型对象
 @property(strong,nonatomic) NSManagedObjectModel *managedObjectModel;

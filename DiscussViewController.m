@@ -111,8 +111,8 @@
     if ([mydelefate.language isEqualToString:@"english"]) {
         [button4 setTitle:@"Give me ratings" forState:UIControlStateNormal];
         [button3 setTitle:@"Common investors" forState:UIControlStateNormal];
-        [button2 setTitle:@"Media Partners" forState:UIControlStateNormal];
-        [button1 setTitle:@"Cooperation" forState:UIControlStateNormal];
+        [button2 setTitle:@"Co-operation" forState:UIControlStateNormal];
+        [button1 setTitle:@"科润创新" forState:UIControlStateNormal];
         [buttonFor2D setTitle:@"2D bar code" forState:UIControlStateNormal];
 
     }

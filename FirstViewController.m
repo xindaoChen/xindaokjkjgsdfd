@@ -373,7 +373,19 @@
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+//        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        
+        AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+        if ([delegate.language isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"Internet Contact" messageInfo:ErrorInternetEnglish];
+        }
+
+        
     }
     
     [self makethebutton];
@@ -680,7 +692,21 @@
     NSString *trimmedString = [buttonbars.text stringByTrimmingCharactersInSet:set];
      
     if (!trimmedString) {
-       [UITools showPopMessage:self titleInfo:@"提示" messageInfo:CannotLocate];
+        
+        AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+        if ([delegate.language isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"提示" messageInfo:CannotLocate];
+
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"Contect" messageInfo:CannotLocateEnglish];
+
+        }
+        
+ 
+//       [UITools showPopMessage:self titleInfo:@"提示" messageInfo:CannotLocate];
     }
     else
     {

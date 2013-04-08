@@ -163,8 +163,18 @@
     [viewapp addSubview:imageview1];
 
     UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(70, 180, 60, 40)];
+    if ([delegate.language isEqualToString:@"china"]) {
+        label1.text = @"电话 :";
+
+    }
+    else
+    {
+        label1.text = @"telephone :";
+
+    }
+
     label1.backgroundColor = [UIColor clearColor];
-    label1.text = @"电话 :";
+    //label1.text = @"电话 :";
     [viewapp addSubview:label1];
 
     mylable1 = [[UILabel alloc] initWithFrame:CGRectMake(125, 180, 160, 40)];
@@ -189,8 +199,16 @@
 
     UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(70, 225, 60, 40)];
     label2.backgroundColor = [UIColor clearColor];
-    label2.text = @"传真 :";
-    [viewapp addSubview:label2];
+    
+    if ([delegate.language isEqualToString:@"china"]) {
+        label2.text = @"传真 :";
+    }
+    else
+    {
+    label2.text = @"fax :";
+    }
+    
+        [viewapp addSubview:label2];
 
     mylable2 = [[UILabel alloc] initWithFrame:CGRectMake(125, 225, 160, 40)];
     mylable2.backgroundColor = [UIColor clearColor];
@@ -203,6 +221,7 @@
 
     UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(70, 270, 60, 40)];
     label3.backgroundColor = [UIColor clearColor];
+    
     label3.text = @"邮件 :";
     [viewapp addSubview:label3];
 
@@ -217,7 +236,16 @@
 
     UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(70, 315, 60, 40)];
     label4.backgroundColor = [UIColor clearColor];
-    label4.text = @"网址 :";
+    
+    if ([delegate.language isEqualToString:@"china"]) {
+       label4.text = @"网址 :";
+    }
+    else
+    {
+        label4.text = @"URL :";
+    }
+
+//    label4.text = @"网址 :";
     [viewapp addSubview:label4];
 
     mylable4 = [[UILabel alloc] initWithFrame:CGRectMake(125, 315, 160, 40)];
@@ -279,15 +307,36 @@
 
 -(void)takephone
 {
- 
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:nil
-                                  delegate:self
-                                  cancelButtonTitle:@"取消"
-                                  destructiveButtonTitle:nil
-                                  otherButtonTitles:[NSString stringWithFormat:@"拨打 %@",[[apparray objectAtIndex:0] objectForKey:@"tel"]],nil];
+  AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+    if ([delegate.language isEqualToString:@"china"])
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:nil
+                                      delegate:self
+                                      cancelButtonTitle:@"取消"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:[NSString stringWithFormat:@"拨打 %@",[[apparray objectAtIndex:0] objectForKey:@"tel"]],nil];
+         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    else
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:nil
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:[NSString stringWithFormat:@"Call %@",[[apparray objectAtIndex:0] objectForKey:@"tel"]],nil];
+         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+
+//    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+//                                  initWithTitle:nil
+//                                  delegate:self
+//                                  cancelButtonTitle:@"取消"
+//                                  destructiveButtonTitle:nil
+//                                  otherButtonTitles:[NSString stringWithFormat:@"拨打 %@",[[apparray objectAtIndex:0] objectForKey:@"tel"]],nil];
   
-    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+//    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
 
 }
 
@@ -363,8 +412,20 @@
 //            firscrollView.contentSize = CGSizeMake(320*(introducearrytwo.count), 120);
 //            [self  introduceviewtwo];
 //        }
+        
+        
+        AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+        if ([delegate.language isEqualToString:@"china"])
+        {
+             [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        }
+        else
+        {
+              [UITools showPopMessage:self titleInfo:@"Internet Contact" messageInfo:ErrorInternetEnglish];
+        }
 
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+    
+//        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
 
     }
 
@@ -431,7 +492,16 @@
     else
     {
         dataarray =   [self getthedata];
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+        if ([delegate.language isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"Internet Contact" messageInfo:ErrorInternetEnglish];
+        }
+    
     
     }
 
@@ -481,7 +551,16 @@
         else
         {
             dataarray =   [self getthedata];
-            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+//            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+            AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+            if ([delegate.language isEqualToString:@"china"])
+            {
+                [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+            }
+            else
+            {
+                [UITools showPopMessage:self titleInfo:@"Internet Contact" messageInfo:ErrorInternetEnglish];
+            }
 
         }
 
@@ -509,7 +588,18 @@
             [self savedatamessage];
         }
         else{
-            [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+//            [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+            AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+            if ([delegate.language isEqualToString:@"china"])
+            {
+                [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+            }
+            else
+            {
+               [UITools showPopMessage:self titleInfo:@"Contact" messageInfo:WithoutDataEnglish];
+            }
+            
+
         }
        
         
@@ -529,8 +619,16 @@
              [self introduceview];
         }
         else
-        {
-             [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+        {   AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+            if ([delegate.language isEqualToString:@"china"])
+            {
+                [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+            }
+            else
+            {
+                [UITools showPopMessage:self titleInfo:@"Contact" messageInfo:WithoutDataEnglish];
+            }
+
         }
     }
     else if (na.tag ==111)
@@ -538,19 +636,57 @@
          apparray = resultSet;
          if ([[[apparray objectAtIndex:0] objectForKey:@"link"] isEqualToString:@""] ||  resultSet ==nil) {
             
-             loadlabel.text = @"暂无APP";
+             AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+             if ([delegate.language isEqualToString:@"china"])
+             {
+                 loadlabel.text = @"暂无APP";
+
+             }
+             else
+             {
+                 loadlabel.text = @"Has No APP For This DevelopeZone";
+
+             }
+
+//             loadlabel.text = @"暂无APP";
              loadbutton.userInteractionEnabled = NO;
          }
         else
         {
-             loadlabel.text = @"点击下载";
+            
+            AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+            if ([delegate.language isEqualToString:@"china"])
+            {
+               loadlabel.text = @"点击下载";
+                
+            }
+            else
+            {
+              loadlabel.text = @"Download";
+                
+            }
+
+//             loadlabel.text = @"点击下载";
              loadbutton.userInteractionEnabled = YES;
          }
         
        
         if ([[[apparray objectAtIndex:0] objectForKey:@"tel"]  isEqualToString:@""]  ||  resultSet ==nil) {
            
-            mylable1.text = @"暂无数据";
+            AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+            if ([delegate.language isEqualToString:@"china"])
+            {
+                mylable1.text = @"暂无数据";
+                
+            }
+            else
+            {
+              mylable1.text = @"Empty";
+                
+            }
+
+            
+          
         }
        else
        {
@@ -559,7 +695,18 @@
         
         if ([[[apparray objectAtIndex:0] objectForKey:@"fax"] isEqualToString:@""] ||  resultSet ==nil) {
             
-             mylable2.text = @"暂无数据";
+            AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+            if ([delegate.language isEqualToString:@"china"])
+            {
+                mylable2.text = @"暂无数据";
+                
+            }
+            else
+            {
+                mylable2.text = @"Empty";
+                
+            }
+
         }
         else
         {
@@ -568,7 +715,18 @@
 
         if ([[[apparray objectAtIndex:0] objectForKey:@"email"] isEqualToString:@""] ||  resultSet ==nil) {
             
-             mylable3.text = @"暂无数据";
+            AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+            if ([delegate.language isEqualToString:@"china"])
+            {
+                mylable3.text = @"暂无数据";
+                
+            }
+            else
+            {
+                mylable3.text = @"Empty";
+                
+            }
+
         }
         else
         {
@@ -577,7 +735,17 @@
 
         if ( [[[apparray objectAtIndex:0] objectForKey:@"site"] isEqualToString:@""] ||  resultSet ==nil) {
            
-             mylable4.text = @"暂无数据";
+            AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+            if ([delegate.language isEqualToString:@"china"])
+            {
+                mylable4.text = @"暂无数据";
+                
+            }
+            else
+            {
+                mylable4.text = @"Empty";
+                
+            }
         }
         else
         {

@@ -100,7 +100,17 @@
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+//        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+        if ([delegate.language isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"Internet Contact" messageInfo:ErrorInternetEnglish];
+        }
+
     }
     
 
@@ -157,7 +167,18 @@
         }
         else
         {
-           [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutResult];        }
+//           [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutResult];
+            AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+            if ([delegate.language isEqualToString:@"china"])
+            {
+               [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutResult];
+            }
+            else
+            {
+             [UITools showPopMessage:self titleInfo:@"Contect" messageInfo:WithoutResultEnglish];
+            }
+
+        }
         
     }
 }
@@ -325,7 +346,19 @@
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+//        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+        
+        AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+        if ([delegate.language isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+            
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"Network Tips" messageInfo:@"Internet Disconnected"];
+        }
+
     }
 
 

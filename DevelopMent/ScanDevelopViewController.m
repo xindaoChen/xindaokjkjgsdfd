@@ -364,8 +364,14 @@
     }
     else
     {
+        if ([languageFlag isEqualToString:@"china"]) {
+
         [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
-        
+        }
+        else
+        {
+          [UITools showPopMessage:self titleInfo:@"Internet Contact" messageInfo:ErrorInternetEnglish];
+        }
         NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
         NSString*pat=[pathss objectAtIndex:0];
         NSString *filenames=[pat stringByAppendingPathComponent:@"developZone.plist"];
@@ -409,7 +415,16 @@
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+        
+        if ([languageFlag isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:@"对不起,没有网络\n请检查网络网络是否打开"];
+
+        }
+        else
+        {
+        [UITools showPopMessage:self titleInfo:@"Network Tips" messageInfo:@"Internet Disconnected"];
+        }
         
         NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
         NSString*pat=[pathss objectAtIndex:0];
@@ -456,8 +471,18 @@
        // [getCityName release];
     }
     else
-    {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+    {  //if([languageFlag isEqualToString:@"china"])
+       //  {
+         //  [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+       //  }
+        if ([languageFlag isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"Network tips" messageInfo:ErrorInternetEnglish];
+        }
     }
     
    
@@ -480,7 +505,15 @@
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        if ([languageFlag isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"Network tips" messageInfo:ErrorInternetEnglish];
+        }
+
     }
     
     }
@@ -499,7 +532,15 @@ else if([languageFlag isEqualToString:@"english"])
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        if ([languageFlag isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"Network tips" messageInfo:ErrorInternetEnglish];
+        }
+
     }
 
 }
@@ -536,7 +577,9 @@ else if([languageFlag isEqualToString:@"english"])
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+                   [UITools showPopMessage:self titleInfo:@"Network Contact" messageInfo:ErrorInternetEnglish];
+    
+
     }
 }
     
@@ -778,9 +821,18 @@ else if([languageFlag isEqualToString:@"english"])
             
         }
         if (allListArray.count == 0) {
-        //    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
 
-             [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+//             [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+            if ([languageFlag isEqualToString:@"china"])
+            {
+                [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+            }
+            else
+            {
+                [UITools showPopMessage:self titleInfo:@"Tips" messageInfo:WithoutDataEnglish];
+            }
+
             
         }
         

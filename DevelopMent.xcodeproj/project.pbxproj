@@ -164,10 +164,10 @@
 		C8095715170D8BEF00780FC3 /* industrybutton1.png in Resources */ = {isa = PBXBuildFile; fileRef = C8095714170D8BEE00780FC3 /* industrybutton1.png */; };
 		C8095719170D8E4000780FC3 /* levelbutton1.png in Resources */ = {isa = PBXBuildFile; fileRef = C8095718170D8E4000780FC3 /* levelbutton1.png */; };
 		C8168D4E171119F400AE79A0 /* border.png in Resources */ = {isa = PBXBuildFile; fileRef = C8168D4D171119F400AE79A0 /* border.png */; };
-		C819FE46171171B800ED4444 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C819FE45171171B800ED4444 /* libbaidumapapi.a */; };
 		C83B5BF617115D6F00B3ABA0 /* HLDeferred.m in Sources */ = {isa = PBXBuildFile; fileRef = C83B5BF117115D6F00B3ABA0 /* HLDeferred.m */; };
 		C83B5BF717115D6F00B3ABA0 /* HLDeferredList.m in Sources */ = {isa = PBXBuildFile; fileRef = C83B5BF317115D6F00B3ABA0 /* HLDeferredList.m */; };
 		C83B5BF817115D6F00B3ABA0 /* HLFailure.m in Sources */ = {isa = PBXBuildFile; fileRef = C83B5BF517115D6F00B3ABA0 /* HLFailure.m */; };
+		C892240D171254500074BD36 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C892240C171254500074BD36 /* libbaidumapapi.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -405,13 +405,13 @@
 		C8095714170D8BEE00780FC3 /* industrybutton1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = industrybutton1.png; sourceTree = "<group>"; };
 		C8095718170D8E4000780FC3 /* levelbutton1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = levelbutton1.png; sourceTree = "<group>"; };
 		C8168D4D171119F400AE79A0 /* border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border.png; sourceTree = "<group>"; };
-		C819FE45171171B800ED4444 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		C83B5BF017115D6F00B3ABA0 /* HLDeferred.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLDeferred.h; path = DevelopMent/HLDeferred.h; sourceTree = "<group>"; };
 		C83B5BF117115D6F00B3ABA0 /* HLDeferred.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLDeferred.m; path = DevelopMent/HLDeferred.m; sourceTree = "<group>"; };
 		C83B5BF217115D6F00B3ABA0 /* HLDeferredList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLDeferredList.h; path = DevelopMent/HLDeferredList.h; sourceTree = "<group>"; };
 		C83B5BF317115D6F00B3ABA0 /* HLDeferredList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLDeferredList.m; path = DevelopMent/HLDeferredList.m; sourceTree = "<group>"; };
 		C83B5BF417115D6F00B3ABA0 /* HLFailure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLFailure.h; path = DevelopMent/HLFailure.h; sourceTree = "<group>"; };
 		C83B5BF517115D6F00B3ABA0 /* HLFailure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLFailure.m; path = DevelopMent/HLFailure.m; sourceTree = "<group>"; };
+		C892240C171254500074BD36 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -429,7 +429,7 @@
 				7852577C16F94FA000726F8E /* UIKit.framework in Frameworks */,
 				7852577E16F94FA000726F8E /* Foundation.framework in Frameworks */,
 				7852578016F94FA000726F8E /* CoreGraphics.framework in Frameworks */,
-				C819FE46171171B800ED4444 /* libbaidumapapi.a in Frameworks */,
+				C892240D171254500074BD36 /* libbaidumapapi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,7 +474,7 @@
 		7852576F16F94FA000726F8E = {
 			isa = PBXGroup;
 			children = (
-				C819FE45171171B800ED4444 /* libbaidumapapi.a */,
+				C892240C171254500074BD36 /* libbaidumapapi.a */,
 				4412566D17098C2A007B7C9E /* XCLibrary */,
 				7852578116F94FA000726F8E /* DevelopMent */,
 				7893702C17044D9000F8159C /* Picture */,
@@ -1029,7 +1029,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_LDFLAGS[arch=*]" = "-all_load";
-
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1056,7 +1055,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				"OTHER_LDFLAGS[arch=*]" = "-all_load";
-
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

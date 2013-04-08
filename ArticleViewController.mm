@@ -268,11 +268,15 @@
     
     self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
     
-    introducearrytwo = [self getthedatatwo];
-    
-    if (introducearrytwo.count != 0) {
-        firscrollView.contentSize = CGSizeMake(320*(introducearrytwo.count), 120);
-        [self  introduceviewtwo];
+    NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
+    NSLog(@"%@",[faflult objectForKey:idstring]);
+    if ([[faflult objectForKey:idstring] isEqualToString:delegate.language]) {
+           introducearrytwo = [self getthedatatwo];
+        if (introducearrytwo.count != 0) {
+            firscrollView.contentSize = CGSizeMake(320*(introducearrytwo.count), 120);
+            [self  introduceviewtwo];
+        }
+
     }
 }
 
@@ -657,10 +661,24 @@
          
       }
      NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
+    AppDelegate *mydele = [UIApplication sharedApplication].delegate;
     if (![faflult objectForKey:idstring] ) {
           dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   [self savedatamessagetwo];});
+        [faflult setObject:mydele.language forKey:idstring];
+     }
+    else
+    {
+        if ([[faflult objectForKey:idstring] isEqualToString: mydele.language]) {
+           
+        }
+        else
+        {
+            [self clearmessagetwo];
+            [self savedatamessagetwo];
+            [faflult setObject:mydele.language forKey:idstring];
+        }
     }
-    [faflult setObject:@"s" forKey:idstring];
+       
  
 }
 
@@ -781,10 +799,10 @@
                                  constrainedToSize:CGSizeMake(200, 9999)
                                      lineBreakMode:NSLineBreakByCharWrapping];
          
-        UIImageView *view  = [[UIImageView alloc] initWithFrame:CGRectMake(-textSize.width/2+2, -35, textSize.width+20, 35)];
+        UIImageView *view  = [[UIImageView alloc] initWithFrame:CGRectMake(-textSize.width/2-8, -35, textSize.width+40, 35)];
         [view setBackgroundColor:[UIColor clearColor]];
         [view setImage:[UIImage imageNamed:@"heikuang.png"]];
-        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(5, 5,textSize.width+10, 20)];
+        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(5, 5,textSize.width+30, 20)];
         lable.textColor = [UIColor whiteColor];
         lable.backgroundColor = [UIColor clearColor];
          lable.textAlignment = NSTextAlignmentCenter;
@@ -894,6 +912,7 @@
         [entry setTitle:[[introducearrytwo objectAtIndex:i]objectForKey:@"title"]];
         [entry setContent:[[introducearrytwo objectAtIndex:i] objectForKey:@"content"]];
         [ entry setData:[[introducearrytwo objectAtIndex:i] objectForKey:@"data"]];
+        
       }
     NSError *error;
     //托管对象准备好后，调用托管对象上下文的save方法将数据写入数据库
@@ -942,7 +961,9 @@
     
     //根据fid查询数据
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"fid" ascending:YES];
+    
     NSArray *sortDescriptions = [[NSArray alloc]initWithObjects:sortDescriptor, nil];
+    
     [request setSortDescriptors:sortDescriptions];
  
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"did == %@",idstring];
@@ -1009,17 +1030,19 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"did == %@",idstring];
     [request setPredicate:predicate];
     NSArray *results = [[self appDelegate ].managedObjectContext executeFetchRequest:request error:&error];
-    if(error){
-        
-        for(Data*object in results) {
+   
+//    if(error){
+    
+        for(Introduce*object in results)
+        {
             [[self appDelegate].managedObjectContext deleteObject:object];
         }
-    }
-     if([[self appDelegate ].managedObjectContext hasChanges]) {
+//    }
+    if([[self appDelegate ].managedObjectContext hasChanges]) {
         
         [[self appDelegate ].managedObjectContext save:&error];
     }
-   
+
 }
 
 

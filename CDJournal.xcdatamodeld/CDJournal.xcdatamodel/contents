@@ -22,8 +22,8 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Appdata" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Data" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Introduce" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Appdata" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>

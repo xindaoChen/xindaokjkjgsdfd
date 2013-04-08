@@ -11,6 +11,7 @@
 
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
+ 
 #define HOST_URL                          @"http://www.dacheq.com/"
 //#define HOST_URL                       @"http://192.168.1.101:8010/"
 
@@ -31,6 +32,12 @@
 #define KEY_FOR_VERSION             @"version"
 
 #define INIT_VERSION                     @"1"
+ 
+ 
+
+#define URL_YUNJU           @"http://m.baidu.com/"
+
+ 
 
 #define DEFINE_SINGLETON_FOR_HEADER(className) \
 \

@@ -69,7 +69,7 @@
     
     NetAccess *netAccess = [[NetAccess alloc]init];
     _gNetAccess = netAccess;
-    NSLog(@"%@",[faflult objectForKey:@"key"]);
+   
     if(![faflult objectForKey:@"key"])
     {
         
@@ -589,7 +589,7 @@
      CGRect frame = firscrollView.frame;
      dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
      dispatch_group_t group = dispatch_group_create();
-
+ 
      for (int i = 0; i<listarray.count; i++)
      {
       
@@ -835,7 +835,7 @@
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    
+    NSLog(@"%@",resultSet);
     if (na.tag == 100){
         NSLog(@"%@",resultSet);
       

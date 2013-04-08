@@ -297,7 +297,7 @@
     self.navigationItem.leftBarButtonItem = [UITools getNavButtonItem:self];
     
     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
-    NSLog(@"%@",[faflult objectForKey:idstring]);
+ 
     if ([[faflult objectForKey:idstring] isEqualToString:delegate.language]) {
            introducearrytwo = [self getthedatatwo];
         if (introducearrytwo.count != 0) {
@@ -495,7 +495,7 @@
     }
     else
     {
-        dataarray =   [self getthedata];
+      
         AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
         if ([delegate.language isEqualToString:@"china"])
         {
@@ -518,6 +518,9 @@
     viewapp.hidden = YES;
     dataview.hidden = NO;
    // assAiv.color = [UIColor blackColor];
+    
+    dataarray =   [self getthedata];
+    [dataview reloadData];
     self.view.backgroundColor = [UIColor whiteColor];
     if (databool ==YES) {
         [button1  setImage:[UIImage imageNamed:@"introduce.png"] forState:UIControlStateNormal];
@@ -554,7 +557,7 @@
         }
         else
         {
-            dataarray =   [self getthedata];
+
 //            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
             AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
             if ([delegate.language isEqualToString:@"china"])
@@ -577,6 +580,8 @@
 - (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+     [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorConnect];
 }
 
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
@@ -816,6 +821,7 @@
      
       textview.backgroundColor = [UIColor clearColor];
       textview.editable = NO;
+     textview.textAlignment = NSTextAlignmentCenter;
       textview.textColor = [UIColor blackColor];
       textview.text = [NSString stringWithFormat:@"       %@",[[introducearray objectAtIndex:i] objectForKey:@"content"]];   
       textview.font =[UIFont systemFontOfSize:16];
@@ -890,6 +896,7 @@
          }
         textview.backgroundColor = [UIColor clearColor];
          textview.editable = NO;
+          textview.textAlignment = NSTextAlignmentCenter;
          textview.textColor = [UIColor blackColor];
          textview.text = [NSString stringWithFormat:@"       %@",[[introducearrytwo objectAtIndex:i] objectForKey:@"content"]];
          textview.font =[UIFont systemFontOfSize:16];
@@ -967,7 +974,7 @@
         UIImageView *view  = [[UIImageView alloc] initWithFrame:CGRectMake(-textSize.width/2+2 , -35, textSize.width+20, 35)];
         [view setBackgroundColor:[UIColor clearColor]];
         [view setImage:[UIImage imageNamed:@"heikuang.png"]];
-        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(5, 5,textSize.width+15, 20)];
+        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(5, 5,textSize.width+10, 20)];
         lable.textColor = [UIColor whiteColor];
         lable.backgroundColor = [UIColor clearColor];
          lable.textAlignment = NSTextAlignmentCenter;
@@ -1069,17 +1076,20 @@
 
 -(void)savedatamessagetwo
 {
-    for (int i = 0; i<introducearrytwo.count; i++)
-    {
-        Introduce *entry = (Introduce *)[NSEntityDescription insertNewObjectForEntityForName:@"Introduce" inManagedObjectContext:[[self appDelegate ]managedObjectContext]];
-        [ entry setDid:[[introducearrytwo objectAtIndex:i] objectForKey:@"did"]];
-        [entry  setFid:[[introducearrytwo objectAtIndex:i]objectForKey:@"fid"]];
-        [entry setTitle:[[introducearrytwo objectAtIndex:i]objectForKey:@"title"]];
-        [entry setContent:[[introducearrytwo objectAtIndex:i] objectForKey:@"content"]];
-        [ entry setData:[[introducearrytwo objectAtIndex:i] objectForKey:@"data"]];
-        
-      }
-    NSError *error;
+    if (introducearrytwo.count != 0) {
+        for (int i = 0; i<introducearrytwo.count; i++)
+        {
+            Introduce *entry = (Introduce *)[NSEntityDescription insertNewObjectForEntityForName:@"Introduce" inManagedObjectContext:[[self appDelegate ]managedObjectContext]];
+            [ entry setDid:[[introducearrytwo objectAtIndex:i] objectForKey:@"did"]];
+            [entry  setFid:[[introducearrytwo objectAtIndex:i]objectForKey:@"fid"]];
+            [entry setTitle:[[introducearrytwo objectAtIndex:i]objectForKey:@"title"]];
+            [entry setContent:[[introducearrytwo objectAtIndex:i] objectForKey:@"content"]];
+            [ entry setData:[[introducearrytwo objectAtIndex:i] objectForKey:@"data"]];
+            
+        }
+
+    }
+      NSError *error;
     //托管对象准备好后，调用托管对象上下文的save方法将数据写入数据库
     BOOL isSaveSuccess = [[[self appDelegate] managedObjectContext]save:&error];
     if (!isSaveSuccess){
@@ -1226,12 +1236,12 @@
     
     [request setPredicate:predicate];
     NSArray *results = [[self appDelegate ].managedObjectContext executeFetchRequest:request error:&error];
-    if(error){
-        
+//    if(error){
+    
         for(Data*object in results) {
             [[self appDelegate].managedObjectContext deleteObject:object];
         }
-    }
+//    }
     
     if([[self appDelegate ].managedObjectContext hasChanges]) {
         

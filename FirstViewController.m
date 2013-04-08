@@ -51,10 +51,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
- 
-
-    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+   AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
     _urlHost = delegate.domainName;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"]
                                                   forBarMetrics:UIBarMetricsDefault];
@@ -589,7 +586,7 @@
      CGRect frame = firscrollView.frame;
      dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
      dispatch_group_t group = dispatch_group_create();
- 
+    [maplistarray removeAllObjects];
      for (int i = 0; i<listarray.count; i++)
      {
       
@@ -830,15 +827,15 @@
 - (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+      [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorConnect];
 }
 
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    NSLog(@"%@",resultSet);
+     
     if (na.tag == 100){
-        NSLog(@"%@",resultSet);
-      
+              
         if (resultSet.count !=0) {
             listarray = resultSet;
             

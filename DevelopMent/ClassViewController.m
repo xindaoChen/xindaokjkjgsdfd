@@ -177,6 +177,8 @@
 - (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorConnect];
 }
 
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet

@@ -354,6 +354,7 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    NSLog(@"%@",[request.responseString JSONValue]);
     AppDelegate *mydele = [UIApplication sharedApplication].delegate;
     NSString *string = [[request.responseString JSONValue] objectForKey:@"version"];
     if  ([string intValue]>mydele.version.intValue) {
@@ -578,7 +579,7 @@
      for (int i = 0; i<listarray.count; i++)
      {
       
-         if (buttonarray.count ==0)
+         if (buttonarray.count ==0 || buttonarray.count !=listarray.count)
          {
              UIButton*buttongs = [UIButton buttonWithType:UIButtonTypeCustom];
              buttongs.tag = i;

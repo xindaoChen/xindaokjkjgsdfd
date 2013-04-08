@@ -74,7 +74,7 @@
     if (self) {
         self.provinceName = [NSString stringWithFormat:@"%@",name];
         self.tempprovinceName = [NSString stringWithFormat:@"%@",provincestring];
-        NSLog(@"******(***%@",provinceName);
+    //    NSLog(@"******(***%@",provinceName);
         cid = @"";
         flagForInit = 10000;
         netAcessTimeFlag = 0;
@@ -361,6 +361,7 @@
         _gNetAccess.delegate = self;
         _gNetAccess.tag = 100;
         [_gNetAccess thedevelopZone:getDevelopZoneInfo];
+        NSLog(@"**************************%@",getDevelopZoneInfo);
        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         //  [getDevelopZoneInfo release];
     }
@@ -529,7 +530,7 @@ else if([languageFlag isEqualToString:@"english"])
         _levelNetAcess.delegate = self;
         _levelNetAcess.tag = 151;    //tag = 151 ,levellist
         [_levelNetAcess thelevelList:getLevelList];
-        NSLog(@"^^^^^^^^^^^^^^^^^^^^^%@",getLevelList);
+       // NSLog(@"^^^^^^^^^^^^^^^^^^^^^%@",getLevelList);
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
     else
@@ -638,14 +639,14 @@ else if([languageFlag isEqualToString:@"english"])
         provinceButonStatue = 1;
     }
     int x=0 ;
- //   NSLog(@"111111%@",provinceName);
-     NSLog(@"##%@",tempprovinceName);
+ 
+   
     for (int i = 0; i < allProvinceArray.count; i++) {
-        NSLog(@"%@",tempprovinceName);
+   
 
         if ([tempprovinceName isEqualToString:@""]) {
-            NSLog(@"11111111%@,%@",tempprovinceName,provinceName);
-         //   NSLog(@"%@",provinceName);
+   
+    
             if ([provinceName isEqualToString:[allProvinceArray objectAtIndex:i]]) {
                 x = i;
                 break;
@@ -714,11 +715,7 @@ else if([languageFlag isEqualToString:@"english"])
 
 
     [levelView reloadData];
-//    if(showLevelView.hidden == NO)
-//    {
-//        [self showLevelList];
-//    }
-    // [levelView release];
+
 
 }
 -(void)showIndustry
@@ -749,7 +746,7 @@ else if([languageFlag isEqualToString:@"english"])
         [UIView animateWithDuration:0.3 animations:^{
             showIndustryView.frame =CGRectMake(0, 40, 320, UI_SCREEN_HEIGHT-84);
     [industrybutton setBackgroundImage:[UIImage imageNamed:@"industrybutton2.png"] forState:UIControlStateNormal];
-     //       moveImageView.frame = CGRectMake(self.view.frame.size.width*2/3, 38, self.view.frame.size.width/3 + 1, 7);
+   
        industryLabel.textColor = [UIColor colorWithRed:24/255.0 green:134/255.0 blue:236/255.0 alpha:1];
         }];
         industryButonStatue = -1;
@@ -760,7 +757,7 @@ else if([languageFlag isEqualToString:@"english"])
         [UIView animateWithDuration:0.3 animations:^{
             showIndustryView.frame =CGRectMake(0, -480, 320, UI_SCREEN_HEIGHT-84);
            [industrybutton setBackgroundImage:[UIImage imageNamed:@"industrybutton1.png"] forState:UIControlStateNormal];
-       //     moveImageView.frame = CGRectMake(-100, 35, 100, 10);
+
             industryLabel.textColor = [UIColor grayColor];
 
         }];
@@ -792,7 +789,7 @@ else if([languageFlag isEqualToString:@"english"])
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
     if (na.tag ==100) {
         if (searchtable.tableFooterView.tag == 100050) {
             [UIView animateWithDuration:0.3 animations:^{
@@ -801,7 +798,7 @@ else if([languageFlag isEqualToString:@"english"])
                 [footactive stopAnimating];
             }];
         }
-      //  searchtable.tableFooterView = nil;
+ 
         [listarray removeAllObjects];
         listarray = resultSet;
         if (listarray.count != 0) {
@@ -825,7 +822,7 @@ else if([languageFlag isEqualToString:@"english"])
         if (allListArray.count == 0) {
     
 
-//             [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+
             if ([languageFlag isEqualToString:@"china"])
             {
                 [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
@@ -847,7 +844,7 @@ else if([languageFlag isEqualToString:@"english"])
               [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }
         
-       // [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+  
         [searchtable reloadData];
         
     }
@@ -875,7 +872,7 @@ else if([languageFlag isEqualToString:@"english"])
         [listarray4 removeAllObjects];
         
         listarray4 = resultSet;
-        NSLog(@"^^^^^^^^^^&%@",resultSet);
+  
         
        
     }
@@ -960,8 +957,7 @@ else if([languageFlag isEqualToString:@"english"])
            // [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         {
 
-            //主界面tableview
-          //  [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+   
 
              
 
@@ -975,12 +971,12 @@ else if([languageFlag isEqualToString:@"english"])
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
-            NSLog(@"allListArray:%@",allListArray);
+           // NSLog(@"allListArray:%@",allListArray);
         
             cell.label.font = [UIFont fontWithName:@"Helvetica" size:15.0];
             cell.label.text = [[allListArray objectAtIndex:indexPath.row] objectForKey:@"developname"];
             
-            NSLog(@"allListArray Count:%d",allListArray.count);
+         //   NSLog(@"allListArray Count:%d",allListArray.count);
             
             
             cell.labeltwo.text = [[allListArray objectAtIndex:indexPath.row] objectForKey:@"content"];
@@ -1165,7 +1161,7 @@ else if([languageFlag isEqualToString:@"english"])
                     //  [provincebutton setTitle:provinceName forState:UIControlStateNormal];
                     provinceLabel.text = provinceName;
                     tempprovinceName = provinceName;
-                    getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
+                    getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"cid\":\"%@\"}",provinceName,cid];
                     levelLabel.text = @"全部";
                     industryLabel.text = @"全部";
                     [listarray3 removeAllObjects];
@@ -1208,7 +1204,11 @@ else if([languageFlag isEqualToString:@"english"])
                     //  [provincebutton setTitle:provinceName forState:UIControlStateNormal];
                     provinceLabel.text = provinceName;
                     tempprovinceName = provinceName;
-                    getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
+                    getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"english\",\"cityname\":\"%@\",\"cid\":\"%@\"}",provinceName,cid];
+                    
+                    
+                    
+                    NSLog(@"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%@",getDevelopZoneInfo);
                     levelLabel.text = @"All";
                     industryLabel.text = @"All";
                     [listarray3 removeAllObjects];
@@ -1235,7 +1235,7 @@ else if([languageFlag isEqualToString:@"english"])
                     
                 }
                 else{
-                    getCityName = [NSString stringWithFormat:getCityName = @"{\"type\":\"china\",\"prov\":\"%@\"}",[allProvinceArray objectAtIndex:indexPath.row]] ;
+                    getCityName = [NSString stringWithFormat:getCityName = @"{\"type\":\"english\",\"prov\":\"%@\"}",[allProvinceArray objectAtIndex:indexPath.row]] ;
                     tempprovinceName = [allProvinceArray objectAtIndex:indexPath.row];
                     
                     
@@ -1312,7 +1312,7 @@ else if([languageFlag isEqualToString:@"english"])
                 //  [provincebutton setTitle:provinceName forState:UIControlStateNormal];
                 //   provinceLabel.text = provinceName;
                 
-                getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\"}",provinceName];
+                getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"cid\":\"%@\"}",provinceName,cid];
                 levelLabel.text = @"全部";
                 industryLabel.text = @"全部";
                 inid= @"";
@@ -1369,7 +1369,7 @@ else if([languageFlag isEqualToString:@"english"])
                 //  [provincebutton setTitle:provinceName forState:UIControlStateNormal];
                 //   provinceLabel.text = provinceName;
                 
-                getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"english\",\"cityname\":\"%@\"}",provinceName];
+                getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"english\",\"cityname\":\"%@\",\"cid\":\"%@\"}",provinceName,cid];
                 levelLabel.text = @"All";
                 industryLabel.text = @"All";
                 inid= @"";
@@ -1794,13 +1794,13 @@ else if([languageFlag isEqualToString:@"english"])
     if([languageFlag isEqualToString:@"china"])
    {
          getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\",\"time\":\"%@\"}",provinceName,leid,inid,cid,[[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"] ];
-       NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);
+     //  NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);
        NSLog(@"^^%@",getDevelopZoneInfo);
    }
    else if([languageFlag isEqualToString:@"english"])
    {
        getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"english\",\"cityname\":\"%@\",\"levelid\":\"%@\",\"trade\":\"%@\",\"cid\":\"%@\",\"time\":\"%@\"}",provinceName,leid,inid,cid,[[listarray objectAtIndex:(listarray.count - 1)]objectForKey:@"time"] ];
-       NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);
+    //   NSLog(@"$$$$$%@",[listarray objectAtIndex:listarray.count -1]);
        NSLog(@"^^%@",getDevelopZoneInfo);
        
    }

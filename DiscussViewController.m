@@ -210,7 +210,7 @@
     }else{
         NSString *appName = [NSString stringWithString:
                              [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
-        NSURL *appStoreURL = [NSURL URLWithString:[[NSString stringWithFormat:@"itms-apps://itunes.com/app/%@",appName]  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding ]];
+        NSURL *appStoreURL = [NSURL URLWithString:[[NSString stringWithFormat:@"http://itunes.com/app/%@",appName]  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding ]];
         NSLog(@"appStoreURL:%@", appStoreURL);
         [[UIApplication sharedApplication] openURL:appStoreURL];
     }

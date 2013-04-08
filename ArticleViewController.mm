@@ -967,7 +967,7 @@
         UIImageView *view  = [[UIImageView alloc] initWithFrame:CGRectMake(-textSize.width/2+2 , -35, textSize.width+20, 35)];
         [view setBackgroundColor:[UIColor clearColor]];
         [view setImage:[UIImage imageNamed:@"heikuang.png"]];
-        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(5, 5,textSize.width+15, 20)];
+        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(5, 5,textSize.width+10, 20)];
         lable.textColor = [UIColor whiteColor];
         lable.backgroundColor = [UIColor clearColor];
          lable.textAlignment = NSTextAlignmentCenter;

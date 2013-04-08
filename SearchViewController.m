@@ -48,7 +48,7 @@
     UIView *firstview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
     firstview.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:firstview];
-  
+    
     AppDelegate *mydelegate = [UIApplication sharedApplication].delegate;
     searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 6, 300, 30)];
     searchbar.delegate = self;

@@ -36,7 +36,8 @@
 @property (nonatomic,strong) XDTabBarViewController *xdTabbar;
 @property (nonatomic, strong) NSString *domainName;
 @property (nonatomic, strong) NSString *version;
-
+@property (nonatomic, strong) NSString *applink;
+@property (nonatomic, strong) NSString *compsite;
 //数据模型对象
 @property(strong,nonatomic) NSManagedObjectModel *managedObjectModel;
 //上下文对象

@@ -156,9 +156,11 @@
 
 -(void)pushtowebview:(UIButton *)sender
 {
+    AppDelegate *medele = [UIApplication sharedApplication].delegate;
     NSString *url;
     if (sender.tag == 100) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URL_YUNJU]];
+         
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",medele.compsite]]];
         return;
     }
     else if (sender.tag == 200)
@@ -198,19 +200,23 @@
     [self.navigationController pushViewController:barcode animated:YES];
 }
 
--(void)pushtoapp
-{
-    [self pushtoreview];
-}
-
+ 
 -(void)pushtoreview
 {
-    NSString *appName = [NSString stringWithString:
-                         [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
-    NSURL *appStoreURL = [NSURL URLWithString:[[NSString stringWithFormat:@"itms-apps://itunes.com/app/%@",appName]  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding ]];
-    NSLog(@"appStoreURL:%@", appStoreURL);
+    AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
+    if (mydelega.applink != nil || ![mydelega.applink isEqualToString:@""]) {
+        NSURL *appurl = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@",mydelega.applink]];
+         [[UIApplication sharedApplication] openURL:appurl];
+    }else{
+        NSString *appName = [NSString stringWithString:
+                             [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
+        NSURL *appStoreURL = [NSURL URLWithString:[[NSString stringWithFormat:@"itms-apps://itunes.com/app/%@",appName]  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding ]];
+        NSLog(@"appStoreURL:%@", appStoreURL);
+        [[UIApplication sharedApplication] openURL:appStoreURL];
+    }
+   
 
-    [[UIApplication sharedApplication] openURL:appStoreURL];
+     
 }
 
 - (void)didReceiveMemoryWarning

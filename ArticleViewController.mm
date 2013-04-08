@@ -358,8 +358,10 @@
 
 -(void)pushtosite
 {
-     
-     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",[[apparray objectAtIndex:0] objectForKey:@"site"]]]];
+    if ([[apparray objectAtIndex:0] objectForKey:@"site"]) {
+          [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",[[apparray objectAtIndex:0] objectForKey:@"site"]]]];
+    }
+   
 }
 
 -(void)pushtoapp
@@ -688,10 +690,7 @@
               mylable1.text = @"Empty";
                 
             }
-
-            
-          
-        }
+         }
        else
        {
              mylable1.text = [[apparray objectAtIndex:0] objectForKey:@"tel"];

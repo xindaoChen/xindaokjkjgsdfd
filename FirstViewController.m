@@ -349,6 +349,8 @@
     NSLog(@"%@",[request.responseString JSONValue]);
     AppDelegate *mydele = [UIApplication sharedApplication].delegate;
     NSString *string = [[request.responseString JSONValue] objectForKey:@"version"];
+    mydele.compsite = [[request.responseString JSONValue] objectForKey:@"site"];
+    mydele.applink = [[request.responseString JSONValue] objectForKey:@"applink"];
     if  ([string intValue]>mydele.version.intValue) {
         mydele.version = [ [request.responseString JSONValue]   objectForKey:@"version"];
          mydele.domainName = [[request.responseString JSONValue] objectForKey:@"domain"];

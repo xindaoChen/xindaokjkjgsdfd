@@ -124,7 +124,7 @@
         languageFlag = @"english";
         levelName = @"Level";
         industryName = @"Industry";
-        self.title = @" The DevelopeZone";
+        self.title = @"DevelopeZone";
         
     }
     else if ([mydelegate.language isEqualToString:@"china"])

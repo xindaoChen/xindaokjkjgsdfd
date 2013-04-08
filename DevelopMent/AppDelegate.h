@@ -27,6 +27,7 @@
     XDTabBarViewController *xdTabbar;
     FirstViewController* firstview;
     NetAccess *deviceTokenAccess;
+    int pushAccount;
 }
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,strong) BMKMapManager* mapManager;

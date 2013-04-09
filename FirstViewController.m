@@ -70,7 +70,7 @@
     if(![faflult objectForKey:@"key"])
     {
         
-        viewss = [[UIView alloc] initWithFrame:appdele.window.frame];
+        viewss = [[UIView alloc] initWithFrame:appdele.window.bounds];
         viewss.backgroundColor = [UIColor clearColor];
         viewss.hidden = NO;
         [appdele.window addSubview:viewss];

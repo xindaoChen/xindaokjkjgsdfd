@@ -65,7 +65,7 @@
 		
 	}
 	
-	
+	isRefresh = NO;
     
    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
     _urlHost = delegate.domainName;
@@ -392,8 +392,15 @@
     }
     else
     {
-        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
-    }
+        AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+        if ([delegate.language isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"Internet Contact" messageInfo:ErrorInternetEnglish];
+        }    }
 
 }
 
@@ -877,7 +884,6 @@
 - (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-      [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorConnect];
 }
 
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
@@ -887,14 +893,32 @@
     if (na.tag == 100){
               
         if (resultSet.count !=0) {
-            listarray = resultSet;
-            firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
-            for (UIView *subView in firscrollView.subviews)
-            {
-                [subView removeFromSuperview];
-            }
             
-            [self setfirstimage];
+            listarray = resultSet;
+
+            if (isRefresh) {
+                if (listarray.count > maplistarray.count) {
+                    firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
+                    for (UIView *subView in firscrollView.subviews)
+                    {
+                        [subView removeFromSuperview];
+                    }
+                    [self setfirstimage];
+                    isRefresh = NO;
+                    Snumber = 0;
+                    [timer invalidate];
+                    [timer2 invalidate];
+                    
+                }
+            }else{
+                firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
+                for (UIView *subView in firscrollView.subviews)
+                {
+                    [subView removeFromSuperview];
+                }
+                [self setfirstimage];
+            }
+
             
             pageController.numberOfPages=listarray.count;
             
@@ -920,7 +944,7 @@
 }
 
 - (void)doneLoadingTableViewData{
-	
+	isRefresh = YES;
     if([NetAccess reachable])
     {
         AppDelegate*mydelegate = [UIApplication sharedApplication].delegate;

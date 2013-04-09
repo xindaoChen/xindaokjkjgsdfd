@@ -48,7 +48,7 @@
     NetAccess *gNetAccess;
     
     NSMutableArray *buttonarray;
-    
+    BOOL isRefresh;
     
 	EGORefreshTableHeaderView *_refreshHeaderView;
 	

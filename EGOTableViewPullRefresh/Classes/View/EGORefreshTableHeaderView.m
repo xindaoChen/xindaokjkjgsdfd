@@ -45,7 +45,12 @@
     if((self = [super initWithFrame:frame])) {
 		
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		self.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
+//		self.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"all_view_bg"]];
+        UIView *bgView = [[UIView alloc] init];
+        bgView.frame = self.bounds;
+        [bgView addSubview:imageView];
+        [self addSubview:bgView];
 
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
 		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;

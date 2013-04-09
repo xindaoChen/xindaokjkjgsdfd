@@ -8,13 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "NetAccess.h"
-@interface ClassViewController : UITableViewController<NetAccessDelegate>
+#import "EGORefreshTableHeaderView.h"
+
+@interface ClassViewController : UITableViewController<NetAccessDelegate,EGORefreshTableHeaderDelegate>
 {
     NSMutableArray *listarray;
     NetAccess *gNetAccess;
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    //  Reloading var should really be your tableviews datasource
+	//  Putting it here for demo purposes
+	BOOL _reloading;
 }
+
+
 @property(nonatomic,strong)NSMutableArray *listarray;
 @property (nonatomic, strong) NetAccess *gNetAccess;
 
 - (id)initWithStyle:(UITableViewStyle)style;
+
+- (void)reloadTableViewDataSource;
+- (void)doneLoadingTableViewData;
 @end

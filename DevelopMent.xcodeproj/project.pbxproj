@@ -169,6 +169,7 @@
 		C83B5BF617115D6F00B3ABA0 /* HLDeferred.m in Sources */ = {isa = PBXBuildFile; fileRef = C83B5BF117115D6F00B3ABA0 /* HLDeferred.m */; };
 		C83B5BF717115D6F00B3ABA0 /* HLDeferredList.m in Sources */ = {isa = PBXBuildFile; fileRef = C83B5BF317115D6F00B3ABA0 /* HLDeferredList.m */; };
 		C83B5BF817115D6F00B3ABA0 /* HLFailure.m in Sources */ = {isa = PBXBuildFile; fileRef = C83B5BF517115D6F00B3ABA0 /* HLFailure.m */; };
+		C89251AE1713A12900C049A5 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C89251AD1713A12900C049A5 /* libbaidumapapi.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -414,6 +415,7 @@
 		C83B5BF317115D6F00B3ABA0 /* HLDeferredList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLDeferredList.m; path = DevelopMent/HLDeferredList.m; sourceTree = "<group>"; };
 		C83B5BF417115D6F00B3ABA0 /* HLFailure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLFailure.h; path = DevelopMent/HLFailure.h; sourceTree = "<group>"; };
 		C83B5BF517115D6F00B3ABA0 /* HLFailure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLFailure.m; path = DevelopMent/HLFailure.m; sourceTree = "<group>"; };
+		C89251AD1713A12900C049A5 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,6 +433,7 @@
 				7852577C16F94FA000726F8E /* UIKit.framework in Frameworks */,
 				7852577E16F94FA000726F8E /* Foundation.framework in Frameworks */,
 				7852578016F94FA000726F8E /* CoreGraphics.framework in Frameworks */,
+				C89251AE1713A12900C049A5 /* libbaidumapapi.a in Frameworks */,
 				78EDCB811713A3BE0064A6D3 /* libbaidumapapi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +479,7 @@
 		7852576F16F94FA000726F8E = {
 			isa = PBXGroup;
 			children = (
+				C89251AD1713A12900C049A5 /* libbaidumapapi.a */,
 				4412566D17098C2A007B7C9E /* XCLibrary */,
 				7852578116F94FA000726F8E /* DevelopMent */,
 				7893702C17044D9000F8159C /* Picture */,

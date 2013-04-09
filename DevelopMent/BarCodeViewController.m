@@ -102,20 +102,33 @@
             }
             else
             {
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+                    if ([delegate.language isEqualToString:@"china"])
+                    {
+                        [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+                        
+                    }
+                    else
+                    {
+                        [UITools showPopMessage:self titleInfo:@"Contect" messageInfo:WithoutDataEnglish];
+                        
+                    }
+
                 });
-                AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
-                if ([delegate.language isEqualToString:@"china"])
-                {
-                    [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
-                    
-                }
-                else
-                {
-                    [UITools showPopMessage:self titleInfo:@"Contect" messageInfo:WithoutDataEnglish];
-                    
-                }
+//                AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+//                if ([delegate.language isEqualToString:@"china"])
+//                {
+//                    [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+//                    
+//                }
+//                else
+//                {
+//                    [UITools showPopMessage:self titleInfo:@"Contect" messageInfo:WithoutDataEnglish];
+//                    
+//                }
 
                 
             }

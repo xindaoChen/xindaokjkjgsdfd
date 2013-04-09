@@ -12,10 +12,11 @@
 #import "NetAccess.h"
 #import "ClassViewController.h"
 #import "DiscussViewController.h"
+#import "EGORefreshTableHeaderView.h"
  
 @class GrayPageControl;
  
-@interface FirstViewController : UIViewController<UIScrollViewDelegate,BMKMapViewDelegate,BMKSearchDelegate,NetAccessDelegate,UISearchBarDelegate>
+@interface FirstViewController : UITableViewController<UIScrollViewDelegate,BMKMapViewDelegate,BMKSearchDelegate,NetAccessDelegate,UISearchBarDelegate, UITableViewDataSource,UITableViewDelegate, EGORefreshTableHeaderDelegate>
 {
     UIScrollView *firscrollView;
     UIScrollView *secscrollview;
@@ -47,7 +48,15 @@
     NetAccess *gNetAccess;
     
     NSMutableArray *buttonarray;
-     }
+    
+    
+	EGORefreshTableHeaderView *_refreshHeaderView;
+	
+	//  Reloading var should really be your tableviews datasource
+	//  Putting it here for demo purposes
+	BOOL _reloading;
+}
+
 @property(nonatomic,strong)UIScrollView *firscrollView;
 @property(nonatomic,strong)UIScrollView *secscrollview;
 @property(nonatomic,strong)UIPageControl *pageController;
@@ -57,6 +66,7 @@
  
 @property(nonatomic,strong) NSMutableArray *maplistarray;
 @property (nonatomic, strong) NSString *urlHost;
-
+- (void)reloadTableViewDataSource;
+- (void)doneLoadingTableViewData;
  
 @end

@@ -47,6 +47,26 @@
     NSLog(@"url:%@ params:%@", url, string);
 }
 
+//首页图片同步方法
+-(void)theSynchronousFirstviewPicture:(NSString*)string
+{
+    
+    AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+    NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@",mydele.domainName,API_INDEXIMG]];
+    NSLog(@"%@",mydele.domainName);
+    NSLog(@"%@",url);
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
+    [request setPostValue:string forKey:@"parameter"];
+    [request startSynchronous];
+    _gRequest = request;
+    
+    NSLog(@"url:%@ params:%@", url, string);
+}
+
+
+
 
 //搜索页
 -(void)searchthemessage:(NSString *)string

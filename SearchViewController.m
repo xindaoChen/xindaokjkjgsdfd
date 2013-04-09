@@ -132,6 +132,7 @@
 - (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+      [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if (searchtable.tableFooterView.tag == 100050) {
         [UIView animateWithDuration:0.3 animations:^{
             searchtable.tableFooterView = nil;

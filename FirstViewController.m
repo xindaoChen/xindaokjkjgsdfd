@@ -28,6 +28,8 @@
 
 @end
 
+#define TAG_TABLEVIEW  1120
+
 @implementation FirstViewController
 
 @synthesize gNetAccess = _gNetAccess;
@@ -51,6 +53,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.tag = TAG_TABLEVIEW;
+    
+    if (_refreshHeaderView == nil) {
+		
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
+		view.delegate = self;
+		[self.tableView addSubview:view];
+		_refreshHeaderView = view;
+		
+	}
+	
+	
+    
    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
     _urlHost = delegate.domainName;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"]
@@ -70,7 +86,7 @@
     if(![faflult objectForKey:@"key"])
     {
         
-        viewss = [[UIView alloc] initWithFrame:appdele.window.frame];
+        viewss = [[UIView alloc] initWithFrame:appdele.window.bounds];
         viewss.backgroundColor = [UIColor clearColor];
         viewss.hidden = NO;
         [appdele.window addSubview:viewss];
@@ -158,8 +174,9 @@
     [secscrollview setContentOffset:CGPointMake(0, 0)];
     [self.view addSubview:secscrollview];
        
-    pageController = [[UIPageControl alloc ] initWithFrame:CGRectMake(200, 100, 100, 20)];
+    pageController = [[UIPageControl alloc ] initWithFrame:CGRectMake(220, 100, 100, 20)];
     pageController.currentPage=0;
+    pageController.backgroundColor = [UIColor clearColor];
     pageController.userInteractionEnabled=NO;
     pageController.alpha=1;
     if (fram.size.height>500) {
@@ -387,12 +404,16 @@
     if (sender.tag == 100) {
         mydelegate.language = @"english";
              searchbar.placeholder = @"Search";
+        _refreshHeaderView.isChinese = NO;
     }
     else if (sender.tag == 200)
     {
         mydelegate.language = @"china";
          searchbar.placeholder = @"搜索";
+        _refreshHeaderView.isChinese = YES;
     }
+    //  update the last update date
+	[_refreshHeaderView refreshLastUpdatedDate];
     
     NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString*pat=[pathss objectAtIndex:0];
@@ -622,10 +643,15 @@
                  }
                  
              });
-             
-             UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];
+         AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
+             UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 85, 200, 30)];
              lable.backgroundColor = [UIColor clearColor];
              lable.textColor = [UIColor whiteColor];
+            if ([mydelega.language isEqualToString:@"english"]) {
+             lable.numberOfLines = 2;
+             lable.font = [UIFont systemFontOfSize:13];
+             }
+             
              lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
              [firscrollView addSubview:lable];
 
@@ -659,12 +685,17 @@
                  
              });
              
-             UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];
+             AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
+             UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 85, 200, 30)];
              lable.backgroundColor = [UIColor clearColor];
              lable.textColor = [UIColor whiteColor];
+             if ([mydelega.language isEqualToString:@"english"]) {
+                 lable.numberOfLines = 2;
+                 lable.font = [UIFont systemFontOfSize:13];
+             }
+             
              lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
              [firscrollView addSubview:lable];
-
          }
     }
     
@@ -715,17 +746,22 @@
         UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
         [buttongs setImage:resImage forState:UIControlStateNormal];
       
-        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];
+        AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
+        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 85, 200, 30)];
         lable.backgroundColor = [UIColor clearColor];
         lable.textColor = [UIColor whiteColor];
+        if ([mydelega.language isEqualToString:@"english"]) {
+            lable.numberOfLines = 2;
+            lable.font = [UIFont systemFontOfSize:13];
+        }
+        
         lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
-        [firscrollView addSubview:lable];
-    }
+        [firscrollView addSubview:lable];    }
 
 }
 
 
- 
+
 
 - (void)onGetAddrResult:(BMKAddrInfo*)result errorCode:(int)error
 {
@@ -791,6 +827,10 @@
     }
   
 }
+
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
  
 - (void)scrollViewDidScroll:(UIScrollView *)sender
 {
@@ -811,8 +851,18 @@
          CGFloat pageWidth = scrollview.frame.size.width;
         int page = floor((scrollview.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
         pagecon.currentPage = page;
+    }else if (sender.tag == TAG_TABLEVIEW){
+        [_refreshHeaderView egoRefreshScrollViewDidScroll:sender];
     }
-    
+
+}
+
+
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+	
 }
 
 - (void)didReceiveMemoryWarning
@@ -838,7 +888,6 @@
               
         if (resultSet.count !=0) {
             listarray = resultSet;
-            
             firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
             for (UIView *subView in firscrollView.subviews)
             {
@@ -858,6 +907,76 @@
         }
         
     }
+}
+
+
+
+- (void)reloadTableViewDataSource{
+	
+	//  should be calling your tableviews data source model to reload
+	//  put here just for demo
+	_reloading = YES;
+	
+}
+
+- (void)doneLoadingTableViewData{
+	
+    if([NetAccess reachable])
+    {
+        AppDelegate*mydelegate = [UIApplication sharedApplication].delegate;
+
+        NSString*string1 = @"{\"type\":\"";
+        NSString*string2 = [NSString stringWithFormat:@"%@\"}",mydelegate.language];
+        NSMutableString*alltring = [[NSMutableString alloc] init];
+        [alltring appendString:string1];
+        [alltring appendString:string2];
+        _gNetAccess.delegate = self;
+        _gNetAccess.tag = 100;
+        [_gNetAccess theSynchronousFirstviewPicture:alltring];
+    }
+    else
+    {
+        
+        AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+        if ([delegate.language isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"Internet Contact" messageInfo:ErrorInternetEnglish];
+        }
+        
+        
+    }	_reloading = NO;
+	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+	
+}
+
+
+
+
+
+#pragma mark -
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+	
+	[self reloadTableViewDataSource];
+	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:0];
+	
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+	
+	return _reloading; // should return if data source model is reloading
+	
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+	
+	return [NSDate date]; // should return date data source was last changed
+	
 }
 
 

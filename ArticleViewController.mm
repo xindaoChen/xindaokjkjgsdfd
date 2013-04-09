@@ -312,27 +312,30 @@
 -(void)takephone
 {
   AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
-    if ([delegate.language isEqualToString:@"china"])
-    {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                      initWithTitle:nil
-                                      delegate:self
-                                      cancelButtonTitle:@"取消"
-                                      destructiveButtonTitle:nil
-                                      otherButtonTitles:[NSString stringWithFormat:@"拨打 %@",[[apparray objectAtIndex:0] objectForKey:@"tel"]],nil];
-         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
-    }
-    else
-    {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                      initWithTitle:nil
-                                      delegate:self
-                                      cancelButtonTitle:@"Cancel"
-                                      destructiveButtonTitle:nil
-                                      otherButtonTitles:[NSString stringWithFormat:@"Call %@",[[apparray objectAtIndex:0] objectForKey:@"tel"]],nil];
-         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
-    }
+    if ([[apparray objectAtIndex:0] objectForKey:@"tel"]) {
+        if ([delegate.language isEqualToString:@"china"])
+        {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                          initWithTitle:nil
+                                          delegate:self
+                                          cancelButtonTitle:@"取消"
+                                          destructiveButtonTitle:nil
+                                          otherButtonTitles:[NSString stringWithFormat:@"拨打 %@",[[apparray objectAtIndex:0] objectForKey:@"tel"]],nil];
+            [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+        }
+        else
+        {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                          initWithTitle:nil
+                                          delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          destructiveButtonTitle:nil
+                                          otherButtonTitles:[NSString stringWithFormat:@"Call %@",[[apparray objectAtIndex:0] objectForKey:@"tel"]],nil];
+            [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+        }
 
+    }
+   
 //    UIActionSheet *actionSheet = [[UIActionSheet alloc]
 //                                  initWithTitle:nil
 //                                  delegate:self
@@ -821,7 +824,7 @@
      
       textview.backgroundColor = [UIColor clearColor];
       textview.editable = NO;
-     textview.textAlignment = NSTextAlignmentCenter;
+     textview.textAlignment = NSTextAlignmentLeft;
       textview.textColor = [UIColor blackColor];
       textview.text = [NSString stringWithFormat:@"       %@",[[introducearray objectAtIndex:i] objectForKey:@"content"]];   
       textview.font =[UIFont systemFontOfSize:16];
@@ -898,7 +901,7 @@
          }
         textview.backgroundColor = [UIColor clearColor];
          textview.editable = NO;
-          textview.textAlignment = NSTextAlignmentCenter;
+          textview.textAlignment = NSTextAlignmentLeft;
          textview.textColor = [UIColor blackColor];
          textview.text = [NSString stringWithFormat:@"       %@",[[introducearrytwo objectAtIndex:i] objectForKey:@"content"]];
          textview.font =[UIFont systemFontOfSize:16];
@@ -968,14 +971,15 @@
          BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: @"myAnnotation"];
         newAnnotationView.pinColor =BMKPinAnnotationColorPurple;
         newAnnotationView.animatesDrop = YES;
-        [newAnnotationView setImage:[UIImage imageNamed:@"tubiao.png"]];
+        [newAnnotationView setImage:[UIImage imageNamed:@"tubiao"]];
         CGSize textSize = [namestring sizeWithFont:[UIFont systemFontOfSize:14]
-                                 constrainedToSize:CGSizeMake(500, 9999)
+                                 constrainedToSize:CGSizeMake(260, 9999)
                                      lineBreakMode:NSLineBreakByCharWrapping];
-         
+        
+        
         UIImageView *view  = [[UIImageView alloc] initWithFrame:CGRectMake(-textSize.width/2+2 , -35, textSize.width+20, 35)];
         [view setBackgroundColor:[UIColor clearColor]];
-        [view setImage:[UIImage imageNamed:@"heikuang.png"]];
+        [view setImage:[UIImage imageNamed:@"heikuang"]];
         UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(5, 5,textSize.width+10, 20)];
         lable.textColor = [UIColor whiteColor];
         lable.backgroundColor = [UIColor clearColor];

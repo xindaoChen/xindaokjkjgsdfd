@@ -47,6 +47,26 @@
     NSLog(@"url:%@ params:%@", url, string);
 }
 
+//首页图片同步方法
+-(void)theSynchronousFirstviewPicture:(NSString*)string
+{
+    
+    AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+    NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@",mydele.domainName,API_INDEXIMG]];
+    NSLog(@"%@",mydele.domainName);
+    NSLog(@"%@",url);
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
+    [request setPostValue:string forKey:@"parameter"];
+    [request startSynchronous];
+    _gRequest = request;
+    
+    NSLog(@"url:%@ params:%@", url, string);
+}
+
+
+
 
 //搜索页
 -(void)searchthemessage:(NSString *)string
@@ -90,6 +110,21 @@
     [request startAsynchronous];
     _gRequest = request;
 
+    NSLog(@"url:%@ params:%@", url, string);
+}
+
+//分类 同步获取
+-(void)theSynchronousClassmessage:(NSString *)string
+{
+    AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+    NSURL *url =[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",mydele.domainName,API_CLASS]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
+    [request setPostValue:string forKey:@"parameter"];
+    [request startSynchronous];
+    _gRequest = request;
+    
     NSLog(@"url:%@ params:%@", url, string);
 }
 
@@ -204,7 +239,7 @@
 -(void)getnewVersion
 {
     
-    NSURL *url = [NSURL URLWithString:@"http://192.168.1.101:8010/index.php/index/domain"];
+    NSURL *url = [NSURL URLWithString:[NSString  stringWithFormat:@"%@%@", HOST_URL, @"/index.php/index/domain"]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setTimeOutSeconds:kTimeOutseconds];

@@ -38,7 +38,8 @@
 -(void)the2Dimage:(NSString *)string;
 - (void)cancelAsynchronousRequest;
 -(void)postDevicetoken:(NSString *)string; //提交推送touken
-
+-(void)theSynchronousFirstviewPicture:(NSString*)string;
+-(void)theSynchronousClassmessage:(NSString *)string;
 
 @end
 

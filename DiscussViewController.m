@@ -199,7 +199,7 @@
 -(void)pushtoreview
 {
     AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
-    if (mydelega.applink != nil || ![mydelega.applink isEqualToString:@""]) {
+    if (mydelega.applink != nil && ![mydelega.applink isEqualToString:@""]) {
         NSURL *appurl = [NSURL URLWithString:[NSString stringWithFormat:@"%@",mydelega.applink]];
          [[UIApplication sharedApplication] openURL:appurl];
     }else{

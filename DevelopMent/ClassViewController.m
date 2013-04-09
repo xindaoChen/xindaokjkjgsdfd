@@ -52,6 +52,28 @@
     [super viewDidLoad];
      [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"] forBarMetrics:UIBarMetricsDefault];
     
+    if (_refreshHeaderView == nil) {
+		
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
+		view.delegate = self;
+		[self.tableView addSubview:view];
+		_refreshHeaderView = view;
+		
+	}
+    
+    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+    if ([delegate.language isEqualToString:@"china"])
+    {
+        _refreshHeaderView.isChinese = YES;
+    }
+    else
+    {
+        _refreshHeaderView.isChinese = NO;
+    }
+
+    [_refreshHeaderView refreshLastUpdatedDate];
+
+    
     listarray = [[NSMutableArray alloc] init];
     self.tableView.backgroundView = nil;
     
@@ -211,6 +233,91 @@
      
     [self.navigationController pushViewController:developview animated:YES];
 
+}
+
+
+#pragma mark -
+#pragma mark Data Source Loading / Reloading Methods
+
+- (void)reloadTableViewDataSource{
+	
+	//  should be calling your tableviews data source model to reload
+	//  put here just for demo
+	_reloading = YES;
+	
+}
+
+- (void)doneLoadingTableViewData{
+	
+	//  model should call this when its done loading
+    AppDelegate *mydelegate = [UIApplication sharedApplication].delegate;
+    if([NetAccess reachable])
+    {
+        NSString*string1 = @"{\"type\":\"";
+        NSString*string2 = [NSString stringWithFormat:@"%@\"}",mydelegate.language];
+        NSMutableString*alltring = [[NSMutableString alloc] init];
+        [alltring appendString:string1];
+        [alltring appendString:string2];
+        _gNetAccess.delegate = self;
+        _gNetAccess.tag = 100;
+        [_gNetAccess theSynchronousClassmessage:alltring];
+    }
+    else
+    {
+        AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+        if ([delegate.language isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"Internet Contact" messageInfo:ErrorInternetEnglish];
+        }
+        
+        
+    }
+	_reloading = NO;
+	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+	
+}
+
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+    
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+	
+}
+
+
+#pragma mark -
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+	
+	[self reloadTableViewDataSource];
+	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:0];
+	
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+	
+	return _reloading; // should return if data source model is reloading
+	
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+	
+	return [NSDate date]; // should return date data source was last changed
+	
 }
 
 @end

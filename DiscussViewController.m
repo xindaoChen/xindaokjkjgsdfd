@@ -112,7 +112,7 @@
         [button4 setTitle:@"Give me ratings" forState:UIControlStateNormal];
         [button3 setTitle:@"Common investors" forState:UIControlStateNormal];
         [button2 setTitle:@"Co-operation" forState:UIControlStateNormal];
-        [button1 setTitle:@"科润创新" forState:UIControlStateNormal];
+        [button1 setTitle:@"KerunInnovation" forState:UIControlStateNormal];
         [buttonFor2D setTitle:@"2D bar code" forState:UIControlStateNormal];
 
     }

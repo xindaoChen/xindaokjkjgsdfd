@@ -25,7 +25,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
-        self.title = @"二维码";
+             
     }
     return self;
 }
@@ -36,6 +36,13 @@
     
     AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
     _urlHost = delegate.domainName;
+    if ([delegate.language isEqualToString:@"china"]) {
+        self.title = @"二维码";
+    }
+    else
+    {
+        self.title = @"QR Code";
+    }
 
     
     
@@ -48,7 +55,7 @@
     NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString*pat=[pathss objectAtIndex:0];
     NSString *filenames=[pat stringByAppendingPathComponent:@"2Dimage.plist"];
-  NSMutableArray  *imageArray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+   NSMutableArray  *imageArray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
     if (imageArray.count > 0) {
         NSData *data = [imageArray objectAtIndex:0];
         resultimage = [UIImage imageWithData:data];
@@ -125,14 +132,18 @@
 //    resultimage = [UIImage imageWithData:data];
         
     }
-        
     
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(106, 220, 130, 20)];
-    label.text = @"扫描即可下载";
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 220, 240, 20)];
+    if ([delegate.language isEqualToString:@"china"]) {
+         label.text = @"扫描即可下载";
+    }
+   else
+   {
+        label.text = @"Scanning can be downloaded";
+   }
     label.textColor = [UIColor blackColor];
     label.backgroundColor = [UIColor clearColor];
-    
+    label.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:label];
     
     [self.view addSubview:barImageView];

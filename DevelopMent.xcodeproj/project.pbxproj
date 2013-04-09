@@ -143,6 +143,7 @@
 		78EAB75016FD86EC00534880 /* Class.List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78EAB74F16FD86EC00534880 /* Class.List.plist */; };
 		78EAB75316FD9B4B00534880 /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EAB75216FD9B4A00534880 /* MyCell.m */; };
 		78EB3B4D1711689F00ABC02A /* XDAppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EB3B4C1711689F00ABC02A /* XDAppConfig.m */; };
+		78EDCB811713A3BE0064A6D3 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78EDCB801713A3BE0064A6D3 /* libbaidumapapi.a */; };
 		78FF51B4170C121F00F01DCB /* app.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FF51AC170C121F00F01DCB /* app.png */; };
 		78FF51B5170C121F00F01DCB /* datax.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FF51AD170C121F00F01DCB /* datax.png */; };
 		78FF51B6170C121F00F01DCB /* appx.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FF51AE170C121F00F01DCB /* appx.png */; };
@@ -382,6 +383,7 @@
 		78EAB75216FD9B4A00534880 /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCell.m; path = ../MyCell.m; sourceTree = "<group>"; };
 		78EB3B4B1711689F00ABC02A /* XDAppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDAppConfig.h; sourceTree = "<group>"; };
 		78EB3B4C1711689F00ABC02A /* XDAppConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDAppConfig.m; sourceTree = "<group>"; };
+		78EDCB801713A3BE0064A6D3 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = SOURCE_ROOT; };
 		78FF51AC170C121F00F01DCB /* app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app.png; sourceTree = "<group>"; };
 		78FF51AD170C121F00F01DCB /* datax.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = datax.png; sourceTree = "<group>"; };
 		78FF51AE170C121F00F01DCB /* appx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appx.png; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 				7852577E16F94FA000726F8E /* Foundation.framework in Frameworks */,
 				7852578016F94FA000726F8E /* CoreGraphics.framework in Frameworks */,
 				C89251AE1713A12900C049A5 /* libbaidumapapi.a in Frameworks */,
+				78EDCB811713A3BE0064A6D3 /* libbaidumapapi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,6 +550,7 @@
 				44282C2A171181DF00C42FF9 /* BarCodeViewController.m */,
 				78EAB75116FD9B4A00534880 /* MyCell.h */,
 				78EAB75216FD9B4A00534880 /* MyCell.m */,
+				78EDCB801713A3BE0064A6D3 /* libbaidumapapi.a */,
 				78945D771707CA090034230A /* background.png */,
 				78A30F5A16FAB830007FED16 /* mapapi.bundle */,
 				78A30F2816FA90BA007FED16 /* inc */,

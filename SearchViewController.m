@@ -284,6 +284,7 @@
         
         if (indexPath.row == [allListarray count] - 1 && indexPath.row < count -1)
         {  UIView *footview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
+            NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^%d,%d,%d",indexPath.row,[allListarray count] - 1 ,count - 1);
           
             footactive = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             

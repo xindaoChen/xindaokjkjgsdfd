@@ -591,8 +591,8 @@
      for (int i = 0; i<listarray.count; i++)
      {
       
-//         if (buttonarray.count ==0 || buttonarray.count !=listarray.count)
-//         {
+         if (buttonarray.count ==0 || buttonarray.count !=listarray.count)
+         {
              UIButton*buttongs = [UIButton buttonWithType:UIButtonTypeCustom];
              buttongs.tag = i;
              [buttongs addTarget:self action:@selector(yincang:) forControlEvents:UIControlEventTouchUpInside];
@@ -635,43 +635,48 @@
              lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
              [firscrollView addSubview:lable];
 
-//         }
-//         else
-//         {
-//             
-//             [firscrollView addSubview:[buttonarray objectAtIndex:i]];
-//             
-//             [idaray  addObject:[[listarray objectAtIndex:i] objectForKey:@"id"]];
-//             dispatch_group_async(group, queue, ^{
-//                 
-//                 NSString *url = [NSString stringWithFormat:
-//                                  @"%@%@%@",
-//                                  _urlHost, API_DEVELOPIAMGE,
-//                                  [[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
-//                 
-//                 NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-//                 UIImage *image = [UIImage imageWithData:data];
-//                 UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
-//                 if (data !=nil){
-//                     NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:data,@"data", [[listarray objectAtIndex:i] objectForKey:@"developname"],@"developname",[[listarray objectAtIndex:i] objectForKey:@"id"],@"id",[[listarray objectAtIndex:i] objectForKey:@"latitude"],@"latitude",[[listarray objectAtIndex:i] objectForKey:@"longitude"],@"longitude",nil];
-//                     [maplistarray addObject:diction];
-//                 }
-//                 
-//                 if (data != nil) {
-//                     dispatch_async(dispatch_get_main_queue(), ^{
-//                         [[buttonarray objectAtIndex:i] setImage:resImage forState:UIControlStateNormal];
-//                     });
-//                 }
-//                 
-//             });
-//             
-//             UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];
-//             lable.backgroundColor = [UIColor redColor];
-//             lable.textColor = [UIColor whiteColor];
-//             lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
-//             [firscrollView addSubview:lable];
-//
-//         }
+         }
+         else
+         {
+             
+             [firscrollView addSubview:[buttonarray objectAtIndex:i]];
+             
+             [idaray  addObject:[[listarray objectAtIndex:i] objectForKey:@"id"]];
+             dispatch_group_async(group, queue, ^{
+                 
+                 NSString *url = [NSString stringWithFormat:
+                                  @"%@%@%@",
+                                  _urlHost, API_DEVELOPIAMGE,
+                                  [[listarray objectAtIndex:i] objectForKey:@"deveimage"]];
+                 
+                 NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
+                 UIImage *image = [UIImage imageWithData:data];
+                 UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
+                 if (data !=nil){
+                     NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:data,@"data", [[listarray objectAtIndex:i] objectForKey:@"developname"],@"developname",[[listarray objectAtIndex:i] objectForKey:@"id"],@"id",[[listarray objectAtIndex:i] objectForKey:@"latitude"],@"latitude",[[listarray objectAtIndex:i] objectForKey:@"longitude"],@"longitude",nil];
+                     [maplistarray addObject:diction];
+                 }
+                 
+                 if (data != nil) {
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         [[buttonarray objectAtIndex:i] setImage:resImage forState:UIControlStateNormal];
+                     });
+                 }
+                 
+             });
+             
+             AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
+             UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 85, 200, 30)];
+             lable.backgroundColor = [UIColor clearColor];
+             lable.textColor = [UIColor whiteColor];
+             if ([mydelega.language isEqualToString:@"english"]) {
+                 lable.numberOfLines = 2;
+                 lable.font = [UIFont systemFontOfSize:13];
+             }
+             
+             lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
+             [firscrollView addSubview:lable];
+         }
     }
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
@@ -703,35 +708,40 @@
 
 -(void)setfirstimagetwo
 {
-//    pageController.numberOfPages=listarray.count;
-//    CGRect frame = firscrollView.frame;
-//    firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
-//    for (int i = 0; i<listarray.count; i++)
-//    {
-//        
-//        UIButton*buttongs = [UIButton buttonWithType:UIButtonTypeCustom];
-//        buttongs.tag = i;
-//        [buttongs addTarget:self action:@selector(yincang:) forControlEvents:UIControlEventTouchUpInside];
-//        buttongs.frame = CGRectMake(frame.size.width*i , 0, 320, 120);
-////        [buttongs setImage:[UIImage imageNamed:@"instead_fir"] forState:UIControlStateNormal];
-//        [firscrollView addSubview:buttongs];
-//        [buttonarray addObject:buttongs];
-//        
-//        UIImage *image = [UIImage imageWithData:[[listarray objectAtIndex:i]objectForKey:@"data"]];
-//        UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
-//        [buttongs setImage:resImage forState:UIControlStateNormal];
-//      
-//        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 95, 200, 20)];
-//        lable.backgroundColor = [UIColor redColor];
-//        lable.textColor = [UIColor whiteColor];
-//        lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
-//        [firscrollView addSubview:lable];
-//    }
-//
+    pageController.numberOfPages=listarray.count;
+    CGRect frame = firscrollView.frame;
+    firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
+    for (int i = 0; i<listarray.count; i++)
+    {
+        
+        UIButton*buttongs = [UIButton buttonWithType:UIButtonTypeCustom];
+        buttongs.tag = i;
+        [buttongs addTarget:self action:@selector(yincang:) forControlEvents:UIControlEventTouchUpInside];
+        buttongs.frame = CGRectMake(frame.size.width*i , 0, 320, 120);
+//        [buttongs setImage:[UIImage imageNamed:@"instead_fir"] forState:UIControlStateNormal];
+        [firscrollView addSubview:buttongs];
+        [buttonarray addObject:buttongs];
+        
+        UIImage *image = [UIImage imageWithData:[[listarray objectAtIndex:i]objectForKey:@"data"]];
+        UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
+        [buttongs setImage:resImage forState:UIControlStateNormal];
+      
+        AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
+        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 85, 200, 30)];
+        lable.backgroundColor = [UIColor clearColor];
+        lable.textColor = [UIColor whiteColor];
+        if ([mydelega.language isEqualToString:@"english"]) {
+            lable.numberOfLines = 2;
+            lable.font = [UIFont systemFontOfSize:13];
+        }
+        
+        lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
+        [firscrollView addSubview:lable];    }
+
 }
 
 
- 
+
 
 - (void)onGetAddrResult:(BMKAddrInfo*)result errorCode:(int)error
 {

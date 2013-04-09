@@ -141,9 +141,10 @@
 		78CDCA0A16FEE4FA0087474D /* CDJournal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78CDCA0816FEE4FA0087474D /* CDJournal.xcdatamodeld */; };
 		78EAB75016FD86EC00534880 /* Class.List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78EAB74F16FD86EC00534880 /* Class.List.plist */; };
 		78EAB75316FD9B4B00534880 /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EAB75216FD9B4A00534880 /* MyCell.m */; };
-		78EAED841713F56D00520BCE /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78EAED831713F56D00520BCE /* libbaidumapapi.a */; };
 		78EAED861713F62100520BCE /* tubiao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EAED851713F62100520BCE /* tubiao@2x.png */; };
 		78EAED881713F83200520BCE /* tubiao.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EAED871713F83200520BCE /* tubiao.png */; };
+		78EAED8A171407DE00520BCE /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78EAED89171407DE00520BCE /* libbaidumapapi.a */; };
+		78EAED8C17140A2F00520BCE /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EAED8B17140A2F00520BCE /* icon.png */; };
 		78EB3B4D1711689F00ABC02A /* XDAppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EB3B4C1711689F00ABC02A /* XDAppConfig.m */; };
 		78FF51B4170C121F00F01DCB /* app.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FF51AC170C121F00F01DCB /* app.png */; };
 		78FF51B5170C121F00F01DCB /* datax.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FF51AD170C121F00F01DCB /* datax.png */; };
@@ -170,7 +171,6 @@
 		C83B5BF617115D6F00B3ABA0 /* HLDeferred.m in Sources */ = {isa = PBXBuildFile; fileRef = C83B5BF117115D6F00B3ABA0 /* HLDeferred.m */; };
 		C83B5BF717115D6F00B3ABA0 /* HLDeferredList.m in Sources */ = {isa = PBXBuildFile; fileRef = C83B5BF317115D6F00B3ABA0 /* HLDeferredList.m */; };
 		C83B5BF817115D6F00B3ABA0 /* HLFailure.m in Sources */ = {isa = PBXBuildFile; fileRef = C83B5BF517115D6F00B3ABA0 /* HLFailure.m */; };
-		C89251B21713CBF400C049A5 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C89251B11713CBF400C049A5 /* libbaidumapapi.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -381,9 +381,10 @@
 		78EAB74F16FD86EC00534880 /* Class.List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Class.List.plist; path = ../Class.List.plist; sourceTree = "<group>"; };
 		78EAB75116FD9B4A00534880 /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCell.h; path = ../MyCell.h; sourceTree = "<group>"; };
 		78EAB75216FD9B4A00534880 /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCell.m; path = ../MyCell.m; sourceTree = "<group>"; };
-		78EAED831713F56D00520BCE /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		78EAED851713F62100520BCE /* tubiao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tubiao@2x.png"; sourceTree = "<group>"; };
 		78EAED871713F83200520BCE /* tubiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tubiao.png; sourceTree = "<group>"; };
+		78EAED89171407DE00520BCE /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = SOURCE_ROOT; };
+		78EAED8B17140A2F00520BCE /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		78EB3B4B1711689F00ABC02A /* XDAppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDAppConfig.h; sourceTree = "<group>"; };
 		78EB3B4C1711689F00ABC02A /* XDAppConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDAppConfig.m; sourceTree = "<group>"; };
 		78FF51AC170C121F00F01DCB /* app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app.png; sourceTree = "<group>"; };
@@ -417,7 +418,6 @@
 		C83B5BF317115D6F00B3ABA0 /* HLDeferredList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLDeferredList.m; path = DevelopMent/HLDeferredList.m; sourceTree = "<group>"; };
 		C83B5BF417115D6F00B3ABA0 /* HLFailure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLFailure.h; path = DevelopMent/HLFailure.h; sourceTree = "<group>"; };
 		C83B5BF517115D6F00B3ABA0 /* HLFailure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLFailure.m; path = DevelopMent/HLFailure.m; sourceTree = "<group>"; };
-		C89251B11713CBF400C049A5 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -435,9 +435,7 @@
 				7852577C16F94FA000726F8E /* UIKit.framework in Frameworks */,
 				7852577E16F94FA000726F8E /* Foundation.framework in Frameworks */,
 				7852578016F94FA000726F8E /* CoreGraphics.framework in Frameworks */,
-				78EAED841713F56D00520BCE /* libbaidumapapi.a in Frameworks */,
-				78EDCB811713A3BE0064A6D3 /* libbaidumapapi.a in Frameworks */,
-				C89251B21713CBF400C049A5 /* libbaidumapapi.a in Frameworks */,
+				78EAED8A171407DE00520BCE /* libbaidumapapi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,7 +480,6 @@
 		7852576F16F94FA000726F8E = {
 			isa = PBXGroup;
 			children = (
-				C89251B11713CBF400C049A5 /* libbaidumapapi.a */,
 				4412566D17098C2A007B7C9E /* XCLibrary */,
 				7852578116F94FA000726F8E /* DevelopMent */,
 				7893702C17044D9000F8159C /* Picture */,
@@ -553,7 +550,7 @@
 				44282C2A171181DF00C42FF9 /* BarCodeViewController.m */,
 				78EAB75116FD9B4A00534880 /* MyCell.h */,
 				78EAB75216FD9B4A00534880 /* MyCell.m */,
-				78EAED831713F56D00520BCE /* libbaidumapapi.a */,
+				78EAED89171407DE00520BCE /* libbaidumapapi.a */,
 				78945D771707CA090034230A /* background.png */,
 				78A30F5A16FAB830007FED16 /* mapapi.bundle */,
 				78A30F2816FA90BA007FED16 /* inc */,
@@ -587,6 +584,7 @@
 		7893702C17044D9000F8159C /* Picture */ = {
 			isa = PBXGroup;
 			children = (
+				78EAED8B17140A2F00520BCE /* icon.png */,
 				78EAED871713F83200520BCE /* tubiao.png */,
 				44282C271711802900C42FF9 /* appstore_qr@2x.png */,
 				C8168D4D171119F400AE79A0 /* border.png */,
@@ -943,6 +941,7 @@
 				78FFFE2917128FAD0070EB87 /* PictureCopy.plist in Resources */,
 				78EAED861713F62100520BCE /* tubiao@2x.png in Resources */,
 				78EAED881713F83200520BCE /* tubiao.png in Resources */,
+				78EAED8C17140A2F00520BCE /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

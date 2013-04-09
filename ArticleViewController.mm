@@ -973,7 +973,7 @@
         newAnnotationView.animatesDrop = YES;
         [newAnnotationView setImage:[UIImage imageNamed:@"tubiao"]];
         CGSize textSize = [namestring sizeWithFont:[UIFont systemFontOfSize:14]
-                                 constrainedToSize:CGSizeMake(500, 9999)
+                                 constrainedToSize:CGSizeMake(5000, 9999)
                                      lineBreakMode:NSLineBreakByCharWrapping];
          
         UIImageView *view  = [[UIImageView alloc] initWithFrame:CGRectMake(-textSize.width/2+2 , -35, textSize.width+20, 35)];

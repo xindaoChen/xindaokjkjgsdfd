@@ -113,6 +113,21 @@
     NSLog(@"url:%@ params:%@", url, string);
 }
 
+//分类 同步获取
+-(void)theSynchronousClassmessage:(NSString *)string
+{
+    AppDelegate *mydele = [UIApplication sharedApplication].delegate;
+    NSURL *url =[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",mydele.domainName,API_CLASS]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    request.delegate = self;
+    [request setTimeOutSeconds:kTimeOutseconds];
+    [request setPostValue:string forKey:@"parameter"];
+    [request startSynchronous];
+    _gRequest = request;
+    
+    NSLog(@"url:%@ params:%@", url, string);
+}
+
 //简介
 -(void)theIntroducemessage:(NSString *)string
 {

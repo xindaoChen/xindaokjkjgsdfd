@@ -334,7 +334,7 @@
 
 -(void)gitnewversion
 {
-    NSURL *url = [NSURL URLWithString:@"http://www.dacheq.com/index.php/index/domain"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST_URL,@"index.php/index/domain"]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setTimeOutSeconds:10];

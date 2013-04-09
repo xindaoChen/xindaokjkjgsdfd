@@ -127,6 +127,19 @@
         levelName = @"Level";
         industryName = @"Industry";
         self.title = @"DevelopeZone";
+        if (flagForInit == 10000) {   //判断上一个界面传的值是市名还是下标。若是市名，从英文数组中找到相应的英文。
+            int x = 0;
+            for (int i = 0;i < allProvinceArrayChina.count;i++) {
+                if ([tempprovinceName isEqualToString:[allProvinceArrayChina objectAtIndex:i]]) {
+                    x= i;
+                    provinceName = [allProvinceArrayEnglish objectAtIndex:i];
+                    tempprovinceName = provinceName;
+                }
+            }
+            
+        }
+
+        
         
     }
     else if ([mydelegate.language isEqualToString:@"china"])

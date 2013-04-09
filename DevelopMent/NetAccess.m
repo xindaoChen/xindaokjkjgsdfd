@@ -204,7 +204,7 @@
 -(void)getnewVersion
 {
     
-    NSURL *url = [NSURL URLWithString:@"http://192.168.1.101:8010/index.php/index/domain"];
+    NSURL *url = [NSURL URLWithString:[NSString  stringWithFormat:@"%@%@", HOST_URL, @"/index.php/index/domain"]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     request.delegate = self;
     [request setTimeOutSeconds:kTimeOutseconds];

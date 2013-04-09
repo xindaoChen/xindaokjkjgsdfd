@@ -13,7 +13,7 @@
 #define WithoutData @"对不起,暂无数据"
 #define CannotLocate @"对不起,无法定位您当前的位置"
 #define WithoutResult @"没有搜索结果"
-#define ErrorConnect @"对不起，联网失败，请检查网络"
+#define ErrorConnect @"对不起,联网失败,请检查网络"
 
 #define ErrorInternetEnglish @"Sorry,Internet disconnected"
 #define WithoutDataEnglish @"No Data"

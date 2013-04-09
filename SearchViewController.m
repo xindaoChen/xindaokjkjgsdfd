@@ -150,7 +150,8 @@
         
         if (searchtable.tableFooterView.tag == 100050) {
             [UIView animateWithDuration:0.3 animations:^{
-                searchtable.tableFooterView = nil;
+                searchtable.tableFooterView.frame = CGRectMake(0, self.view.frame.size.height- 140, 320, 0);
+               
                 searchtable.tableFooterView.tag = 100051;
                 [footactive stopAnimating];
             }];
@@ -167,6 +168,7 @@
                 
             
             [searchtable reloadData];
+            searchtable.tableFooterView = nil;
         }
         else
         {
@@ -282,6 +284,7 @@
         
         if (indexPath.row == [allListarray count] - 1 && indexPath.row < count -1)
         {  UIView *footview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
+            NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^%d,%d,%d",indexPath.row,[allListarray count] - 1 ,count - 1);
           
             footactive = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             

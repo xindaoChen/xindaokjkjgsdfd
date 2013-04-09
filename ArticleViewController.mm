@@ -968,14 +968,14 @@
          BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: @"myAnnotation"];
         newAnnotationView.pinColor =BMKPinAnnotationColorPurple;
         newAnnotationView.animatesDrop = YES;
-        [newAnnotationView setImage:[UIImage imageNamed:@"tubiao.png"]];
+        [newAnnotationView setImage:[UIImage imageNamed:@"tubiao"]];
         CGSize textSize = [namestring sizeWithFont:[UIFont systemFontOfSize:14]
                                  constrainedToSize:CGSizeMake(500, 9999)
                                      lineBreakMode:NSLineBreakByCharWrapping];
          
         UIImageView *view  = [[UIImageView alloc] initWithFrame:CGRectMake(-textSize.width/2+2 , -35, textSize.width+20, 35)];
         [view setBackgroundColor:[UIColor clearColor]];
-        [view setImage:[UIImage imageNamed:@"heikuang.png"]];
+        [view setImage:[UIImage imageNamed:@"heikuang"]];
         UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(5, 5,textSize.width+10, 20)];
         lable.textColor = [UIColor whiteColor];
         lable.backgroundColor = [UIColor clearColor];

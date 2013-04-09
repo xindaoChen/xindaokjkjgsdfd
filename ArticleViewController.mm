@@ -312,27 +312,30 @@
 -(void)takephone
 {
   AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
-    if ([delegate.language isEqualToString:@"china"])
-    {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                      initWithTitle:nil
-                                      delegate:self
-                                      cancelButtonTitle:@"取消"
-                                      destructiveButtonTitle:nil
-                                      otherButtonTitles:[NSString stringWithFormat:@"拨打 %@",[[apparray objectAtIndex:0] objectForKey:@"tel"]],nil];
-         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
-    }
-    else
-    {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                      initWithTitle:nil
-                                      delegate:self
-                                      cancelButtonTitle:@"Cancel"
-                                      destructiveButtonTitle:nil
-                                      otherButtonTitles:[NSString stringWithFormat:@"Call %@",[[apparray objectAtIndex:0] objectForKey:@"tel"]],nil];
-         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
-    }
+    if ([[apparray objectAtIndex:0] objectForKey:@"tel"]) {
+        if ([delegate.language isEqualToString:@"china"])
+        {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                          initWithTitle:nil
+                                          delegate:self
+                                          cancelButtonTitle:@"取消"
+                                          destructiveButtonTitle:nil
+                                          otherButtonTitles:[NSString stringWithFormat:@"拨打 %@",[[apparray objectAtIndex:0] objectForKey:@"tel"]],nil];
+            [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+        }
+        else
+        {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                          initWithTitle:nil
+                                          delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          destructiveButtonTitle:nil
+                                          otherButtonTitles:[NSString stringWithFormat:@"Call %@",[[apparray objectAtIndex:0] objectForKey:@"tel"]],nil];
+            [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+        }
 
+    }
+   
 //    UIActionSheet *actionSheet = [[UIActionSheet alloc]
 //                                  initWithTitle:nil
 //                                  delegate:self

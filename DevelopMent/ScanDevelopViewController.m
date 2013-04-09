@@ -806,7 +806,8 @@ else if([languageFlag isEqualToString:@"english"])
     if (na.tag ==100) {
         if (searchtable.tableFooterView.tag == 100050) {
             [UIView animateWithDuration:0.3 animations:^{
-                searchtable.tableFooterView = nil;
+                searchtable.tableFooterView.frame = CGRectMake(0, self.view.frame.size.height- 140, 320, 0);
+              //  searchtable.tableFooterView = nil;
                 searchtable.tableFooterView.tag = 100051;
                 [footactive stopAnimating];
             }];
@@ -857,9 +858,9 @@ else if([languageFlag isEqualToString:@"english"])
               [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }
         
-  
-        [searchtable reloadData];
         
+        [searchtable reloadData];
+        searchtable.tableFooterView = nil;
     }
     if (na.tag == 150) {
 
@@ -1529,7 +1530,7 @@ else if([languageFlag isEqualToString:@"english"])
                 }
                 else
                 {
-                    levelLabel.text = @"all";
+                    levelLabel.text = @"All";
                     // [levelbutton setTitle:@"全部" forState:UIControlStateNormal];
                     leid = @"";
                 }

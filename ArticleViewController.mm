@@ -169,7 +169,7 @@
     }
     else
     {
-        label1.text = @"telephone :";
+        label1.text = @"    Tel :";
 
     }
 
@@ -205,7 +205,7 @@
     }
     else
     {
-    label2.text = @"fax :";
+    label2.text = @"   Fax :";
     }
     
         [viewapp addSubview:label2];
@@ -222,7 +222,15 @@
     UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(70, 270, 60, 40)];
     label3.backgroundColor = [UIColor clearColor];
     
-    label3.text = @"邮件 :";
+      
+    if ([delegate.language isEqualToString:@"china"]) {
+         label3.text = @"邮件 :";
+    }
+    else
+    {
+        label3.text = @"Email :";
+    }
+
     [viewapp addSubview:label3];
 
     mylable3 = [[UILabel alloc] initWithFrame:CGRectMake(125, 270, 160, 40)];
@@ -242,7 +250,7 @@
     }
     else
     {
-        label4.text = @"URL :";
+        label4.text = @"  URL :";
     }
 
 //    label4.text = @"网址 :";
@@ -664,7 +672,7 @@
              }
              else
              {
-                 loadlabel.text = @"Has No APP For This DevelopeZone";
+                 loadlabel.text = @"No APP";
 
              }
 

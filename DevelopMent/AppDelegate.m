@@ -137,8 +137,9 @@
     NSLog(@"Post Device Token netAcess:%@", resultSet);
 }
 
--(NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
+
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    
     if (persistentStoreCoordinator != nil) {
         return persistentStoreCoordinator;
     }
@@ -147,11 +148,15 @@
     NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     //CoreData是建立在SQLite之上的，数据库名称需与Xcdatamodel文件同名
     NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"CDJournal.sqlite"]];
-    NSError *error = nil;
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]initWithManagedObjectModel:[self managedObjectModel]];
+
     
-    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error]) {
-        NSLog(@"Error: %@,%@",error,[error userInfo]);
+    NSError *error = nil;
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+    						 [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+    						 [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
+    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error]) {
+        // Handle error
     }
     
     return persistentStoreCoordinator;

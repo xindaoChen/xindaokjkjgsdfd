@@ -96,6 +96,8 @@
 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                    barImageView.frame = CGRectMake(90, 70, 140, 140);
+
                     barImageView.image = image;
                 });
 
@@ -106,14 +108,17 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                     AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+                    barImageView.frame =  CGRectMake(65, 70, 190, 110);
+
+                    barImageView.image = [UIImage imageNamed:@"instead_pro"];
                     if ([delegate.language isEqualToString:@"china"])
                     {
-                        [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
+                        [UITools showPopMessage:self titleInfo:@"提示" messageInfo:@"二维码获取失败"];
                         
                     }
                     else
                     {
-                        [UITools showPopMessage:self titleInfo:@"Contect" messageInfo:WithoutDataEnglish];
+                        [UITools showPopMessage:self titleInfo:@"Contect" messageInfo:@"No 2D Bar code"];
                         
                     }
 
@@ -160,8 +165,7 @@
     [self.view addSubview:label];
     
     [self.view addSubview:barImageView];
-    resultimage = nil;
-    _urlHost = nil;
+
 	// Do any additional setup after loading the view.
 }
 

@@ -99,8 +99,6 @@
 		7852578816F94FA000726F8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7852578716F94FA000726F8E /* main.m */; };
 		7852578C16F94FA000726F8E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7852578B16F94FA000726F8E /* AppDelegate.m */; };
 		7852578E16F94FA000726F8E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7852578D16F94FA000726F8E /* Default.png */; };
-		7852579016F94FA000726F8E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7852578F16F94FA000726F8E /* Default@2x.png */; };
-		7852579216F94FA000726F8E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7852579116F94FA000726F8E /* Default-568h@2x.png */; };
 		7852579A16F94FBA00726F8E /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7852579916F94FBA00726F8E /* FirstViewController.m */; };
 		7852579D16F9901A00726F8E /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7852579C16F9901A00726F8E /* SearchViewController.m */; };
 		787AA23F170AF85400B746BB /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787AA23E170AF85400B746BB /* icon@2x.png */; };
@@ -296,8 +294,6 @@
 		7852578A16F94FA000726F8E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7852578B16F94FA000726F8E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7852578D16F94FA000726F8E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		7852578F16F94FA000726F8E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		7852579116F94FA000726F8E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		7852579816F94FBA00726F8E /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstViewController.h; path = ../FirstViewController.h; sourceTree = "<group>"; };
 		7852579916F94FBA00726F8E /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstViewController.m; path = ../FirstViewController.m; sourceTree = "<group>"; };
 		7852579B16F9901A00726F8E /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = ../SearchViewController.h; sourceTree = "<group>"; };
@@ -654,8 +650,6 @@
 				7852578716F94FA000726F8E /* main.m */,
 				7852578916F94FA000726F8E /* DevelopMent-Prefix.pch */,
 				7852578D16F94FA000726F8E /* Default.png */,
-				7852578F16F94FA000726F8E /* Default@2x.png */,
-				7852579116F94FA000726F8E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -919,8 +913,6 @@
 			files = (
 				7852578616F94FA000726F8E /* InfoPlist.strings in Resources */,
 				7852578E16F94FA000726F8E /* Default.png in Resources */,
-				7852579016F94FA000726F8E /* Default@2x.png in Resources */,
-				7852579216F94FA000726F8E /* Default-568h@2x.png in Resources */,
 				78A30F5B16FAB830007FED16 /* mapapi.bundle in Resources */,
 				78EAB75016FD86EC00534880 /* Class.List.plist in Resources */,
 				7895D6B616FEC32200604F50 /* Picture.plist in Resources */,

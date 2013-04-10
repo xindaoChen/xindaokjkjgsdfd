@@ -858,8 +858,8 @@ else if([languageFlag isEqualToString:@"english"])
               [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }
         
-                searchtable.tableFooterView = nil;
         [searchtable reloadData];
+        searchtable.tableFooterView = nil;
         
     }
     if (na.tag == 150) {
@@ -980,7 +980,7 @@ else if([languageFlag isEqualToString:@"english"])
             }
             
             cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
-            cell.selectedBackgroundView.backgroundColor = [UIColor grayColor];
+            cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:0.4];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          

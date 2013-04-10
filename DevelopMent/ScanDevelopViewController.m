@@ -858,8 +858,8 @@ else if([languageFlag isEqualToString:@"english"])
               [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }
         
-                searchtable.tableFooterView = nil;
         [searchtable reloadData];
+        searchtable.tableFooterView = nil;
         
     }
     if (na.tag == 150) {

@@ -100,7 +100,7 @@
 		7852579216F94FA000726F8E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7852579116F94FA000726F8E /* Default-568h@2x.png */; };
 		7852579A16F94FBA00726F8E /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7852579916F94FBA00726F8E /* FirstViewController.m */; };
 		7852579D16F9901A00726F8E /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7852579C16F9901A00726F8E /* SearchViewController.m */; };
-		7865A36A171420A6006ED50F /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7865A369171420A6006ED50F /* libbaidumapapi.a */; };
+		7865A36C171430E9006ED50F /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7865A36B171430E9006ED50F /* libbaidumapapi.a */; };
 		787AA23F170AF85400B746BB /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787AA23E170AF85400B746BB /* icon@2x.png */; };
 		787AA241170AF88800B746BB /* myview.png in Resources */ = {isa = PBXBuildFile; fileRef = 787AA240170AF88800B746BB /* myview.png */; };
 		787AA24C170B175600B746BB /* ClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787AA249170B175600B746BB /* ClassViewController.m */; };
@@ -291,7 +291,7 @@
 		7852579916F94FBA00726F8E /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstViewController.m; path = ../FirstViewController.m; sourceTree = "<group>"; };
 		7852579B16F9901A00726F8E /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = ../SearchViewController.h; sourceTree = "<group>"; };
 		7852579C16F9901A00726F8E /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = ../SearchViewController.m; sourceTree = "<group>"; };
-		7865A369171420A6006ED50F /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = SOURCE_ROOT; };
+		7865A36B171430E9006ED50F /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = SOURCE_ROOT; };
 		787AA23E170AF85400B746BB /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		787AA240170AF88800B746BB /* myview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myview.png; sourceTree = "<group>"; };
 		787AA248170B175600B746BB /* ClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassViewController.h; sourceTree = "<group>"; };
@@ -453,7 +453,7 @@
 				7852577C16F94FA000726F8E /* UIKit.framework in Frameworks */,
 				7852577E16F94FA000726F8E /* Foundation.framework in Frameworks */,
 				7852578016F94FA000726F8E /* CoreGraphics.framework in Frameworks */,
-				7865A36A171420A6006ED50F /* libbaidumapapi.a in Frameworks */,
+				7865A36C171430E9006ED50F /* libbaidumapapi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,7 +610,7 @@
 				44282C2A171181DF00C42FF9 /* BarCodeViewController.m */,
 				78EAB75116FD9B4A00534880 /* MyCell.h */,
 				78EAB75216FD9B4A00534880 /* MyCell.m */,
-				7865A369171420A6006ED50F /* libbaidumapapi.a */,
+				7865A36B171430E9006ED50F /* libbaidumapapi.a */,
 				78945D771707CA090034230A /* background.png */,
 				78A30F5A16FAB830007FED16 /* mapapi.bundle */,
 				78A30F2816FA90BA007FED16 /* inc */,

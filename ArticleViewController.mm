@@ -952,7 +952,7 @@
  //    assAiv.color = [UIColor whiteColor];
     BMKCoordinateSpan span = BMKCoordinateSpanMake(0.1,0.1);
     BMKCoordinateRegion reg = BMKCoordinateRegionMake(locationgs, span);
-    [myMapView setRegion:reg animated:YES];
+    [myMapView setRegion:reg animated:NO];
     myAnnotation.coordinate = locationgs;
 //    myAnnotation.title = namestring;
     [myMapView addAnnotation:myAnnotation];

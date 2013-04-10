@@ -132,7 +132,17 @@
 - (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-      [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+    if ([delegate.language isEqualToString:@"china"])
+    {
+        [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+    }
+    else
+    {
+        [UITools showPopMessage:self titleInfo:@"Internet Contact" messageInfo:ErrorInternetEnglish];
+    }
+
     if (searchtable.tableFooterView.tag == 100050) {
         [UIView animateWithDuration:0.3 animations:^{
             searchtable.tableFooterView = nil;

@@ -106,7 +106,7 @@
     
     
 
-    catchflag = 0;
+  //  catchflag = 0;
     
     contectFlag = @"a";
     inid = @"";
@@ -118,7 +118,7 @@
     //	self.title = @"搜索";
     allProvinceArrayChina = [[NSMutableArray alloc] initWithObjects:@"全国",@"北京市",@"天津市",@"上海市",@"重庆市",@"河北省", @"山西省",@"辽宁省",@"吉林省",@"黑龙江省",@"江苏省",@"浙江省",@"安徽省",@"山东省",@"广东省",@"江西省",@"内蒙古",@"广西",@"西藏",@"宁夏",@"新疆",@"河南省",@"海南省",@"湖南省",@"福建省",@"贵州省",@"云南省",@"湖北省",@"甘肃省",@"四川省",@"青海省",@"陕西省",@"台湾省",@"香港",@"澳门",nil];
     
-    allProvinceArrayEnglish = [[NSMutableArray alloc]initWithObjects:@"china",@"Beijing",@"Tianjing",@"Shanghai",@"Chongqing",@"Hebei",@"Shanxi",@"Liaoning",@"Jilin",@"Heilongjiang",@"Jiangsu",@"Zhejiang",@"Anhui",@"Shandong",@"Guangdong",@"Jiangxi",@"Neimenggu",@"Guangxi",@"Xizang",@"Ningxia",@"Xinjiang",@"Henan",@"Hainan",@"Hunan",@"Fujian",@"Guizhou",@"Yunnan",@"Hubei",@"Gansu",@"Sichuan",@"Qinghai",@"Shanxi",@"Taiwan",@"Hong Kong",@"Macau", nil];
+    allProvinceArrayEnglish = [[NSMutableArray alloc]initWithObjects:@"china",@"Beijing",@"Tianjin",@"Shanghai",@"Chongqing",@"Hebei",@"Shanxi",@"Liaoning",@"Jilin",@"Heilongjiang",@"Jiangsu",@"Zhejiang",@"Anhui",@"Shandong",@"Guangdong",@"Jiangxi",@"Neimenggu",@"Guangxi",@"Xizang",@"Ningxia",@"Xinjiang",@"Henan",@"Hainan",@"Hunan",@"Fujian",@"Guizhou",@"Yunnan",@"Hubei",@"Gansu",@"Sichuan",@"Qinghai",@"Shanxi",@"Taiwan",@"Hong Kong",@"Macau", nil];
     
     AppDelegate*mydelegate = [UIApplication sharedApplication].delegate;
     if ([mydelegate.language isEqualToString: @"english"]) {
@@ -388,22 +388,35 @@
         {
           [UITools showPopMessage:self titleInfo:@"Internet Contact" messageInfo:ErrorInternetEnglish];
         }
-        NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-        NSString*pat=[pathss objectAtIndex:0];
-        NSString *filenames=[pat stringByAppendingPathComponent:@"developZone.plist"];
-        listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
-        if (listarray.count > 1) {
-            NSString *name = [listarray objectAtIndex:listarray.count  -1];
-            if ([name isEqualToString:provinceName]) {
-                [listarray removeLastObject];
-                for (id obj in listarray) {
-                    [allListArray addObject:obj];
-                }
-                [searchtable reloadData];
-            }
-        
-        
-        }
+//        NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+//        NSString*pat=[pathss objectAtIndex:0];
+//        
+//        if ([languageFlag isEqualToString:@"china"]) {
+//            NSString *filenames=[pat stringByAppendingPathComponent:@"developZoneChina.plist"];
+//            listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+//        }
+//        else
+//        {
+//            NSString *filenames=[pat stringByAppendingPathComponent:@"developZoneEnglish.plist"];
+//            listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+//
+//        }
+//
+//        
+////        NSString *filenames=[pat stringByAppendingPathComponent:@"developZone.plist"];
+////        listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+//        if (listarray.count > 1) {
+//            NSString *name = [listarray objectAtIndex:listarray.count  -1];
+//            if ([name isEqualToString:provinceName]) {
+//                [listarray removeLastObject];
+//                for (id obj in listarray) {
+//                    [allListArray addObject:obj];
+//                }
+//                [searchtable reloadData];
+//            }
+//        
+//        
+//        }
         
     
 
@@ -442,22 +455,22 @@
         [UITools showPopMessage:self titleInfo:@"Network Tips" messageInfo:@"Internet Disconnected"];
         }
         
-        NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-        NSString*pat=[pathss objectAtIndex:0];
-        NSString *filenames=[pat stringByAppendingPathComponent:@"developZone.plist"];
-        listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
-        if (listarray.count > 1) {
-            NSString *name = [listarray objectAtIndex:listarray.count  -1];
-            if ([name isEqualToString:provinceName]) {
-                [listarray removeLastObject];
-                for (id obj in listarray) {
-                    [allListArray addObject:obj];
-                }
-                [searchtable reloadData];
-            }
-            
-            
-        }
+//        NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+//        NSString*pat=[pathss objectAtIndex:0];
+//        NSString *filenames=[pat stringByAppendingPathComponent:@"developZone.plist"];
+//        listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+//        if (listarray.count > 1) {
+//            NSString *name = [listarray objectAtIndex:listarray.count  -1];
+//            if ([name isEqualToString:provinceName]) {
+//                [listarray removeLastObject];
+//                for (id obj in listarray) {
+//                    [allListArray addObject:obj];
+//                }
+//                [searchtable reloadData];
+//            }
+//            
+//            
+//        }
         
         
         
@@ -820,18 +833,26 @@ else if([languageFlag isEqualToString:@"english"])
                 [allListArray addObject:obj];
             }
             
-            if (catchflag == 0) {
-                [listarray addObject:provinceName];
-                NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-                NSString*path=[paths objectAtIndex:0];
-                NSString *filename=[path stringByAppendingPathComponent:@"developZone.plist"];
-                [listarray writeToFile:filename atomically:YES];
-                catchflag = 1;
-                [listarray removeLastObject];
-
-            }
-            
-            
+//            if (catchflag == 0) {
+//                [listarray addObject:provinceName];
+//                NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+//                NSString*path=[paths objectAtIndex:0];
+//                if ([languageFlag isEqualToString:@"china"]) {
+//                     NSString *filename=[path stringByAppendingPathComponent:@"developZoneChina.plist"];
+//                     [listarray writeToFile:filename atomically:YES];
+//                }
+//                else
+//                {
+//                NSString *filename=[path stringByAppendingPathComponent:@"developZoneEnglish.plist"];
+//                     [listarray writeToFile:filename atomically:YES];
+//                }
+//              //  [listarray writeToFile:filename atomically:YES];
+//                catchflag = 1;
+//                [listarray removeLastObject];
+//
+//            }
+//            
+//            
         }
         if (allListArray.count == 0) {
     
@@ -1002,6 +1023,7 @@ else if([languageFlag isEqualToString:@"english"])
                 [cell.imageview setImage:[imagesDictionary valueForKey:index_row]];
                 
             }else{
+                [cell.imageview setImage:[UIImage imageNamed:@"instead_pro"]];
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
  
                     NSString *url = [NSString stringWithFormat:
@@ -1750,7 +1772,7 @@ else if([languageFlag isEqualToString:@"english"])
         
        int count = [[[allListArray objectAtIndex:0] objectForKey:@"count"] intValue];
           
-        if (indexPath.row == [allListArray count] - 1 && indexPath.row < count -1)
+        if (indexPath.row == [allListArray count] - 1 && indexPath.row < count -1 && searchtable.tableFooterView.tag !=100050)
         {  UIView *footview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
            
             footactive = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];

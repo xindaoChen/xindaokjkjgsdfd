@@ -238,6 +238,7 @@
             UIImage *image1 = [imageDic objectForKey:[NSNumber numberWithInt:indexPath.row]];
             [cell.imageview setImage: image1];
         }else{
+            [cell.imageview setImage:[UIImage imageNamed:@"instead_pro"]];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSString *url = [NSString stringWithFormat:
                                  @"%@%@%@",

@@ -893,6 +893,8 @@
     if (na.tag == 100){
               
         if (resultSet.count !=0) {
+            [timer invalidate];
+            [timer2 invalidate];
             
             listarray = resultSet;
 
@@ -906,8 +908,7 @@
                     [self setfirstimage];
                     isRefresh = NO;
                     Snumber = 0;
-                    [timer invalidate];
-                    [timer2 invalidate];
+
                     
                 }
             }else{

@@ -238,6 +238,7 @@
             UIImage *image1 = [imageDic objectForKey:[NSNumber numberWithInt:indexPath.row]];
             [cell.imageview setImage: image1];
         }else{
+            [cell.imageview setImage:[UIImage imageNamed:@"instead_pro"]];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSString *url = [NSString stringWithFormat:
                                  @"%@%@%@",
@@ -293,9 +294,9 @@
         int count = [[[allListarray objectAtIndex:0] objectForKey:@"count"] intValue];
       
         
-        if (indexPath.row == [allListarray count] - 1 && indexPath.row < count -1)
+        if (indexPath.row == [allListarray count] - 1 && indexPath.row < count -1 &&searchtable.tableFooterView.tag !=100050 )
         {  UIView *footview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
-            NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^%d,%d,%d",indexPath.row,[allListarray count] - 1 ,count - 1);
+            
           
             footactive = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             

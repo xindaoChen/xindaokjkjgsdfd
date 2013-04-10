@@ -120,11 +120,21 @@
         button3.frame = CGRectMake(160, 363, 80, height);
         button4.frame = CGRectMake(240, 363, 80, height);
     }
-    [button1  setImage:[UIImage imageNamed:@"introducex.png"] forState:UIControlStateNormal];
-    [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
-    [button3  setImage:[UIImage imageNamed:@"maps.png"] forState:UIControlStateNormal];
+    if ([delegate.language isEqualToString:@"china"]) {
+        [button1  setImage:[UIImage imageNamed:@"introducex.png"] forState:UIControlStateNormal];
+        [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
+        [button3  setImage:[UIImage imageNamed:@"maps.png"] forState:UIControlStateNormal];
+      
+     }
+    else
+    {
+        [button1  setImage:[UIImage imageNamed:@"eintroducex.png"] forState:UIControlStateNormal];
+        [button2  setImage:[UIImage imageNamed:@"edata.png"] forState:UIControlStateNormal];
+        [button3  setImage:[UIImage imageNamed:@"emaps.png"] forState:UIControlStateNormal];
+//        [button4  setImage:[UIImage imageNamed:@"eapp.png"] forState:UIControlStateNormal];
+
+    }
     [button4  setImage:[UIImage imageNamed:@"app.png"] forState:UIControlStateNormal];
-    
     firscrollView.backgroundColor =   [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
     firscrollView.pagingEnabled = YES;
     firscrollView.tag = 100;
@@ -169,7 +179,7 @@
     }
     else
     {
-        label1.text = @"telephone :";
+        label1.text = @"    Tel :";
 
     }
 
@@ -205,7 +215,7 @@
     }
     else
     {
-    label2.text = @"fax :";
+    label2.text = @"   Fax :";
     }
     
         [viewapp addSubview:label2];
@@ -222,7 +232,15 @@
     UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(70, 270, 60, 40)];
     label3.backgroundColor = [UIColor clearColor];
     
-    label3.text = @"邮件 :";
+      
+    if ([delegate.language isEqualToString:@"china"]) {
+         label3.text = @"邮件 :";
+    }
+    else
+    {
+        label3.text = @"Email :";
+    }
+
     [viewapp addSubview:label3];
 
     mylable3 = [[UILabel alloc] initWithFrame:CGRectMake(125, 270, 160, 40)];
@@ -242,7 +260,7 @@
     }
     else
     {
-        label4.text = @"URL :";
+        label4.text = @"  URL :";
     }
 
 //    label4.text = @"网址 :";
@@ -463,18 +481,34 @@
     dataview.hidden = YES;
     viewapp.hidden = NO;
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    if (app ==YES) {
-        [button1  setImage:[UIImage imageNamed:@"introduce.png"] forState:UIControlStateNormal];
-        [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
-        [button3  setImage:[UIImage imageNamed:@"maps.png"] forState:UIControlStateNormal];
-        [button4 setImage:[UIImage imageNamed:@"appx.png"] forState:UIControlStateNormal];
-        introd = YES;
-        databool = YES;
-        maps = YES;
-        app = !app;
-    }
+    AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
+    if ([mydelega.language isEqualToString:@"china"]) {
+        if (app ==YES) {
+            [button1  setImage:[UIImage imageNamed:@"introduce.png"] forState:UIControlStateNormal];
+            [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
+            [button3  setImage:[UIImage imageNamed:@"maps.png"] forState:UIControlStateNormal];
+           
+            introd = YES;
+            databool = YES;
+            maps = YES;
+            app = !app;
+        }
+     }
+    else
+    {
+        if (app ==YES) {
+            [button1  setImage:[UIImage imageNamed:@"eintroduce.png"] forState:UIControlStateNormal];
+            [button2  setImage:[UIImage imageNamed:@"edata.png"] forState:UIControlStateNormal];
+            [button3  setImage:[UIImage imageNamed:@"emaps.png"] forState:UIControlStateNormal];
+           
+            introd = YES;
+            databool = YES;
+            maps = YES;
+            app = !app;
+        }
 
+    }
+   [button4 setImage:[UIImage imageNamed:@"appx.png"] forState:UIControlStateNormal];
     
     if([NetAccess reachable])
     {
@@ -525,17 +559,36 @@
     dataarray =   [self getthedata];
     [dataview reloadData];
     self.view.backgroundColor = [UIColor whiteColor];
-    if (databool ==YES) {
-        [button1  setImage:[UIImage imageNamed:@"introduce.png"] forState:UIControlStateNormal];
-        [button2  setImage:[UIImage imageNamed:@"datax.png"] forState:UIControlStateNormal];
-        [button3  setImage:[UIImage imageNamed:@"maps.png"] forState:UIControlStateNormal];
-        [button4 setImage:[UIImage imageNamed:@"app.png"] forState:UIControlStateNormal];
-        introd = YES;
-        databool = !databool;
-        maps = YES;
-        app = YES;
-    }
+    AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
+    if ([mydelega.language isEqualToString:@"china"])
+    {
+        if (databool ==YES) {
+            [button1  setImage:[UIImage imageNamed:@"introduce.png"] forState:UIControlStateNormal];
+            [button2  setImage:[UIImage imageNamed:@"datax.png"] forState:UIControlStateNormal];
+            [button3  setImage:[UIImage imageNamed:@"maps.png"] forState:UIControlStateNormal];
+           
+            introd = YES;
+            databool = !databool;
+            maps = YES;
+            app = YES;
+        }
 
+    }
+    else
+    {
+        if (databool ==YES) {
+            [button1  setImage:[UIImage imageNamed:@"eintroduce.png"] forState:UIControlStateNormal];
+            [button2  setImage:[UIImage imageNamed:@"edatax.png"] forState:UIControlStateNormal];
+            [button3  setImage:[UIImage imageNamed:@"emaps.png"] forState:UIControlStateNormal];
+//            [button4 setImage:[UIImage imageNamed:@"eapp.png"] forState:UIControlStateNormal];
+            introd = YES;
+            databool = !databool;
+            maps = YES;
+            app = YES;
+        }
+     [button4 setImage:[UIImage imageNamed:@"app.png"] forState:UIControlStateNormal];
+    }
+   
     if (sum ==0)
     {
         if([NetAccess reachable])
@@ -664,7 +717,7 @@
              }
              else
              {
-                 loadlabel.text = @"Has No APP For This DevelopeZone";
+                 loadlabel.text = @"No APP";
 
              }
 
@@ -930,16 +983,37 @@
     dataview.hidden = YES;
     viewapp.hidden = YES;
     myMapView.hidden = YES;
-     if (introd ==YES) {
-        [button1  setImage:[UIImage imageNamed:@"introducex.png"] forState:UIControlStateNormal];
-        [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
-        [button3  setImage:[UIImage imageNamed:@"maps.png"] forState:UIControlStateNormal];
-        [button4 setImage:[UIImage imageNamed:@"app.png"] forState:UIControlStateNormal];
-        introd = !introd;
-        databool = YES;
-        maps = YES;
-        app = YES;
+    AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
+    if ([mydelega.language isEqualToString:@"china"])
+    {
+        if (introd ==YES)
+        {
+            [button1  setImage:[UIImage imageNamed:@"introducex.png"] forState:UIControlStateNormal];
+            [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
+            [button3  setImage:[UIImage imageNamed:@"maps.png"] forState:UIControlStateNormal];
+           
+            introd = !introd;
+            databool = YES;
+            maps = YES;
+            app = YES;
+        }
+     }
+    else
+    {
+        if (introd ==YES)
+        {
+            [button1  setImage:[UIImage imageNamed:@"eintroducex.png"] forState:UIControlStateNormal];
+            [button2  setImage:[UIImage imageNamed:@"edata.png"] forState:UIControlStateNormal];
+            [button3  setImage:[UIImage imageNamed:@"emaps.png"] forState:UIControlStateNormal];
+//            [button4 setImage:[UIImage imageNamed:@"eapp.png"] forState:UIControlStateNormal];
+            introd = !introd;
+            databool = YES;
+            maps = YES;
+            app = YES;
+        }
+
     }
+     [button4 setImage:[UIImage imageNamed:@"app.png"] forState:UIControlStateNormal];
 }
 
  
@@ -956,17 +1030,34 @@
     myAnnotation.coordinate = locationgs;
 //    myAnnotation.title = namestring;
     [myMapView addAnnotation:myAnnotation];
-    if (maps ==YES) {
-        [button1  setImage:[UIImage imageNamed:@"introduce.png"] forState:UIControlStateNormal];
-        [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
-        [button3  setImage:[UIImage imageNamed:@"mapsx.png"] forState:UIControlStateNormal];
-        [button4 setImage:[UIImage imageNamed:@"app.png"] forState:UIControlStateNormal];
-        databool = YES;
-        introd = YES;
-        maps = !maps;
-        app = YES;
+    AppDelegate *mydelage = [UIApplication sharedApplication].delegate;
+    if ([mydelage.language isEqualToString:@"china"]) {
+        if (maps ==YES) {
+            [button1  setImage:[UIImage imageNamed:@"introduce.png"] forState:UIControlStateNormal];
+            [button2  setImage:[UIImage imageNamed:@"data.png"] forState:UIControlStateNormal];
+            [button3  setImage:[UIImage imageNamed:@"mapsx.png"] forState:UIControlStateNormal];
+          
+            databool = YES;
+            introd = YES;
+            maps = !maps;
+            app = YES;
+        }
     }
- 
+   else
+   {
+       if (maps ==YES) {
+           [button1  setImage:[UIImage imageNamed:@"eintroduce.png"] forState:UIControlStateNormal];
+           [button2  setImage:[UIImage imageNamed:@"edata.png"] forState:UIControlStateNormal];
+           [button3  setImage:[UIImage imageNamed:@"emapsx.png"] forState:UIControlStateNormal];
+//           [button4 setImage:[UIImage imageNamed:@"eapp.png"] forState:UIControlStateNormal];
+           databool = YES;
+           introd = YES;
+           maps = !maps;
+           app = YES;
+       }
+
+   }
+      [button4 setImage:[UIImage imageNamed:@"app.png"] forState:UIControlStateNormal];
 }
 
 

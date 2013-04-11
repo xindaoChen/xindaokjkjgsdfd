@@ -476,9 +476,9 @@
     [self maketitle];
     if ([mydelegate.language isEqualToString:@"china"]) {
         [mydelegate.naviga2 setTitle:@"分类"];
-        [mydelegate.naviga3 setTitle:@"云聚"];
+        [mydelegate.naviga3 setTitle:@"北京科润创想信息技术有限公司"];
         mydelegate.classview.title = @"分类";
-        mydelegate.disview.title = @"云聚";
+        mydelegate.disview.title = @"关于";
     }
     else
     {
@@ -893,8 +893,7 @@
     if (na.tag == 100){
               
         if (resultSet.count !=0) {
-            [timer invalidate];
-            [timer2 invalidate];
+            
             
             listarray = resultSet;
 
@@ -908,7 +907,8 @@
                     [self setfirstimage];
                     isRefresh = NO;
                     Snumber = 0;
-
+                    [timer invalidate];
+                    [timer2 invalidate];
                     
                 }
             }else{
@@ -918,6 +918,8 @@
                     [subView removeFromSuperview];
                 }
                 [self setfirstimage];
+                [timer invalidate];
+                [timer2 invalidate];
             }
 
             

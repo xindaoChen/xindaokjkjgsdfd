@@ -27,7 +27,7 @@
     if (self) {
         AppDelegate*mydelegate = [UIApplication sharedApplication].delegate;
         if ([mydelegate.language isEqualToString:@"china"]) {
-             self.title = @"云聚";
+             self.title = @"北京科润创想信息技术有限公司";
         }
         else
         {
@@ -47,6 +47,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
     _urlHost = delegate.domainName;
 
@@ -121,7 +122,7 @@
         [button4 setTitle:@"去点评一下" forState:UIControlStateNormal];
         [button3 setTitle:@"常见机构投资者" forState:UIControlStateNormal];
         [button2 setTitle:@"合作单位" forState:UIControlStateNormal];
-        [button1 setTitle:@"科润创新" forState:UIControlStateNormal];
+        [button1 setTitle:@"北京科润创想信息技术有限公司" forState:UIControlStateNormal];
         [buttonFor2D setTitle:@"二维码" forState:UIControlStateNormal];
     }
     

@@ -476,7 +476,7 @@
     [self maketitle];
     if ([mydelegate.language isEqualToString:@"china"]) {
         [mydelegate.naviga2 setTitle:@"分类"];
-        [mydelegate.naviga3 setTitle:@"北京科润创想信息技术有限公司"];
+        [mydelegate.naviga3 setTitle:@"科润创想"];
         mydelegate.classview.title = @"分类";
         mydelegate.disview.title = @"关于";
     }

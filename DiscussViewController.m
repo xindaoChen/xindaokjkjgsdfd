@@ -27,7 +27,7 @@
     if (self) {
         AppDelegate*mydelegate = [UIApplication sharedApplication].delegate;
         if ([mydelegate.language isEqualToString:@"china"]) {
-             self.title = @"北京科润创想信息技术有限公司";
+             self.title = @"科润创想";
         }
         else
         {
@@ -114,7 +114,11 @@
         [button3 setTitle:@"Common investors" forState:UIControlStateNormal];
         [button2 setTitle:@"Co-operation" forState:UIControlStateNormal];
         [button1 setTitle:@"KerunInnovation" forState:UIControlStateNormal];
-        [buttonFor2D setTitle:@"2D bar code" forState:UIControlStateNormal];
+//        [buttonFor2D setTitle:@"2D bar code" forState:UIControlStateNormal];
+        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 200, 35)];
+        lable.text = @"2D bar code";
+        lable.backgroundColor = [UIColor clearColor];
+        [buttonFor2D addSubview:lable];
 
     }
     else
@@ -122,7 +126,7 @@
         [button4 setTitle:@"去点评一下" forState:UIControlStateNormal];
         [button3 setTitle:@"常见机构投资者" forState:UIControlStateNormal];
         [button2 setTitle:@"合作单位" forState:UIControlStateNormal];
-        [button1 setTitle:@"北京科润创想信息技术有限公司" forState:UIControlStateNormal];
+        [button1 setTitle:@"科润创想" forState:UIControlStateNormal];
         [buttonFor2D setTitle:@"二维码" forState:UIControlStateNormal];
     }
     
@@ -146,6 +150,12 @@
         buttonFor2D.frame = CGRectMake(10,342 - hight, 300, 37);
 
     }
+    
+    button1.titleLabel.textAlignment = UITextAlignmentLeft;
+    button2.titleLabel.textAlignment = UITextAlignmentLeft;
+    button3.titleLabel.textAlignment = UITextAlignmentLeft;
+    button4.titleLabel.textAlignment = UITextAlignmentLeft;
+    buttonFor2D.titleLabel.textAlignment = UITextAlignmentLeft;
     
     [self.view addSubview:button1];
     [self.view addSubview:button2];

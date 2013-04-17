@@ -181,7 +181,15 @@
    getDevelopZoneInfo = [[NSString alloc]initWithFormat: @"{\"type\":\"%@\",\"cityname\":\"%@\",\"levelid\":\"\",\"trade\":\"\",\"cid\":\"%@\"}",languageFlag,provinceName,cid];
    // NSLog(@"%@",getDevelopZoneInfo);
     if ([cid isEqualToString:@""]) {
-        getCityName = [NSString stringWithFormat:getCityName = @"{\"type\":\"%@\",\"prov\":\"%@\"}",languageFlag,provinceName] ;
+        if (flagForInit == 10000)
+        {   //判断上一个界面传的值是市名还是下标。若是市名，从英文数组中找到相应的英文。
+             getCityName = [NSString stringWithFormat:getCityName = @"{\"type\":\"%@\",\"prov\":\"%@\"}",languageFlag,tempprovinceName] ;
+            
+            }
+        else
+        {
+          getCityName = [NSString stringWithFormat:getCityName = @"{\"type\":\"%@\",\"prov\":\"%@\"}",languageFlag,provinceName] ;
+        }
         [self showCityName];
       
     }
@@ -1063,7 +1071,7 @@ else if([languageFlag isEqualToString:@"english"])
         
             cell2.textLabel.text = [allProvinceArray objectAtIndex:indexPath.row];
             cell2.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
-
+            [cell2.textLabel setBackgroundColor:[UIColor clearColor]];
          
         
         

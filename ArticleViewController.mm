@@ -319,11 +319,15 @@
     if ([[faflult objectForKey:idstring] isEqualToString:delegate.language]) {
            introducearrytwo = [self getthedatatwo];
         if (introducearrytwo.count != 0) {
+            sum = 1;
             firscrollView.contentSize = CGSizeMake(320*(introducearrytwo.count), 120);
             [self  introduceviewtwo];
+            
         }
+        
 
     }
+    
 }
 
 
@@ -408,9 +412,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
    
-    if([NetAccess reachable])
+    if([NetAccess reachable] && sum == 0 )
     {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
          AppDelegate *delega =[UIApplication sharedApplication].delegate;
         if (delega.language && idstring)
         {
@@ -430,7 +434,7 @@
 
         }
     }
-    else
+    else if(![NetAccess reachable])
     {
 //        introducearrytwo = [self getthedatatwo];
 //        if (introducearrytwo.count != 0) {
@@ -589,8 +593,8 @@
      [button4 setImage:[UIImage imageNamed:@"app.png"] forState:UIControlStateNormal];
     }
    
-    if (sum ==0)
-    {
+//    if (sum == 0 || sum == 1)
+//    {
         if([NetAccess reachable])
         {
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -627,8 +631,8 @@
 
         }
 
-    }
-    sum = 1;
+//    }
+//    sum = 1;
 }
 
 #pragma mark -- NetAccessDelegate

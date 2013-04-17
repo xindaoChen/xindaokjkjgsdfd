@@ -1196,7 +1196,7 @@ else if([languageFlag isEqualToString:@"english"])
             break;
         }
         case 2:
-        {
+        {    [_gNetAccess cancelAsynchronousRequest];
             if ([languageFlag isEqualToString:@"china"])
             {
                 //  [provinceView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];

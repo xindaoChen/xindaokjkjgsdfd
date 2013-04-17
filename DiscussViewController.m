@@ -108,26 +108,98 @@
     [buttonFor2D setTitleColor:[UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0] forState:UIControlStateNormal];
     
     
+    UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(15, 9, 250, 20)];
+    label4.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+    label4.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
+//    label4.text = @"Give me ratings";
+    label4.backgroundColor = [UIColor clearColor];
+    [button4 addSubview:label4];
+    
+    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(15, 9, 250, 20)];
+    label3.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+    label3.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
+//    label3.text = @"Common investors";
+    label3.backgroundColor = [UIColor clearColor];
+    [button3 addSubview:label3];
+    
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(15, 9, 250, 20)];
+    label2.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+    label2.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
+//    label2.text = @"Co-operation";
+    label2.backgroundColor = [UIColor clearColor];
+    [button2 addSubview:label2];
+    
+    
+    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(15, 9, 250, 20)];
+    label1.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+    label1.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
+//    label1.text = @"KerunInnovation";
+    label1.backgroundColor = [UIColor clearColor];
+    [button1 addSubview:label1];
+    
+
+    
+    UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(30, 9, 250, 20)];
+//    lable.text = @"2D bar code";
+    lable.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+    lable.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
+    lable.backgroundColor = [UIColor clearColor];
+    [buttonFor2D addSubview:lable];
+
+    
     AppDelegate *mydelefate = [UIApplication sharedApplication].delegate;
     if ([mydelefate.language isEqualToString:@"english"]) {
-        [button4 setTitle:@"Give me ratings" forState:UIControlStateNormal];
-        [button3 setTitle:@"Common investors" forState:UIControlStateNormal];
-        [button2 setTitle:@"Co-operation" forState:UIControlStateNormal];
-        [button1 setTitle:@"KerunInnovation" forState:UIControlStateNormal];
+        
+//        UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(30, 9, 250, 20)];
+//        label4.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+//        label4.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
+        label4.text = @"Give me ratings";
+//        label4.backgroundColor = [UIColor clearColor];
+//        [button4 addSubview:label4];
+//        
+//        UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(30, 9, 250, 20)];
+//        label3.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+//        label3.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
+        label3.text = @"Common investors";
+//        label3.backgroundColor = [UIColor clearColor];
+//        [button3 addSubview:label3];
+//        
+//        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(30, 9, 250, 20)];
+//        label2.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+//        label2.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
+        label2.text = @"Co-operation";
+//        label2.backgroundColor = [UIColor clearColor];
+//        [button2 addSubview:label2];
+//        
+//
+//        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(30, 9, 250, 20)];
+//        label1.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+//        label1.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
+        label1.text = @"KerunInnovation";
+//        label1.backgroundColor = [UIColor clearColor];
+//        [button1 addSubview:label1];
+//        
+        
+//        [button4 setTitle:@"Give me ratings" forState:UIControlStateNormal];
+//        [button3 setTitle:@"Common investors" forState:UIControlStateNormal];
+//        [button2 setTitle:@"Co-operation" forState:UIControlStateNormal];
+//        [button1 setTitle:@"KerunInnovation" forState:UIControlStateNormal];
 //        [buttonFor2D setTitle:@"2D bar code" forState:UIControlStateNormal];
-        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 200, 35)];
+//        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(30, 9, 250, 20)];
         lable.text = @"2D bar code";
-        lable.backgroundColor = [UIColor clearColor];
-        [buttonFor2D addSubview:lable];
+//        lable.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+//        lable.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
+//        lable.backgroundColor = [UIColor clearColor];
+//        [buttonFor2D addSubview:lable];
 
     }
     else
     {
-        [button4 setTitle:@"去点评一下" forState:UIControlStateNormal];
-        [button3 setTitle:@"常见机构投资者" forState:UIControlStateNormal];
-        [button2 setTitle:@"合作单位" forState:UIControlStateNormal];
-        [button1 setTitle:@"科润创想" forState:UIControlStateNormal];
-        [buttonFor2D setTitle:@"二维码" forState:UIControlStateNormal];
+        [label4 setText:@"去点评一下" ];
+        [label3 setText:@"常见机构投资者"];
+        [label2 setText:@"合作单位"];
+        [label1 setText:@"科润创想"];
+        [lable setText:@"二维码"];
     }
     
     float hight = 20;
@@ -176,7 +248,7 @@
     }
     else if (sender.tag == 200)
     {
-         url =[NSString stringWithFormat:@"%@%@",_urlHost,@"index.php/other/media"];
+         url =[NSString stringWithFormat:@"%@%@",_urlHost,@"index.php/other/cooperator"];
     }
     else if (sender.tag == 300)
     {

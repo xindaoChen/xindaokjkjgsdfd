@@ -67,6 +67,8 @@
 	
 	isRefresh = NO;
     
+    grayColor = [UIColor colorWithRed:32.0/255.0 green:32.0/255.0 blue:40.0/255.0 alpha:0.3];
+    
    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
     _urlHost = delegate.domainName;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title.png"]
@@ -651,15 +653,15 @@
                  
              });
          AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
-             UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 85, 200, 30)];
-             lable.backgroundColor = [UIColor clearColor];
+             UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i, 87, 320, 35)];
+             lable.backgroundColor = grayColor;
              lable.textColor = [UIColor whiteColor];
             if ([mydelega.language isEqualToString:@"english"]) {
              lable.numberOfLines = 2;
              lable.font = [UIFont systemFontOfSize:13];
              }
              
-             lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
+             lable.text =  [@"   " stringByAppendingFormat: @"%@", [[listarray objectAtIndex:i] objectForKey:@"developname"]];
              [firscrollView addSubview:lable];
 
          }
@@ -693,15 +695,15 @@
              });
              
              AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
-             UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 85, 200, 30)];
-             lable.backgroundColor = [UIColor clearColor];
+             UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i, 87, 320, 35)];
+             lable.backgroundColor = grayColor;
              lable.textColor = [UIColor whiteColor];
              if ([mydelega.language isEqualToString:@"english"]) {
                  lable.numberOfLines = 2;
                  lable.font = [UIFont systemFontOfSize:13];
              }
              
-             lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
+             lable.text =  [@"   " stringByAppendingFormat: @"%@", [[listarray objectAtIndex:i] objectForKey:@"developname"]];
              [firscrollView addSubview:lable];
          }
     }
@@ -754,15 +756,15 @@
         [buttongs setImage:resImage forState:UIControlStateNormal];
       
         AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
-        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i+10, 85, 200, 30)];
-        lable.backgroundColor = [UIColor clearColor];
+        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width*i, 87, 320, 35)];
+        lable.backgroundColor = grayColor;
         lable.textColor = [UIColor whiteColor];
         if ([mydelega.language isEqualToString:@"english"]) {
             lable.numberOfLines = 2;
             lable.font = [UIFont systemFontOfSize:13];
         }
         
-        lable.text = [[listarray objectAtIndex:i] objectForKey:@"developname"];
+        lable.text =  [@"   " stringByAppendingFormat: @"%@", [[listarray objectAtIndex:i] objectForKey:@"developname"]];
         [firscrollView addSubview:lable];    }
 
 }

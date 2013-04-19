@@ -511,7 +511,7 @@
     }
     else
     {
-        self.title = @"Homepage";
+        self.title = @"Home";
     }
 
 }

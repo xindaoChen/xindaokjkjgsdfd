@@ -186,7 +186,7 @@
 //        [button1 setTitle:@"KerunInnovation" forState:UIControlStateNormal];
 //        [buttonFor2D setTitle:@"2D bar code" forState:UIControlStateNormal];
 //        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(30, 9, 250, 20)];
-        lable.text = @"2D bar code";
+        lable.text = @"QR code";
 //        lable.font = [UIFont fontWithName:@"Helvetica" size:15.0];
 //        lable.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
 //        lable.backgroundColor = [UIColor clearColor];

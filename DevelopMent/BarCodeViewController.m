@@ -157,7 +157,7 @@
     }
    else
    {
-        label.text = @"Scanning can be downloaded";
+        label.text = @"Scan QR code download";
    }
     label.textColor = [UIColor blackColor];
     label.backgroundColor = [UIColor clearColor];

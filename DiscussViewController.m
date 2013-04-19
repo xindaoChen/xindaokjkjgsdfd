@@ -14,13 +14,15 @@
 #import "WepViewController.h"
 #import "XDHeader.h"
 #import "BarCodeViewController.h"
+#import "UITools.h"
+#import "Yunju.h"
 
 @interface DiscussViewController ()
 
 @end
 
 @implementation DiscussViewController
-
+@synthesize gNetAccess;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -239,6 +241,21 @@
 
 -(void)pushtowebview:(UIButton *)sender
 {
+    if ([NetAccess reachable]== NO) {
+        AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+        if ([delegate.language isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"Internet Contact" messageInfo:ErrorInternetEnglish];
+        }
+
+    }
+
+    
+    
     AppDelegate *medele = [UIApplication sharedApplication].delegate;
     NSString *url;
     if (sender.tag == 100) {
@@ -284,6 +301,7 @@
 
 - (void)pushto2D
 {
+    
     BarCodeViewController *barcode = [[BarCodeViewController alloc] init];
     
     [self.navigationController pushViewController:barcode animated:YES];
@@ -292,6 +310,20 @@
  
 -(void)pushtoreview
 {
+    
+    if ([NetAccess reachable]== NO) {
+        AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+        if ([delegate.language isEqualToString:@"china"])
+        {
+            [UITools showPopMessage:self titleInfo:@"网络提示" messageInfo:ErrorInternet];
+        }
+        else
+        {
+            [UITools showPopMessage:self titleInfo:@"Internet Contact" messageInfo:ErrorInternetEnglish];
+        }
+        
+    }
+    
     AppDelegate *mydelega = [UIApplication sharedApplication].delegate;
     if (mydelega.applink != nil && ![mydelega.applink isEqualToString:@""]) {
         NSURL *appurl = [NSURL URLWithString:[NSString stringWithFormat:@"%@",mydelega.applink]];

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetAccess.h"
 
 @interface DiscussViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
  
 }
 @property (nonatomic, strong) NSString *urlHost;
+@property (nonatomic, strong) NetAccess *gNetAccess;
 @end

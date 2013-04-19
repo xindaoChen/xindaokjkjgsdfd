@@ -60,7 +60,7 @@
     }
     else
     {
-      searchbar.placeholder =@"Please enter your search keyword";
+      searchbar.placeholder =@"Please input keyword";
         self.title = @"Search";
     }
     UIView *searview = [searchbar.subviews objectAtIndex:0];

@@ -77,12 +77,34 @@
     listarray = [[NSMutableArray alloc] init];
     self.tableView.backgroundView = nil;
     
+    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"di_wen.png"]];
-    NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-    NSString*pat=[pathss objectAtIndex:0];
-    NSString *filenames=[pat stringByAppendingPathComponent:@"Class.plist"];
-    listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
-     
+    
+//    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+    if ([delegate.language isEqualToString:@"china"])
+    {
+        NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString*pat=[pathss objectAtIndex:0];
+        NSString *filenames=[pat stringByAppendingPathComponent:@"ClassChina.plist"];
+        listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+
+    }
+    else
+    {
+        NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString*pat=[pathss objectAtIndex:0];
+        NSString *filenames=[pat stringByAppendingPathComponent:@"ClassEnglish.plist"];
+        listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+
+    }
+    
+
+//    
+//    NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+//    NSString*pat=[pathss objectAtIndex:0];
+//    NSString *filenames=[pat stringByAppendingPathComponent:@"Class.plist"];
+//    listarray=[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+    
     NetAccess *netAccess = [[NetAccess alloc]init];
     _gNetAccess = netAccess;
     
@@ -221,10 +243,30 @@
             listarray = resultSet;
             [self.tableView reloadData];
             
-            NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-            NSString*path=[paths objectAtIndex:0];
-            NSString *filename=[path stringByAppendingPathComponent:@"Class.plist"];
-            [listarray writeToFile:filename atomically:YES];
+            
+            AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+            if ([delegate.language isEqualToString:@"china"])
+            {
+                NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+                NSString*path=[paths objectAtIndex:0];
+                NSString *filename=[path stringByAppendingPathComponent:@"ClassChina.plist"];
+                [listarray writeToFile:filename atomically:YES];
+
+            }
+            else
+            {
+                NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+                NSString*path=[paths objectAtIndex:0];
+                NSString *filename=[path stringByAppendingPathComponent:@"ClassEnglish.plist"];
+                [listarray writeToFile:filename atomically:YES];
+
+            }
+
+            
+//            NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+//            NSString*path=[paths objectAtIndex:0];
+//            NSString *filename=[path stringByAppendingPathComponent:@"Class.plist"];
+//            [listarray writeToFile:filename atomically:YES];
         }
         
     }

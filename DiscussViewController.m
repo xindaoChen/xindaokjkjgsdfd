@@ -260,11 +260,22 @@
     }
     else if (sender.tag == 200)
     {
-       mywepview.title = @"合作单位";
+        AppDelegate *mydelefate = [UIApplication sharedApplication].delegate;
+        if ([mydelefate.language isEqualToString:@"english"]) {
+            mywepview.title = @"Co-operation";
+        }else{
+            mywepview.title = @"合作单位";
+        }
+
     }
     else if (sender.tag == 300)
     {
-        mywepview.title = @"常见机构投资者";
+        AppDelegate *mydelefate = [UIApplication sharedApplication].delegate;
+        if ([mydelefate.language isEqualToString:@"english"]) {
+            mywepview.title = @"Common investors";
+        }else{
+            mywepview.title = @"常见机构投资者";
+        }
     }
 
     [self.navigationController pushViewController:mywepview animated:YES];

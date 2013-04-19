@@ -243,7 +243,7 @@
     NSString *url;
     if (sender.tag == 100) {
          
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",medele.compsite]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:medele.compsite]];
         return;
     }
     else if (sender.tag == 200)

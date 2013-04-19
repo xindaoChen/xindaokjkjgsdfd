@@ -210,6 +210,14 @@
 
 - (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView {	
 	
+    NSString *languageString;
+    if (_isChinese) {
+        languageString = @"下拉刷新...";
+    }else{
+        languageString = @"Pull down to refresh...";
+    }
+    _statusLabel.text = languageString;
+    
 	if (_state == EGOOPullRefreshLoading) {
 		
 		CGFloat offset = MAX(scrollView.contentOffset.y * -1, 0);

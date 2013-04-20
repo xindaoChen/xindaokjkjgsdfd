@@ -852,22 +852,34 @@
     }
     else if (na.tag == 120)
     {
+        BOOL isupdate = NO;
         introducearray = resultSet;
         firscrollView.contentSize = CGSizeMake(320*(introducearray.count), 120);
         //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   [self  clearmessagetwo];});
         [introducearrytwo removeAllObjects];
-        NSLog(@"&&&&&&&&&&&&&&&&%@",[[self getthedatatwo]objectAtIndex:0]);
-        NSString *time = [[[self getthedatatwo]objectAtIndex:0]objectForKey:@"timestamp"];
-        if(![[[introducearray objectAtIndex:0]objectForKey:@"uptime"] isEqualToString:time])
+   //     NSLog(@"&&&&&&&&&&&&&&&&%@",[[self getthedatatwo]objectAtIndex:0]);
+        NSArray *time = [self getthedatatwo];
+        if (resultSet.count == time.count) {
+            for (int i = 0; i < time.count ; i++) {
+                isupdate = YES;
+            }
+
+        }else{
+            
+            isupdate = YES;
+        }
+        
+        
+        if(isupdate)
         {
-            NSLog(@"wahahahahhahhhhh*****************************************************");
+          //  NSLog(@"wahahahahhahhhhh*****************************************************");
             
             if (introducearray.count != 0) {
                 for (UIView *subView in firscrollView.subviews)
                 {
                     [subView removeFromSuperview];
                 }
-                NSLog(@"((((((((((((((((((((((((((((((((((((((((%@",introducearray);
+         //       NSLog(@"((((((((((((((((((((((((((((((((((((((((%@",introducearray);
                 [self clearmessagetwo];
                 [self introduceview];
             }

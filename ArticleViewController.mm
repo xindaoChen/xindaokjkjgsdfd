@@ -1194,7 +1194,6 @@
             [entry setTitle:[[introducearrytwo objectAtIndex:i]objectForKey:@"title"]];
             [entry setContent:[[introducearrytwo objectAtIndex:i] objectForKey:@"content"]];
             [ entry setData:[[introducearrytwo objectAtIndex:i] objectForKey:@"data"]];
-            
         }
 
     }

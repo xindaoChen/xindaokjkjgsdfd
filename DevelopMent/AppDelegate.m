@@ -59,10 +59,6 @@
     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
     language = [faflult objectForKey:@"lange"];
     
-    int lt = UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge;
-   [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationType) lt];
-    
-
     
     self.window.backgroundColor = [UIColor whiteColor];
     mapManager = [[BMKMapManager alloc] init];

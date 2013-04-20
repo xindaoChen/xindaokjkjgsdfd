@@ -16,5 +16,6 @@
 @dynamic did;
 @dynamic fid;
 @dynamic title;
+@dynamic timestamp;
 
 @end

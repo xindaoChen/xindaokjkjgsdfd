@@ -317,10 +317,10 @@
     NSUserDefaults *faflult = [NSUserDefaults standardUserDefaults];
  
     if ([[faflult objectForKey:idstring] isEqualToString:delegate.language]) {
-           introducearrytwo = [self getthedatatwo];
-        if (introducearrytwo.count != 0) {
-            sum = 1;
-            firscrollView.contentSize = CGSizeMake(320*(introducearrytwo.count), 120);
+           introducearrytwo = [self getthedatatwo];                                //从简介的缓存中读取简介
+        if (introducearrytwo.count != 0) {              //判断缓存中有没有数据
+            sum = 1;                         //sum 是一个flag，有内容的时候就不再在viewWillappear中发送请求
+            firscrollView.contentSize = CGSizeMake(320*(introducearrytwo.count), 120); 
             [self  introduceviewtwo];
             
             AppDelegate *delega =[UIApplication sharedApplication].delegate;
@@ -336,8 +336,8 @@
                 [allstring appendString:string2];
                 [allstring appendString:string3];
                 [allstring appendString:string4];
-                _gNetAccess.delegate = self;
-                _gNetAccess.tag = 120;
+                _gNetAccess.delegate = self;    
+                _gNetAccess.tag = 120;            //发送一个网络请求，看数据有没有更新
                 [_gNetAccess theIntroducemessage:allstring];
                 
             }
@@ -676,7 +676,7 @@
 
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
+  //  NSLog(@"%s", __PRETTY_FUNCTION__);
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if (na.tag ==100)
     {
@@ -852,27 +852,31 @@
     }
     else if (na.tag == 120)
     {
-        BOOL isupdate = NO;
-        introducearray = resultSet;
+        BOOL isupdate = NO;   //标记
+        introducearray = resultSet;     
         firscrollView.contentSize = CGSizeMake(320*(introducearray.count), 120);
-        //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   [self  clearmessagetwo];});
-        [introducearrytwo removeAllObjects];
-   //     NSLog(@"&&&&&&&&&&&&&&&&%@",[[self getthedatatwo]objectAtIndex:0]);
+    
+        [introducearrytwo removeAllObjects];    
+  
         NSArray *time = [self getthedatatwo];
         if (resultSet.count == time.count) {
             for (int i = 0; i < time.count ; i++) {
-                isupdate = YES;
+               
+                if (![[[resultSet objectAtIndex:i]objectForKey:@"uptime"] isEqualToString:[[time objectAtIndex:i]objectForKey:@"timestamp"]]) {    //若时间戳有不同，改变isupdate的状态
+                    isupdate = YES;
+                }
+              
             }
 
-        }else{
-            
+        }else{   //若数据个数不同，改变isupdate 的状态
+                
             isupdate = YES;
         }
         
         
         if(isupdate)
         {
-          //  NSLog(@"wahahahahhahhhhh*****************************************************");
+        
             
             if (introducearray.count != 0) {
                 for (UIView *subView in firscrollView.subviews)
@@ -880,8 +884,10 @@
                     [subView removeFromSuperview];
                 }
          //       NSLog(@"((((((((((((((((((((((((((((((((((((((((%@",introducearray);
-                [self clearmessagetwo];
+               [self clearmessagetwo];       
+                [self savedatamessagetwo];
                 [self introduceview];
+                isupdate = NO;
             }
 
             
@@ -1265,7 +1271,7 @@
             [entry setContent:[[introducearrytwo objectAtIndex:i] objectForKey:@"content"]];
             [ entry setData:[[introducearrytwo objectAtIndex:i] objectForKey:@"data"]];
             [entry setTimestamp:[[introducearrytwo objectAtIndex:i]objectForKey:@"uptime"]];
-            NSLog(@"*******************************************************************************************************%@",[[introducearrytwo objectAtIndex:i]objectForKey:@"uptime"]);
+            
         }
 
     }

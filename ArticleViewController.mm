@@ -323,7 +323,29 @@
             firscrollView.contentSize = CGSizeMake(320*(introducearrytwo.count), 120);
             [self  introduceviewtwo];
             
+            AppDelegate *delega =[UIApplication sharedApplication].delegate;
+            if (delega.language && idstring)
+            {
+                
+                NSString *string1 = @"{\"type\":\"";
+                NSString *string2 = [NSString stringWithFormat:@"%@\",",delega.language];
+                NSString *string3 =@"\"did\":\"";
+                NSString *string4 =[NSString stringWithFormat:@"%@\"}",idstring];
+                NSMutableString *allstring = [[NSMutableString alloc] init];
+                [allstring appendString:string1];
+                [allstring appendString:string2];
+                [allstring appendString:string3];
+                [allstring appendString:string4];
+                _gNetAccess.delegate = self;
+                _gNetAccess.tag = 120;
+                [_gNetAccess theIntroducemessage:allstring];
+                
+            }
+
+            
         }
+        
+        
         
 
     }
@@ -692,7 +714,7 @@
             {
                 [subView removeFromSuperview];
             }
-
+       //     NSLog(@"((((((((((((((((((((((((((((((((((((((((%@",introducearray);
              [self introduceview];
         }
         else
@@ -828,6 +850,42 @@
  
         
     }
+    else if (na.tag == 120)
+    {
+        introducearray = resultSet;
+        firscrollView.contentSize = CGSizeMake(320*(introducearray.count), 120);
+        //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{   [self  clearmessagetwo];});
+        [introducearrytwo removeAllObjects];
+        NSLog(@"&&&&&&&&&&&&&&&&%@",[[self getthedatatwo]objectAtIndex:0]);
+        NSString *time = [[[self getthedatatwo]objectAtIndex:0]objectForKey:@"timestamp"];
+        if(![[[introducearray objectAtIndex:0]objectForKey:@"uptime"] isEqualToString:time])
+        {
+            NSLog(@"wahahahahhahhhhh*****************************************************");
+            
+            if (introducearray.count != 0) {
+                for (UIView *subView in firscrollView.subviews)
+                {
+                    [subView removeFromSuperview];
+                }
+                NSLog(@"((((((((((((((((((((((((((((((((((((((((%@",introducearray);
+                [self clearmessagetwo];
+                [self introduceview];
+            }
+
+            
+        }
+        
+//        if (introducearray.count != 0) {
+//            for (UIView *subView in firscrollView.subviews)
+//            {
+//                [subView removeFromSuperview];
+//            }
+//            NSLog(@"((((((((((((((((((((((((((((((((((((((((%@",introducearray);
+//            [self introduceview];
+//        }
+
+    }
+
 }
 
 -(void)introduceview
@@ -882,7 +940,7 @@
 //                 });
              }
 //         });
-         NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:[NSString stringWithFormat:@"%@",[[introducearray objectAtIndex:i] objectForKey:@"content"]],@"content",data,@"data", idstring,@"did",[NSString stringWithFormat:@"%d",i] ,@"fid",[[introducearray objectAtIndex:i] objectForKey:@"title"],@"title",nil];
+         NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:[NSString stringWithFormat:@"%@",[[introducearray objectAtIndex:i] objectForKey:@"content"]],@"content",data,@"data", idstring,@"did",[NSString stringWithFormat:@"%d",i] ,@"fid",[[introducearray objectAtIndex:i] objectForKey:@"title"],@"title",[[introducearray objectAtIndex:i] objectForKey:@"uptime"],@"uptime",nil];
          
       [introducearrytwo addObject:diction];
 
@@ -1194,6 +1252,8 @@
             [entry setTitle:[[introducearrytwo objectAtIndex:i]objectForKey:@"title"]];
             [entry setContent:[[introducearrytwo objectAtIndex:i] objectForKey:@"content"]];
             [ entry setData:[[introducearrytwo objectAtIndex:i] objectForKey:@"data"]];
+            [entry setTimestamp:[[introducearrytwo objectAtIndex:i]objectForKey:@"uptime"]];
+            NSLog(@"*******************************************************************************************************%@",[[introducearrytwo objectAtIndex:i]objectForKey:@"uptime"]);
         }
 
     }
@@ -1256,11 +1316,12 @@
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (Introduce *entry in results) {
         NSDictionary *glossary =
-        [NSDictionary dictionaryWithObjectsAndKeys:entry.fid,@"fid",entry.content,@"content",entry.did,@"did",entry.data,@"data",entry.title,@"title",nil];
+        [NSDictionary dictionaryWithObjectsAndKeys:entry.fid,@"fid",entry.content,@"content",entry.did,@"did",entry.data,@"data",entry.title,@"title",entry.timestamp,@"timestamp",nil];
         
         [array addObject:glossary];
         
     }
+  //  NSLog(@"%@",array);
     return array;
 }
 

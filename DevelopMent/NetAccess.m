@@ -245,6 +245,8 @@
     [request setTimeOutSeconds:kTimeOutseconds];
     [request startAsynchronous];
     _gRequest = request;
+    NSLog(@"url:%@", url );
+
 }
 
 - (void)cancelAsynchronousRequest
@@ -254,7 +256,6 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    NSLog(@"ASIFinish request:%@",request.responseString );
 
     NSLog(@"ASIFinish request:%@",[[request.responseString JSONValue] JSONString]);
     [_delegate netAccess:self RequestFinished:[request.responseString JSONValue]];

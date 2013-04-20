@@ -24,6 +24,8 @@
 #import "XDTabBarViewController.h"
 #import "Yunju.h"
 #import "ASIFormDataRequest.h"
+#import "JSONKit.h"
+
 @interface FirstViewController ()
 
 @end
@@ -363,6 +365,7 @@
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
  
+    NSLog(@"gitnewversion request:%@",[[request.responseString JSONValue] JSONString]);
     AppDelegate *mydele = [UIApplication sharedApplication].delegate;
     NSString *string = [[request.responseString JSONValue] objectForKey:@"version"];
     mydele.compsite = [[request.responseString JSONValue] objectForKey:@"site"];

@@ -55,7 +55,7 @@
     searchbar.delegate = self;
     [searchbar becomeFirstResponder];
     if ([mydelegate.language isEqualToString:@"china"]) {
-        searchbar.placeholder = @"请输入您要搜索的开发区名字";
+        searchbar.placeholder = @"请输入您要搜索的关键字";
         self.title = @"搜索";
     }
     else

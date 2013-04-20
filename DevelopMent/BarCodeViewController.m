@@ -153,7 +153,7 @@
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 220, 240, 20)];
     if ([delegate.language isEqualToString:@"china"]) {
-         label.text = @"扫描即可下载";
+         label.text = @"扫描二维码下载";
     }
    else
    {

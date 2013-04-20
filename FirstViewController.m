@@ -66,7 +66,7 @@
 	}
 	
 	isRefresh = NO;
-    
+    isUpdate = NO;
     grayColor = [UIColor colorWithRed:32.0/255.0 green:32.0/255.0 blue:40.0/255.0 alpha:0.3];
     
    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
@@ -890,17 +890,51 @@
 
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
 {
+    AppDelegate*mydelegate = [UIApplication sharedApplication].delegate;
     NSLog(@"%s", __PRETTY_FUNCTION__);
      
     if (na.tag == 100){
-              
+        NSMutableArray *dataFromPlist = [[NSMutableArray alloc]init];
         if (resultSet.count !=0) {
             
+            NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+            NSString*pat=[pathss objectAtIndex:0];
+            
+            if ([ mydelegate.language isEqualToString:@"china"]) {
+                NSString *filenames=[pat stringByAppendingPathComponent:@"Picture.plist"];
+                dataFromPlist =[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+                
+            }
+            else
+            {
+                NSString *filenames=[pat stringByAppendingPathComponent:@"PictureCopy.plist"];
+                dataFromPlist =[[NSMutableArray alloc]initWithContentsOfFile:filenames];
+                
+            }
+                    
+            
+            if (dataFromPlist.count == resultSet.count)
+            {
+                for (int i = 0; i < dataFromPlist.count; i ++)
+                {
+                    if (![[[dataFromPlist objectAtIndex:i]objectForKey:@"uptime"] isEqualToString:[[resultSet objectAtIndex:i]objectForKey:@"uptime"]])
+                    {
+                        isUpdate = YES;
+                    }
+                }
+            }
+            else
+            {
+                isUpdate = YES;
+            }
             
             listarray = resultSet;
-
-            if (isRefresh) {
-                if (listarray.count > maplistarray.count) {
+            NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^%@",listarray);
+        if (isUpdate) {
+                
+            
+//            if (isRefresh) {
+//                if (listarray.count > maplistarray.count) {
                     firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
                     for (UIView *subView in firscrollView.subviews)
                     {
@@ -911,20 +945,20 @@
                     Snumber = 0;
                     [timer invalidate];
                     [timer2 invalidate];
-                    
-                }
-            }else{
-                firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
-                for (UIView *subView in firscrollView.subviews)
-                {
-                    [subView removeFromSuperview];
-                }
-                [self setfirstimage];
-                [timer invalidate];
-                [timer2 invalidate];
-            }
+                
+//                }
+//            }else{
+//                firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
+//                for (UIView *subView in firscrollView.subviews)
+//                {
+//                    [subView removeFromSuperview];
+//                }
+//                [self setfirstimage];
+//                [timer invalidate];
+//                [timer2 invalidate];
+//            }
 
-            
+        }//end if(isUpdate)/.?/;';';-k,][p=
             pageController.numberOfPages=listarray.count;
             
         }

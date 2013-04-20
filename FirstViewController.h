@@ -49,6 +49,7 @@
     
     NSMutableArray *buttonarray;
     BOOL isRefresh;
+    BOOL isUpdate;
     
 	EGORefreshTableHeaderView *_refreshHeaderView;
 	

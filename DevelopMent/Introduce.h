@@ -17,6 +17,6 @@
 @property (nonatomic, retain) NSString * did;
 @property (nonatomic, retain) NSString * fid;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, assign) double timestamp;
+@property (nonatomic, assign) NSString *timestamp;
 
 @end

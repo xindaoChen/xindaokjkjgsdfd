@@ -412,7 +412,11 @@
 -(void)EngorChaing:(UIButton *)sender
 {
     AppDelegate*mydelegate = [UIApplication sharedApplication].delegate;
-     
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessage) userInfo:nil repeats:YES];
+    timer2 = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessagetwo) userInfo:nil repeats:YES];
+    [timer2 setFireDate:[NSDate distantFuture]];
+    
     if (sender.tag == 100) {
         mydelegate.language = @"english";
              searchbar.placeholder = @"Search";
@@ -471,7 +475,8 @@
         {
             [UITools showPopMessage:self titleInfo:@"Internet Contact" messageInfo:ErrorInternetEnglish];
         }
-
+        
+  
         
     }
     
@@ -889,6 +894,12 @@
 - (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+//    if(maplistarray.count > 2){
+//        timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessage) userInfo:nil repeats:YES];
+//        timer2 = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessagetwo) userInfo:nil repeats:YES];
+//        [timer2 setFireDate:[NSDate distantFuture]];
+//    }
+
 }
 
 -(void)netAccess:(NetAccess *)na RequestFinished:(NSMutableArray *)resultSet
@@ -932,6 +943,8 @@
             }
             
             listarray = resultSet;
+            [timer invalidate];
+            [timer2 invalidate];
             NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^%@",listarray);
         if (isUpdate) {
                 
@@ -946,8 +959,7 @@
                     [self setfirstimage];
                     isRefresh = NO;
                     Snumber = 0;
-                    [timer invalidate];
-                    [timer2 invalidate];
+                    
                 
 //                }
 //            }else{

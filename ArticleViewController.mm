@@ -985,17 +985,10 @@
      }
     else
     {
-        if ([[faflult objectForKey:idstring] isEqualToString: mydele.language]) {
-           
-        }
-        else
-        {
-            [self clearmessagetwo];
-            [self savedatamessagetwo];
-            [faflult setObject:mydele.language forKey:idstring];
-        }
-    }
-       
+        [self clearmessagetwo];
+        [self savedatamessagetwo];
+        [faflult setObject:mydele.language forKey:idstring];    }
+    
  
 }
 

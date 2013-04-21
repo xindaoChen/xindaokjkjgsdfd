@@ -413,10 +413,7 @@
 {
     AppDelegate*mydelegate = [UIApplication sharedApplication].delegate;
     
-    timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessage) userInfo:nil repeats:YES];
-    timer2 = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessagetwo) userInfo:nil repeats:YES];
-    [timer2 setFireDate:[NSDate distantFuture]];
-    
+  
     if (sender.tag == 100) {
         mydelegate.language = @"english";
              searchbar.placeholder = @"Search";
@@ -649,7 +646,7 @@
                  UIImage *image = [UIImage imageWithData:data];
                  UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
                  if (data !=nil){
-                     NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:data,@"data", [[listarray objectAtIndex:i] objectForKey:@"developname"],@"developname",[[listarray objectAtIndex:i] objectForKey:@"id"],@"id",[[listarray objectAtIndex:i] objectForKey:@"latitude"],@"latitude",[[listarray objectAtIndex:i] objectForKey:@"longitude"],@"longitude",nil];
+                     NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:data,@"data", [[listarray objectAtIndex:i] objectForKey:@"developname"],@"developname",[[listarray objectAtIndex:i] objectForKey:@"id"],@"id",[[listarray objectAtIndex:i] objectForKey:@"latitude"],@"latitude",[[listarray objectAtIndex:i] objectForKey:@"longitude"],@"longitude",[[listarray objectAtIndex:i] objectForKey:@"uptime"],@"uptime",nil];
                      [maplistarray addObject:diction];
                  }
                  
@@ -690,7 +687,7 @@
                  UIImage *image = [UIImage imageWithData:data];
                  UIImage *resImage = [UITools reSizeImage:image toSize:CGSizeMake(640, 238)];
                  if (data !=nil){
-                     NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:data,@"data", [[listarray objectAtIndex:i] objectForKey:@"developname"],@"developname",[[listarray objectAtIndex:i] objectForKey:@"id"],@"id",[[listarray objectAtIndex:i] objectForKey:@"latitude"],@"latitude",[[listarray objectAtIndex:i] objectForKey:@"longitude"],@"longitude",nil];
+                     NSDictionary *diction = [[NSDictionary alloc] initWithObjectsAndKeys:data,@"data", [[listarray objectAtIndex:i] objectForKey:@"developname"],@"developname",[[listarray objectAtIndex:i] objectForKey:@"id"],@"id",[[listarray objectAtIndex:i] objectForKey:@"latitude"],@"latitude",[[listarray objectAtIndex:i] objectForKey:@"longitude"],@"longitude",[[listarray objectAtIndex:i] objectForKey:@"uptime"],@"uptime",nil];
                      [maplistarray addObject:diction];
                  }
                  
@@ -894,11 +891,6 @@
 - (void)netAccess:(NetAccess *)netAccess RequestFailed:(NSMutableArray *)resultSet
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-//    if(maplistarray.count > 2){
-//        timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessage) userInfo:nil repeats:YES];
-//        timer2 = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessagetwo) userInfo:nil repeats:YES];
-//        [timer2 setFireDate:[NSDate distantFuture]];
-//    }
 
 }
 
@@ -925,16 +917,25 @@
                 dataFromPlist =[[NSMutableArray alloc]initWithContentsOfFile:filenames];
                 
             }
-                    
             
+            
+            int tempCount = 0;
             if (dataFromPlist.count == resultSet.count)
             {
-                for (int i = 0; i < dataFromPlist.count; i ++)
-                {
-                    if (![[[dataFromPlist objectAtIndex:i]objectForKey:@"uptime"] isEqualToString:[[resultSet objectAtIndex:i]objectForKey:@"uptime"]])
-                    {
-                        isUpdate = YES;
+    
+                for (int i = 0;  i < dataFromPlist.count; i++) {
+                    for (int j = 0; j < dataFromPlist.count; j++) {
+                        if ([[[resultSet objectAtIndex:i] objectForKey:@"id"] isEqualToString:[[dataFromPlist objectAtIndex:j]objectForKey:@"id"]]) {
+                            tempCount++;
+                            
+                        }
                     }
+                }
+            
+                if (tempCount == dataFromPlist.count) {
+                    isUpdate = NO;
+                }else{
+                    isUpdate = YES;
                 }
             }
             else
@@ -943,34 +944,34 @@
             }
             
             listarray = resultSet;
-            [timer invalidate];
-            [timer2 invalidate];
+            
             NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^%@",listarray);
         if (isUpdate) {
-                
-            
+            isUpdate = NO;
+
+            listarray = resultSet;
 //            if (isRefresh) {
 //                if (listarray.count > maplistarray.count) {
-                    firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
-                    for (UIView *subView in firscrollView.subviews)
-                    {
-                        [subView removeFromSuperview];
-                    }
-                    [self setfirstimage];
-                    isRefresh = NO;
-                    Snumber = 0;
-                    
-                
+//                    firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
+//                    for (UIView *subView in firscrollView.subviews)
+//                    {
+//                        [subView removeFromSuperview];
+//                    }
+//                    [self setfirstimage];
+//                    isRefresh = NO;
+//                    Snumber = 0;
+//                    [timer invalidate];
+//                    [timer2 invalidate];
 //                }
 //            }else{
-//                firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
-//                for (UIView *subView in firscrollView.subviews)
-//                {
-//                    [subView removeFromSuperview];
-//                }
-//                [self setfirstimage];
-//                [timer invalidate];
-//                [timer2 invalidate];
+                firscrollView.contentSize = CGSizeMake(320*listarray.count, 120);
+                for (UIView *subView in firscrollView.subviews)
+                {
+                    [subView removeFromSuperview];
+                }
+                [self setfirstimage];
+                [timer invalidate];
+                [timer2 invalidate];
 //            }
 
         }//end if(isUpdate)/.?/;';';-k,][p=

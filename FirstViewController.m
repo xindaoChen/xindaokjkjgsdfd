@@ -347,7 +347,13 @@
 
 -(void)yincang:(UIButton *)button
 {
-    ArticleViewController *artiview = [[ArticleViewController alloc] initWithurl:[listarray objectAtIndex:button.tag]];
+    NSDictionary *developDictionary = [[NSDictionary alloc]init];
+    for (NSDictionary *Dic in listarray) {
+        if ([[Dic objectForKey:@"id"] integerValue] == button.tag) {
+            developDictionary = Dic;
+        }
+    }
+    ArticleViewController *artiview = [[ArticleViewController alloc] initWithurl:developDictionary];
     [self.navigationController pushViewController:artiview animated:YES];
 //    [[AppDelegate sharedDelegate].xdTabbar setHideCustomButton:YES];
 
@@ -628,7 +634,7 @@
          if (buttonarray.count ==0 || buttonarray.count !=listarray.count)
          {
              UIButton*buttongs = [UIButton buttonWithType:UIButtonTypeCustom];
-             buttongs.tag = i;
+             buttongs.tag =[[[listarray objectAtIndex:i]objectForKey:@"id"]integerValue];
              [buttongs addTarget:self action:@selector(yincang:) forControlEvents:UIControlEventTouchUpInside];
              buttongs.frame = CGRectMake(frame.size.width*i , 0, 320, 120);
              [buttongs setImage:[UIImage imageNamed:@"instead_fir"] forState:UIControlStateNormal];
@@ -749,7 +755,7 @@
     {
         
         UIButton*buttongs = [UIButton buttonWithType:UIButtonTypeCustom];
-        buttongs.tag = i;
+        buttongs.tag = [[[listarray objectAtIndex:i]objectForKey:@"id"]integerValue];
         [buttongs addTarget:self action:@selector(yincang:) forControlEvents:UIControlEventTouchUpInside];
         buttongs.frame = CGRectMake(frame.size.width*i , 0, 320, 120);
 //        [buttongs setImage:[UIImage imageNamed:@"instead_fir"] forState:UIControlStateNormal];

@@ -50,7 +50,7 @@
     NSMutableArray *buttonarray;
     BOOL isRefresh;
     BOOL isUpdate;
-    
+    int time_flag;
 	EGORefreshTableHeaderView *_refreshHeaderView;
 	
 	//  Reloading var should really be your tableviews datasource

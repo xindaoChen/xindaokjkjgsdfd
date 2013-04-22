@@ -57,7 +57,7 @@
     [super viewDidLoad];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tag = TAG_TABLEVIEW;
-    
+    time_flag = 0;
     if (_refreshHeaderView == nil) {
 		
 		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
@@ -903,6 +903,14 @@
         NSMutableArray *dataFromPlist = [[NSMutableArray alloc]init];
         if (resultSet.count !=0) {
             
+            if (time_flag == 0) {
+                time_flag++;
+                timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessage) userInfo:nil repeats:YES];
+                timer2 = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(tablemessagetwo) userInfo:nil repeats:YES];
+                [timer2 setFireDate:[NSDate distantFuture]];
+            }
+            
+            
             NSArray*pathss=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
             NSString*pat=[pathss objectAtIndex:0];
             
@@ -969,19 +977,14 @@
                 {
                     [subView removeFromSuperview];
                 }
-                [self setfirstimage];
                 [timer invalidate];
                 [timer2 invalidate];
+                [self setfirstimage];
+                
 //            }
 
         }//end if(isUpdate)/.?/;';';-k,][p=
             pageController.numberOfPages=listarray.count;
-            
-        }
-        else
-        {
-//            [UITools showPopMessage:self titleInfo:@"提示" messageInfo:WithoutData];
-             
             
         }
         

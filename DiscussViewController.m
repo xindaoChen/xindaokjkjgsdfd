@@ -177,7 +177,7 @@
 //        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(30, 9, 250, 20)];
 //        label1.font = [UIFont fontWithName:@"Helvetica" size:15.0];
 //        label1.textColor = [UIColor colorWithRed:0.0/255.0  green:157.0 /255.0  blue:244.0/255.0 alpha:1.0];
-        label1.text = @"KerunInnovation";
+        label1.text = @"Kerun Innovation";
 //        label1.backgroundColor = [UIColor clearColor];
 //        [button1 addSubview:label1];
 //        

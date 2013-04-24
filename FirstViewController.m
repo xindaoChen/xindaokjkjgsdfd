@@ -678,7 +678,8 @@
          }
          else
          {
-             
+             UIButton *button = [buttonarray objectAtIndex:i];
+             button.tag = [[[listarray objectAtIndex:i]objectForKey:@"id"] integerValue];
              [firscrollView addSubview:[buttonarray objectAtIndex:i]];
              
              [idaray  addObject:[[listarray objectAtIndex:i] objectForKey:@"id"]];

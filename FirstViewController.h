@@ -57,6 +57,7 @@
 	//  Putting it here for demo purposes
 	BOOL _reloading;
     UIColor *grayColor;
+    
 }
 
 @property(nonatomic,strong)UIScrollView *firscrollView;

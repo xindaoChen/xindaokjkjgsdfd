@@ -160,6 +160,8 @@
     [loadbutton setBackgroundImage:[UIImage imageNamed:@"load.png"] forState:UIControlStateNormal];
     [loadbutton addTarget:self action:@selector(pushtoapp) forControlEvents:UIControlEventTouchUpInside];
     loadbutton.frame = CGRectMake(100, 130, 120, 40);
+    loadbutton.userInteractionEnabled = NO;
+    
     [viewapp addSubview:loadbutton];
     loadlabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 80, 40)];
     loadlabel.backgroundColor = [UIColor clearColor];
@@ -411,8 +413,10 @@
 
 -(void)pushtoapp
 {
-    
-   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/moxtra-jing-cai.-fen-cheng/id590571587?mt=8"]];
+    //"itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id391945719?mt=8"
+    if (apparray != nil && apparray.count > 0) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[apparray objectAtIndex:0] objectForKey:@"link"]]];
+    }    
 }
 
 

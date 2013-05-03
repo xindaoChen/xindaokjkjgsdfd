@@ -118,7 +118,7 @@
     //	self.title = @"搜索";
     allProvinceArrayChina = [[NSMutableArray alloc] initWithObjects:@"全国",@"北京市",@"天津市",@"上海市",@"重庆市",@"河北省", @"山西省",@"辽宁省",@"吉林省",@"黑龙江省",@"江苏省",@"浙江省",@"安徽省",@"山东省",@"广东省",@"江西省",@"内蒙古",@"广西",@"西藏",@"宁夏",@"新疆",@"河南省",@"海南省",@"湖南省",@"福建省",@"贵州省",@"云南省",@"湖北省",@"甘肃省",@"四川省",@"青海省",@"陕西省",@"台湾省",@"香港",@"澳门",nil];
     
-    allProvinceArrayEnglish = [[NSMutableArray alloc]initWithObjects:@"china",@"Beijing",@"Tianjin",@"Shanghai",@"Chongqing",@"Hebei",@"Shanxi",@"Liaoning",@"Jilin",@"Heilongjiang",@"Jiangsu",@"Zhejiang",@"Anhui",@"Shandong",@"Guangdong",@"Jiangxi",@"Neimenggu",@"Guangxi",@"Xizang",@"Ningxia",@"Xinjiang",@"Henan",@"Hainan",@"Hunan",@"Fujian",@"Guizhou",@"Yunnan",@"Hubei",@"Gansu",@"Sichuan",@"Qinghai",@"Shanxi",@"Taiwan",@"Hong Kong",@"Macau", nil];
+    allProvinceArrayEnglish = [[NSMutableArray alloc]initWithObjects:@"china",@"Beijing",@"Tianjin",@"Shanghai",@"Chongqing",@"Hebei",@"Shanxi",@"Liaoning",@"Jilin",@"Heilongjiang",@"Jiangsu",@"Zhejiang",@"Anhui",@"Shandong",@"Guangdong",@"Jiangxi",@"Neimenggu",@"Guangxi",@"Xizang",@"Ningxia",@"Xinjiang",@"Henan",@"Hainan",@"Hunan",@"Fujian",@"Guizhou",@"Yunnan",@"Hubei",@"Gansu",@"Sichuan",@"Qinghai",@"Shaanxi",@"Taiwan",@"Hong Kong",@"Macau", nil];
     
     AppDelegate*mydelegate = [UIApplication sharedApplication].delegate;
     if ([mydelegate.language isEqualToString: @"english"]) {
@@ -1206,8 +1206,8 @@ else if([languageFlag isEqualToString:@"english"])
                     provinceLabel.text = provinceName;
                     tempprovinceName = provinceName;
                     getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"cid\":\"%@\"}",provinceName,cid];
-                    levelLabel.text = @"全部";
-                    industryLabel.text = @"全部";
+                    levelLabel.text = @"级别";
+                    industryLabel.text = @"行业";
                     [listarray3 removeAllObjects];
                     inid= @"";
                     leid = @"";
@@ -1253,8 +1253,8 @@ else if([languageFlag isEqualToString:@"english"])
                     
                     
                     NSLog(@"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%@",getDevelopZoneInfo);
-                    levelLabel.text = @"All";
-                    industryLabel.text = @"All";
+                    levelLabel.text = @"Level";
+                    industryLabel.text = @"Industry";
                     [listarray3 removeAllObjects];
                     inid= @"";
                     leid = @"";
@@ -1357,8 +1357,8 @@ else if([languageFlag isEqualToString:@"english"])
                 //   provinceLabel.text = provinceName;
                 
                 getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"china\",\"cityname\":\"%@\",\"cid\":\"%@\"}",provinceName,cid];
-                levelLabel.text = @"全部";
-                industryLabel.text = @"全部";
+                levelLabel.text = @"级别";
+                industryLabel.text = @"行业";
                 inid= @"";
                 leid = @"";
                 
@@ -1414,8 +1414,8 @@ else if([languageFlag isEqualToString:@"english"])
                 //   provinceLabel.text = provinceName;
                 
                 getDevelopZoneInfo = [NSString stringWithFormat: @"{\"type\":\"english\",\"cityname\":\"%@\",\"cid\":\"%@\"}",provinceName,cid];
-                levelLabel.text = @"All";
-                industryLabel.text = @"All";
+                levelLabel.text = @"Level";
+                industryLabel.text = @"Industry";
                 inid= @"";
                 leid = @"";
                 

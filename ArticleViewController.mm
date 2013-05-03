@@ -928,7 +928,7 @@
          if (fram.size.height>500) {
                 imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
                 textview.frame = CGRectMake(frame.size.width*i +10, 190, 300, 262);
-               label.frame = CGRectMake( frame.size.width*i +10, 160, 300, 30);
+               label.frame = CGRectMake( frame.size.width*i +10, 160, 230, 30);
              numlabel.frame = CGRectMake(frame.size.width*i+250 , 160, 60, 30);
          }
        else
@@ -1015,7 +1015,7 @@
          if (fram.size.height>500) {
              imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
              textview.frame = CGRectMake(frame.size.width*i +10, 190, 300, 262);
-             label.frame = CGRectMake( frame.size.width*i +10, 160, 300, 30);
+             label.frame = CGRectMake( frame.size.width*i +10, 160, 230, 30);
              numlabel.frame = CGRectMake(frame.size.width*i+250 , 160, 60, 30);
 
          }
@@ -1023,7 +1023,7 @@
          {
              imageview.frame = CGRectMake(frame.size.width*i, 0, 320, 150);
              textview.frame = CGRectMake(frame.size.width*i +10, 185, 300, 185);
-             label.frame = CGRectMake( frame.size.width*i +10, 155, 300, 30);
+             label.frame = CGRectMake( frame.size.width*i +10, 155, 230, 30);
                  numlabel.frame = CGRectMake( frame.size.width*i +250, 155, 60, 30);
          }
          [imageview setImage:[UIImage imageNamed:@"instead_mes"]];
